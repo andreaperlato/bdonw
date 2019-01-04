@@ -32,7 +32,7 @@ If you are more business facing and not sitting in a software development depart
 Another very important aspect is about SQL. It is really easy to connect SLQ with R because R has database connectors.
 You have one language that pretty much does everything in your workflow.
 
-userR!
+useR!
 
 
 
