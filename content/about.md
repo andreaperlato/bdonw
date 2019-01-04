@@ -7,12 +7,17 @@ I started my caree as a Data Scientist more than 10 years ago in the filed of Ne
 [**Find out more**](http://www.attention-lab.net).
 
 After years of scientific research, I finally discovered the great contribution that could have brought a scientific approach to the business data. In 2014, very few places were conscious about the role of data science, but I had the good fortune to work for one of these: [**Chorally**](https://chorally.com/). Thanks to Chorally, I used the best technology available for companies to obtain useful and usable information from their data.
+[**Find out more**](https://www.linkedin.com/in/andreaperlato/).
 
-This website is entirely built in [**R**](https://www.r-project.org/).
+The goal of this website is to unleash the power of [**R**].
+This website is entirely built in [**R**](https://www.r-project.org/) with [**RStudio**](https://www.rstudio.com/).
+
+There are many good reasons to use R for data analytics and data science. Obviously is open source and have been massively extended through tens of thousands of libraries. R is a data specific programming language and it's got 10000 libraries which are very much focused around data analyst and data scientist kind of process, and maybe Python doesn't really have right now! Moreover, in Python to turn your analysis into web application you need to use Django and you need the support of a web developer and it takes a lot of work to built these things out. 
+On the contrary, with R you can actually built reactive web applications as well very faster than Python like [**Shiny**] and [**Flexdashboard**].
 
 
 
 
 
 
-This is an example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium).
+
