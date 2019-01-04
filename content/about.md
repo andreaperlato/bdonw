@@ -29,7 +29,7 @@ In BI solutions, R has better support for the BI tools, like powerBI and Tableau
 
 If you are more business facing and not sitting in a software development department, you should really consider R as a tool to build everything from end to end. 
 
-Another very important aspect is about SQL. It is really easy to connect SLQ with R because R has database connectors.
+Another very important aspect is about SQL. It is really simple to connect SLQ with R because R has database connectors.
 You have one language that pretty much does everything in your workflow.
 
 useR!
