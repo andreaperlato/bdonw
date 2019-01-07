@@ -15,11 +15,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     weight = 3
 [[menu.main]]
     name = "Machine Learning"
-    url = "/post/"
+    url = "/about/"
     weight = 1
 [[menu.main]]
     name = "Artificial Intelligence"
-    url = "/post/"
+    url = "/about/"
     weight = 2
 [[menu.main]]
     name = "LinkedIn"
