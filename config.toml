@@ -12,12 +12,19 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "About"
     url = "/about/"
+    weight = 3
 [[menu.main]]
     name = "Machine Learning"
-    url = "/about/"
+    url = "/post/"
+    weight = 1
+[[menu.main]]
+    name = "Artificial Intelligence"
+    url = "/post/"
+    weight = 2
 [[menu.main]]
     name = "LinkedIn"
     url = "https://www.linkedin.com/in/andreaperlato"
+    weight = 4
 
 [params]
     description = "Andrea Perlato Website"
