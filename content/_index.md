@@ -6,7 +6,7 @@ date: "2016-05-05T21:48:51-07:00"
 This website has been designed to share information about Data Science.
 There are two main topics: machine learning and artificial intelligence, both explained along with real world examples.
 
-In order to unleash the the power of R, the website is entirely built in [**R**](https://www.r-project.org/) with [**blogdown**](https://bookdown.org/yihui/blogdown/).
+In order to unleash the power of R, the website is entirely built in [**R**](https://www.r-project.org/) with [**blogdown**](https://bookdown.org/yihui/blogdown/).
 R is the best data specific programming language focused around data analyst and data scientist kind of process.
 It is also one of the faster ways to build dashboards and web apps.
 
