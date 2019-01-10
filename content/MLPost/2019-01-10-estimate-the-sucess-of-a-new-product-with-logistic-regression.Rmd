@@ -44,7 +44,7 @@ test_set = subset(dataset, split == FALSE)
 ```
 
 **Feature Scaling.** <br/>
-For classification is better to do feature scaling in order to have an accurate prediction. <br/>
+For classification is better to do feature scaling in order to have an accurate prediction.
 Since most of the machine learning algorithms use Euclidian distance between two data point in their computations, this is a problem. <br/>
 To supress this effect, we need to bring all feature to the same level of magnitudes. This can be achived by scaling.
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}

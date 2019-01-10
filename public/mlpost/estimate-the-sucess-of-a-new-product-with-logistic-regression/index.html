@@ -242,7 +242,7 @@ set.seed(123)
 split = sample.split(dataset$Purchased, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE) </code></pre>
-<p><strong>Feature Scaling.</strong> <br/> For classification is better to do feature scaling in order to have an accurate prediction. <br/> Since most of the machine learning algorithms use Euclidian distance between two data point in their computations, this is a problem. <br/> To supress this effect, we need to bring all feature to the same level of magnitudes. This can be achived by scaling.</p>
+<p><strong>Feature Scaling.</strong> <br/> For classification is better to do feature scaling in order to have an accurate prediction. Since most of the machine learning algorithms use Euclidian distance between two data point in their computations, this is a problem. <br/> To supress this effect, we need to bring all feature to the same level of magnitudes. This can be achived by scaling.</p>
 <pre class="r"><code>dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
 training_set[-3] = scale(training_set[-3])
 test_set[-3] = scale(test_set[-3])</code></pre>
