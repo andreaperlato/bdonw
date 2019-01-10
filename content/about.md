@@ -3,6 +3,11 @@ title: "Andrea Perlato"
 date: "2016-05-05T21:48:51-07:00"
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 I started my caree as a Data Scientist more than 10 years ago in the field of Neuroscience at the University of Verona - School of Medicine, Italy. As point person in data analysis, I studied the single and multi-unit recordings from behaving non human primates. Moreover, I have been conducting psychophysic experiments on human subjects to investigate the brain plasticity in drug addicts. 
 [**Find out more**](http://www.attention-lab.net).
 

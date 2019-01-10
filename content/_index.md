@@ -3,6 +3,11 @@ title: "Homepage"
 date: "2016-05-05T21:48:51-07:00"
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 This website has been designed to share information about Data Science.
 There are two main topics: machine learning and artificial intelligence, both explained along with real world examples.
 
