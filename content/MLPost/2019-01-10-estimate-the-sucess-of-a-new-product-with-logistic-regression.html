@@ -187,3 +187,37 @@ test_set = subset(dataset, split == FALSE) </code></pre>
 <pre class="r"><code>dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
 training_set[-3] = scale(training_set[-3])
 test_set[-3] = scale(test_set[-3])</code></pre>
+<p><strong>Fitting Logistic Regression to the Training set.</strong></p>
+<pre class="r"><code>classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = training_set)</code></pre>
+<p><strong>Predicting the Test set results and Confusion Matrix at a cut-off of 0.5</strong></p>
+<pre class="r"><code>prob_pred = predict(classifier, type = &#39;response&#39;, newdata = test_set[-3])
+y_pred = ifelse(prob_pred &gt; 0.5, 1, 0)
+
+prob_pred = predict(classifier, type = &#39;response&#39;, newdata = test_set[-3])
+y_pred = ifelse(prob_pred &gt; 0.5, 1, 0)
+
+cm = table(test_set[, 3], y_pred &gt; 0.5)
+cm</code></pre>
+<pre><code>   
+    FALSE TRUE
+  0    57    7
+  1    10   26</code></pre>
+<p><strong>Visualising the Test set results.</strong></p>
+<pre class="r"><code>library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c(&#39;Age&#39;, &#39;EstimatedSalary&#39;)
+prob_set = predict(classifier, type = &#39;response&#39;, newdata = grid_set)
+y_grid = ifelse(prob_set &gt; 0.5, 1, 0)
+plot(set[, -3],
+     main = &#39;Logistic Regression (Test set)&#39;,
+     xlab = &#39;Age&#39;, ylab = &#39;Estimated Salary&#39;,
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = &#39;.&#39;, col = ifelse(y_grid == 1, &#39;springgreen3&#39;, &#39;tomato&#39;))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, &#39;green4&#39;, &#39;red3&#39;))</code></pre>
+<p><img src="/MLPost/2019-01-10-estimate-the-sucess-of-a-new-product-with-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
