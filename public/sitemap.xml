@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
@@ -18,7 +23,26 @@
   </url>
   
   <url>
+    <loc>/tags/logistic-regressio/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/mlpost/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/machine-learning/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
