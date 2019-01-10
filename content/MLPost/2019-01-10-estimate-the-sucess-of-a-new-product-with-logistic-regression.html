@@ -2,14 +2,173 @@
 title: Estimate the sucess of a new product with Logistic Regression
 author: andrea perlato
 date: '2019-01-10'
-status: "nopromo"
 slug: estimate-the-sucess-of-a-new-product-with-logistic-regression
 categories:
   - machine learning
 tags:
-  - logistic regressio
+  - logistic regression
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
-
+<p>These are a series of analysis to show all the potential of the main classification algorithms</p>
+<table class="table table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+User.ID
+</th>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+EstimatedSalary
+</th>
+<th style="text-align:right;">
+Purchased
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+15624510
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+19000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15810944
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+20000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15668575
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+43000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15603246
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+57000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15804002
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+76000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15728773
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+58000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15598044
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+84000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15694829
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+150000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>

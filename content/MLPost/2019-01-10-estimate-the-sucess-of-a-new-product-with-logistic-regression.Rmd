@@ -2,10 +2,27 @@
 title: Estimate the sucess of a new product with Logistic Regression
 author: andrea perlato
 date: '2019-01-10'
-status: "nopromo"
 slug: estimate-the-sucess-of-a-new-product-with-logistic-regression
 categories:
   - machine learning
 tags:
-  - logistic regressio
+  - logistic regression
 ---
+
+These are a series of analysis to show all the potential of the main classification algorithms
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(formattable)
+dataset <- read.csv("C:/07 - R Website/dataset/ML/Social_Network_Ads.csv")
+dt <- dataset[1:8, 1:5]
+kable(dt) %>%
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
+
+```
+
+
+
+
+
