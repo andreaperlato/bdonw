@@ -17,7 +17,7 @@
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</guid>
-      <description>body {text-align: justify}These are a series of analysis to show all the potential of the main classification algorithms. The table shows the business clients of a company that has just launched a new product online. Some of the clients responded positively to the ads by buying the product and other responded negatively by not buying the product. The last column of the table tells for each user if the user bought the product or not.</description>
+      <description>body {text-align: justify}These are a series of analysis to illustate the main classification algorithms and their advantages. The table shows the business clients of a company that has just launched a new product online. Some of the clients responded positively to the ads by buying the product and other responded negatively by not buying the product. The last column of the table tells for each user if the user bought the product or not.</description>
     </item>
     
   </channel>

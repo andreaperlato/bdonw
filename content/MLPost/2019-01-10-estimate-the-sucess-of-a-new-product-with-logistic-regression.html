@@ -16,7 +16,7 @@ tags:
 body {
 text-align: justify}
 </style>
-<p>These are a series of analysis to show all the potential of the main classification algorithms. The table shows the business clients of a company that has just launched a new product online. Some of the clients responded positively to the ads by buying the product and other responded negatively by not buying the product. The last column of the table tells for each user if the user bought the product or not.</p>
+<p>These are a series of analysis to illustate the main classification algorithms and their advantages. The table shows the business clients of a company that has just launched a new product online. Some of the clients responded positively to the ads by buying the product and other responded negatively by not buying the product. The last column of the table tells for each user if the user bought the product or not.</p>
 <table class="table table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -183,7 +183,7 @@ set.seed(123)
 split = sample.split(dataset$Purchased, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE) </code></pre>
-<p><strong>Feature Scaling.</strong> <br/> For classification is better to do feature scaling.</p>
+<p><strong>Feature Scaling.</strong> <br/> For classification is better to do feature scaling in order to have an accurate prediction. <br/> Since most of the machine learning algorithms use Euclidian distance between two data point in their computations, this is a problem. <br/> To supress this effect, we need to bring all feature to the same level of magnitudes. This can be achived by scaling.</p>
 <pre class="r"><code>dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
 training_set[-3] = scale(training_set[-3])
 test_set[-3] = scale(test_set[-3])</code></pre>
