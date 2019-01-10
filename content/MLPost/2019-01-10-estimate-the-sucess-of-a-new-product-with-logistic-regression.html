@@ -177,4 +177,13 @@ Female
 </tbody>
 </table>
 <p>Our mission is to use the main classifier algorithms and compare the best result. In this specific post we used Logistic Regression.</p>
-<p><strong>First step</strong> Splitting the dataset into the Training set and Test set. Feature Scaling.</p>
+<p><strong>Splitting the dataset into the Training set and Test set.</strong></p>
+<pre class="r"><code>library(caTools)
+set.seed(123)
+split = sample.split(dataset$Purchased, SplitRatio = 0.75)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE) </code></pre>
+<p><strong>Feature Scaling.</strong> <br/> For classification is better to do feature scaling.</p>
+<pre class="r"><code>dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
+training_set[-3] = scale(training_set[-3])
+test_set[-3] = scale(test_set[-3])</code></pre>
