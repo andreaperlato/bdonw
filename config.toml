@@ -33,7 +33,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
-    highlightjsTheme = "R"
+    highlightjsTheme = "atom-one-dark"
+    
 
     MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
     MathJaxVersion = "2.7.5"
