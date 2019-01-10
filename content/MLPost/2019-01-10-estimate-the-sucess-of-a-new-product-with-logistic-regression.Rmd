@@ -32,6 +32,8 @@ kable(dt) %>%
 Our mission is to use the main classifier algorithms and compare the best result. In this specific post we used Logistic Regression.
 
 **First step** 
+Splitting the dataset into the Training set and Test set.
+Feature Scaling.
 
 
 
