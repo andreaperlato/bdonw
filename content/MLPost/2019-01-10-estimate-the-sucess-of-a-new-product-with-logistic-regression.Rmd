@@ -188,7 +188,7 @@ y_pred = predict(classifier, newdata = test_set[-3])
 ```
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 library(ElemStatLearn)
-set = test_set
+set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
