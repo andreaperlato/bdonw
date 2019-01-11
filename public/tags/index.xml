@@ -29,5 +29,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Random Forest</title>
+      <link>/tags/random-forest/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/random-forest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Suppor Vector Machine</title>
+      <link>/tags/suppor-vector-machine/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/suppor-vector-machine/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
