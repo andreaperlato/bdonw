@@ -95,8 +95,7 @@ points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 
 ```
 
-The graph above represent all the users in the test set characterized by their age and Salary. Red points are user that did not buy the new product and the greed point are those who bought it. Most of the users who are older and with high salary bought the products, but also some aged people with low salary bought the product (probably they saved some money and they couldn’t resist to this very cool luxury product). 
-The prediction regions are linearly separated accordingly with the logistic regression. The prediction boundary is a straight line, in fact the logistic regression classifier is a linear classifier. 
+The prediction boundary is a straight line, in fact the logistic regression classifier is a linear classifier. 
 So, the next graphs are related to a non-linear classifier and we will test if they have a better prediction.
 
 
@@ -136,6 +135,42 @@ points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 
 ```
+
+**Kernel Suppor Vector Machine**
+The goal of SVM is to design a hyperplane that classifies all the training vectors in two classes. We can have many possible hyperplanes that are able to classify correctly all the elements in the feature set, but the best choice will be the hyperplane that leaves the maximum margin from both classes. With margins we mean the distance between the hyperplane and the closest elements from the hyperplane. We use the Kernel trick when the categories are not linear separable. </br>
+The [**Gaussian RBF Kernel**](https://en.wikipedia.org/wiki/Radial_basis_function_kernel) is a function that represent a particular sigma function with the landmark in the middle of the space and is the point from where we measure the distance.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(e1071)
+classifier = svm(formula = Purchased ~ .,
+                 data = training_set,
+                 type = 'C-classification',
+                 kernel = 'radial')
+
+y_pred = predict(classifier, newdata = test_set[-3])
+
+```
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+y_grid = predict(classifier, type = 'response', newdata = grid_set)
+plot(set[, -3],
+     main = 'Kernel SVM (Test set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+
+```
+
+
+
+
 
 
 
