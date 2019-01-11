@@ -1,5 +1,5 @@
 ---
-title: Assessing the sucess of a new product via Logistic Regression
+title: Assessing the sucess of a new product via multiple classifiers
 author: andrea perlato
 date: '2019-01-10'
 slug: estimate-the-sucess-of-a-new-product-with-logistic-regression
@@ -7,6 +7,7 @@ categories:
   - machine learning
 tags:
   - logistic regression
+  - k nearest neighbors
 ---
 
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
@@ -198,12 +199,7 @@ y_pred = ifelse(prob_pred &gt; 0.5, 1, 0)
 prob_pred = predict(classifier, type = &#39;response&#39;, newdata = test_set[-3])
 y_pred = ifelse(prob_pred &gt; 0.5, 1, 0)
 
-cm = table(test_set[, 3], y_pred &gt; 0.5)
-cm</code></pre>
-<pre><code>   
-    FALSE TRUE
-  0    57    7
-  1    10   26</code></pre>
+cm = table(test_set[, 3], y_pred &gt; 0.5)</code></pre>
 <p><strong>Visualising the Test set results.</strong></p>
 <pre class="r"><code>library(ElemStatLearn)
 set = test_set
@@ -221,3 +217,6 @@ contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
 points(grid_set, pch = &#39;.&#39;, col = ifelse(y_grid == 1, &#39;springgreen3&#39;, &#39;tomato&#39;))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, &#39;green4&#39;, &#39;red3&#39;))</code></pre>
 <p><img src="/MLPost/2019-01-10-estimate-the-sucess-of-a-new-product-with-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>The graph above represent all the users in the test set characterized by their age and Salary. Red points are user that did not buy the new product and the greed point are those who bought it. Most of the users who are older and with high salary bought the products, but also some aged people with low salary bought the product (probably they saved some money and they couldn’t resist to this very cool luxury product). The prediction regions are linearly separated accordingly with the logistic regression. The prediction boundary is a straight line, in fact the logistic regression classifier is a linear classifier. So, the next graphs are related to a non-linear classifier and we will test if they have a better prediction.</p>
+<p><strong>K-Nearest Neighbors K-NN</strong> It is an algorithm based on feature similarity. It is a non-linear classifier. It identifies the k nearest neighbors of a class that we want to estimate in its class. If we have k=3, the algorithm has to find the 3 nearest neighbors of the class. Choosing the right value of k is a process called parameter tuning, and is important to better accuracy. If the number of k is too low the bias is too small and we have a lot of noise. On the contrary, if the k is too big, then the process of estimation is too long. The solution is to use the square root of n where n is the total number of observations.</p>
+<p><img src="/MLPost/2019-01-10-estimate-the-sucess-of-a-new-product-with-logistic-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>

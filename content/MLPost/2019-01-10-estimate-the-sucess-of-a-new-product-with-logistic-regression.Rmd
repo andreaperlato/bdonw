@@ -1,5 +1,5 @@
 ---
-title: Assessing the sucess of a new product via Logistic Regression
+title: Assessing the sucess of a new product via multiple classifiers
 author: andrea perlato
 date: '2019-01-10'
 slug: estimate-the-sucess-of-a-new-product-with-logistic-regression
@@ -7,6 +7,7 @@ categories:
   - machine learning
 tags:
   - logistic regression
+  - k nearest neighbors
 ---
 
 <style>
@@ -71,7 +72,6 @@ prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
 y_pred = ifelse(prob_pred > 0.5, 1, 0)
 
 cm = table(test_set[, 3], y_pred > 0.5)
-cm
 
 ```
 
@@ -94,3 +94,55 @@ points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 
 ```
+
+The graph above represent all the users in the test set characterized by their age and Salary. Red points are user that did not buy the new product and the greed point are those who bought it. Most of the users who are older and with high salary bought the products, but also some aged people with low salary bought the product (probably they saved some money and they couldn’t resist to this very cool luxury product). 
+The prediction regions are linearly separated accordingly with the logistic regression. The prediction boundary is a straight line, in fact the logistic regression classifier is a linear classifier. 
+So, the next graphs are related to a non-linear classifier and we will test if they have a better prediction.
+
+
+**K-Nearest Neighbors K-NN**
+It is an algorithm based on feature similarity. It is a non-linear classifier. 
+It identifies the k nearest neighbors of a class that we want to estimate in its class. If we have k=3, the algorithm has to find the 3 nearest neighbors of the class.
+Choosing the right value of k is a process called parameter tuning, and is important to better accuracy.
+If the number of k is too low the bias is too small and we have a lot of noise. On the contrary, if the k is too big, then the process of estimation is too long.
+The solution is to use the square root of n where n is the total number of observations.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(class)
+y_pres = knn(train = training_set[,-3], 
+             test = test_set[,-3], 
+             cl = training_set[,3],
+             k = 5)
+
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+y_grid = knn(train = training_set[,-3], 
+             test = grid_set, 
+             cl = training_set[,3],
+             k = 5)
+plot(set[, -3],
+     main = 'K-NN (Test set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+
+```
+
+
+
+
+
+
+
+
+
+
