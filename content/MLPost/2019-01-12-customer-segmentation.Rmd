@@ -30,9 +30,29 @@ dt <- dataset[1:8, 1:5]
 kable(dt) %>%
   kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
 
-# dataset = dataset[3:5]
+X <- dataset[4:5]
 
 ```
+
+We have to segment the clients based on Annual Income and Spending Score.
+We sart using the **K-Mean algorithm**. </br>
+When we use K-Mean we have to specify the number of clusters. To do that, we use the [**Elbow Method**](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) to find the optimal number of clusters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
