@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/customer-segmentation/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
   </url>
@@ -23,8 +28,26 @@
   </url>
   
   <url>
+    <loc>/tags/clustering/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hierarchical/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/k-nearest-neighbors/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kmean/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -36,13 +59,13 @@
   
   <url>
     <loc>/mlpost/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -60,7 +83,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

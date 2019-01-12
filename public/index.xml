@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Customer segmentation via K-Means &amp; Hierarchical clustering</title>
+      <link>/mlpost/customer-segmentation/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/customer-segmentation/</guid>
+      <description>body {text-align: justify}Consider to have a big mall in a specific city that contains information of its clients that subcribed to a membership card. The last feature is Spending Score that is a score that the mall computed for each of their clients based on several criteria including for example their income and the number of times per week they show up in the mall and of course, the amount of dollars they spent in a year.</description>
+    </item>
+    
+    <item>
       <title>Assessing the sucess of a new product via multiple classifiers</title>
       <link>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>

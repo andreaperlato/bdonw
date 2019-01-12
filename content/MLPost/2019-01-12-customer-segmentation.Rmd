@@ -1,0 +1,40 @@
+---
+title: Customer segmentation via K-Means & Hierarchical clustering
+author: andrea perlato
+date: '2019-01-12'
+slug: customer-segmentation
+categories:
+  - machine learning
+tags:
+  - kmean
+  - hierarchical
+  - clustering
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+Consider to have a big mall in a specific city that contains information of its clients that subcribed to a membership card.
+The last feature is Spending Score that is a score that the mall computed for each of their clients based on several criteria including for example their income and the number of times per week they show up in the mall and of course, the amount of dollars they spent in a year. the score goes from 0 (low spends) to 100 (high spends).
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(formattable)
+dataset <- read.csv("C:/07 - R Website/dataset/ML/Mall_Customers.csv")
+dt <- dataset[1:8, 1:5]
+kable(dt) %>%
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
+
+# dataset = dataset[3:5]
+
+```
+
+
+
+
+

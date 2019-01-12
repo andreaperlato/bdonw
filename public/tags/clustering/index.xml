@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clustering on Andrea Perlato</title>
+    <link>/tags/clustering/</link>
+    <description>Recent content in Clustering on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/clustering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Customer segmentation via K-Means &amp; Hierarchical clustering</title>
+      <link>/mlpost/customer-segmentation/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/customer-segmentation/</guid>
+      <description>body {text-align: justify}Consider to have a big mall in a specific city that contains information of its clients that subcribed to a membership card. The last feature is Spending Score that is a score that the mall computed for each of their clients based on several criteria including for example their income and the number of times per week they show up in the mall and of course, the amount of dollars they spent in a year.</description>
+    </item>
+    
+  </channel>
+</rss>
