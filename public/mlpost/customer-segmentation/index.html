@@ -254,6 +254,25 @@ clusplot(X, kmeans$cluster,
             plotchar = FALSE, span = TRUE,
             main = paste(&#39;clusters of clients via K-Mean&#39;), xlab = &quot;Annual Income&quot;, ylab = &quot;Spending Score&quot;)</code></pre>
 <p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Now, more on performing <strong>Hierarchical Clustering</strong>. Firt, we use <a href="https://hlab.stanford.edu/brian/number_of_clusters_.html"><strong>dendrogram</strong></a> to find the exact number of cluster, exactly like we did in the K-Mean.</p>
+<pre class="r"><code>dendrogram = hclust(dist(X, method = &#39;euclidian&#39;), method = &#39;ward.D&#39;)
+plot(dendrogram,
+     main = paste(&#39;Dendrogram&#39;),
+     xlab = &quot;Customers&quot;,
+     ylab = &quot;Euclidian distances&quot;)</code></pre>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>To find the optimal number of clusters, we need to find the largest vertical distance that we can make without crossing any other horizontal line. So, now we can fit our hierarchical clustering to the mall dataset. To do that here we use the <a href="https://rpkgs.datanovia.com/factoextra/reference/hcut.html"><strong>Cut Tree</strong></a> method.</p>
+<pre class="r"><code>hc = hclust(dist(X, method = &#39;euclidian&#39;), method = &#39;ward.D&#39;)
+y_hc = cutree(hc, 5)
+
+library(cluster)
+clusplot(X, 
+         y_hc,
+         lines = 0,
+         shade = TRUE, color = TRUE, labels = 0,
+         plotchar = FALSE, span = TRUE,
+         main = paste(&#39;clusters of clients via K-Mean&#39;), xlab = &quot;Annual Income&quot;, ylab = &quot;Spending Score&quot;)</code></pre>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>The violet cluster has low income and low spending score. We can call them: SENSIBLE clients. The green cluster has both avrerage income and spending. We can call them: STANDART clients. The red top cluster has high income and high spending. They are the most targeting client in a compain: Target clients. The red bottom cluster has high income and low spending. We can call them: CAREFUL clients. The blue cluster has low income but high spending score. They do not care to spend much: CARELESS clients.</p>
 
     </div>

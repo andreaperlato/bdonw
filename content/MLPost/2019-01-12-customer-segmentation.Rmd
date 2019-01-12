@@ -65,20 +65,39 @@ clusplot(X, kmeans$cluster,
 
 ```
 
+Now, more on performing **Hierarchical Clustering**.
+Firt, we use [**dendrogram**](https://hlab.stanford.edu/brian/number_of_clusters_.html) to find the exact number of cluster, exactly like we did in the K-Mean.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+dendrogram = hclust(dist(X, method = 'euclidian'), method = 'ward.D')
+plot(dendrogram,
+     main = paste('Dendrogram'),
+     xlab = "Customers",
+     ylab = "Euclidian distances")
+
+
+```
+
+To find the optimal number of clusters, we need to find the largest vertical distance that we can make without crossing any other horizontal line.
+So, now we can fit our hierarchical clustering to the mall dataset. To do that here we use the [**Cut Tree**](https://rpkgs.datanovia.com/factoextra/reference/hcut.html) method.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+hc = hclust(dist(X, method = 'euclidian'), method = 'ward.D')
+y_hc = cutree(hc, 5)
+
+library(cluster)
+clusplot(X, 
+         y_hc,
+         lines = 0,
+         shade = TRUE, color = TRUE, labels = 0,
+         plotchar = FALSE, span = TRUE,
+         main = paste('clusters of clients via K-Mean'), xlab = "Annual Income", ylab = "Spending Score")
+
+```
+
 The violet cluster has low income and low spending score. We can call them: SENSIBLE clients.
 The green cluster has both avrerage income and spending. We can call them: STANDART clients.
 The red top cluster has high income and high spending. They are the most targeting client in a compain: Target clients.
 The red bottom cluster has high income and low spending. We can call them: CAREFUL clients.
 The blue cluster has low income but high spending score. They do not care to spend much: CARELESS clients.
-
-
-
-
-
-
-
-
-
-
-
 
