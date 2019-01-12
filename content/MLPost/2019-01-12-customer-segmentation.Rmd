@@ -50,11 +50,26 @@ plot(1:10, wcss, type="b", main = paste('Cluster of clients'),
 ```
 
 From the graph we see that the optimal number of clusters for our problem is 5 clusters.
+Now, we can apply K-Mean to the mall dataset.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+set.seed(6)
+kmeans <- kmeans(X, 5, iter.max = 300, nstart = 10)
 
+library(cluster)
+clusplot(X, kmeans$cluster,
+            lines = 0,
+            shade = TRUE, color = TRUE, labels = 0,
+            plotchar = FALSE, span = TRUE,
+            main = paste('clusters of clients via K-Mean'), xlab = "Annual Income", ylab = "Spending Score")
 
+```
 
-
+The violet cluster has low income and low spending score. We can call them: SENSIBLE clients.
+The green cluster has both avrerage income and spending. We can call them: STANDART clients.
+The red top cluster has high income and high spending. They are the most targeting client in a compain: Target clients.
+The red bottom cluster has high income and low spending. We can call them: CAREFUL clients.
+The blue cluster has low income but high spending score. They do not care to spend much: CARELESS clients.
 
 
 
