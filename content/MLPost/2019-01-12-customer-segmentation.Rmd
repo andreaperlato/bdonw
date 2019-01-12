@@ -38,9 +38,18 @@ We have to segment the clients based on Annual Income and Spending Score.
 We sart using the **K-Mean algorithm**. </br>
 When we use K-Mean we have to specify the number of clusters. To do that, we use the [**Elbow Method**](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) to find the optimal number of clusters.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+set.seed(6)
+wcss <- vector()
+for (i in 1:10) wcss[i] <- sum(kmeans(X, i)$withinss)
+plot(1:10, wcss, type="b", main = paste('Cluster of clients'),
+                           xlab = "Number of clusters",
+                           ylab = "WCSS")
 
 
+```
 
+From the graph we see that the optimal number of clusters for our problem is 5 clusters.
 
 
 
