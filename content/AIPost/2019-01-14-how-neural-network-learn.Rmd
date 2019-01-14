@@ -23,7 +23,7 @@ Baed on the activation function we have our output. In order to be able to lear,
 How can we minimize the cost function? </br>
 The figure represent our cost function and represent the best way to find the best soution for our weights. We continue to calcuate the slope in the points represented by the red dot till we find the best weights, the best situation that inimize the cost function.
 
-![cost function](/AIPost/2019-01-14-how-neural-network-learn_files/costfunction.PNG)
+![cost function](img/costfunction.PNG)
 
 
 
