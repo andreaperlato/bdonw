@@ -1,0 +1,11 @@
+---
+title: How Neural Network learn?
+author: andrea perlato
+date: '2019-01-14'
+slug: how-neural-network-learn
+categories:
+  - artificial intelligence
+tags:
+  - gradient descent
+  - ANN
+---

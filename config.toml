@@ -19,7 +19,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     weight = 3
 [[menu.main]]
     name = "Artificial Intelligence"
-    url = "/about/"
+    url = "/AIPost/"
     weight = 4
 [[menu.main]]
     name = "Graph"
