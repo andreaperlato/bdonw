@@ -37,7 +37,8 @@ If you are more business facing and not sitting in a software development depart
 Another very important aspect is about SQL. It is really simple to connect SLQ with R because R has database connectors.
 You have one language that pretty much does everything in your workflow.
 
-useR!
+<p style='text-align: right;'>
+[**My LinkedIn Profile**](https://www.linkedin.com/in/andreaperlato/)
 
 
 
