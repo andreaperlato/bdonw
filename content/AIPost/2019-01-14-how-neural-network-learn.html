@@ -10,6 +10,7 @@ tags:
   - ANN
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
 <style>
@@ -17,7 +18,344 @@ body {
 text-align: justify}
 </style>
 <p>Having a one layer neural network (single layer feedforeward) with the output value to be compare to the actual value. Baed on the activation function we have our output. In order to be able to lear, we have to compare the output value with the actual value via the cost funtion which is the half of the squred difference output and actual value. Cost function says that is the error in our prediction: the lower the cost function the closer the output value to output value. So, the information is going back and our weights have been updated till we minimize the cost function. This process is called <a href="https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications"><strong>back propagation</strong></a>.</p>
-<p><strong>Gradien Descent</strong> </br> How can we minimize the cost function? </br> The figure represent our cost function and represent the best way to find the best soution for our weights. We continue to calcuate the slope in the points represented by the red dot till we find the best weights, the best situation that inimize the cost function.</p>
+<p><strong>Batch Gradien Descent</strong> </br> How can we minimize the cost function? </br> The figure represent our cost function and represent the best way to find the best soution for our weights. We continue to calcuate the slope in the points represented by the red dot till we find the best weights, the best situation that minimize the cost function. This process is also know as batch gradient descent because evaluete all observations at once.</p>
 <center>
-<img src="/img/costfunction.png" style="width:90.0%" />
+<img src="/img/gradientdescent.png" style="width:90.0%" />
 </center>
+<p>The problem is that this method requires for the cost function to be convex. If our function is not convex like in a multidimentional space, we could find a local minimum rather than the global one and we are not able to optimize our neural network.</p>
+<center>
+<img src="/img/localminimum.png" style="width:70.0%" />
+</center>
+<p>The solution is the <a href="https://iamtrask.github.io/2015/07/27/python-network-part2/"><strong>Stocastic Gradient Descent</strong></a> that doesn’t require the cost function to be convex. </br> Here, we take each observation one by one and we adjust the weights. It is not like the batch gradient descent where we use all observations at once. This approach avoid the problem local minimums.</p>
+<p><a href="http://neuralnetworksanddeeplearning.com/"><strong>Backpropagation</strong></a> </br> This method allows to adjust weights all at the same time. The huge advantage is that during the process of back propagatins we are able to adjust all the weights at the same time and so we know which part of the error each of our weights in the network is responsable for. </br> STEP 1: randomly initialise the weights to close to zero (but not 0). </br> STEP 2: forward propagation: from left to right, the neurons are activated in a way that the impact of each neuron’sactivation is limited by the weights. Propagate the activations until getting the predicted result y. </br> STEP 3: compare the predicted result to the actual result. Measure the generated error. </br> STEP 4: back propagation: from right to left, the error is back propagated. update the weights according to how much they are responsible for the error. </br> STEP 5: repeat STEP 1 to 4 and update the weights after each observation (Reinforcement Learning). Or, repeat STEP 1 to STEP 4 but update the weights only after a batch of observation (Batch Learning). </br></p>
+<p><strong>Reinforcement Learning exampe:</strong> </br></p>
+<p>The dataset contain iformation about the customers in a bank and if thy stay or left the bank within a six month period (Exited). Our goal is to predict the exited from all the feuture that we have about each customer.</p>
+<table class="table table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+CreditScore
+</th>
+<th style="text-align:left;">
+Geography
+</th>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+Tenure
+</th>
+<th style="text-align:right;">
+Balance
+</th>
+<th style="text-align:right;">
+NumOfProducts
+</th>
+<th style="text-align:right;">
+HasCrCard
+</th>
+<th style="text-align:right;">
+IsActiveMember
+</th>
+<th style="text-align:right;">
+EstimatedSalary
+</th>
+<th style="text-align:right;">
+Exited
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+619
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+101348.88
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+608
+</td>
+<td style="text-align:left;">
+Spain
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+83807.86
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+112542.58
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+502
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+159660.80
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+113931.57
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+699
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+93826.63
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+850
+</td>
+<td style="text-align:left;">
+Spain
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+125510.82
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+79084.10
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+645
+</td>
+<td style="text-align:left;">
+Spain
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+113755.78
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+149756.71
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+822
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10062.80
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+376
+</td>
+<td style="text-align:left;">
+Germany
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+115046.74
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+119346.88
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>The first step is to encode the categorical variables as factors.</p>
+<pre class="r"><code>dataset$Geography = as.numeric(factor(dataset$Geography,
+                                      levels = c(&#39;France&#39;, &#39;Spain&#39;, &#39;Germany&#39;),
+                                      labels = c(1, 2, 3)))
+
+dataset$Gender = as.numeric(factor(dataset$Gender,
+                                   levels = c(&#39;No&#39;, &#39;Yes&#39;),
+                                   labels = c(0, 1)))</code></pre>

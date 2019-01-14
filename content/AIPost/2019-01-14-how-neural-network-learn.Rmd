@@ -19,22 +19,62 @@ Having a one layer neural network (single layer feedforeward) with the output va
 Baed on the activation function we have our output. In order to be able to lear, we have to compare the output value with the actual value via the cost funtion which is the half of the squred difference output and actual value. Cost function says that is the error in our prediction: the lower the cost function the closer the output value to output value. So, the information is going back and our weights have been updated till we minimize the cost function. This process is called [**back propagation**](https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications).
 
 
-**Gradien Descent** </br>
+**Batch Gradien Descent** </br>
 How can we minimize the cost function? </br>
-The figure represent our cost function and represent the best way to find the best soution for our weights. We continue to calcuate the slope in the points represented by the red dot till we find the best weights, the best situation that inimize the cost function.
+The figure represent our cost function and represent the best way to find the best soution for our weights. We continue to calcuate the slope in the points represented by the red dot till we find the best weights, the best situation that minimize the cost function. This process is also know as batch gradient descent because evaluete all observations at once.
 
 <center>
-![](/img/costfunction.png){width=90%}
+![](/img/gradientdescent.png){width=90%}
 </center>
 
+The problem is that this method requires for the cost function to be convex. If our function is not convex like in a multidimentional space, we could find a local minimum rather than the global one and we are not able to optimize our neural network.
+
+<center>
+![](/img/localminimum.png){width=70%}
+</center>
+
+The solution is the [**Stocastic Gradient Descent**](https://iamtrask.github.io/2015/07/27/python-network-part2/) that doesn't require the cost function to be convex. </br>
+Here, we take each observation one by one and we adjust the weights. It is not like the batch gradient descent where we use all observations at once.
+This approach avoid the problem local minimums.
 
 
+[**Backpropagation**](http://neuralnetworksanddeeplearning.com/) </br>
+This method allows to adjust weights all at the same time. The huge advantage is that during the process of back propagatins we are able to adjust all the weights at the same time and so we know which part of the error each of our weights in the network is responsable for. </br>
+STEP 1: randomly initialise the weights to close to zero (but not 0). </br>
+STEP 2: forward propagation: from left to right, the neurons are activated in a way that the impact of each neuron'sactivation is limited by the weights. Propagate the activations until getting the predicted result y. </br>
+STEP 3: compare the predicted result to the actual result. Measure the generated error. </br>
+STEP 4: back propagation: from right to left, the error is back propagated. update the weights according to how much they are responsible for the error. </br>
+STEP 5: repeat STEP 1 to 4 and update the weights after each observation (Reinforcement Learning). Or, repeat STEP 1 to STEP 4 but update the weights only after a batch of observation (Batch Learning). </br>
 
 
+**Reinforcement Learning exampe:** </br>
 
+The dataset contain iformation about the customers in a bank and if thy stay or left the bank within a six month period (Exited).
+Our goal is to predict the exited from all the feuture that we have about each customer.
 
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(formattable)
+dataset <- read.csv("C:/07 - R Website/dataset/AI/Churn_Modelling.csv")
+dt <- dataset[1:8, 4:14]
+kable(dt) %>%
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 11)
 
+```
 
+The first step is to encode the categorical variables as factors.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+dataset$Geography = as.numeric(factor(dataset$Geography,
+                                      levels = c('France', 'Spain', 'Germany'),
+                                      labels = c(1, 2, 3)))
+
+dataset$Gender = as.numeric(factor(dataset$Gender,
+                                   levels = c('No', 'Yes'),
+                                   labels = c(0, 1)))
+
+```
 
 
 

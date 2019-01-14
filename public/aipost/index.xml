@@ -17,7 +17,7 @@
       <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/aipost/how-neural-network-learn/</guid>
-      <description>body {text-align: justify}Having a one layer neural network (single layer feedforeward) with the output value to be compare to the actual value. Baed on the activation function we have our output. In order to be able to lear, we have to compare the output value with the actual value via the cost funtion which is the half of the squred difference output and actual value. Cost function says that is the error in our prediction: the lower the cost function the closer the output value to output value.</description>
+      <description>body {text-align: justify}Having a one layer neural network (single layer feedforeward) with the output value to be compare to the actual value. Baed on the activation function we have our output. In order to be able to lear, we have to compare the output value with the actual value via the cost funtion which is the half of the squred difference output and actual value.</description>
     </item>
     
   </channel>
