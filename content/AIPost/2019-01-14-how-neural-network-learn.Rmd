@@ -1,5 +1,5 @@
 ---
-title: How Neural Network learn?
+title: How Neural Network learn? An example of risk of churn of custmers of a bank.
 author: andrea perlato
 date: '2019-01-14'
 slug: how-neural-network-learn
@@ -48,8 +48,9 @@ STEP 5: repeat STEP 1 to 4 and update the weights after each observation (Reinfo
 
 
 **Reinforcement Learning exampe:** </br>
+**Predict the exit of the costomers of a bank** </br>
 
-The dataset contain iformation about the customers in a bank and if thy stay or left the bank within a six month period (Exited).
+The dataset contain information about the customers in a bank and if thy stay or left the bank within a six month period (Exited).
 Our goal is to predict the exited from all the feuture that we have about each customer.
 
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}

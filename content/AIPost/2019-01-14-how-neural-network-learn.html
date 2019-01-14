@@ -1,5 +1,5 @@
 ---
-title: How Neural Network learn?
+title: How Neural Network learn? An example of risk of churn of custmers of a bank.
 author: andrea perlato
 date: '2019-01-14'
 slug: how-neural-network-learn
@@ -28,8 +28,8 @@ text-align: justify}
 </center>
 <p>The solution is the <a href="https://iamtrask.github.io/2015/07/27/python-network-part2/"><strong>Stocastic Gradient Descent</strong></a> that doesn’t require the cost function to be convex. </br> Here, we take each observation one by one and we adjust the weights. It is not like the batch gradient descent where we use all observations at once. This approach avoid the problem local minimums.</p>
 <p><a href="http://neuralnetworksanddeeplearning.com/"><strong>Backpropagation</strong></a> </br> This method allows to adjust weights all at the same time. The huge advantage is that during the process of back propagatins we are able to adjust all the weights at the same time and so we know which part of the error each of our weights in the network is responsable for. </br> STEP 1: randomly initialise the weights to close to zero (but not 0). </br> STEP 2: forward propagation: from left to right, the neurons are activated in a way that the impact of each neuron’sactivation is limited by the weights. Propagate the activations until getting the predicted result y. </br> STEP 3: compare the predicted result to the actual result. Measure the generated error. </br> STEP 4: back propagation: from right to left, the error is back propagated. update the weights according to how much they are responsible for the error. </br> STEP 5: repeat STEP 1 to 4 and update the weights after each observation (Reinforcement Learning). Or, repeat STEP 1 to STEP 4 but update the weights only after a batch of observation (Batch Learning). </br></p>
-<p><strong>Reinforcement Learning exampe:</strong> </br></p>
-<p>The dataset contain iformation about the customers in a bank and if thy stay or left the bank within a six month period (Exited). Our goal is to predict the exited from all the feuture that we have about each customer.</p>
+<p><strong>Reinforcement Learning exampe:</strong> </br> <strong>Predict the exit of the costomers of a bank</strong> </br></p>
+<p>The dataset contain information about the customers in a bank and if thy stay or left the bank within a six month period (Exited). Our goal is to predict the exited from all the feuture that we have about each customer.</p>
 <table class="table table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
