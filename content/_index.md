@@ -18,7 +18,10 @@ It is also one of the faster ways to build dashboards and web apps.
 The take home message is: [**useR!**](https://user2019.r-project.org/) and do not foget that [**all models are wrong, some models are useful**](https://en.wikipedia.org/wiki/All_models_are_wrong).
 
 
-<p style='text-align: right;'> Andrea Perlato <br> andreaperlato@gmail.com </p> 
+<p style='text-align: right;'> 
+[**Andrea Perlato**](https://www.linkedin.com/in/andreaperlato/)
+
+
 
 
 
