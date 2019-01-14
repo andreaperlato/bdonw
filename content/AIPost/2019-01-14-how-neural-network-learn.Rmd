@@ -1,5 +1,5 @@
 ---
-title: How Neural Network learn? An example of risk of churn of custmers of a bank.
+title: How Neural Network learn? An example of risk of churn.
 author: andrea perlato
 date: '2019-01-14'
 slug: how-neural-network-learn
