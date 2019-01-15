@@ -78,7 +78,7 @@ cm = table(test_set[, 3], y_pred > 0.5)
 ```
 
 **Visualising the Test set results.**
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(ElemStatLearn)
 set = test_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
@@ -117,7 +117,7 @@ y_pres = knn(train = training_set[,-3],
 
 ```
 
-```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(ElemStatLearn)
 set = test_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
@@ -152,7 +152,7 @@ classifier = svm(formula = Purchased ~ .,
 y_pred = predict(classifier, newdata = test_set[-3])
 
 ```
-```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(ElemStatLearn)
 set = test_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
@@ -186,7 +186,7 @@ classifier = randomForest(x = training_set[-3],
 y_pred = predict(classifier, newdata = test_set[-3])
 
 ```
-```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(ElemStatLearn)
 set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
