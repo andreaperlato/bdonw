@@ -62,6 +62,8 @@ dt <- dataset[1:8, 4:14]
 kable(dt) %>%
   kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 11)
 
+dataset <- dataset[4:14]
+
 ```
 
 The first step is to encode the categorical variables as factors.
@@ -78,6 +80,55 @@ dataset$Gender = as.numeric(factor(dataset$Gender,
 ```
 
 
+Now, we split the data into Training and Test Set.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$Exited, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
+
+```
+
+We are going to the final step of data pre-processing and it is **Feature Scaling**. </br>
+We need to apply feature scaling to train the Artificial Neural Network.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+training_set[-11] = scale(training_set[-11])
+test_set[-11] = scale(test_set[-11])
+
+```
+
+Now is time for action and build our ANN.
+There are several deep learning packages in R, but probably the best is [**H2O**](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/deep-learning.html) because is an oper source software platform that allows us to connect to an instance of a computer system that therefore allows us to run our model very efficiently. It like in Python when you connected to GPU that allows you to run highly computer intensive parallel computation.
+Moreover, H2O offers a lot of options to use different number of hidden layers. It is also very important to note that H2O contains a **Parameter Tuning** argument that allows us to choose some optimal number to build the deep learning model.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+library(h2o)
+h2o.init(nthreads = -1)
+model = h2o.deeplearning(y = 'Exited',
+                         training_frame = as.h2o(training_set),
+                         activation = 'Rectifier',
+                         hidden = c(5,5),
+                         epochs = 100,
+                         train_samples_per_iteration = -2)
+
+```
+As you can see from the code above we use the **Rectifier Function** as activation function (best option).
+See here below a quick remind of the rectifier function.
+Based on experiments, a convenient choice of number of hidden neurons is the average of the number of input features plus the number of output y.
+The prameter train_samples_per_iteration = -2 says to auto-tuning the model.
+
+<center>
+![](/img/neuron.png){width=80%}
+
+<center>
+![](/img/rectifier.png){width=90%}
+
+
+A quick refresher about **Activation Function**. </br>
+We have four different types of activation functions that we can choose from.
 
 
 
