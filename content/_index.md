@@ -19,7 +19,7 @@ The take home message is: [**useR!**](https://user2019.r-project.org/) and do no
 
 
 <p style='text-align: right;'> 
-[**Andrea Perlato**](https://www.linkedin.com/in/andreaperlato/){:target="_blank"}
+[**Andrea Perlato**](https://www.linkedin.com/in/andreaperlato/" target="_blank)
 
 
 
