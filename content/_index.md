@@ -15,11 +15,11 @@ In order to unleash the power of R, the website is entirely built in [**R**](htt
 R is the best data specific programming language focused around data analyst and data scientist kind of process.
 It is also one of the faster ways to build dashboards and web apps.
 
-The take home message is: [**useR!**](https://user2019.r-project.org/) and do not foget that [**all models are wrong, some models are useful**](https://en.wikipedia.org/wiki/All_models_are_wrong).
+The take home message is: [**useR!**](https://user2019.r-project.org/) and do not forget that [**all models are wrong, some models are useful**](https://en.wikipedia.org/wiki/All_models_are_wrong).
 
 
 <p style='text-align: right;'>   
-[**Andrea Perlato**](https://www.linkedin.com/in/andreaperlato/?target=_blank)
+[**Andrea Perlato**](https://www.linkedin.com/in/andreaperlato/)
 
 
 
