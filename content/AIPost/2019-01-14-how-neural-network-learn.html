@@ -30,7 +30,7 @@ text-align: justify}
 <p><a href="http://neuralnetworksanddeeplearning.com/"><strong>Backpropagation</strong></a> </br> This method allows to adjust weights all at the same time. The huge advantage is that during the process of back propagatins we are able to adjust all the weights at the same time and so we know which part of the error each of our weights in the network is responsable for. </br> STEP 1: randomly initialise the weights to close to zero (but not 0). </br> STEP 2: forward propagation: from left to right, the neurons are activated in a way that the impact of each neuron’sactivation is limited by the weights. Propagate the activations until getting the predicted result y. </br> STEP 3: compare the predicted result to the actual result. Measure the generated error. </br> STEP 4: back propagation: from right to left, the error is back propagated. update the weights according to how much they are responsible for the error. </br> STEP 5: repeat STEP 1 to 4 and update the weights after each observation (Reinforcement Learning). Or, repeat STEP 1 to STEP 4 but update the weights only after a batch of observation (Batch Learning). </br></p>
 <p><strong>Reinforcement Learning exampe:</strong> </br> <strong>Predict the exit of the costomers of a bank</strong> </br></p>
 <p>The dataset contain information about the customers in a bank and if thy stay or left the bank within a six month period (Exited). Our goal is to predict the exited from all the feuture that we have about each customer.</p>
-<table class="table table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<table class="table table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:right;">
@@ -374,7 +374,7 @@ h2o.init(nthreads = -1)</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         2 hours 32 minutes 
+    H2O cluster uptime:         2 hours 57 minutes 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
@@ -426,18 +426,18 @@ y_pred = as.vector(y_pred)</code></pre>
 cm</code></pre>
 <pre><code>   y_pred
        0    1
-  0 1536   57
-  1  220  187</code></pre>
+  0 1537   56
+  1  219  188</code></pre>
 <p>As you can see from the code above we use the <strong>Rectifier Function</strong> as activation function (best option). See here below a quick emind of the rectifier function. Based on experiments, a convenient choice of number of hidden neurons is the average of the number of input features plus the number of output y. The prameter train_samples_per_iteration = -2 says to auto-tuning the model.</p>
 <p>A quick refresher about <a href="http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf"><strong>Activation Function</strong></a>. </br></p>
 <center>
 <img src="/img/neuron.png" style="width:80.0%" />
 </center>
+<p>We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent. But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.</p>
 <center>
 <div class="figure">
 <img src="/img/rectifier.png" style="width:90.0%" />
 
 </div>
 </center>
-<p>We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent. But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.</p>
 <p>The neuron representation above reflect the problem that we are facing. In fact, we have just a binary output and m number of feature as input. It such a context, we can choose one of the four activation functions mentioned above. But, that what should be used for a binary problem? </br> There are two options: </br> 1 - Rectifier function for the hidden layer</br> 2 - Sigmoid function for the output layer.</p>

@@ -60,7 +60,7 @@ library(formattable)
 dataset <- read.csv("C:/07 - R Website/dataset/AI/Churn_Modelling.csv")
 dt <- dataset[1:8, 4:14]
 kable(dt) %>%
-  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 11)
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 16)
 
 dataset <- dataset[4:14]
 
@@ -145,13 +145,15 @@ A quick refresher about [**Activation Function**](http://proceedings.mlr.press/v
 ![](/img/neuron.png){width=80%}
 </center>
 
+We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent.
+But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.
+
 <center>
 ![](/img/rectifier.png){width=90%}
 
 </center>
 
-We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent.
-But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.
+
 
 The neuron representation above reflect the problem that we are facing. In fact, we have just a binary output and m number of feature as input.
 It such a context, we can choose one of the four activation functions mentioned above. But, that what should be used for a binary problem? </br>
