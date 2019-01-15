@@ -374,14 +374,14 @@ h2o.init(nthreads = -1)</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         1 hours 35 minutes 
+    H2O cluster uptime:         2 hours 32 minutes 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
     H2O cluster version age:    3 months and 24 days !!! 
     H2O cluster name:           H2O_started_from_R_perlatoa_hkx874 
     H2O cluster total nodes:    1 
-    H2O cluster total memory:   2.49 GB 
+    H2O cluster total memory:   2.48 GB 
     H2O cluster total cores:    4 
     H2O cluster allowed cores:  4 
     H2O cluster healthy:        TRUE 
@@ -407,15 +407,37 @@ R is connected to the H2O cluster:
   |                                                                 |   0%
   |                                                                       
   |=================================================================| 100%</code></pre>
-<p>As you can see from the code above we use the <strong>Rectifier Function</strong> as activation function (best option). See here below a quick remind of the rectifier function. Based on experiments, a convenient choice of number of hidden neurons is the average of the number of input features plus the number of output y. The prameter train_samples_per_iteration = -2 says to auto-tuning the model.</p>
-<center>
-<div class="figure">
-<img src="/img/neuron.png" style="width:80.0%" />
+<p>Now, we can predict the Test results.</p>
+<pre class="r"><code>y_pred = h2o.predict(model, newdata = as.h2o(test_set[-11]))</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
 
-</div>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>y_pred = (y_pred &gt; 0.5)
+y_pred = as.vector(y_pred)</code></pre>
+<p>And making the Confusion Matrix.</p>
+<pre class="r"><code>cm = table(test_set[, 11], y_pred)
+cm</code></pre>
+<pre><code>   y_pred
+       0    1
+  0 1536   57
+  1  220  187</code></pre>
+<p>As you can see from the code above we use the <strong>Rectifier Function</strong> as activation function (best option). See here below a quick emind of the rectifier function. Based on experiments, a convenient choice of number of hidden neurons is the average of the number of input features plus the number of output y. The prameter train_samples_per_iteration = -2 says to auto-tuning the model.</p>
+<p>A quick refresher about <a href="http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf"><strong>Activation Function</strong></a>. </br></p>
+<center>
+<img src="/img/neuron.png" style="width:80.0%" />
+</center>
 <center>
 <div class="figure">
 <img src="/img/rectifier.png" style="width:90.0%" />
 
 </div>
-<p>A quick refresher about <strong>Activation Function</strong>. </br> We have four different types of activation functions that we can choose from.</p>
+</center>
+<p>We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent. But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.</p>
+<p>The neuron representation above reflect the problem that we are facing. In fact, we have just a binary output and m number of feature as input. It such a context, we can choose one of the four activation functions mentioned above. But, that what should be used for a binary problem? </br> There are two options: </br> 1 - Rectifier function for the hidden layer</br> 2 - Sigmoid function for the output layer.</p>

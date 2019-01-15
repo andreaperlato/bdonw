@@ -115,20 +115,61 @@ model = h2o.deeplearning(y = 'Exited',
                          train_samples_per_iteration = -2)
 
 ```
+
+Now, we can predict the Test results.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+y_pred = h2o.predict(model, newdata = as.h2o(test_set[-11]))
+y_pred = (y_pred > 0.5)
+y_pred = as.vector(y_pred)
+
+```
+And making the Confusion Matrix.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+cm = table(test_set[, 11], y_pred)
+cm
+
+```
+
+
 As you can see from the code above we use the **Rectifier Function** as activation function (best option).
-See here below a quick remind of the rectifier function.
+See here below a quick emind of the rectifier function.
 Based on experiments, a convenient choice of number of hidden neurons is the average of the number of input features plus the number of output y.
 The prameter train_samples_per_iteration = -2 says to auto-tuning the model.
 
+A quick refresher about [**Activation Function**](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf). </br>
+ 
+
 <center>
 ![](/img/neuron.png){width=80%}
+</center>
 
 <center>
 ![](/img/rectifier.png){width=90%}
 
+</center>
 
-A quick refresher about **Activation Function**. </br>
-We have four different types of activation functions that we can choose from.
+We have four different types of activation functions that we can choose from. Threshold function, Sigmoind function, Hyperbolic Tangent.
+But the Rectifier function is the most popular function for Artificial Neural Network. It goes all the way to zero, and from there it gradually progresses as the input value increases as well.
+
+The neuron representation above reflect the problem that we are facing. In fact, we have just a binary output and m number of feature as input.
+It such a context, we can choose one of the four activation functions mentioned above. But, that what should be used for a binary problem? </br>
+There are two options: </br>
+1 - Rectifier function for the hidden layer</br>
+2 - Sigmoid function for the output layer.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
