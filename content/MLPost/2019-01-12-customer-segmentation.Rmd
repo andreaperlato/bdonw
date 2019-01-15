@@ -38,7 +38,7 @@ We have to segment the clients based on Annual Income and Spending Score.
 We sart using the **K-Mean algorithm**. </br>
 When we use K-Mean we have to specify the number of clusters. To do that, we use the [**Elbow Method**](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) to find the optimal number of clusters.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 set.seed(6)
 wcss <- vector()
 for (i in 1:10) wcss[i] <- sum(kmeans(X, i)$withinss)
@@ -52,7 +52,7 @@ plot(1:10, wcss, type="b", main = paste('Cluster of clients'),
 From the graph we see that the optimal number of clusters for our problem is 5 clusters.
 Now, we can apply K-Mean to the mall dataset.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 set.seed(6)
 kmeans <- kmeans(X, 5, iter.max = 300, nstart = 10)
 
@@ -68,7 +68,7 @@ clusplot(X, kmeans$cluster,
 Now, more on performing **Hierarchical Clustering**.
 Firt, we use [**dendrogram**](https://hlab.stanford.edu/brian/number_of_clusters_.html) to find the exact number of cluster, exactly like we did in the K-Mean.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 dendrogram = hclust(dist(X, method = 'euclidian'), method = 'ward.D')
 plot(dendrogram,
      main = paste('Dendrogram'),
@@ -81,7 +81,7 @@ plot(dendrogram,
 To find the optimal number of clusters, we need to find the largest vertical distance that we can make without crossing any other horizontal line.
 So, now we can fit our hierarchical clustering to the mall dataset. To do that here we use the [**Cut Tree**](https://rpkgs.datanovia.com/factoextra/reference/hcut.html) method.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 hc = hclust(dist(X, method = 'euclidian'), method = 'ward.D')
 y_hc = cutree(hc, 5)
 

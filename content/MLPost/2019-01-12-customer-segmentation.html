@@ -185,7 +185,7 @@ for (i in 1:10) wcss[i] &lt;- sum(kmeans(X, i)$withinss)
 plot(1:10, wcss, type=&quot;b&quot;, main = paste(&#39;Cluster of clients&#39;),
                            xlab = &quot;Number of clusters&quot;,
                            ylab = &quot;WCSS&quot;)</code></pre>
-<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>From the graph we see that the optimal number of clusters for our problem is 5 clusters. Now, we can apply K-Mean to the mall dataset.</p>
 <pre class="r"><code>set.seed(6)
 kmeans &lt;- kmeans(X, 5, iter.max = 300, nstart = 10)
@@ -196,14 +196,14 @@ clusplot(X, kmeans$cluster,
             shade = TRUE, color = TRUE, labels = 0,
             plotchar = FALSE, span = TRUE,
             main = paste(&#39;clusters of clients via K-Mean&#39;), xlab = &quot;Annual Income&quot;, ylab = &quot;Spending Score&quot;)</code></pre>
-<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Now, more on performing <strong>Hierarchical Clustering</strong>. Firt, we use <a href="https://hlab.stanford.edu/brian/number_of_clusters_.html"><strong>dendrogram</strong></a> to find the exact number of cluster, exactly like we did in the K-Mean.</p>
 <pre class="r"><code>dendrogram = hclust(dist(X, method = &#39;euclidian&#39;), method = &#39;ward.D&#39;)
 plot(dendrogram,
      main = paste(&#39;Dendrogram&#39;),
      xlab = &quot;Customers&quot;,
      ylab = &quot;Euclidian distances&quot;)</code></pre>
-<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>To find the optimal number of clusters, we need to find the largest vertical distance that we can make without crossing any other horizontal line. So, now we can fit our hierarchical clustering to the mall dataset. To do that here we use the <a href="https://rpkgs.datanovia.com/factoextra/reference/hcut.html"><strong>Cut Tree</strong></a> method.</p>
 <pre class="r"><code>hc = hclust(dist(X, method = &#39;euclidian&#39;), method = &#39;ward.D&#39;)
 y_hc = cutree(hc, 5)
@@ -215,5 +215,5 @@ clusplot(X,
          shade = TRUE, color = TRUE, labels = 0,
          plotchar = FALSE, span = TRUE,
          main = paste(&#39;clusters of clients via Hirarchical Clustering&#39;), xlab = &quot;Annual Income&quot;, ylab = &quot;Spending Score&quot;)</code></pre>
-<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/MLPost/2019-01-12-customer-segmentation_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The violet cluster has low income and low spending score. We can call them: SENSIBLE clients. The green cluster has both avrerage income and spending. We can call them: STANDART clients. The red top cluster has high income and high spending. They are the most targeting client in a compain: Target clients. The red bottom cluster has high income and low spending. We can call them: CAREFUL clients. The blue cluster has low income but high spending score. They do not care to spend much: CARELESS clients.</p>
