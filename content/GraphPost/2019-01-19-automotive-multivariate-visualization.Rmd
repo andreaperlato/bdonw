@@ -43,16 +43,28 @@ corrplot(mtcars.cor, method = "shade",
          diag = F,
          addshade = "all")
 
-
-
-
-
-
 ```
 
+The graph below is generated using [**ggplot2**](https://ggplot2.tidyverse.org/), and gives us a great view of the relationship of our features.
+We have the density function of miles per gallon (mpg). Cylindres is a categorical variable and so is represented by an histogram. Cylondres vs. mpg gives us the fuel consumption per number of cylindres using the box-plot representation. And in the cases where we have both variables continues the graph give back upper the correlation level and lower the graph of the relationship (e.g. displacement vs. mpg).
 
 
 
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(knitr)
+library(kableExtra)
+library(formattable)
+auto <- read.csv("C:/07 - R Website/dataset/Graph/auto-mpg.csv")
+
+auto$cylinders <- factor(auto$cylinders,
+                         labels = c("3C", "4C", "5C", "6C", "8C"))
+
+
+library(GGally)
+ggpairs(auto[,2:5])
+
+```
 
 
 
