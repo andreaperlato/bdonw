@@ -82,8 +82,19 @@ text-align: justify}
 4 4   3 58.35576 26.72530       1946
 5 5   4 58.35190 26.68680       1981
 6 6   5 58.35193 26.68554       1981</code></pre>
-<p>Here below, we can see the map of <a href="https://en.wikipedia.org/wiki/Tartu"><strong>Tartu</strong></a> and some details. From the map we can appreciate the density of the population.</p>
-<p><img src="/GraphPost/2019-01-19-google-maps-integration-with-r_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Here below, we can see the map of <a href="https://en.wikipedia.org/wiki/Tartu"><strong>Tartu</strong></a> and some details. From the map we can appreciate the density of the population. For the creation of the map the <a href="http://stat405.had.co.nz/ggmap.pdf"><strong>ggmap</strong></a> package has used.</p>
+<pre class="r"><code>ggmap(tartu.map, extent = &quot;device&quot;) + 
+  geom_density_2d(data = tartu.data,
+             aes(x=lon, y=lat),
+             size = .3) +
+  stat_density_2d(data = tartu.data,
+                  aes(x=lon, y=lat,
+                  fill = ..level..,
+                  alpha = ..level..),
+                  size = 0.01, bins = 16, geom = &quot;polygon&quot;) +
+  scale_fill_gradient(low = &quot;green&quot;, high = &quot;red&quot;) +
+  scale_alpha(range=c(0,0.25), guide = F)</code></pre>
+<p><img src="/GraphPost/2019-01-19-google-maps-integration-with-r_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 
     </div>
   </article>

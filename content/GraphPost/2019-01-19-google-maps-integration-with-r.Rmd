@@ -26,6 +26,7 @@ head(tartu.data)
 ```
 Here below, we can see the map of [**Tartu**](https://en.wikipedia.org/wiki/Tartu) and some details.
 From the map we can appreciate the density of the population.
+For the creation of the map the [**ggmap**](http://stat405.had.co.nz/ggmap.pdf) package has used.
 
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(ggmap)
@@ -35,6 +36,9 @@ library(ggplot2)
 register_google(key = "AIzaSyB3hr4KNjrFMCTa-93qNLQw6Jtii42o0Jk", day_limit = 50)
 tartu.map <- get_map(location = "tartu", zoom = 13)
 
+```
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 ggmap(tartu.map, extent = "device") + 
   geom_density_2d(data = tartu.data,
              aes(x=lon, y=lat),
