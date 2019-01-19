@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visualization on Andrea Perlato</title>
+    <link>/tags/visualization/</link>
+    <description>Recent content in Visualization on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automotive Multivariate Visualization</title>
+      <link>/graphpost/automotive-multivariate-visualization/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/automotive-multivariate-visualization/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

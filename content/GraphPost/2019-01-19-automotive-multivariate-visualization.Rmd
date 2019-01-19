@@ -1,0 +1,11 @@
+---
+title: Automotive Multivariate Visualization
+author: ''
+date: '2019-01-19'
+slug: automotive-multivariate-visualization
+categories:
+  - graph
+tags:
+  - visualization
+  - ggplot
+---
