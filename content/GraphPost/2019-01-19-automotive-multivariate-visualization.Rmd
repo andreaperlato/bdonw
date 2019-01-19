@@ -46,7 +46,7 @@ corrplot(mtcars.cor, method = "shade",
 ```
 
 The graph below is generated using [**ggplot2**](https://ggplot2.tidyverse.org/), and gives us a great view of the relationship of our features.
-We have the density function of miles per gallon (mpg). Cylindres is a categorical variable and so is represented by an histogram. Cylindres vs. mpg gives us the fuel consumption per number of cylindres using the box-plot representation on the upper part of the graph, and in the lower partwe can appreciate the distributoìion. And in the cases where we have both variables continues the graph give back upper the correlation level and lower the graph of the relationship (e.g. displacement vs. mpg).
+We have the density function of miles per gallon (mpg). Cylindres is a categorical variable and so is represented by an histogram. Cylindres vs. mpg gives us the fuel consumption per number of cylindres using the box-plot representation on the upper part of the graph, and in the lower partwe can appreciate the distributoìion. And in the cases where we have both variables continues the graph give back upper the density level and lower the graph of the relationship (e.g. displacement vs. mpg).
 
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(knitr)
@@ -57,12 +57,20 @@ auto <- read.csv("C:/07 - R Website/dataset/Graph/auto-mpg.csv")
 auto$cylinders <- factor(auto$cylinders,
                          labels = c("3C", "4C", "5C", "6C", "8C"))
 
+```
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(GGally)
-ggpairs(auto[,2:5])
+ggpairs(auto[,2:5],
+        aes(color = cylinders, 
+            alpha = 0.4),
+        upper= list(continuous = "density"),
+        lower = list("denstrip"))
 
 ```
 
+We can alo see in different color, the correlatin by the different category of cylindres.
+We have summarized in a single plot the different functions of density per cylindres, the histograms per category of cylindre, the correlation between continuous variables and the diagram of density. It is a completexploratory analysis.
 
 
 
