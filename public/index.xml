@@ -22,6 +22,16 @@
     </item>
     
     <item>
+      <title>Google Maps integration with R</title>
+      <link>/graphpost/google-maps-integration-with-r/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/google-maps-integration-with-r/</guid>
+      <description>body {text-align: justify}This is an exmaple about the great advantages to use google maps in combinatin to R. This could be particularly useful in fraud prevention area. Thi can help fraud investigators to track the movements of the cardholders and how rapidly they use the card. The distance and velocity between two distinct purchase of goods is an indicator of fraud.
+ X FID lat lon build_time1 1 0 58.</description>
+    </item>
+    
+    <item>
       <title>How Neural Network learn? An example of risk of churn.</title>
       <link>/aipost/how-neural-network-learn/</link>
       <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>

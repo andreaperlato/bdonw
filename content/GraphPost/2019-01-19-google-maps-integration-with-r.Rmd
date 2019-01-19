@@ -1,0 +1,49 @@
+---
+title: Google Maps integration with R
+author: andrea perlato
+date: '2019-01-19'
+slug: google-maps-integration-with-r
+categories:
+  - graph
+tags:
+  - visualization
+  - ggplot
+  - ggmap
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+This is an exmaple about the great advantages to use google maps in combinatin to R.
+This could be particularly useful in fraud prevention area. Thi can help fraud investigators to track the movements of the cardholders and how rapidly they use the card. The distance and velocity between two distinct purchase of goods is an indicator of fraud.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+tartu.data <- read.csv("C:/07 - R Website/dataset/Graph/tartu_housing.csv", sep = ";")
+head(tartu.data)
+
+```
+Here below, we can see the map of [**Tartu**](https://en.wikipedia.org/wiki/Tartu) and some details.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(ggmap)
+library(maps)
+library(ggplot2)
+
+register_google(key = "AIzaSyB3hr4KNjrFMCTa-93qNLQw6Jtii42o0Jk")
+tartu.map <- get_map(location = "tartu", maptype="satellite", zoom = 12)
+ggmap(tartu.map, extent = "device")
+
+
+```
+
+
+
+
+
+
+
+
+
+
