@@ -16,15 +16,29 @@ text-align: justify}
 </style>
 
 This is a session dedicated to multivariate data visualization using some tipical feature of automobile.
+Here below we can see the matrix of correlation between features and a graphical representation.
 
-```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(knitr)
 library(kableExtra)
 library(formattable)
-dataset <- read.csv("C:/07 - R Website/dataset/Graph/mtcars.csv")
-dt <- dataset[1:8, 1:12]
-kable(dt) %>%
-  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
+mtcars <- read.csv("C:/07 - R Website/dataset/Graph/mtcars.csv")
+# dt <- mtcars[1:8, 1:12]
+# kable(dt) %>%
+#   kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
+
+mtcars$X = NULL
+mtcars.cor <- cor(mtcars, method ="pearson")
+round(mtcars.cor, digits = 2)
+
+library(corrplot)
+corrplot(mtcars.cor, method = "shade",
+         shade.col = NA, tl.col = "black",
+         tl.srt = 45)
+
+
+
+
 
 ```
 
