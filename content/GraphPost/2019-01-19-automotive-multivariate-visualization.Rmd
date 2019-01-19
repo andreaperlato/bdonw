@@ -9,3 +9,34 @@ tags:
   - visualization
   - ggplot
 ---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+This is a session dedicated to multivariate data visualization using some tipical feature of automobile.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(formattable)
+dataset <- read.csv("C:/07 - R Website/dataset/Graph/mtcars.csv")
+dt <- dataset[1:8, 1:12]
+kable(dt) %>%
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
