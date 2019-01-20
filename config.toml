@@ -25,6 +25,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     name = "Graph"
     url = "/GraphPost/"
     weight = 2
+[[menu.main]]
+    name = "Theory"
+    url = "/TheoryPost/"
+    weight = 5
 
 [params]
     description = "Andrea Perlato Website"
