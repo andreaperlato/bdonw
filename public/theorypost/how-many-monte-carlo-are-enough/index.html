@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>How many Monte Carlo are enough? - Andrea Perlato</title>
+<meta property="og:title" content="How many Monte Carlo are enough? - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">How many Monte Carlo are enough?</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Here an example of the The birthday problem solution via Monte Carlo. Suppose you’re in a classroom with 22 people. If we assume this is a randomly selected group, what is the chance that at least two people have the same birthday? </br> All right, first, note that birthdays can be represented as numbers between 1 and 365. </br> For some calculations, 10,000 experiments might not be computationally feasible, and it might be more than we need. In practice, we won’t know what the answer is, so we don’t know if our Monte Carlo estimate is accurate. One practical approach we will describe here is to check for the stability of the estimate.</p>
+<pre class="r"><code>b &lt;- 10^seq(1, 5, len = 100)
+compute_prob &lt;- function(b, n=22){
+  some_day &lt;- replicate(b, {
+  bdays &lt;- sample(1:365, n, replace=TRUE)
+  any(duplicated(bdays))
+  })
+mean(some_day)
+}</code></pre>
+<p>So we’re going to run a simulation where we compute or estimate the probability of two people having a certain birthday using different sizes of the Monte Carlo simulations. We compute the simulation, and now we look at the values that we get for each simulation.</p>
+<pre class="r"><code>prob &lt;- sapply(b, compute_prob) # compute compute_prob b number of type
+plot(log10(b), prob, type = &quot;l&quot;)</code></pre>
+<p><img src="/TheoryPost/2019-01-20-how-many-monte-carlo-are-enough_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>What we can see from the graph is that it’s wiggling up and down. That’s because the estimate is not stable yet. It’s not such a great estimate. But as b gets bigger and bigger, eventually it starts to stabilize.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
