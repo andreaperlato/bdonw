@@ -17,6 +17,9 @@ text-align: justify}
 
 Here an example of the The birthday problem solution via Monte Carlo.
 Suppose you're in a classroom with 22 people. If we assume this is a randomly selected group, what is the chance that at least two people have the same birthday? </br>
+
+This is a problem of discrete probability. </br>
+
 All right, first, note that birthdays can be represented as numbers between 1 and 365. </br>
 For some calculations, 10,000 experiments might not be computationally feasible, and it might be more than we need.
 In practice, we won't know what the answer is, so we don't know if our Monte Carlo estimate is accurate. 

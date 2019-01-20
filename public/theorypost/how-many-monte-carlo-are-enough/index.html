@@ -76,7 +76,9 @@
 body {
 text-align: justify}
 </style>
-<p>Here an example of the The birthday problem solution via Monte Carlo. Suppose you’re in a classroom with 22 people. If we assume this is a randomly selected group, what is the chance that at least two people have the same birthday? </br> All right, first, note that birthdays can be represented as numbers between 1 and 365. </br> For some calculations, 10,000 experiments might not be computationally feasible, and it might be more than we need. In practice, we won’t know what the answer is, so we don’t know if our Monte Carlo estimate is accurate. One practical approach we will describe here is to check for the stability of the estimate.</p>
+<p>Here an example of the The birthday problem solution via Monte Carlo. Suppose you’re in a classroom with 22 people. If we assume this is a randomly selected group, what is the chance that at least two people have the same birthday? </br></p>
+<p>This is a problem of discrete probability. </br></p>
+<p>All right, first, note that birthdays can be represented as numbers between 1 and 365. </br> For some calculations, 10,000 experiments might not be computationally feasible, and it might be more than we need. In practice, we won’t know what the answer is, so we don’t know if our Monte Carlo estimate is accurate. One practical approach we will describe here is to check for the stability of the estimate.</p>
 <pre class="r"><code>b &lt;- 10^seq(1, 5, len = 100)
 compute_prob &lt;- function(b, n=22){
   some_day &lt;- replicate(b, {
