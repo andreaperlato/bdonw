@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>The Monty Hall Problem</title>
+      <link>/theorypost/the-monty-hall-problem/</link>
+      <pubDate>Sun, 20 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/the-monty-hall-problem/</guid>
+      <description>body {text-align: justify}In the 1970s, there was a game show called Let’s Make a Deal. Monty Hall was the hos, this is where the name of the problem comes from. At some point in the game, contestants were asked to pick one of three doors. Behind one door, there was a prize. The other two had a goat behind them. And this basically meant that you lost.</description>
+    </item>
+    
+    <item>
       <title>Automotive Multivariate Visualization</title>
       <link>/graphpost/automotive-multivariate-visualization/</link>
       <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
