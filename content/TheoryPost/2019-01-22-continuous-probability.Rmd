@@ -1,0 +1,42 @@
+---
+title: Continuous Probability
+author: andrea perlato
+date: '2019-01-22'
+slug: continuous-probability
+categories:
+  - theory
+tags:
+  - probability
+  - monte carlo
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+When summarizing a list of numeric values such as heights, it's not useful to construct a distribution that assigns a proportion to each possible outcome.
+It is much more practical to define a function that operates on intervals rather than single values.
+The standard way of doing this is using the cumulative distribution function (CDF).
+As an example, we define the empirical cumulative distribution function (eCDF) for heights for male adult students.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(tidyverse)
+library(dslabs)
+data("heights")
+x <- heights %>% filter(sex=="Male") %>% .$height # take only males
+
+F <- function(a) mean(x<=a) # define the eCDF: that is the probortion of cases equal to a
+1 - F(70) # what is the prob. that a male student is higher than 70 inches
+
+
+```
+
+
+
+
+
+
+
+

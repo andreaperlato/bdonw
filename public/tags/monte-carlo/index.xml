@@ -6,10 +6,19 @@
     <description>Recent content in Monte Carlo on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/monte-carlo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Continuous Probability</title>
+      <link>/theorypost/continuous-probability/</link>
+      <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/continuous-probability/</guid>
+      <description>body {text-align: justify}When summarizing a list of numeric values such as heights, it’s not useful to construct a distribution that assigns a proportion to each possible outcome. It is much more practical to define a function that operates on intervals rather than single values. The standard way of doing this is using the cumulative distribution function (CDF). As an example, we define the empirical cumulative distribution function (eCDF) for heights for male adult students.</description>
+    </item>
     
     <item>
       <title>How many Monte Carlo are enough?</title>
