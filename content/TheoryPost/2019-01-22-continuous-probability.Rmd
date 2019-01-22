@@ -101,8 +101,9 @@ By putting these letters in front of a shorthand for the distribution, gives us 
 **Statistical Inference**
 In data science, we often deal with data that is affected by chance in some way. The data comes from a random sample, the data is affected by measurement error, or the data measures some outcome that is random in nature. </br>
 **Being able to quantify the uncertainty introduced by randomness is one of the most important jobs of a data scientist**. </br>
-For example, in epidemiological studies, we often assume that the subjects in our study are a random sample from the population of interest. </br>
-Sampling models are therefore ubiquitous in data science. </br>
+For example, in epidemiological studies, we often assume that the subjects in our study are a random sample from the population of interest.
+Sampling models are therefore ubiquitous in data science. Data scientists talk about what could have been,
+but after we see what actually happened.
 
 
 
