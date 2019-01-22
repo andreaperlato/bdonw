@@ -17,7 +17,7 @@
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/theorypost/continuous-probability/</guid>
-      <description>body {text-align: justify}When summarizing a list of numeric values such as heights, it’s not useful to construct a distribution that assigns a proportion to each possible outcome. It is much more practical to define a function that operates on intervals rather than single values. The standard way of doing this is using the cumulative distribution function (CDF). As an example, we define the empirical cumulative distribution function (eCDF) for heights for male adult students.</description>
+      <description>body {text-align: justify}Empirical Cumulative Distribution Function  When summarizing a list of numeric values such as heights, it’s not useful to construct a distribution that assigns a proportion to each possible outcome. It is much more practical to define a function that operates on intervals rather than single values. The standard way of doing this is using the cumulative distribution function (CDF).  As an example, we define the empirical cumulative distribution function (eCDF) for heights for male adult students.</description>
     </item>
     
     <item>
