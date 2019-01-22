@@ -33,7 +33,65 @@ F <- function(a) mean(x<=a) # define the eCDF: that is the probortion of cases e
 
 ```
 
-**Theoretical Distribution**
+**Theoretical Distribution** </br>
+The cumulative distribution for the normal distribution is defined by a mathematical formula, which in R can be obtained with the function pnorm.
+The normal distribution is derived mathematically. Apart from computing the average in the standard deviation, we don't use data to define it.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+1 - pnorm(70, mean(x), sd(x))
+
+
+```
+
+It does not make sense to ask what is the probability that a normally distributed value is 70.
+Instead, we define probabilities for intervals. So we could ask instead, what is a probability that someone is between 69.99 and 70.01.
+
+**Probability Density** </br>
+The probability density at x is defined as the function, we're going to call it little f of x, such that the probability distribution big F of a, which is the probability of x being less than or equal to a, is the integral of all values up to a of little f of x dx. </br>
+
+For example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we can use the probability density.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+avg <- mean(x)
+s <- sd(x)
+1 - pnorm(76, avg, s)
+
+```
+
+**Monte Carlo Simulation**  
+We can run Monte Carlo simulations using normally distributed variables. </br>
+R provides a function to generate normally distributed outcomes. Specifically, the rnorm function takes three arguments size, average, which defaults to 0, standard deviation, which defaults to 1. using the same data used above we can generate the relative normal distribution with the finction rnorm.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+x <- heights %>% filter(sex=="Male") %>% .$height
+n <- length(x)
+avg <- mean(x)
+s <- sd(x)
+
+simulated_heights <- rnorm(n, avg, s)
+
+data.frame(simulated_heights=simulated_heights) %>% ggplot(aes(simulated_heights)) + 
+  geom_histogram(color="black", binwidth = 2)
+
+```
+
+Not surprisingly, the distribution of these outcomes looks normal because they were generated to look normal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -25,4 +25,26 @@ x &lt;- heights %&gt;% filter(sex==&quot;Male&quot;) %&gt;% .$height # take only
 F &lt;- function(a) mean(x&lt;=a) # define the eCDF: that is the probortion of cases equal to a
 1 - F(70) # what is the prob. that a male student is higher than 70 inches</code></pre>
 <pre><code>[1] 0.3768473</code></pre>
-<p><strong>Theoretical Distribution</strong></p>
+<p><strong>Theoretical Distribution</strong> </br> The cumulative distribution for the normal distribution is defined by a mathematical formula, which in R can be obtained with the function pnorm. The normal distribution is derived mathematically. Apart from computing the average in the standard deviation, we don’t use data to define it.</p>
+<pre class="r"><code>1 - pnorm(70, mean(x), sd(x))</code></pre>
+<pre><code>[1] 0.4247467</code></pre>
+<p>It does not make sense to ask what is the probability that a normally distributed value is 70. Instead, we define probabilities for intervals. So we could ask instead, what is a probability that someone is between 69.99 and 70.01.</p>
+<p><strong>Probability Density</strong> </br> The probability density at x is defined as the function, we’re going to call it little f of x, such that the probability distribution big F of a, which is the probability of x being less than or equal to a, is the integral of all values up to a of little f of x dx. </br></p>
+<p>For example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we can use the probability density.</p>
+<pre class="r"><code>avg &lt;- mean(x)
+s &lt;- sd(x)
+1 - pnorm(76, avg, s)</code></pre>
+<pre><code>[1] 0.03206008</code></pre>
+<p><strong>Monte Carlo Simulation</strong><br />
+We can run Monte Carlo simulations using normally distributed variables. </br> R provides a function to generate normally distributed outcomes. Specifically, the rnorm function takes three arguments size, average, which defaults to 0, standard deviation, which defaults to 1. using the same data used above we can generate the relative normal distribution with the finction rnorm.</p>
+<pre class="r"><code>x &lt;- heights %&gt;% filter(sex==&quot;Male&quot;) %&gt;% .$height
+n &lt;- length(x)
+avg &lt;- mean(x)
+s &lt;- sd(x)
+
+simulated_heights &lt;- rnorm(n, avg, s)
+
+data.frame(simulated_heights=simulated_heights) %&gt;% ggplot(aes(simulated_heights)) + 
+  geom_histogram(color=&quot;black&quot;, binwidth = 2)</code></pre>
+<p><img src="/TheoryPost/2019-01-22-continuous-probability_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Not surprisingly, the distribution of these outcomes looks normal because they were generated to look normal.</p>
