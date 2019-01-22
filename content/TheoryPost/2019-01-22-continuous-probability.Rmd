@@ -58,7 +58,7 @@ s <- sd(x)
 
 ```
 
-**Monte Carlo Simulation**  
+**Monte Carlo Simulation** </br>
 We can run Monte Carlo simulations using normally distributed variables. </br>
 R provides a function to generate normally distributed outcomes. Specifically, the rnorm function takes three arguments size, average, which defaults to 0, standard deviation, which defaults to 1. using the same data used above we can generate the relative normal distribution with the finction rnorm.
 
@@ -76,12 +76,33 @@ data.frame(simulated_heights=simulated_heights) %>% ggplot(aes(simulated_heights
 ```
 
 Not surprisingly, the distribution of these outcomes looks normal because they were generated to look normal.
+This is one of the most useful functions in R, as it will permit us to generate data that mimics naturally occurring events. </br>
+It'll let us answer questions related to what could happen by chance by running Monte Carlo simulations. </br>
+For example, if we pick 800 males at random, what is the distribution of the tallest person? Specifically, we could ask, how rare is that the tallest person is a seven footer?
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+b <- 10000
+tallest <- replicate(b, {
+  simulated_data <- rnorm(800, avg, s)
+  max(simulated_data)
+})
 
+mean(tallest >= 7*12)
 
+```
 
+The normal distribution is not the only useful theoretical distribution.
+Other continuous distributions that we may encounter are student-t, the chi-squared, the exponential, the gamma,
+and the beta distribution. R provides functions to compute the density, the quantiles, the cumulative distribution function, and to generate Monte Carlos simulations for all these distributions.
 
+Namely, using the letters d for density, q for quantile, p for probability density function, and r for random.
+By putting these letters in front of a shorthand for the distribution, gives us the names of these useful functions. </br>
 
+**Statistical Inference**
+In data science, we often deal with data that is affected by chance in some way. The data comes from a random sample, the data is affected by measurement error, or the data measures some outcome that is random in nature. </br>
+**Being able to quantify the uncertainty introduced by randomness is one of the most important jobs of a data scientist**. </br>
+For example, in epidemiological studies, we often assume that the subjects in our study are a random sample from the population of interest. </br>
+Sampling models are therefore ubiquitous in data science. </br>
 
 
 
