@@ -17,7 +17,7 @@
       <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/theorypost/event-processing/</guid>
-      <description>body {text-align: justify}Process Data  Event data consists of three basic components: the why, the what and the who.</description>
+      <description>body {text-align: justify}Process Data  Event data consists of three basic components: the why, the what and the who.  Analysing event data is an iteractive process of three steps: extraction (from raw data to event log), processing (removing redundant details, enrich data by calculating variables) and analysis.  The analysis could be for instance which are the roles of different doctors and nurses organization and how they work together.</description>
     </item>
     
     <item>
