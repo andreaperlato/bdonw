@@ -47,12 +47,31 @@ activities(patients)
 ```
 
 The sequence of activities performed in relation to one case is called its **trace**, literally the trace that the process instance leaves in our data.
+The trace plot here below, shows two **happy paths** ( most frequebt sequences: 51.6% and 46.8% of cases). They start with registration and triage, then have one or more treatments, then end with discussion of results and check-out.
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
 library(processmapR)
 trace_explorer(patients, coverage = 1)
 
 ```
+
+Another way to visualize processes is by constructing a **process map**. </br>
+A process map is a **directed graph** that shows the **activities** of the process and the flows between them. The colors of the nodes and the thickness of the arrows indicate the most frequent activities and process flows.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+process_map(patients) # draw the process map
+
+```
+The process map is a great way to see which activities each happy path has in common
+
+
+
+
+
+
+
+
+
 
 
 
