@@ -107,6 +107,18 @@ slice(patients, 1) # show the first patient</code></pre>
 12 Check-o~ 1       r7       2230        complete        
 # ... with 2 more variables: time &lt;dttm&gt;, .order &lt;int&gt;</code></pre>
 <p>As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017.</p>
+<pre class="r"><code>activities(patients)</code></pre>
+<pre><code># A tibble: 7 x 3
+  handling              absolute_frequency relative_frequency
+  &lt;fct&gt;                              &lt;int&gt;              &lt;dbl&gt;
+1 Registration                         500             0.184 
+2 Triage and Assessment                500             0.184 
+3 Discuss Results                      495             0.182 
+4 Check-out                            492             0.181 
+5 X-Ray                                261             0.0959
+6 Blood test                           237             0.0871
+7 MRI SCAN                             236             0.0867</code></pre>
+<p>The most common activities are administrative: registration, triage, discussing results, and checking out.</p>
 
     </div>
   </article>
