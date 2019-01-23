@@ -19,6 +19,11 @@
 
 
 
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -73,7 +78,35 @@ text-align: justify}
 </style>
 <p><strong>Process Data</strong> </br> Event data consists of three basic components: the why, the what and the who. </br> Analysing event data is an iteractive process of three steps: extraction (from raw data to event log), processing (removing redundant details, enrich data by calculating variables) and analysis. </br> The analysis could be for instance which are the roles of different doctors and nurses <strong>organization</strong> and how they work together. There is also in the analysis the <strong>controll-flow prospective</strong> (e.g. what is the journey of a patient throughthe emergency rooms). Finally, the performance prospective, focus on the time and <strong>efficiency</strong> (e.g. how long does it take before a patient can leave the emergency rooms). </br></p>
 <p><strong>A first glimpse of the event log</strong> Some initial question about event log are: </br> How many <strong>cases</strong> are described? </br> How many distinct <strong>activities</strong> are performed? </br> How many <strong>events</strong> are recorded? </br> What is the <strong>time period</strong> in which the data is recorded? </br></p>
-<p>To analys the process data, we use the <a href="https://www.bupar.net/index.html"><strong>bupaR package</strong></a>.</p>
+<p>To analys the process data, we use the <a href="https://www.bupar.net/index.html"><strong>bupaR package</strong></a>. In the following exercise we will have a look at a process data, which descries the journey of patients in a hospital.</p>
+<pre class="r"><code>library(bupaR)
+# n_cases(patients) # how many patients
+# summary(patients) 
+slice(patients, 1) # show the first patient</code></pre>
+<pre><code>Event log consisting of:
+12 events
+1 traces
+1 cases
+6 activities
+6 activity instances
+
+# A tibble: 12 x 7
+   handling patient employee handling_id registration_ty~
+   &lt;fct&gt;    &lt;chr&gt;   &lt;fct&gt;    &lt;chr&gt;       &lt;fct&gt;           
+ 1 Registr~ 1       r1       1           start           
+ 2 Triage ~ 1       r2       501         start           
+ 3 Blood t~ 1       r3       1001        start           
+ 4 MRI SCAN 1       r4       1238        start           
+ 5 Discuss~ 1       r6       1735        start           
+ 6 Check-o~ 1       r7       2230        start           
+ 7 Registr~ 1       r1       1           complete        
+ 8 Triage ~ 1       r2       501         complete        
+ 9 Blood t~ 1       r3       1001        complete        
+10 MRI SCAN 1       r4       1238        complete        
+11 Discuss~ 1       r6       1735        complete        
+12 Check-o~ 1       r7       2230        complete        
+# ... with 2 more variables: time &lt;dttm&gt;, .order &lt;int&gt;</code></pre>
+<p>As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017.</p>
 
     </div>
   </article>
@@ -96,6 +129,18 @@ text-align: justify}
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 

@@ -27,9 +27,17 @@ How many **events** are recorded? </br>
 What is the **time period** in which the data is recorded? </br>
 
 To analys the process data, we use the [**bupaR package**](https://www.bupar.net/index.html).
+In the following exercise we will have a look at a process data, which descries the journey of patients in a hospital.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(bupaR)
+# n_cases(patients) # how many patients
+# summary(patients) 
+slice(patients, 1) # show the first patient
 
+```
 
+As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017.
 
 
 
