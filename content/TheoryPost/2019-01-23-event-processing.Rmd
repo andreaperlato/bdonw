@@ -63,7 +63,7 @@ process_map(patients) # draw the process map
 
 ```
 The process map is a great way to see which activities each happy path has in common.
-In this article, we discovered a methodology for analyzing process data, consisting of three stages: extraction, processing and analysis. There are the specific elements of process data which are required for analysis.
+In this article, we discovered a methodology for analyzing process data, consisting of three stages: extraction, processing and analysis. There are the specific elements of process data which are required for analysis.  
 
 
 
