@@ -58,7 +58,7 @@ trace_explorer(patients, coverage = 1)
 Another way to visualize processes is by constructing a **process map**. </br>
 A process map is a **directed graph** that shows the **activities** of the process and the flows between them. The colors of the nodes and the thickness of the arrows indicate the most frequent activities and process flows.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 process_map(patients) # draw the process map
 
 ```
