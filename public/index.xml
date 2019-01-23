@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Event Processing</title>
+      <link>/theorypost/event-processing/</link>
+      <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/event-processing/</guid>
+      <description>body {text-align: justify}Process Data  Event data consists of three basic components: the why, the what and the who.</description>
+    </item>
+    
+    <item>
       <title>Continuous Probability</title>
       <link>/theorypost/continuous-probability/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>

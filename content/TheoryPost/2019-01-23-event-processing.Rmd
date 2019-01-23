@@ -1,0 +1,18 @@
+---
+title: Event Processing
+author: andrea perlato
+date: '2019-01-23'
+slug: event-processing
+categories:
+  - theory
+tags:
+  - event processing
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+**Process Data** </br>
+Event data consists of three basic components: the why, the what and the who.
