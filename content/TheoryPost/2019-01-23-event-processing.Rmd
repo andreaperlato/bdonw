@@ -26,6 +26,7 @@ How many distinct **activities** are performed? </br>
 How many **events** are recorded? </br>
 What is the **time period** in which the data is recorded? </br>
 
+To analys the process data, we use the [**bupaR package**](https://www.bupar.net/index.html).
 
 
 
