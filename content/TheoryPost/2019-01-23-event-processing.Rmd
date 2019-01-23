@@ -108,7 +108,22 @@ plot(n_reps_per_activity)
 
 ```
 
-The CRP activity was repeated more than any other activity type. </br>
+The CRP activity was repeated more than any other activity type, followed by Leucocytes and Admission NC. </br>
+
+**Performance Analysis** </br>
+The performance process map is a special type of process map which does not show frequencies on the arcs and nodes, but **duration**, both of activities and the times between activities. </br>
+Another specific technique related to time is the **Dotted Chart**. </br>
+While the **performance process map** focusses n the duration of the activities, the **dotted chart** shows the ditribution of activities over time.
+The **dotted chart** is essentially a scaterplot of activity instances each occuring at a specific **time** (x-axis) and belong to a specific **case** (y-axis).
+Specific patterns can be observed.
+
+<center>
+![](/img/dottedchart.png){width=90%}
+</center>
+
+The dotted chart above, 
+
+
 
 
 
