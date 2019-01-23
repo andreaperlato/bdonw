@@ -48,7 +48,7 @@ activities(patients)
 
 The sequence of activities performed in relation to one case is called its **trace**, literally the trace that the process instance leaves in our data.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
 library(processmapR)
 trace_explorer(patients, coverage = 1)
 
