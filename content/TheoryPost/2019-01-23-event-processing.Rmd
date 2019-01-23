@@ -65,7 +65,19 @@ process_map(patients) # draw the process map
 The process map is a great way to see which activities each happy path has in common.
 In this article, we discovered a methodology for analyzing process data, consisting of three stages: extraction, processing and analysis. There are the specific elements of process data which are required for analysis.    
 
+**Resource activity matrix**
+The nest step is to look at the activities. In the resource activity matrix we put different resources on one dimention and the activities on the other dimension. </br>
+In the following example, we will look at the employees working in a hospital which are treating patients with [**Sepsis**](https://en.wikipedia.org/wiki/Sepsis), a life-threatening condition caused by an infection. Treating these patients is of the utmost importance. Let's see how tasks are divided. 
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Calculate frequency of resources
+frequencies_of_resources <- resource_frequency(sepsis, level = "resource-activity")
+
+# See the result as a plot
+plot(frequencies_of_resources)
+
+```
+The most common combination was Resource B performing the Leucocytes activity. Let's see what this information tells us about the employees of the hospital.
 
 
 
