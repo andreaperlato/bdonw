@@ -78,7 +78,7 @@ data.frame(simulated_heights=simulated_heights) %>% ggplot(aes(simulated_heights
 Not surprisingly, the distribution of these outcomes looks normal because they were generated to look normal.
 This is one of the most useful functions in R, as it will permit us to generate data that mimics naturally occurring events. </br>
 It'll let us answer questions related to what could happen by chance by running Monte Carlo simulations. </br>
-For example, if we pick 800 males at random, what is the distribution of the tallest person? Specifically, we could ask, how rare is that the tallest person is a seven footer?
+**For example, if we pick 800 males at random, what is the distribution of the tallest person? Specifically, we could ask, how rare is that the tallest person is a seven footer?**
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
 b <- 10000
@@ -98,7 +98,7 @@ and the beta distribution. R provides functions to compute the density, the quan
 Namely, using the letters d for density, q for quantile, p for probability density function, and r for random.
 By putting these letters in front of a shorthand for the distribution, gives us the names of these useful functions. </br>
 
-**Statistical Inference**
+**Statistical Inference** </br>
 In data science, we often deal with data that is affected by chance in some way. The data comes from a random sample, the data is affected by measurement error, or the data measures some outcome that is random in nature. </br>
 **Being able to quantify the uncertainty introduced by randomness is one of the most important jobs of a data scientist**. </br>
 For example, in epidemiological studies, we often assume that the subjects in our study are a random sample from the population of interest.
