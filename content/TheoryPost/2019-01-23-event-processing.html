@@ -76,4 +76,11 @@ frequencies_of_resources &lt;- resource_frequency(sepsis, level = &quot;resource
 
 # See the result as a plot
 plot(frequencies_of_resources)</code></pre>
-<p><img src="/TheoryPost/2019-01-23-event-processing_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /> The most common combination was Resource B performing the Leucocytes activity. Let’s see what this information tells us about the employees of the hospital.</p>
+<p><img src="/TheoryPost/2019-01-23-event-processing_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /> In the plot above, we can see which resources executed which activities, and how often. Resources F,G,I,M and O have the same task; they are responsible for the activity Admission NC. </br> Momreover, the most common combination was Resource B performing the Leucocytes activity. Let’s see what this information tells us about the employees of the hospital. </br> Another thing that can be measured is their <strong>involvement</strong>. </br> Involvement refers to the number of cases a resource works on, irrespective of his/her total workload.</p>
+<pre class="r"><code># Calculate resource involvement
+involvement_of_resources &lt;- resource_involvement(sepsis, level = &quot;resource&quot;)
+
+# Show the result in a plot
+plot(involvement_of_resources)</code></pre>
+<p><img src="/TheoryPost/2019-01-23-event-processing_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Control Flow</strong> </br> IT refers to the different successiones of activities. Each case can be expressed as a sequence of activities. Each unique sequence is called a trace (or process variant). There are several ways to look at a trace in a process. On the one hand, we have metrics (enty and exit poin, lengh of cases, presence of activities, rework). On the other hand, we have various tools to look at control-flow patterns (process map, trace explorer, precedence matrix).</p>
