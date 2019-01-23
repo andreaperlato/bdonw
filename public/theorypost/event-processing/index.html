@@ -106,7 +106,8 @@ slice(patients, 1) # show the first patient</code></pre>
 11 Discuss~ 1       r6       1735        complete        
 12 Check-o~ 1       r7       2230        complete        
 # ... with 2 more variables: time &lt;dttm&gt;, .order &lt;int&gt;</code></pre>
-<p>As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017.</p>
+<p>As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017. </br></p>
+<p>Here below, we see that the most common activities are administrative: registration (18.4%), triage (18.4%), discussing results (18.2%), and checking out (18.1%). </br></p>
 <pre class="r"><code>activities(patients)</code></pre>
 <pre><code># A tibble: 7 x 3
   handling              absolute_frequency relative_frequency
@@ -118,7 +119,10 @@ slice(patients, 1) # show the first patient</code></pre>
 5 X-Ray                                261             0.0959
 6 Blood test                           237             0.0871
 7 MRI SCAN                             236             0.0867</code></pre>
-<p>The most common activities are administrative: registration, triage, discussing results, and checking out.</p>
+<p>The sequence of activities performed in relation to one case is called its <strong>trace</strong>, literally the trace that the process instance leaves in our data.</p>
+<pre class="r"><code>library(processmapR)
+trace_explorer(patients, coverage = 1)</code></pre>
+<p><img src="/TheoryPost/2019-01-23-event-processing_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 
     </div>
   </article>

@@ -37,14 +37,22 @@ slice(patients, 1) # show the first patient
 
 ```
 
-As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017.
+As shown above, the first patient went through six events: registration, triage, blood tests, an MRI scan, discussion of results, and check out, over the course of a week in January 2017. </br>
+
+Here below, we see that the most common activities are administrative: registration (18.4%), triage (18.4%), discussing results (18.2%), and checking out (18.1%). </br>
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 activities(patients)
 
 ```
 
-The most common activities are administrative: registration, triage, discussing results, and checking out.
+The sequence of activities performed in relation to one case is called its **trace**, literally the trace that the process instance leaves in our data.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(processmapR)
+trace_explorer(patients, coverage = 1)
+
+```
 
 
 
