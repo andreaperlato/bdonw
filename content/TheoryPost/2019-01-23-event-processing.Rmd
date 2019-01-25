@@ -19,7 +19,7 @@ Event data consists of three basic components: the why, the what and the who. </
 Analysing event data is an iteractive process of three steps: extraction (from raw data to event log), processing (removing redundant details, enrich data by calculating variables) and analysis. </br>
 The analysis could be for instance which are the roles of different doctors and nurses **organization** and how they work together. There is also in the analysis the **controll-flow prospective** (e.g. what is the journey of a patient throughthe emergency rooms). Finally, the performance prospective, focus on the time and **efficiency** (e.g. how long does it take before a patient can leave the emergency rooms). </br>
 
-**A first glimpse of the event log**
+**A first glimpse of the event log** </br>
 Some initial question about event log are: </br>
 How many **cases** are described? </br>
 How many distinct **activities** are performed? </br>
@@ -121,8 +121,7 @@ Specific patterns can be observed.
 ![](/img/dottedchart.png){width=90%}
 </center>
 
-The dotted chart above, 
-
+The dotted chart above, shows the distribution of activities over time:it shows an activity that occurs in a specific time (x-axis), and belong to a specific case (y-axis).  
 
 
 

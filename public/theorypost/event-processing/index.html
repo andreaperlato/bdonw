@@ -81,7 +81,7 @@ body {
 text-align: justify}
 </style>
 <p><strong>Process Data</strong> </br> Event data consists of three basic components: the why, the what and the who. </br> Analysing event data is an iteractive process of three steps: extraction (from raw data to event log), processing (removing redundant details, enrich data by calculating variables) and analysis. </br> The analysis could be for instance which are the roles of different doctors and nurses <strong>organization</strong> and how they work together. There is also in the analysis the <strong>controll-flow prospective</strong> (e.g. what is the journey of a patient throughthe emergency rooms). Finally, the performance prospective, focus on the time and <strong>efficiency</strong> (e.g. how long does it take before a patient can leave the emergency rooms). </br></p>
-<p><strong>A first glimpse of the event log</strong> Some initial question about event log are: </br> How many <strong>cases</strong> are described? </br> How many distinct <strong>activities</strong> are performed? </br> How many <strong>events</strong> are recorded? </br> What is the <strong>time period</strong> in which the data is recorded? </br></p>
+<p><strong>A first glimpse of the event log</strong> </br> Some initial question about event log are: </br> How many <strong>cases</strong> are described? </br> How many distinct <strong>activities</strong> are performed? </br> How many <strong>events</strong> are recorded? </br> What is the <strong>time period</strong> in which the data is recorded? </br></p>
 <p>To analys the process data, we use the <a href="https://www.bupar.net/index.html"><strong>bupaR package</strong></a>. In the following exercise we will have a look at a process data, which descries the journey of patients in a hospital.</p>
 <pre class="r"><code>library(bupaR)
 # n_cases(patients) # how many patients
@@ -157,7 +157,7 @@ plot(n_reps_per_activity)</code></pre>
 <center>
 <img src="/img/dottedchart.png" style="width:90.0%" />
 </center>
-<p>The dotted chart above,</p>
+<p>The dotted chart above, shows the distribution of activities over time:it shows an activity that occurs in a specific time (x-axis), and belong to a specific case (y-axis).</p>
 
     </div>
   </article>
