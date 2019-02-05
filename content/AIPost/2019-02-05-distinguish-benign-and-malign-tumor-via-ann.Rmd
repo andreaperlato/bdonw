@@ -91,6 +91,28 @@ h2o.confusionMatrix(model, val_h2o)
 
 ```
 
+For the training set we have an incredible around 99% (Error = 0.019), we have just 10 samples that the model is getting wrong.
+For the validation set, again the error il low (Error = 0.03), with just 5 error samples that the model is getting wrong.
+If we want to see the accuracy in a out-of-sample data, we can use the test set.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# training confusion matrix
+h2o.confusionMatrix(model, test_h2o)
+
+```
+We also have an icredible accuracy in the test set (Error = 0.025). </br>
+Our model has an incredible good generalization capability.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

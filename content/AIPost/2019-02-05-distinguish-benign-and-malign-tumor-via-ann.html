@@ -23,7 +23,7 @@ h2o.init(nthreads = -1) # initializing h2o</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         2 hours 7 minutes 
+    H2O cluster uptime:         2 hours 17 minutes 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
@@ -468,11 +468,11 @@ train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
   |=================================================================| 100%</code></pre>
 <pre class="r"><code># print dimensions
 dim(train_h2o)</code></pre>
-<pre><code>[1] 394  10</code></pre>
+<pre><code>[1] 425  10</code></pre>
 <pre class="r"><code>dim(val_h2o)</code></pre>
-<pre><code>[1] 149  10</code></pre>
+<pre><code>[1] 150  10</code></pre>
 <pre class="r"><code>dim(test_h2o)</code></pre>
-<pre><code>[1] 156  10</code></pre>
+<pre><code>[1] 124  10</code></pre>
 <p>As we can see from the result above, we have 401 (60%) observations for training, and round 20% of observations for both validation (161) and test (136). Now, we can train our model using the deep learning function offers by H2O package.</p>
 <pre class="r"><code>model &lt;-
   h2o.deeplearning(x = 1:9, # column numbers of predictors
@@ -494,15 +494,24 @@ dim(train_h2o)</code></pre>
 <p>Now, lets see the confusion matrix for the training and validation set.</p>
 <pre class="r"><code># training confusion matrix
 h2o.confusionMatrix(model)</code></pre>
-<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.255125110018572:
+<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.247389388195815:
          1   2    Error     Rate
-1      253   8 0.030651   =8/261
-2        2 259 0.007663   =2/261
-Totals 255 267 0.019157  =10/522</code></pre>
+1      266   8 0.029197   =8/274
+2        5 267 0.018382   =5/272
+Totals 271 275 0.023810  =13/546</code></pre>
 <pre class="r"><code># training confusion matrix
 h2o.confusionMatrix(model, val_h2o)</code></pre>
-<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.184767455688399:
+<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.113811786899162:
         1  2    Error    Rate
-1      90  5 0.052632   =5/95
-2       0 54 0.000000   =0/54
-Totals 90 59 0.033557  =5/149</code></pre>
+1      97  5 0.049020  =5/102
+2       1 47 0.020833   =1/48
+Totals 98 52 0.040000  =6/150</code></pre>
+<p>For the training set we have an incredible around 99% (Error = 0.019), we have just 10 samples that the model is getting wrong. For the validation set, again the error il low (Error = 0.03), with just 5 error samples that the model is getting wrong. If we want to see the accuracy in a out-of-sample data, we can use the test set.</p>
+<pre class="r"><code># training confusion matrix
+h2o.confusionMatrix(model, test_h2o)</code></pre>
+<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.211758576604076:
+        1  2    Error    Rate
+1      79  3 0.036585   =3/82
+2       1 41 0.023810   =1/42
+Totals 80 44 0.032258  =4/124</code></pre>
+<p>We also have an icredible accuracy in the test set (Error = 0.025). </br> Our model has an incredible good generalization capability.</p>
