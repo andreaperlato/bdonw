@@ -16,6 +16,7 @@ text-align: justify}
 
 We try to recognize cancer in human breast using a multi-hidden layer artificial neural network via H2O package.
 We use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer.
+From the H2O output below, we can see that it recognised 4 cores.
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(mlbench)
@@ -24,7 +25,7 @@ h2o.init(nthreads = -1) # initializing h2o
 
 ```
 
-The table below shows the crucial biomedical features involved in Cancer.
+The table below shows the crucial biomedical features involved in Cancer, like for exampe the cell size and shape. In the last colum we have the outcome (malign vs. benign cancer).
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(knitr)
@@ -38,8 +39,83 @@ dt <- dt[1:10,]
 kable(dt) %>%
   kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 16)
 
+```
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+data <- BreastCancer[, -1] # remove ID
+data[, c(1:ncol(data))] <- sapply(data[, c(1:ncol(data))], as.numeric) # interpret each features as numeric
+data[, 'Class'] <- as.factor(data[, 'Class']) # interpret dependent variable as factor
+
+# convert the dataset in three part in the h2o format
+splitSample <- sample(1:3, size=nrow(data), prob=c(0.6,0.2,0.2), replace=TRUE)
+train_h2o <- as.h2o(data[splitSample==1,])
+val_h2o <- as.h2o(data[splitSample==2,])
+test_h2o <- as.h2o(data[splitSample==3,])
+
+# print dimensions
+dim(train_h2o)
+dim(val_h2o)
+dim(test_h2o)
 
 ```
+
+As we can see from the result above, we have 401 (60%) observations for training, and round 20% of observations for both validation (161) and test (136).
+Now, we can train our model using the deep learning function offers by H2O package.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+model <-
+  h2o.deeplearning(x = 1:9, # column numbers of predictors
+                   y = 10, # column number of the dipendent variable
+                   # data in H2O format
+                   training_frame = train_h2o,
+                   activation = "TanhWithDropout", # use Tanh with pruning method
+                   input_dropout_ratio = 0.2, # precentage of pruning
+                   balance_classes = TRUE, # try to balance malign or begnin in case of one of them is unbalanced
+                   hidden = c(10,10), # two hidden layers of 10 units
+                   hidden_dropout_ratios = c(0.3, 0.3), # pruning probablity per each hidden layer
+                   epochs = 10, # maximum number f epochs
+                   seed= 0)
+
+```
+
+Now, lets see the confusion matrix for the training and validation set.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# training confusion matrix
+h2o.confusionMatrix(model)
+
+# training confusion matrix
+h2o.confusionMatrix(model, val_h2o)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

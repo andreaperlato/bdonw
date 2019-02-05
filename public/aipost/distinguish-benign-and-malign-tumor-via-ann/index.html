@@ -77,21 +77,21 @@
 body {
 text-align: justify}
 </style>
-<p>We try to recognize cancer in human breast using a multi-hidden layer artificial neural network via H2O package. We use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer.</p>
+<p>We try to recognize cancer in human breast using a multi-hidden layer artificial neural network via H2O package. We use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer. From the H2O output below, we can see that it recognised 4 cores.</p>
 <pre class="r"><code>library(mlbench)
 library(h2o)
 h2o.init(nthreads = -1) # initializing h2o</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         28 minutes 37 seconds 
+    H2O cluster uptime:         2 hours 7 minutes 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
     H2O cluster version age:    4 months and 14 days !!! 
     H2O cluster name:           H2O_started_from_R_perlatoa_vvr054 
     H2O cluster total nodes:    1 
-    H2O cluster total memory:   2.65 GB 
+    H2O cluster total memory:   2.49 GB 
     H2O cluster total cores:    4 
     H2O cluster allowed cores:  4 
     H2O cluster healthy:        TRUE 
@@ -101,7 +101,7 @@ R is connected to the H2O cluster:
     H2O Internal Security:      FALSE 
     H2O API Extensions:         AutoML, Algos, Core V3, Core V4 
     R Version:                  R version 3.5.1 (2018-07-02) </code></pre>
-<p>The table below shows the crucial biomedical features involved in Cancer.</p>
+<p>The table below shows the crucial biomedical features involved in Cancer, like for exampe the cell size and shape. In the last colum we have the outcome (malign vs. benign cancer).</p>
 <pre class="r"><code>library(knitr)
 library(kableExtra)
 library(formattable)
@@ -503,6 +503,70 @@ benign
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>data &lt;- BreastCancer[, -1] # remove ID
+data[, c(1:ncol(data))] &lt;- sapply(data[, c(1:ncol(data))], as.numeric) # interpret each features as numeric
+data[, &#39;Class&#39;] &lt;- as.factor(data[, &#39;Class&#39;]) # interpret dependent variable as factor
+
+# convert the dataset in three part in the h2o format
+splitSample &lt;- sample(1:3, size=nrow(data), prob=c(0.6,0.2,0.2), replace=TRUE)
+train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>val_h2o &lt;- as.h2o(data[splitSample==2,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>test_h2o &lt;- as.h2o(data[splitSample==3,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code># print dimensions
+dim(train_h2o)</code></pre>
+<pre><code>[1] 394  10</code></pre>
+<pre class="r"><code>dim(val_h2o)</code></pre>
+<pre><code>[1] 149  10</code></pre>
+<pre class="r"><code>dim(test_h2o)</code></pre>
+<pre><code>[1] 156  10</code></pre>
+<p>As we can see from the result above, we have 401 (60%) observations for training, and round 20% of observations for both validation (161) and test (136). Now, we can train our model using the deep learning function offers by H2O package.</p>
+<pre class="r"><code>model &lt;-
+  h2o.deeplearning(x = 1:9, # column numbers of predictors
+                   y = 10, # column number of the dipendent variable
+                   # data in H2O format
+                   training_frame = train_h2o,
+                   activation = &quot;TanhWithDropout&quot;, # use Tanh with pruning method
+                   input_dropout_ratio = 0.2, # precentage of pruning
+                   balance_classes = TRUE, # try to balance malign or begnin in case of one of them is unbalanced
+                   hidden = c(10,10), # two hidden layers of 10 units
+                   hidden_dropout_ratios = c(0.3, 0.3), # pruning probablity per each hidden layer
+                   epochs = 10, # maximum number f epochs
+                   seed= 0)</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<p>Now, lets see the confusion matrix for the training and validation set.</p>
+<pre class="r"><code># training confusion matrix
+h2o.confusionMatrix(model)</code></pre>
+<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.255125110018572:
+         1   2    Error     Rate
+1      253   8 0.030651   =8/261
+2        2 259 0.007663   =2/261
+Totals 255 267 0.019157  =10/522</code></pre>
+<pre class="r"><code># training confusion matrix
+h2o.confusionMatrix(model, val_h2o)</code></pre>
+<pre><code>Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.184767455688399:
+        1  2    Error    Rate
+1      90  5 0.052632   =5/95
+2       0 54 0.000000   =0/54
+Totals 90 59 0.033557  =5/149</code></pre>
 
     </div>
   </article>
