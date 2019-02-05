@@ -9,7 +9,42 @@ tags:
   - ANN
 ---
 
-We try to recognize cancer in human breast using a multi-hidden layer artificial neural network.
+<style>
+body {
+text-align: justify}
+</style>
+
+We try to recognize cancer in human breast using a multi-hidden layer artificial neural network via H2O package.
 We use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(mlbench)
+library(h2o)
+h2o.init(nthreads = -1) # initializing h2o
+
+```
+
+The table below shows the crucial biomedical features involved in Cancer.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(knitr)
+library(kableExtra)
+library(formattable)
+
+data("BreastCancer")
+dt <- as.data.frame(BreastCancer)
+dt <- dt[1:10,]
+
+kable(dt) %>%
+  kable_styling(bootstrap_options = "responsive", full_width = T, position = "center", font_size = 16)
+
+
+```
+
+
+
+
+
+
 
 
