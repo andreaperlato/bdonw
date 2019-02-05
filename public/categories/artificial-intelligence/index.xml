@@ -6,10 +6,19 @@
     <description>Recent content in Artificial Intelligence on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Distinguish Benign and Malign Tumor via ANN</title>
+      <link>/aipost/distinguish-benign-and-malign-tumor-via-ann/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/distinguish-benign-and-malign-tumor-via-ann/</guid>
+      <description>We try to recognize cancer in human breast using a multi-hidden layer artificial neural network. We use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer.</description>
+    </item>
     
     <item>
       <title>How Neural Network learn? An example of risk of churn.</title>
