@@ -1,5 +1,5 @@
 ---
-title: Statistica Background for Time Series
+title: Statistical Background for Time Series
 author: andrea perlato
 date: '2019-02-06'
 slug: statistica-background-for-time-series
@@ -20,7 +20,49 @@ We start about how to compare different time seris models against each other.
 
 **Forecast Accuracy** </br>
 It determine how much difference thare is between the actual value and the forecast for the value. The simplest way to m ake a comparison is via scale dependent error because all the models need to be on the same scale using the Mean Absolute Error - MAE and the Root Mean Squared Error - RMSE.
-[**MAE**](https://en.wikipedia.org/wiki/Mean_absolute_error) is the mean of all differences between actual and forecaset absolute value and in order to avoid negative values we can use [**RMSE**](https://en.wikipedia.org/wiki/Root-mean-square_deviation).
+[**MAE**](https://en.wikipedia.org/wiki/Mean_absolute_error) is the mean of all differences between actual and forecaset absolute value and in order to avoid negative values we can use [**RMSE**](https://en.wikipedia.org/wiki/Root-mean-square_deviation). We have also the [**Mean Absolute Scaled Error - MASE**](https://en.wikipedia.org/wiki/Mean_absolute_scaled_error) that measure the forecast error compared to the error of a naive forecast. </br>
+When he have a MASE = 1, that means the model is exactly as good as just picking the last observation. </br>
+An MASE = 0.5, means that our model has doubled the prediction accuracy. The lower, the better. </br> 
+When MASE > 1, that means the model needs a lot of improvement. </br> 
+
+The [**Mean Absolute Percentage Error - MAPE**](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error), measures the difference of forecast errors and divides it by the actual observation value. The crucial point is that MAPE puts much more weight on extreme values and positive errors, which makes MASE a favor metrics. But the big benefit of MAPE is the fact that it is scale independent: that means we can use MAPe to compare a model on different datasets.
+
+Quire often, [**Akaike Information Criterion - AIC**](https://en.wikipedia.org/wiki/Akaike_information_criterion)  is used. </br> 
+It is extensively used also in statistical modeling and machine learning to compare different models. The key point of AIC is that it penalizes more complex models.
+
+We start as an example with a random time series.
+We divide the series into a training and a test set using the window() function. With window() function we can easily extract a time frame, in this case we take the part of the data starting from 1818 and ending in 1988. It is a beautiful fuction to split time series.
+The training data is used to fit the model and the test set is used to see how well the model performs.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+set.seed(95)
+myts <- ts(rnorm(200), start = (1818))
+mytstrain <- window(myts, start = 1818, end = 1988) # training set
+plot(mytstrain)
+           
+library(forecast)
+meanm <- meanf(mytstrain, h=30) # mean method and we get 30 observation in to the future
+naivem <- naive(mytstrain, h=30) # naive method
+drifm <- rwf(mytstrain, h=30, drift = TRUE) # drift method
+
+mytstest <- window(myts, start = 1988)
+accuracy(meanm, mytstest)
+accuracy(naivem, mytstest)
+accuracy(drifm, mytstest)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

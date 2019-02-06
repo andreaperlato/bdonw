@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.53" />
 
 
-<title>Statistica Background for Time Series - Andrea Perlato</title>
-<meta property="og:title" content="Statistica Background for Time Series - Andrea Perlato">
+<title>Statistical Background for Time Series - Andrea Perlato</title>
+<meta property="og:title" content="Statistical Background for Time Series - Andrea Perlato">
 
 
 
@@ -16,6 +16,11 @@
 
 
 
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -61,7 +66,7 @@
   <article class="article">
     
 
-    <h1 class="article-title">Statistica Background for Time Series</h1>
+    <h1 class="article-title">Statistical Background for Time Series</h1>
 
     
 
@@ -74,7 +79,43 @@ body {
 text-align: justify}
 </style>
 <p>In this post we will review the statistical background for time series analysis and forecasting. </br> We start about how to compare different time seris models against each other.</p>
-<p><strong>Forecast Accuracy</strong> </br> It determine how much difference thare is between the actual value and the forecast for the value. The simplest way to m ake a comparison is via scale dependent error because all the models need to be on the same scale using the Mean Absolute Error - MAE and the Root Mean Squared Error - RMSE. <a href="https://en.wikipedia.org/wiki/Mean_absolute_error"><strong>MAE</strong></a> is the mean of all differences between actual and forecaset absolute value and in order to avoid negative values we can use <a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation"><strong>RMSE</strong></a>.</p>
+<p><strong>Forecast Accuracy</strong> </br> It determine how much difference thare is between the actual value and the forecast for the value. The simplest way to m ake a comparison is via scale dependent error because all the models need to be on the same scale using the Mean Absolute Error - MAE and the Root Mean Squared Error - RMSE. <a href="https://en.wikipedia.org/wiki/Mean_absolute_error"><strong>MAE</strong></a> is the mean of all differences between actual and forecaset absolute value and in order to avoid negative values we can use <a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation"><strong>RMSE</strong></a>. We have also the <a href="https://en.wikipedia.org/wiki/Mean_absolute_scaled_error"><strong>Mean Absolute Scaled Error - MASE</strong></a> that measure the forecast error compared to the error of a naive forecast. </br> When he have a MASE = 1, that means the model is exactly as good as just picking the last observation. </br> An MASE = 0.5, means that our model has doubled the prediction accuracy. The lower, the better. </br> When MASE &gt; 1, that means the model needs a lot of improvement. </br></p>
+<p>The <a href="https://en.wikipedia.org/wiki/Mean_absolute_percentage_error"><strong>Mean Absolute Percentage Error - MAPE</strong></a>, measures the difference of forecast errors and divides it by the actual observation value. The crucial point is that MAPE puts much more weight on extreme values and positive errors, which makes MASE a favor metrics. But the big benefit of MAPE is the fact that it is scale independent: that means we can use MAPe to compare a model on different datasets.</p>
+<p>Quire often, <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion"><strong>Akaike Information Criterion - AIC</strong></a> is used. </br> It is extensively used also in statistical modeling and machine learning to compare different models. The key point of AIC is that it penalizes more complex models.</p>
+<p>We start as an example with a random time series. We divide the series into a training and a test set using the window() function. With window() function we can easily extract a time frame, in this case we take the part of the data starting from 1818 and ending in 1988. It is a beautiful fuction to split time series. The training data is used to fit the model and the test set is used to see how well the model performs.</p>
+<pre class="r"><code>set.seed(95)
+myts &lt;- ts(rnorm(200), start = (1818))
+mytstrain &lt;- window(myts, start = 1818, end = 1988) # training set
+plot(mytstrain)
+           
+library(forecast)</code></pre>
+<p><img src="/TSPost/2019-02-06-statistica-background-for-time-series_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>meanm &lt;- meanf(mytstrain, h=30) # mean method and we get 30 observation in to the future
+naivem &lt;- naive(mytstrain, h=30) # naive method
+drifm &lt;- rwf(mytstrain, h=30, drift = TRUE) # drift method
+
+mytstest &lt;- window(myts, start = 1988)
+accuracy(meanm, mytstest)</code></pre>
+<pre><code>                        ME     RMSE       MAE       MPE     MAPE      MASE
+Training set  1.407307e-17 1.003956 0.8164571  77.65393 133.4892 0.7702074
+Test set     -2.459828e-01 1.138760 0.9627571 100.70356 102.7884 0.9082199
+                  ACF1 Theil&#39;s U
+Training set 0.1293488        NA
+Test set     0.2415939  0.981051</code></pre>
+<pre class="r"><code>accuracy(naivem, mytstest)</code></pre>
+<pre><code>                        ME     RMSE      MAE        MPE     MAPE     MASE
+Training set -0.0002083116 1.323311 1.060048 -152.73569 730.9655 1.000000
+Test set      0.8731935861 1.413766 1.162537   86.29346 307.9891 1.096683
+                   ACF1 Theil&#39;s U
+Training set -0.4953144        NA
+Test set      0.2415939  2.031079</code></pre>
+<pre class="r"><code>accuracy(drifm, mytstest)</code></pre>
+<pre><code>                        ME     RMSE      MAE        MPE     MAPE      MASE
+Training set -8.988602e-15 1.323311 1.060041 -152.64988 730.8626 0.9999931
+Test set      8.763183e-01 1.415768 1.163981   85.96496 308.7329 1.0980447
+                   ACF1 Theil&#39;s U
+Training set -0.4953144        NA
+Test set      0.2418493   2.03317</code></pre>
 
     </div>
   </article>
@@ -97,6 +138,18 @@ text-align: justify}
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
