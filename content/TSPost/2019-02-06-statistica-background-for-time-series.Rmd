@@ -52,9 +52,11 @@ accuracy(drifm, mytstest)
 
 ```
 
+In the results we can see the error of both training and test set. It is also calculated the difference between the actual values from mytstest and the forecasted values from the model. </br> 
+As expected in all four of our statistics the mean method is the best, with the lowest value for RMSE, MAE, MAPE and MASE. That is as expected because we are working with a random data with zero mean and without any drift season.
 
 
-
+**The importance of Residuals in Time Series Analysis** </br>
 
 
 
