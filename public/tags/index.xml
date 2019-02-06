@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Forecasting</title>
+      <link>/tags/forecasting/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/forecasting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ggplot</title>
       <link>/tags/ggplot/</link>
       <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
@@ -134,6 +143,15 @@
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/suppor-vector-machine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series Analysis</title>
+      <link>/tags/time-series-analysis/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/time-series-analysis/</guid>
       <description></description>
     </item>
     

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tspost/statistica-background-for-time-series/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/aipost/distinguish-benign-and-malign-tumor-via-ann/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
@@ -90,6 +95,12 @@
   <url>
     <loc>/tags/event-processing/</loc>
     <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/forecasting/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -184,6 +195,12 @@
   </url>
   
   <url>
+    <loc>/tspost/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -198,6 +215,18 @@
   <url>
     <loc>/theorypost/</loc>
     <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/time-series/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/time-series-analysis/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

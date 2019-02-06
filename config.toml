@@ -28,6 +28,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "Theory"
     url = "/TheoryPost/"
+    weight = 6
+[[menu.main]]
+    name = "Time Series"
+    url = "/TSPost/"
     weight = 5
 
 [params]

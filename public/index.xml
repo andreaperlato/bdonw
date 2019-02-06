@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Statistica Background for Time Series</title>
+      <link>/tspost/statistica-background-for-time-series/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/statistica-background-for-time-series/</guid>
+      <description>body {text-align: justify}In this post we will review the statistical background for time series analysis and forecasting.  We start about how to compare different time seris models against each other.
+Forecast Accuracy  It determine how much difference thare is between the actual value and the forecast for the value.</description>
+    </item>
+    
+    <item>
       <title>Distinguish Benign and Malign Tumor via ANN</title>
       <link>/aipost/distinguish-benign-and-malign-tumor-via-ann/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>

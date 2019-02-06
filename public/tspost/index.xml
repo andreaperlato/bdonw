@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TSPosts on Andrea Perlato</title>
+    <link>/tspost/</link>
+    <description>Recent content in TSPosts on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tspost/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Statistica Background for Time Series</title>
+      <link>/tspost/statistica-background-for-time-series/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/statistica-background-for-time-series/</guid>
+      <description>body {text-align: justify}In this post we will review the statistical background for time series analysis and forecasting.  We start about how to compare different time seris models against each other.
+Forecast Accuracy  It determine how much difference thare is between the actual value and the forecast for the value.</description>
+    </item>
+    
+  </channel>
+</rss>
