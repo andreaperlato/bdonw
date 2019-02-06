@@ -19,4 +19,13 @@ In this post we will review the statistical background for time series analysis 
 We start about how to compare different time seris models against each other.
 
 **Forecast Accuracy** </br>
-It determine how much difference thare is between the actual value and the forecast for the value.
+It determine how much difference thare is between the actual value and the forecast for the value. The simplest way to m ake a comparison is via scale dependent error because all the models need to be on the same scale using the Mean Absolute Error - MAE and the Root Mean Squared Error - RMSE.
+[**MAE**](https://en.wikipedia.org/wiki/Mean_absolute_error) is the mean of all differences between actual and forecaset absolute value and in order to avoid negative values we can use [**RMSE**](https://en.wikipedia.org/wiki/Root-mean-square_deviation).
+
+
+
+
+
+
+
+
