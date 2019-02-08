@@ -168,7 +168,7 @@ etsmodmut <- ets(nottem, model = "MZM"); etsmodmut
 Now, with the mutiplicative method the information criteria (AIC, AICc, BIC) are higher and that means the model is not as good as the one we got from out initially.
 
 <center>
-![](/img/tsmodel.png){width=80%}
+![](/img/tsmodel.png){width=100%}
 
 </center>
 
