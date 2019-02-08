@@ -123,6 +123,11 @@ plot(mymodel1)
 The graph shows a seasona pattern along with a trend. It is also quite evident that the seasonality increases quite a bit at the ast of the plot. </br>
 The ast line of the Decomposition Graph is the random component that shows a pattern on the left and right. The middle part of the plot around 1954 and 1958 seems random, but the rest of the time series shows peaks at a certain interval. that is not a good sign and shows that the model coud be improved upon. 
 
+**Exponential Smoothing with ETS** </br>
+It describes the time series with three parameters: </br>
+Error: addictive, mutiplicative </br>
+Trend: non-present, addictive, mutiplicative </br>
+Seasonaity: non-present, addictive, multipicative </br>
 
 
 
