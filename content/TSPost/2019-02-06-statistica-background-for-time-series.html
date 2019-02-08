@@ -133,3 +133,21 @@ Call:
 </div>
 </center>
 <p>In fact, if we look at the graph comparison above, the mutiplicative method does not catch the peacks as well as the initia one. There is a big distance between the back peaks and the red peaks.</p>
+<p><strong>ARIMA: Autoregressiove Integrated Moving Average</strong> </br> This is a system based on autoregression which allows to model nearly any univariate time series. </br> It is available for univariate, and multivariate time series. ARIMA is the same of Box-Jenkins models. </br> Generally, it is all about three parameters: </br> p (autoregressive part): AR </br> d (integration part, degree of differencing): I </br> q (moving average part): MA </br></p>
+<p>Crucially, the model made the time series stationary if it is not, and only then, the parameter <strong>p</strong> and <strong>q</strong> can be identified. </br> The order of difference between the origina time series and the non-stationarity time series is described by the <strong>d</strong> parameter. </br></p>
+<p>The all ARIMA model is based on the <strong>summation of lags</strong> (autoregressive part) and the <strong>summation of the forecasting error</strong> (moving average part). For example: ARIMA(2,0,0) is a second order (lag) of autoregressive parameter AR and we are interested in the first and second lag. For the first order autoregressive AR(1) or ARIMA(1,0,0) we have the formuation: </br></p>
+<center>
+<div class="figure">
+<img src="/img/arimaformulation.png" style="width:20.0%" />
+
+</div>
+</center>
+<p>The observed value Yt at time point t consist of the constant c plus the value of previous time point (t-1) multiplied by a coefficient ɸ plus the error term of time point t (et). For the forecasting the <a href="https://en.wikipedia.org/wiki/Kalman_filter"><strong>Kalman Filter</strong></a> would be applied in order to the error term.</p>
+<p>ARIMA(0,1,0) means the time series is not constant, which is required for a forecast. We are not in presence of stationarity (dataet with no constant mean). The differencing is:</p>
+<center>
+<div class="figure">
+<img src="/img/differencingmode.png" style="width:20.0%" />
+
+</div>
+</center>
+<p>The formua above says that the present observation Yt minus the preavious observation Yt-1 is equal to a constant plus an error term. The term t-1 is also called the <strong>Backshift Operator</strong> which is used to denote differencing time series.</p>
