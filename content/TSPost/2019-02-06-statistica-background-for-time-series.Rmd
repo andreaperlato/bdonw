@@ -129,7 +129,50 @@ Error: addictive, mutiplicative </br>
 Trend: non-present, addictive, mutiplicative </br>
 Seasonaity: non-present, addictive, multipicative </br>
 
+We can use **Additive Decomposition Method** that adds the Error, Trend and seasonality up. Or **Mutipicative Decomposition Method** that mutiplies these components. In general, if the seasona component stays constant over several cycles, it is best to use the Additive Decomposition Method. </br>
+Parameters can also be mixed: additive trend with mutipicative seasonaity: that is the process of the **Mutipicative Hot-Winters Mode**. </br>
+In **Exponential Smoothing** recent data is given more weight than older observations.
+This method has smooting coefficients to manage the weighting based on the timestamp: </br>
+1 - reactive modes relies heavly on recent data, thta results in high coefficients </br>
+2 - smooth models have low coefficients </br>
+The coefficients are: </br>
+alpha: initial level </br>
+beta: the trend </br>
+gamma: seasonality </br>
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(forecast)
+etsmodel <- ets(nottem); etsmodel
+
+```
+
+The first info we get from the results is the model type itself: ETS(A,N,A) that is about additive error, no trend and additive seasonality, that is quite what we woud expect from a temperature based data. </br>
+We also see from the resuts alpha (error) and gamma (seasonaity) very closed to zero. </br>
+We also see the Initial level called l = 48.92, sigma = 2.25 and three information criteria: </br>
+AIC, AICc, BIC. </br> 
+
+Let's see how the mode looks compared to the original dataset and the forecast.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+plot(forecast(etsmodel$fitted, h = 12)) # plot the forecast
+
+```
+The graph gives us an extra year in blue with prediction intervals (80% accuracy and 95% accuracy).
+Let's try now mutiplicative method.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+etsmodmut <- ets(nottem, model = "MZM"); etsmodmut
+
+```
+
+Now, with the mutiplicative method the information criteria (AIC, AICc, BIC) are higher and that means the model is not as good as the one we got from out initially.
+
+<center>
+![](/img/tsmodel.png){width=80%}
+
+</center>
+
+In fact, if we look at the graph comparison above, the mutiplicative method does not catch the peacks as well as the initia one. There is a big distance between the back peaks and the red peaks.
 
 
 

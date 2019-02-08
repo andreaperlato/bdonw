@@ -143,6 +143,58 @@ plot(mymodel1)</code></pre>
 <p><img src="/TSPost/2019-02-06-statistica-background-for-time-series_files/figure-html/unnamed-chunk-4-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The graph shows a seasona pattern along with a trend. It is also quite evident that the seasonality increases quite a bit at the ast of the plot. </br> The ast line of the Decomposition Graph is the random component that shows a pattern on the left and right. The middle part of the plot around 1954 and 1958 seems random, but the rest of the time series shows peaks at a certain interval. that is not a good sign and shows that the model coud be improved upon.</p>
 <p><strong>Exponential Smoothing with ETS</strong> </br> It describes the time series with three parameters: </br> Error: addictive, mutiplicative </br> Trend: non-present, addictive, mutiplicative </br> Seasonaity: non-present, addictive, multipicative </br></p>
+<p>We can use <strong>Additive Decomposition Method</strong> that adds the Error, Trend and seasonality up. Or <strong>Mutipicative Decomposition Method</strong> that mutiplies these components. In general, if the seasona component stays constant over several cycles, it is best to use the Additive Decomposition Method. </br> Parameters can also be mixed: additive trend with mutipicative seasonaity: that is the process of the <strong>Mutipicative Hot-Winters Mode</strong>. </br> In <strong>Exponential Smoothing</strong> recent data is given more weight than older observations. This method has smooting coefficients to manage the weighting based on the timestamp: </br> 1 - reactive modes relies heavly on recent data, thta results in high coefficients </br> 2 - smooth models have low coefficients </br> The coefficients are: </br> alpha: initial level </br> beta: the trend </br> gamma: seasonality </br></p>
+<pre class="r"><code>library(forecast)
+etsmodel &lt;- ets(nottem); etsmodel</code></pre>
+<pre><code>ETS(A,N,A) 
+
+Call:
+ ets(y = nottem) 
+
+  Smoothing parameters:
+    alpha = 0.0392 
+    gamma = 1e-04 
+
+  Initial states:
+    l = 49.4597 
+    s = -9.5635 -6.6186 0.5447 7.4811 11.5783 12.8567
+           8.9762 3.4198 -2.7516 -6.8093 -9.7583 -9.3556
+
+  sigma:  2.3203
+
+     AIC     AICc      BIC 
+1734.944 1737.087 1787.154 </code></pre>
+<p>The first info we get from the results is the model type itself: ETS(A,N,A) that is about additive error, no trend and additive seasonality, that is quite what we woud expect from a temperature based data. </br> We also see from the resuts alpha (error) and gamma (seasonaity) very closed to zero. </br> We also see the Initial level called l = 48.92, sigma = 2.25 and three information criteria: </br> AIC, AICc, BIC. </br></p>
+<p>Let’s see how the mode looks compared to the original dataset and the forecast.</p>
+<pre class="r"><code>plot(forecast(etsmodel$fitted, h = 12)) # plot the forecast</code></pre>
+<p><img src="/TSPost/2019-02-06-statistica-background-for-time-series_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /> The graph gives us an extra year in blue with prediction intervals (80% accuracy and 95% accuracy). Let’s try now mutiplicative method.</p>
+<pre class="r"><code>etsmodmut &lt;- ets(nottem, model = &quot;MZM&quot;); etsmodmut</code></pre>
+<pre><code>ETS(M,N,M) 
+
+Call:
+ ets(y = nottem, model = &quot;MZM&quot;) 
+
+  Smoothing parameters:
+    alpha = 0.0214 
+    gamma = 1e-04 
+
+  Initial states:
+    l = 49.3793 
+    s = 0.8089 0.8647 1.0132 1.1523 1.2348 1.2666
+           1.1852 1.0684 0.9405 0.8561 0.8005 0.8088
+
+  sigma:  0.0508
+
+     AIC     AICc      BIC 
+1761.911 1764.054 1814.121 </code></pre>
+<p>Now, with the mutiplicative method the information criteria (AIC, AICc, BIC) are higher and that means the model is not as good as the one we got from out initially.</p>
+<center>
+<div class="figure">
+<img src="/img/tsmodel.png" style="width:80.0%" />
+
+</div>
+</center>
+<p>In fact, if we look at the graph comparison above, the mutiplicative method does not catch the peacks as well as the initia one. There is a big distance between the back peaks and the red peaks.</p>
 
     </div>
   </article>
