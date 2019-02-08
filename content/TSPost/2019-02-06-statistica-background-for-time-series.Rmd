@@ -57,6 +57,43 @@ As expected in all four of our statistics the mean method is the best, with the 
 
 
 **The importance of Residuals in Time Series Analysis** </br>
+Residuals tell a lot about the quality of the model. </br>
+The rule of thumb is: only randomness should stay in the residuals. They are the container of randomness (data that we cannot explain in mathematical terms) and ideally the have a mean of zero and constant variance. </br>
+Residuals should be uncorrelated, correlated residuals still have information left in them, and ideally they are normally distributed.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# get-rid of the NA in the drift method
+driftwithoutNA <- drifm$residuals
+driftwithoutNA <- driftwithoutNA[2:165]
+
+hist(drifm$residuals) # test residuals
+acf(driftwithoutNA) # test auto-correlation
+
+```
+
+As we can see from the graph above, we have a peak at around zero and the tails to both ends look quite equal which is what would expect with the normal distribution of the residuals. From the acf() function, we can test for auto-correlation: if we have several of the vertical bars above the threshold level, we have auto-correlation. </br>
+Here, we can see that 4/30 bars are over/below the threshold, and that means residuals have information left in them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
