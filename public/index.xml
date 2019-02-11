@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Data Science using Agile Methodology</title>
+      <link>/theorypost/data-science-using-agile-methodology/</link>
+      <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/data-science-using-agile-methodology/</guid>
+      <description>body { text-align: justify}  A data science team asks great questions, explores the data, and delivers key insights.  The best way to generate business value is to deliver a constant stream of key insights in short two-week sprints.</description>
+    </item>
+    
+    <item>
       <title>Statistical Background for Time Series</title>
       <link>/tspost/statistica-background-for-time-series/</link>
       <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
