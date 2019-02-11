@@ -28,11 +28,11 @@ So, there is no a detailed description about what to find before you start looki
 On the contrary, project managment requires to define process and a fully understand your deliverable. </br>
 Data Science is an empirical process, where we need to expect the unexpected if we want to gain new insights. It is a process focused of research. We have to stop planning and start exploring. Data Science process is not a project but a discovery. </br>
 
-Data science teams are empirical and exploratory. We are used in a meeting to talk about: mission,objectives, and outcomes. That is why it is difficult to step back and imagine a team of a pure exploration. </br>
+Data science teams are empirical and exploratory. We are used in a meeting to talk about: mission, objectives, and outcomes. That is why it is difficult to step back and imagine a team of a pure exploration. </br>
 
 
 **TYPICAL PROJECT MANAGEMENT APPROACH** </br>
-In a tipical project management approach, a data science team is composed by **one reseach lead** **two data analysts** and **one project manager**. The goal is to make the needs of the company or of the customer actionable and increase value or revenue. Tipical questions are:</br>
+In a typical project management approach, a data science team is composed by **one reseach lead** **two data analysts** and **one project manager**. The goal is to make the needs of the company or of the customer actionable and increase value or revenue. Tipical questions are:</br>
 What do we know about the customer? </br>
 What we assume? </br>
 Why does our customers shop with us instead of our competitors? </br>
@@ -46,9 +46,9 @@ Moreover, if we don't know how long the team is working to find insights, then w
 In other words, a data science project won't fit with into a traditional project management framework. </br>
 
 
-**HOW TO USE SUCcESS CRITERIA** </br>
-Thomas Edison said about a failed experiment that was not a fail. There is always learning something new and there is the opportunity to be free to try a different way. This is the same approach of a Data Science Team. They will run many experiments on the data and not every experiment leads to insights.
-It is a good idea to create sucess criteria, and objectives for the team. That is a good compromise between project management and data science.
+**HOW TO USE SUCCESS CRITERIA** </br>
+Thomas Edison said about a failed experiment that was not a fail. There is always something new to learn from fails, and there is the opportunity to be free to try a different way. This is the same approach that Data Science Teams have. They run many experiments on the data and not every experiment leads to insights.
+It is a good idea to create success criteria, and objectives for the team. That is a good compromise between project management and data science. </br>
 The goals are: </br>
 **Make the team transparent** and not isolated from the rest of the organiation. </br>
 **Try to solve large problems**, this means that the lead research needs to have ambitious questions. If the questions are too timid, then it might be difficult to sho results. </br>
