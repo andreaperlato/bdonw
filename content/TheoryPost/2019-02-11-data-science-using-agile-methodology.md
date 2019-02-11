@@ -15,12 +15,12 @@ body {
 text-align: justify}
 </style>
 
-**INTRODUCTION**
+**INTRODUCTION** </br>
 A data science team asks great questions, explores the data, and delivers key insights. </br>
 The best way to generate business value is to deliver a constant stream of key insights in short two-week sprints. </br>
 A short sprint will also help the team pivot so they can ask new questions based on what they learn from the data. </br>
 
-**WORK ON A DATA SCIENCE PROJECT**
+**WORK ON A DATA SCIENCE PROJECT** </br>
 Typical project upfront requirements and we need to understand what we are going to build before to start the planning project. It also focuses on **delivering scopre**, **schedule**, and **budget**. </br> Finally, a typical project delivers a product or service. </br>
 
 Data Science project is different. The team explore new opportunity, make data more accessible for the compani and a better understand of it.
@@ -31,7 +31,7 @@ Data Science is an empirical process, where we need to expect the unexpected if 
 Data science teams are empirical and exploratory. We are used in a meeting to talk about: mission,objectives, and outcomes. That is why it is difficult to step back and imagine a team of a pure exploration. </br>
 
 
-**TYPICAL PROJECT MANAGEMENT APPROACH**
+**TYPICAL PROJECT MANAGEMENT APPROACH** </br>
 In a tipical project management approach, a data science team is composed by a **reseach lead** two **data analysts** and a **project manager**. The goal is to make the needs of the company or of the customer actionable and increase value or revenue. Tipical questions are:</br>
 What do we know about the customer? </br>
 What we assume? </br>
@@ -46,7 +46,7 @@ Moreover, if we don't know how long the team is working to find insights, then w
 In other words, a data science project won't fit with into a traditional project management framework. </br>
 
 
-**HOW TO SER SUCESS CRITERIA**
+**HOW TO USE SUCcESS CRITERIA** </br>
 Thomas Edison said about a failed experiment that was not a fail. There is always learning something new and there is the opportunity to be free to try a different way. This is the same approach of a Data Science Team. They will run many experiments on the data and not every experiment leads to insights.
 It is a good idea to create sucess criteria, and objectives for the team. That is a good compromise between project management and data science.
 The goals are: </br>
@@ -54,15 +54,14 @@ The goals are: </br>
 **Try to solve large problems**, this means that the lead research needs to have ambitious questions. If the questions are too timid, then it might be difficult to sho results. </br>
 **Show what the team is learning** using regularly scheduled storytelling sessions. </br>
 
-If you are the project manager of the data science team you must be able to: </br>
+If you are the **project manager of the data science team** you must be able to: </br>
 Work hadr to stay connected with the rest of the company. </br>
 Stay transaparent about what you find. </br>
 Give frequent demonstrations of insights, so the rest of the organization understand the value in data science. </br>
-If you are the project manager of the data science team
 
 
-
-
+**USE A DSLC** </br>
+We already said
 
 
 
