@@ -32,7 +32,7 @@ Data science teams are empirical and exploratory. We are used in a meeting to ta
 
 
 **TYPICAL PROJECT MANAGEMENT APPROACH** </br>
-In a tipical project management approach, a data science team is composed by a **reseach lead** two **data analysts** and a **project manager**. The goal is to make the needs of the company or of the customer actionable and increase value or revenue. Tipical questions are:</br>
+In a tipical project management approach, a data science team is composed by **one reseach lead** **two data analysts** and **one project manager**. The goal is to make the needs of the company or of the customer actionable and increase value or revenue. Tipical questions are:</br>
 What do we know about the customer? </br>
 What we assume? </br>
 Why does our customers shop with us instead of our competitors? </br>
@@ -55,9 +55,9 @@ The goals are: </br>
 **Show what the team is learning** using regularly scheduled storytelling sessions. </br>
 
 If you are the **project manager of the data science team** you must be able to: </br>
-Work hadr to stay connected with the rest of the company. </br>
+Work hard to stay connected with the rest of the company. </br>
 Stay transaparent about what you find. </br>
-Give frequent demonstrations of insights, so the rest of the organization understand the value in data science. </br>
+Give frequent demonstrations of insights, by doing that, the rest of the organization understand the value in data science. </br>
 
 
 **USE A DSLC** </br>
