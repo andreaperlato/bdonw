@@ -116,10 +116,14 @@ During a sprint you force the team to do the minimum amount of preparation, so t
 There is a big difference between presenting data and **TELLING A STORY**, it requires a lot more work. </br>
 When you have a power point presentation, it is like to say: "Here is what I see". </br>
 When we are telling a story, we are saying: "Here is what I believe". To do that we have to: </br>
-**1 - synthesizing complexity:** explain some that is complex in a simpler way.
-**2 - bringing knowlegde**
-**3 - make the data more memorable:** a good story has to be get everyone engaged.
-**3 - call to action:** a good story has to call to action based on the finding we are explaining.
+**1 - synthesizing complexity:** explain some that is complex in a simpler way. </br>
+**2 - bringing knowlegde** </br>
+**3 - make the data more memorable:** a good story has to be get everyone engaged. </br>
+**3 - call to action:** a good story has to call to action based on the finding we are explaining. </br>
+
+
+
+
 
 
 
