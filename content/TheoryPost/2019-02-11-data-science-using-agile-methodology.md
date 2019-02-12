@@ -104,13 +104,13 @@ Moreover, if we pay attention on the QUESTION BOARD we can find patterns in the 
 
 The sprint is about two weeks and the team have a lot to do. Therefore, they need some structure to stay efficient. </br>
 The first point is to define the meeting that are typically five: </br>
-1 - meeting to explore planning </br>
-2 - meeting dedicated to question breakdown </br>
-3 - visualization design meeting </br>
-4 - storytelling session </br>
-5 - meeting for team improvement </br>
+**1 - meeting to explore planning** </br>
+**2 - meeting dedicated to question breakdown:** large questions are brokendown in much smaller and manageble ones. </br>
+**3 - visualization design meeting:**  </br>
+**4 - storytelling session:**  </br>
+**5 - meeting for team improvement:**  </br>
 
-
+This means that the team has two weeks between the planning meeting and the sorytelling session.
 
 
 
