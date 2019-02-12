@@ -94,10 +94,32 @@ The **research lead** idenity the right question and work togheter witht the **d
 This process was used for example by **Netfilx** when they launch The House of Cards series.
 
 **WORK IN SPRINTS** </br>
-Sprints are used in agile software and it is a **fixed period ** (typically 2 weeks) of time for the life cycle and contains all the five areas of the DSLC.
+Sprints are used in agile software and it is a **fixed period** of time (typically 2 weeks) for the life cycle and contains all the five areas of the DSLC.
 The main advantage to run in a spring is that its reduce the time between the concept and cash.
 Even if there is no insights we have a finished question. Consider that long time to dedicate to the result is tricky, because during that period the data might change. </br>
 Thanks to this method we can adapt to new ideas, as opposed to being focused on one path.
+One best tool that a research group can use is the **QUESTION BOARD** filled with Post-it noted. The idea is to solicit questions from the rest of the organization. The questoin board should be open and inviting. A inport think is that during he presentatin of the result people can recognize their own questions and so they will be more prone to ask new questions in the future and even encorage co-workers to ask questions as well.
+Crucially, not all the question have to be managed, the reseach lead and the team have to work to prioritize he most interesting ideas.
+Moreover, if we pay attention on the QUESTION BOARD we can find patterns in the questons: **so, the board itself becomes another data source**.
+
+The sprint is about two weeks and the team have a lot to do. Therefore, they need some structure to stay efficient. </br>
+The first point is to define the meeting that are typically five: </br>
+1 - meeting to explore planning </br>
+2 - meeting dedicated to question breakdown </br>
+3 - visualization design meeting </br>
+4 - storytelling session </br>
+5 - meeting for team improvement </br>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
