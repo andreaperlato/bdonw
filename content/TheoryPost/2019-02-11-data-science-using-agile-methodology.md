@@ -80,8 +80,9 @@ The CRiSP-DM is rigid for quick results. That is why **DSLC: data science life c
 5 - insights </br> 
 6 - learn </br> 
 
-**The DSLC is loosly based on scientific method**.
-To tell a story of data is great to start **identifying the key roles**.
+**The DSLC is loosly based on scientific method**. </br> 
+The most important thing to keep in mind is that the DSLC it is not designed to run in phases. </br> 
+To tell a story of data is great to start **identifying the key roles**. </br> 
 Have a **question** is a key element of the data science prosess. By doing this, is important to include the running partners.
 The **question** help the team to find the right method for the **research**. For example image that the question is: how to optimize the ads or you have to launch a new product on the market. So, the team is immedialty able to start the reseach on social media, crapping profile and perform the so called Social Media Analsys that is expterely helpfull to find influencers able to spred the ads as much and quick as possible to the vast majority of the social network.
 
@@ -91,7 +92,12 @@ As well as in scientific research the **question**, **research** and **results**
 The **research lead** idenity the right question and work togheter witht the **data analysis** on the research and create reposts. The the **project manager** work on to comunicate the results to the rest of the organization. </br> 
 
 This process was used for example by **Netfilx** when they launch The House of Cards series.
-They started with question like: what makes a hit show? Who are the favorite actors? 
+
+**WORK IN SPRINTS** </br>
+Sprints are used in agile software and it is a **fixed period ** (typically 2 weeks) of time for the life cycle and contains all the five areas of the DSLC.
+The main advantage to run in a spring is that its reduce the time between the concept and cash.
+Even if there is no insights we have a finished question. Consider that long time to dedicate to the result is tricky, because during that period the data might change. </br>
+Thanks to this method we can adapt to new ideas, as opposed to being focused on one path.
 
 
 
