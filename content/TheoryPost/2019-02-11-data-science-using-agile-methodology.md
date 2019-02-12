@@ -106,11 +106,31 @@ The sprint is about two weeks and the team have a lot to do. Therefore, they nee
 The first point is to define the meeting that are typically five: </br>
 **1 - meeting to explore planning** </br>
 **2 - meeting dedicated to question breakdown:** large questions are brokendown in much smaller and manageble ones. </br>
-**3 - visualization design meeting:**  </br>
-**4 - storytelling session:**  </br>
-**5 - meeting for team improvement:**  </br>
+**3 - visualization design meeting:** research lead and data analysts work together to create interesting visualization. </br>
+**4 - storytelling session:**  this is about what the team found in the sprint. </br>
+**5 - meeting for team improvement:**  after the sprint there is one hour improvement meeting to evaluate the progress. </br>
 
-This means that the team has two weeks between the planning meeting and the sorytelling session.
+This means that the team has two weeks between the planning meeting and the sorytelling session. </br>
+During a sprint you force the team to do the minimum amount of preparation, so the team can be focused in insights. We do not want the tem spend months just setting up the data, but they have to immediately start exploring the data and find insights.
+
+There is a big difference between presenting data and **TELLING A STORY**, it requires a lot more work. </br>
+When you have a power point presentation, it is like to say: "Here is what I see". </br>
+When we are telling a story, we are saying: "Here is what I believe". To do that we have to: </br>
+**1 - synthesizing complexity:** explain some that is complex in a simpler way.
+**2 - bringing knowlegde**
+**3 - make the data more memorable:** a good story has to be get everyone engaged.
+**3 - call to action:** a good story has to call to action based on the finding we are explaining.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
