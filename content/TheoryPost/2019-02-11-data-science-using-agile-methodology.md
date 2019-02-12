@@ -125,9 +125,10 @@ When we are telling a story, we are saying: "Here is what I believe". To do that
 
 **RELY ON SERENDIPITY** </br>
 There is a book called: [**Why Gretness Cannot be Planned: The Myth of the Objective**](https://www.goodreads.com/book/show/25670869-why-greatness-cannot-be-planned), by Ken Stanley and Joel Lehman. </br>
-In the book theey say that objectives actually become obstacles. The more you focus on clearly defined objectives, the less likely you are to make interesting discoveries. [**Professor Ken Stanley**](https://www.cs.ucf.edu/~kstanley/) says the team should rely on pure [**serendipity**](https://en.wikipedia.org/wiki/Serendipity). Serendipity is something unpredictable or unplanned. Professor Stanley defines this as a spepping stones that lead to insights. If you ignore serendipity, we likely miss the key discoveries. We have to be able to pursue the unexpected.
+In the book theey say that objectives actually become obstacles. The more you focus on clearly defined objectives, the less likely you are to make interesting discoveries. [**Professor Ken Stanley**](https://www.cs.ucf.edu/~kstanley/) says the team should rely on pure [**serendipity**](https://en.wikipedia.org/wiki/Serendipity). Serendipity is something unpredictable or unplanned. Professor Stanley defines this as a spepping stones that lead to insights. If you ignore serendipity, we likely miss the key discoveries. We have to be able to pursue the unexpected. </br>
+On the contrary, when people are so focused on routine tasks, they are blind to unexpected events, this phenomena is called: [**perceptual blindness**](https://en.wikipedia.org/wiki/Inattentional_blindness).
 
-
+More information about Agile Methodology in Data Science can be found in the book: [**Data Science: Create Teams That Ask the Right Questions, And Deliver Real Value**](https://www.apress.com/de/book/9781484222522) by Doug Rose.
 
 
 
