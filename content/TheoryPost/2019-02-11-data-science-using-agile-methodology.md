@@ -61,7 +61,8 @@ Give frequent demonstrations of insights, by doing that, the rest of the organiz
 
 
 **USE A DSLC** </br>
-We already said that data sciece is about experiment and exploration, we cannot plan the work as we do in a tipical project. Moreover, we won't necessarily have a set of clear objectives. Crucilly, the absence of a plan doesn't mean an absence of intent. </br>
+We already said that data sciece is about experiment and exploration, and **exploration, by definition, is about looking fro something unfamiliar**. </br>
+We cannot plan the work as we do in a tipical project. Moreover, we won't necessarily have a set of clear objectives. Crucilly, the absence of a plan doesn't mean an absence of intent. </br>
 Data science increases organizational knowledge: </br>
 new insights can decrease the time-to-market TTM: is the length of time it takes from a product begin until being available for sale </br>build good will
 create new revenue </br>
@@ -122,7 +123,9 @@ When we are telling a story, we are saying: "Here is what I believe". To do that
 **3 - call to action:** a good story has to call to action based on the finding we are explaining. </br>
 
 
-
+**RELY ON SERENDIPITY** </br>
+There is a book called: [**Why Gretness Cannot be Planned: The Myth of the Objective**](https://www.goodreads.com/book/show/25670869-why-greatness-cannot-be-planned), by Ken Stanley and Joel Lehman. </br>
+In the book theey say that objectives actually become obstacles. The more you focus on clearly defined objectives, the less likely you are to make interesting discoveries. [**Professor Ken Stanley**](https://www.youtube.com/watch?v=dXQPL9GooyI) says the team should rely on pure [**serendipity**](https://en.wikipedia.org/wiki/Serendipity). Serendipity is something unpredictable or unplanned. Professor Stanley defines this as a spepping stones that lead to insights. If you ignore serendipity, we likely miss the key discoveries. We have to be able to pursue the unexpected.
 
 
 
