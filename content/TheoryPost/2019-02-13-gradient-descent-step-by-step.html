@@ -17,5 +17,6 @@ text-align: justify}
 </style>
 <p><strong>INTRODUCTION</strong> </br> In statistics, Machine Learning and other Data Science fields, we optimize a lot of stuff. For example in linear regresion, we optimize the Intercept and Slope, or when we use Logistic Regression we optimize the squiggle. Moreover, in t-SNE we optimize clusters. The interesting thing is that gradient descent can optimize all these things and much more. A good example is the <strong>Sum of the Squared Residuals</strong> in Regression: in Machine Learning lingo this is a type of <strong>Loss Function</strong>. The <strong>Residual</strong> is the difference between the Observed Value and the Predicted Value.</p>
 <center>
-<img src="/img/gradientdescentregression.png" style="width:80.0%" />
+<img src="/img/gradientregression.png" style="width:100.0%" />
 </center>
+<p>The figure above shows on the y-axis the sum of the squared residuals and the x-axis different value for the intercept. The firt point on the y-axis represent the sum of the squared residuals when the intercept is equal to zero. We continue to plot point on the graph based on different value of the intercept. The lowest poin in the graph has the lowest sum of the squared residuals. Gradient descent identifies the optimal value by taking big steps when we are far away to the optimal sum of the squared residual, and start to make many steps when it is close to the best solution.</p>

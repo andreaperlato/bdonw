@@ -21,8 +21,10 @@ A good example is the **Sum of the Squared Residuals** in Regression: in Machine
 The **Residual** is the difference between the Observed Value and the Predicted Value.
 
 <center>
-![](/img/gradientdescentregression.png){width=80%}
+![](/img/gradientregression.png){width=100%}
 </center>
 
-
+The figure above shows on the y-axis the sum of the squared residuals and the x-axis different value for the intercept.
+The firt point on the y-axis represent the sum of the squared residuals when the intercept is equal to zero. We continue to plot point on the graph based on different value of the intercept. The lowest poin in the graph has the lowest sum of the squared residuals.
+Gradient descent identifies the optimal value by taking big steps when we are far away to the optimal sum of the squared residual, and start to make many steps when it is close to the best solution.
 
