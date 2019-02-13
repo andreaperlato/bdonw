@@ -60,9 +60,12 @@ Summarizing: </br>
 1 - Take the derivative of the Loss Function for each parameter in it. In ML lingo, take the Gradient of the Loss Function. </br>
 2 - Pick random values for the parameters. </br>
 3 - Plug the paramenter values into the derivatives (Gradient). </br>
-4 - Calculate the Step Sizes: Step Size = slope * Learning Rate. </br>
-5 - Calculate the New Parameters: NewParameter = Old Parameter - Step Size. </br>
+4 - Calculate the Step Sizes: Step Size = Slope * Learning Rate. </br>
+5 - Calculate the New Parameters (e.g. intercept): NewParameter = Old Parameter - Step Size. </br>
 6 - Go back to step 3 and repeat untill Step Size is very small, or when the Maximum Number of Steps is reached. </br>
+
+[**Learning rate**](https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10), used in the calculation of the Steo Size is a hyper-parameter that controls how much we are adjusting the weights with respect of the Loss Function. The lower the values, the slower we travel along the downward slope. This make sure that we do not miss any **local minima**.
+Moreover, the learning rate affects how quickly our model can coverge to a local minina (aka arrive at the best accuracy).
 
 One last thing is that when we have millions of data points, the process take a long time. </br>
 There is a thing called **Stochastic Gradient Descent** that uses a randomly selected subset of the data at every step rather than the full data. </br>
