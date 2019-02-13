@@ -17,6 +17,12 @@ text-align: justify}
 
 **INTRODUCTION** </br>
 In statistics, Machine Learning and other Data Science fields, we optimize a lot of stuff. For example in linear regresion, we optimize the Intercept and Slope, or when we use Logistic Regression we optimize the squiggle. Moreover, in t-SNE we optimize clusters. The interesting thing is that gradient descent can optimize all these things and much more.
+A good example is the **Sum of the Squared Residuals** in Regression: in Machine Learning lingo this is a type of **Loss Function**.
+The **Residual** is the difference between the Observed Value and the Predicted Value.
+
+<center>
+![](/img/gradientdescentregression.png){width=80%}
+</center>
 
 
 
