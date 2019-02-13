@@ -6,10 +6,19 @@
     <description>Recent content in Theory on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/theory/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gradient Descent Step by Step</title>
+      <link>/theorypost/gradient-descent-step-by-step/</link>
+      <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/gradient-descent-step-by-step/</guid>
+      <description>body {text-align: justify}INTRODUCTION  In statistics, Machine Learning and other Data Science fields, we optimize a lot of stuff. For example in linear regresion, we optimize the Intercept and Slope, or when we use Logistic Regression we optimize the squiggle. Moreover, in t-SNE we optimize clusters. The interesting thing is that gradient descent can optimize all these things and much more.</description>
+    </item>
     
     <item>
       <title>Data Science using Agile Methodology</title>

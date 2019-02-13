@@ -1,0 +1,22 @@
+---
+title: Gradient Descent Step by Step
+author: andrea perlato
+date: '2019-02-13'
+slug: gradient-descent-step-by-step
+categories:
+  - theory
+tags:
+  - gradient descent
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+**INTRODUCTION** </br>
+In statistics, Machine Learning and other Data Science fields, we optimize a lot of stuff. For example in linear regresion, we optimize the Intercept and Slope, or when we use Logistic Regression we optimize the squiggle. Moreover, in t-SNE we optimize clusters. The interesting thing is that gradient descent can optimize all these things and much more.
+
+
+
