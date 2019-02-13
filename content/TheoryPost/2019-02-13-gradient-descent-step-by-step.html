@@ -19,4 +19,13 @@ text-align: justify}
 <center>
 <img src="/img/gradientregression.png" style="width:100.0%" />
 </center>
-<p>The figure above shows on the y-axis the sum of the squared residuals and the x-axis different value for the intercept. The firt point on the y-axis represent the sum of the squared residuals when the intercept is equal to zero. We continue to plot point on the graph based on different value of the intercept. The lowest poin in the graph has the lowest sum of the squared residuals. Gradient descent identifies the optimal value by taking big steps when we are far away to the optimal sum of the squared residual, and start to make many steps when it is close to the best solution. Than we can calculate the derivate d of each point of the function created by the points.</p>
+<p>The figure above shows on the y-axis the sum of the squared residuals and the x-axis different value for the intercept. The firt point on the y-axis represent the sum of the squared residuals when the intercept is equal to zero. We continue to plot point on the graph based on different value of the intercept. The lowest poin in the graph has the lowest sum of the squared residuals. Gradient descent identifies the optimal value by taking big steps when we are far away to the optimal sum of the squared residual, and start to make many steps when it is close to the best solution. Than we can calculate the <strong>derivate d</strong> of each point of the function created by the points.</p>
+<center>
+<img src="/img/gradientderivate.png" style="width:60.0%" />
+</center>
+<p>Gradient Descent uses derivative in order to find where the Sum of the Squared Residuals is lowest. The closer we get to the optimal value for the intercept, the closer the slope of the curve gets to zero.</p>
+<p><strong>HOW DOES GRADIENT DESCENT KNOW TO STOP TAKING STEPS?</strong> </br> Gradient Descent stops when the step size is very close to zero, and the step size is very close to zero qhen the <strong>slop size</strong> is close to zero.</p>
+<center>
+<img src="/img/gradientstepsize.png" style="width:60.0%" />
+</center>
+<p>In practice, the <strong>Minimum Step Size</strong> is equal to <strong>0.001</strong> or smaller. Moreover, Gradient Descent includes a limit on the number of steps it will take before giving up. In practice, the <strong>Maximum Number of Steps</strong> is equal to <strong>1000</strong> or greater.</p>
