@@ -68,7 +68,7 @@ Another important aspect is to use the **Push Strategy**, where a product is cre
 As ppose, we can use the **Pull Strategy**, where interest for a product drives demand for creating the product. Here the company wait for the customer to make a specific order. Pull Strategy ensures product customization and better design/quality.
 **Postponement** is a combination of both Push and Pull Strategy, where a set of raw materials is customized at a finishing warehouse in response to a customer's order. For example, the company to the same wood chair, but let the customer choose the color. The company put an uncolor chair in the showroom and allow customer to choose paint. </br>
 
-From a statistical point of view, could be really useful to apply **Time Series and Forecasting** to this sort of data in order to prevent the the Bullwhip Effect. This statistical approach is also called [**Demand Forecasting**](https://en.wikipedia.org/wiki/Demand_forecasting) which is a field of [**Predictive Analytics**](https://en.wikipedia.org/wiki/Demand_forecasting) that analyze current ahd historical facts to make predictions about future unknown events.
+From a statistical point of view, could be really useful to apply **Time Series and Forecasting** to this sort of data in order to prevent the the Bullwhip Effect. This statistical approach is also called [**Demand Forecasting**](https://en.wikipedia.org/wiki/Demand_forecasting) which is a field of [**Predictive Analytics**](https://en.wikipedia.org/wiki/Demand_forecasting) that analyze current and historical facts to make predictions about future unknown events.
 
 
 
