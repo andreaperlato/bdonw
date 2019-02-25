@@ -6,10 +6,19 @@
     <description>Recent content in Forecasting on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/forecasting/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Supply Chain Foundations</title>
+      <link>/tspost/supply-chain-foundations/</link>
+      <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/supply-chain-foundations/</guid>
+      <description>body { text-align: justify}  INTRODUCTION  Who do companies care about supply chain management? We know that food is always at the grocery store, and clothing at the department store. How they get there and who is making those items are there every single day?</description>
+    </item>
     
     <item>
       <title>Statistical Background for Time Series</title>
