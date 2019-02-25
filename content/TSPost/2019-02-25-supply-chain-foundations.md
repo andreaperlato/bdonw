@@ -40,7 +40,43 @@ When the supply chain understand its goals, in the area of cost, quality, speed,
 ![](/img/supplychainbosses.png)
 </center>
 
-In supply chain we have two bosses: the boss that expect productivity and low cost, and the second boss which is the customer that desire quality at low price.
+In supply chain we have two bosses: the boss that expect productivity and low cost, and the second boss which is the customer that desire quality at low price. </br>
+
+
+**DEVELOPING GOOD BUYER AND SUPPLIER** </br>
+Supply chain manager has the responsibility to find a great supplier. If a company put their brand in the hand of poor supplier, they risk to lose customers.
+It is important, before to choose a supplier, to ask if this supplier help the company to be better.
+Another thing to consider is the **Production Capability** of the supplier, for example, can the supplier produces milion of batteries on time, abd at best quality?
+Moreover, can we trust on the supplier about our new secret phone? Are the supplier committed to improve its battery? </br>
+
+In modern supply chain is important to understand the relationship between buyer and supplier. Just in great relationship, buyers and suppliers share needs.
+One partner need great parts at certain time, and the other partner need directions and resonable timeline to complete the order.
+It is common to use **Scorecards** to comunicate expectations, perceptions, and to start a discussion about future needs. This help both buyers and suppliers to work togheter to innovate. </br>
+consider also that buyers and suppliers are not exclusive, and that make the company feel more stable. Moreover, this can motivate those suppliers through competition. That make each of those suppliers better. It also expose the buyer to the different options for improving their end products. </br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
