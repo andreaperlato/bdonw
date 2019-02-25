@@ -36,6 +36,11 @@ Considering two companies we have to ask the questions depicted on the figure be
 
 When the supply chain understand its goals, in the area of cost, quality, speed, flexibility, the supply chain is better able to make the customer happy and thus contribute to revenue. Moreover, by understanding what is not required can eliminate waste, and so, better control costs.
 
+<center>
+![](/img/supplychainbosses.png)
+</center>
+
+In supply chain we have two bosses: the boss that expect productivity and low cost, and the second boss which is the customer that desire quality at low price.
 
 
 
