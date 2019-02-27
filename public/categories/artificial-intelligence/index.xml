@@ -17,7 +17,7 @@
       <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tspost/neural-nets-and-interactive-graphs/</guid>
-      <description>body {text-align: justify}In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art.</description>
+      <description>body {text-align: justify}In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art. The dataset we use for this example has: missing data, outliers, poor formatting.  The dataset i about restaurant at a campsite that is open whole year. There is a peak season in summer, and so we aspect to have seasonal data and trend might be present.</description>
     </item>
     
     <item>

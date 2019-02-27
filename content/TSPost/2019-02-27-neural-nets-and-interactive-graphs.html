@@ -16,4 +16,35 @@ tags:
 body {
 text-align: justify}
 </style>
-<p>In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art.</p>
+<p>In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art. The dataset we use for this example has: <strong>missing data</strong>, <strong>outliers</strong>, <strong>poor formatting</strong>. </br> The dataset i about restaurant at a campsite that is open whole year. There is a peak season in summer, and so we aspect to have seasonal data and trend might be present. The data are the revenue by month in USD, that range from January 1997 to December 2016. </br></p>
+<p>We start <strong>CLEANING THE DATA</strong>. Fairly often this is the pat that takes the most time. </br> We start <strong>removing the quotes</strong>, convert the data in time series format, detecting and replacing <strong>missing data</strong> and <strong>outliers</strong>.</p>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+library(formattable)
+revenue &lt;- read.csv(&quot;C:/07 - R Website/dataset/TS/camping-revenue-97-17.csv&quot;, sep = &quot;,&quot; , quote = &quot;&quot;)
+colnames(revenue)[1] &lt;- &quot;V1&quot;
+colnames(revenue)[2] &lt;- &quot;V2&quot;
+
+# Clean data
+library(tidyr)
+revenue &lt;- separate(revenue, col = V2,
+                    sep = c(2, -3),
+                    into = c(&quot;resr&quot;, &quot;data&quot;, &quot;rest2&quot;))
+
+
+# Convert to time series
+myts &lt;- ts(as.numeric(revenue$data), 
+           start = 1997, frequency = 12)
+
+summary(myts) #check it</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+      3   19019   23260   36997   26879 3334333       4 </code></pre>
+<p>As we can see from the result above we have 4 missing values. </br> Furthermore, it is quite important to realise that we have a monthy revenue which is around 10000 (1st Quartile) to 30000 USD (3rd Quartile). But interestingly, there is a minimum of 3 USD and a maximum of over 3 million UDS. This makes no sense at all, and this says to us we are in presence of outliers. </br> <strong>How do we tackle the outliers problem?</strong> </br> We have to detacts thse observations and replaces them with a <strong>linear interpolation</strong>.</p>
+<pre class="r"><code>library(forecast)
+myts &lt;- tsclean(myts)
+
+summary(myts) #check it</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  14209   19298   23273   23309   26689   34366 </code></pre>
+<pre class="r"><code>plot(myts)</code></pre>
+<p><img src="/TSPost/2019-02-27-neural-nets-and-interactive-graphs_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /> Looking from the summary here above, we see that now the range of revenue is from 14209 to 34366, and we have not missing values. The graph also confirm that the all the values now are plausible and the data are clearly seasonal.</p>

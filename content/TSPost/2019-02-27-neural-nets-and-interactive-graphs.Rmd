@@ -16,3 +16,55 @@ text-align: justify}
 </style>
 
 In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art.
+The dataset we use for this example has: **missing data**, **outliers**, **poor formatting**. </br>
+The dataset i about restaurant at a campsite that is open whole year. There is a peak season in summer, and so we aspect to have seasonal data and trend might be present. The data are the revenue by month in USD, that range from January 1997 to December 2016. </br>
+
+We start **CLEANING THE DATA**.
+Fairly often this is the pat that takes the most time. </br>
+We start **removing the quotes**, convert the data in time series format, detecting and replacing **missing data** and **outliers**.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(knitr)
+library(kableExtra)
+library(formattable)
+revenue <- read.csv("C:/07 - R Website/dataset/TS/camping-revenue-97-17.csv", sep = "," , quote = "")
+colnames(revenue)[1] <- "V1"
+colnames(revenue)[2] <- "V2"
+
+# Clean data
+library(tidyr)
+revenue <- separate(revenue, col = V2,
+                    sep = c(2, -3),
+                    into = c("resr", "data", "rest2"))
+
+
+# Convert to time series
+myts <- ts(as.numeric(revenue$data), 
+           start = 1997, frequency = 12)
+
+summary(myts) #check it
+
+```
+
+As we can see from the result above we have 4 missing values. </br>
+Furthermore, it is quite important to realise that we have a monthy revenue which is around 10000 (1st Quartile) to 30000 USD (3rd Quartile). But interestingly, there is a minimum of 3 USD and a maximum of over 3 million UDS. This makes no sense at all, and this says to us we are in presence of outliers. </br>
+**How do we tackle the outliers problem?** </br>
+We have to detacts thse observations and replaces them with a **linear interpolation**.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(forecast)
+myts <- tsclean(myts)
+
+summary(myts) #check it
+plot(myts)
+
+```
+Looking from the summary here above, we see that now the range of revenue is from 14209 to 34366, and we have not missing values. The graph also confirm that the all the values now are plausible and the data are clearly seasonal.
+
+
+
+
+
+
+
+
