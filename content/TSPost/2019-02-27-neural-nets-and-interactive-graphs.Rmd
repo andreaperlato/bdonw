@@ -59,7 +59,21 @@ summary(myts) #check it
 plot(myts)
 
 ```
-Looking from the summary here above, we see that now the range of revenue is from 14209 to 34366, and we have not missing values. The graph also confirm that the all the values now are plausible and the data are clearly seasonal.
+Looking from the summary here above, we see that now the range of revenue is from 14209 to 34366, and we have not missing values. The graph also confirm that the all the values now are plausible and the data are clearly **seasonal**, and there is also an **upper-trend**. The model has to be able to catch all of these patterns.
+
+
+**NEURAL NETWORKS** </br>
+Neural Networks are the new in tme seires analysis. </br>
+In most of the cases NN has **hidden layer** which is an intermediary layer between the input and the output, and is called **Feedforward Network**. </br>
+For NN in time series analysis is called **Neural Network Autoregressive Model, NNAR**. Like for the ARIMA model there is a specific notation :
+
+<center>
+![](/img/nnar.png){width=60%}
+</center>
+
+
+
+
 
 
 
