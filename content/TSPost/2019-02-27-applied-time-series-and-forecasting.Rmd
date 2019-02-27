@@ -17,7 +17,8 @@ text-align: justify}
 In this particular field R is favored over Python. In fact, R has more features for Time Series. </br>
 A precious resource is the [**Rob Hyndman's Blog**](https://otexts.com/fpp2/). It explains step by step the standard univariate time series analysis.
 
-**TRENDING DATA**
+**FIRST** </br>
+**TRENDING DATA** </br>
 In this example we explore how many people are working in a country: unemployment rate vs. labor force participation rate.
 That is used for propaganda purposes, because low unemployment rates show an optimistic picture about the economics of a country. This is very easy to manipulate.
 On the contary, the **Labor Force Participation Rate** is harder to manipulate: it calculate the percentage of people in the work force vs. available people of a particular age range. In this example the Age range is between 25 to 54 years.
@@ -34,7 +35,7 @@ The graph above show us that it is clarly trending dataset with increasing value
 The biggest problem we have to keep in mind is the fact that this is a rate, and the values cannot be higher than 100%. Therefore, we need a threshold for linear trend, because otherwise the model would go to infinity. This method is the  **Linear Trend Model with Damping parameter**.
 Now we explore how to handle time series with trend, and which methods are available for that, and how to avoid pitfalls.
 
-**EXPONENTIAL SMOOTING MODEL**
+**EXPONENTIAL SMOOTING MODEL** </br>
 This family of models includes: </br>
 Simple Exponantial Smoothing </br>
 Holt's Linear Trend Model </br>
@@ -123,6 +124,9 @@ The **Hold Linear Model** is the most conservative, which tends towards the lowe
 The **ARIMA Model** is the most aggressive model with highest projected rates.
 
 
+
+**SECOND** </br>
+**SEASONAL DATA** </br>
 
 
 

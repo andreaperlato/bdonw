@@ -79,14 +79,14 @@ body {
 text-align: justify}
 </style>
 <p>In this particular field R is favored over Python. In fact, R has more features for Time Series. </br> A precious resource is the <a href="https://otexts.com/fpp2/"><strong>Rob Hyndman’s Blog</strong></a>. It explains step by step the standard univariate time series analysis.</p>
-<p><strong>TRENDING DATA</strong> In this example we explore how many people are working in a country: unemployment rate vs. labor force participation rate. That is used for propaganda purposes, because low unemployment rates show an optimistic picture about the economics of a country. This is very easy to manipulate. On the contary, the <strong>Labor Force Participation Rate</strong> is harder to manipulate: it calculate the percentage of people in the work force vs. available people of a particular age range. In this example the Age range is between 25 to 54 years.</p>
+<p><strong>FIRST</strong> </br> <strong>TRENDING DATA</strong> </br> In this example we explore how many people are working in a country: unemployment rate vs. labor force participation rate. That is used for propaganda purposes, because low unemployment rates show an optimistic picture about the economics of a country. This is very easy to manipulate. On the contary, the <strong>Labor Force Participation Rate</strong> is harder to manipulate: it calculate the percentage of people in the work force vs. available people of a particular age range. In this example the Age range is between 25 to 54 years.</p>
 <pre class="r"><code>singapur &lt;- c(70.19999695,  71.09999847,    71.69999695,    72.30000305,    73.09999847,    72.90000153,    74.40000153,    75.40000153,    76, 76.90000153,    77.40000153,    78.19999695,    78.90000153,    78.69999695,    79, 78, 80, 79.80000305,    80.30000305,    80.5,   80.69999695,    81.09999847,    81.5,   81.90000153,    82.30000305,    82.69999695,    83.19999695,    83.5)
 
 # Convert to time series
 singapur &lt;- ts(singapur, start = 1980)
 plot(singapur, ylab = &quot;Labor Force Participation Rate&quot;)</code></pre>
 <p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-1-1.png" width="80%" style="display: block; margin: auto;" /> The graph above show us that it is clarly trending dataset with increasing values over a time span of 30 years. The biggest problem we have to keep in mind is the fact that this is a rate, and the values cannot be higher than 100%. Therefore, we need a threshold for linear trend, because otherwise the model would go to infinity. This method is the <strong>Linear Trend Model with Damping parameter</strong>. Now we explore how to handle time series with trend, and which methods are available for that, and how to avoid pitfalls.</p>
-<p><strong>EXPONENTIAL SMOOTING MODEL</strong> This family of models includes: </br> Simple Exponantial Smoothing </br> Holt’s Linear Trend Model </br> Holt-Winters Seasonal Method </br> Automated Exponantial Smoothing </br></p>
+<p><strong>EXPONENTIAL SMOOTING MODEL</strong> </br> This family of models includes: </br> Simple Exponantial Smoothing </br> Holt’s Linear Trend Model </br> Holt-Winters Seasonal Method </br> Automated Exponantial Smoothing </br></p>
 <p>Because the data wewe are dealing have not seasonality, we canuse the <strong>Hold Linear Trend Model</strong>. The idea behind the hold linear trend is as follow:</p>
 <center>
 <div class="figure">
@@ -165,6 +165,7 @@ autoplot(singapur) +
   ggtitle(&quot;Singapur&quot;) + theme(plot.title=element_text(family=&quot;Times&quot;, hjust = 0.5, color = &quot;blue&quot;, face=&quot;bold&quot;, size=15))</code></pre>
 <p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The graph above shows the original dataset on the left side in black and the right side of the plot shows the fprecasted lines for the three models we discussed in our example. </br> The <strong>Hold Linear Model</strong> is the most conservative, which tends towards the lowest rate in the future. </br> The <strong>ARIMA Model</strong> is the most aggressive model with highest projected rates.</p>
+<p><strong>SECOND</strong> </br> <strong>SEASONAL DATA</strong> </br></p>
 
     </div>
   </article>
