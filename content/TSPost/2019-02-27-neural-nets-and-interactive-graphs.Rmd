@@ -71,7 +71,7 @@ For NN in time series analysis is called **Neural Network Autoregressive Model, 
 ![](/img/nnar.png){width=60%}
 </center>
 
-
+The **p** values are used as inputs, **k** nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer.
 
 
 
