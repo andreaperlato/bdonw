@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Applied Time Series and Forecasting  - Andrea Perlato</title>
+<meta property="og:title" content="Applied Time Series and Forecasting  - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Applied Time Series and Forecasting </h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>In this particular field R is favored over Python. In fact, R has more features for Time Series. </br> A precious resource is the <a href="https://otexts.com/fpp2/"><strong>Rob Hyndman’s Blog</strong></a>. It explains step by step the standard univariate time series analysis.</p>
+<p><strong>TRENDING DATA</strong> In this example we explore how many people are working in a country: unemployment rate vs. labor force participation rate. That is used for propaganda purposes, because low unemployment rates show an optimistic picture about the economics of a country. This is very easy to manipulate. On the contary, the <strong>Labor Force Participation Rate</strong> is harder to manipulate: it calculate the percentage of people in the work force vs. available people of a particular age range. In this example the Age range is between 25 to 54 years.</p>
+<pre class="r"><code>singapur &lt;- c(70.19999695,  71.09999847,    71.69999695,    72.30000305,    73.09999847,    72.90000153,    74.40000153,    75.40000153,    76, 76.90000153,    77.40000153,    78.19999695,    78.90000153,    78.69999695,    79, 78, 80, 79.80000305,    80.30000305,    80.5,   80.69999695,    81.09999847,    81.5,   81.90000153,    82.30000305,    82.69999695,    83.19999695,    83.5)
+
+# Convert to time series
+singapur &lt;- ts(singapur, start = 1980)
+plot(singapur, ylab = &quot;Labor Force Participation Rate&quot;)</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-1-1.png" width="80%" style="display: block; margin: auto;" /> The graph above show us that it is clarly trending dataset with increasing values over a time span of 30 years. The biggest problem we have to keep in mind is the fact that this is a rate, and the values cannot be higher than 100%. Therefore, we need a threshold for linear trend, because otherwise the model would go to infinity. This method is the <strong>Linear Trend Model with Damping parameter</strong>. Now we explore how to handle time series with trend, and which methods are available for that, and how to avoid pitfalls.</p>
+<p><strong>EXPONENTIAL SMOOTING MODEL</strong> This family of models includes: </br> Simple Exponantial Smoothing </br> Holt’s Linear Trend Model </br> Holt-Winters Seasonal Method </br> Automated Exponantial Smoothing </br></p>
+<p>Because the data wewe are dealing have not seasonality, we canuse the <strong>Hold Linear Trend Model</strong>. The idea behind the hold linear trend is as follow:</p>
+<center>
+<div class="figure">
+<img src="/img/tshold.png" style="width:60.0%" />
+
+</div>
+</center>
+<p>Note, that b is the trend value of the time series. </br> In Exponential Smoothing the equation is adjusted to the fact the data is sensible to only recent data or not. This is a very responsive model that can be influenced by the last few observations or on older data. We have to adjust the model using the <strong>alpha</strong> parameter (level) and <strong>beta</strong> (trend). The parameter gamma here is omitted because we have not seasonality. The closer the <strong>beta</strong> smoothing parameter is to one, th more the model relies on the latest values. On the contrary, when the parameter is close to zero, would produce a more smooth model with even the older data being taken into consideration.</p>
+<p>Lets to implement the <strong>Hold Linear Trend Model</strong>.</p>
+<pre class="r"><code>library(forecast)
+holttrend = holt(singapur, h = 5) # forecast 5 years
+summary(holttrend)</code></pre>
+<pre><code>
+Forecast method: Holt&#39;s method
+
+Model Information:
+Holt&#39;s method 
+
+Call:
+ holt(y = singapur, h = 5) 
+
+  Smoothing parameters:
+    alpha = 0.6378 
+    beta  = 0.1212 
+
+  Initial states:
+    l = 69.619 
+    b = 0.6666 
+
+  sigma:  0.5529
+
+     AIC     AICc      BIC 
+65.79969 68.52697 72.46072 
+
+Error measures:
+                      ME      RMSE       MAE        MPE      MAPE
+Training set -0.08247984 0.5118728 0.3084414 -0.1056525 0.3986079
+                  MASE        ACF1
+Training set 0.5047223 -0.09190023
+
+Forecasts:
+     Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+2008       83.90071 83.19216 84.60926 82.81708 84.98435
+2009       84.28751 83.39799 85.17703 82.92711 85.64791
+2010       84.67431 83.58796 85.76065 83.01289 86.33573
+2011       85.06111 83.76361 86.35860 83.07676 87.04545
+2012       85.44790 83.92606 86.96975 83.12045 87.77536</code></pre>
+<pre class="r"><code>plot(holttrend)</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>In the summary we have a lot of crucial information about the model. We get the values of alpha (0.63) and beta (012). This indicates that the trend which is basically the slope of the time series plot is fairly constant. In fact, the graph above shows in blue the forecast the values from 2008 to 2012 and it shades the confidence interval of 80 and 95 percent. From the forecast, we see that the trend line follow the trand of the period 1998 and 2007. Before 1998, there is a brief period of stagnation, and before this period there was an yearly increase even steeper. </br></p>
+<p>Looking again from the summary results, we see Initial states: these are the value of the slope and the level value. Then, we have the information criteria and the error measures. </br> Keep in mind that we are dealing with rate values and they can not exceed 100%, that is qhy the trend sooner or later the forecast will encounter a flat trend closed to 100%. We have to incorpurate this assumption using the <strong>Dumpt Argument</strong> inside our function. </br> Dampt is also named <strong>phi</strong> parameter: phi close to 1: the forecast is close to the original slope of the Hold trend model </br> phi close to 1: the forecast trend will be flattened very soon </br> <strong>In pratice, the phi is set between 0.8 and 0.95</strong>.</p>
+<pre class="r"><code>plot(holt(singapur, h = 15, damped = TRUE, phi = 0.85)) # damped</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The graph above, shows the forecast with the dampter parameter, and clearly shows a curve that is more round and get flat at the end of the trajectory.</p>
+<p><strong>ARIMA MODEL</strong> </br> The ARIMA model is also known as <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Jenkins_method"><strong>Box-Jenkins model</strong></a> are a standard modeling system for time series.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
