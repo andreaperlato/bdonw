@@ -102,4 +102,65 @@ autoplot(singapur) +
   ggtitle(&quot;Singapur&quot;) + theme(plot.title=element_text(family=&quot;Times&quot;, hjust = 0.5, color = &quot;blue&quot;, face=&quot;bold&quot;, size=15))</code></pre>
 <p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The graph above shows the original dataset on the left side in black and the right side of the plot shows the fprecasted lines for the three models we discussed in our example. </br> The <strong>Hold Linear Model</strong> is the most conservative, which tends towards the lowest rate in the future. </br> The <strong>ARIMA Model</strong> is the most aggressive model with highest projected rates.</p>
-<p><strong>SECOND</strong> </br> <strong>SEASONAL DATA</strong> </br></p>
+<p><strong>SECOND</strong> </br> <strong>SEASONAL DATA</strong> </br> In this example, we use the <strong>Inflation rate</strong>: a measure of change in purchasing power per unit of money. On top of that, it is important to know how the inflation moves since it directly affects investment opportunities. Prices of stocks, precious metals or oil are at least indirectly affected by the rate of inflation. In this example, we use the German Inflaction rate from 2008 to 2017.</p>
+<pre class="r"><code>mydata &lt;- c(-0.31,  0.41,   0.51,   -0.20,  0.61,   0.20,   0.61,   -0.30,  -0.10,  -0.20,  -0.51,  0.41,
+-0.51,  0.61,   -0.20,  0.10,   -0.10,  0.30,   0.00,   0.20,   -0.30,  0.00,   -0.10,  0.81,
+-0.60,  0.40,   0.50,   0.10,   -0.10,  0.00,   0.20,   0.10,   -0.10,  0.10,   0.10,   0.60,
+-0.20,  0.60,   0.59,   0.00,   0.00,   0.10,   0.20,   0.10,   0.20,   0.00,   0.20,   0.19,
+-0.10,  0.68,   0.58,   -0.19,  0.00,   -0.19,  0.39,   0.38,   0.10,   0.00,   0.10,   0.29,
+-0.48,  0.57,   0.48,   -0.47,  0.38,   0.09,   0.47,   0.00,   0.00,   -0.19,  0.19,   0.38,
+-0.56,  0.47,   0.28,   -0.19,  -0.09,  0.28,   0.28,   0.00,   0.00,   -0.28,  0.00,   0.00,
+-1.03,  0.85,   0.47,   0.00,   0.09,   -0.09,  0.19,   0.00,   -0.19,  0.00,   0.09,   -0.09,
+-0.84,  0.38,   0.75,   -0.37,  0.28,   0.09,   0.28,   0.00,   0.09,   0.19,   0.09,   0.74,
+-0.64,  0.65,   0.18,   0.00,   -0.18,  0.18,   0.37,   0.09,   0.09,   0.00)
+
+germaninfl &lt;- ts(mydata, start = 2008, frequency = 12)
+plot(germaninfl)</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-6-1.png" width="80%" style="display: block; margin: auto;" /> From the graph above, we can see several important facts about the dataset. </br> First and foremost,this dataset has not trend, the mean stays constant over the whole series. Second, this dataset is seasonal, and so, seasonal decomposition comes into play here if at least there are more than two seasonal cycles. The <strong>Seasonal ARIMA</strong> and <strong>Exponatial Smooting</strong> can work with this sort of data. But we have to start with the <strong>Seasonal Decomposition</strong>. We also need to use <strong>Cross Validation</strong>. </br></p>
+<p>In this example we focused on <strong>Seasonality</strong> and <strong>Cross Validation</strong>. Cross validation is used to estimate the accuracy of a model and find which is the best model that better fit for the seasonal data we are dealing with. </br> There is a significant difference between a time series with and without seasonality. </br></p>
+<p>We first start with <strong>Seasonal Decomposition</strong>. </br> With this method we dividing the data into its compnents: trend, seasonality and white noise. </br> There are some drawbacks of seasonal decompsition: </br> First few values are NA </br> Slow to catch fast rises </br> Assumes a constant seasonal component </br></p>
+<p>We start to use the <strong>EXPONANTIAL SMOOTING METHOD</strong>. </br></p>
+<pre class="r"><code>plot(stl(germaninfl, s.window = 7))</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-7-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>library(ggplot2)
+autoplot(stlf(germaninfl, method = &quot;ets&quot;), h = 24) # method for the forecasting is the ets: exponential smoothing method</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-7-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The graph above shows that there is not trend in the series. The whole trend component makes a half circular move from 2009 to 2015, and starts to rise again in late 2016. Overall there is not a clear trend direction. </br> The interest part is the seasonal component. The series starts with a low January inflaction which is instantly compensated for the February. We have another inflaction spike in the middle of the year which might be the holiday season and then we get to Christmas time with high inflaction. This make perfect sense because during the holiday and Christmas are time of great consumption, and retailers tend to adjust the prices. </br></p>
+<p>As an alternative, we can use <strong>SEASONAL ARIMA MODEL</strong>. </br> the main difference between an Seasonal ARIMA and Non Seasonal ARIMa model is that in Seasonal ARIMA we have a set of seasonal parameters.</p>
+<center>
+<img src="/img/tsseasonalarima.png" style="width:60.0%" />
+</center>
+<pre class="r"><code>germaninflarima &lt;- auto.arima(germaninfl, stepwise = TRUE,
+           approximation = FALSE, trace = TRUE)</code></pre>
+<pre><code>
+ ARIMA(2,0,2)(1,1,1)[12] with drift         : Inf
+ ARIMA(0,0,0)(0,1,0)[12] with drift         : 31.97975
+ ARIMA(1,0,0)(1,1,0)[12] with drift         : 22.54641
+ ARIMA(0,0,1)(0,1,1)[12] with drift         : 6.801819
+ ARIMA(0,0,0)(0,1,0)[12]                    : 29.92568
+ ARIMA(0,0,1)(1,1,1)[12] with drift         : Inf
+ ARIMA(0,0,1)(0,1,0)[12] with drift         : 29.30375
+ ARIMA(0,0,1)(0,1,2)[12] with drift         : Inf
+ ARIMA(0,0,1)(1,1,2)[12] with drift         : Inf
+ ARIMA(1,0,1)(0,1,1)[12] with drift         : 1.682708
+ ARIMA(1,0,0)(0,1,1)[12] with drift         : 6.386517
+ ARIMA(1,0,2)(0,1,1)[12] with drift         : 0.04883016
+ ARIMA(2,0,3)(0,1,1)[12] with drift         : 2.305377
+ ARIMA(1,0,2)(0,1,1)[12]                    : -2.165703
+ ARIMA(1,0,2)(1,1,1)[12]                    : Inf
+ ARIMA(1,0,2)(0,1,0)[12]                    : 20.35976
+ ARIMA(1,0,2)(0,1,2)[12]                    : Inf
+ ARIMA(1,0,2)(1,1,2)[12]                    : Inf
+ ARIMA(0,0,2)(0,1,1)[12]                    : 2.269403
+ ARIMA(2,0,2)(0,1,1)[12]                    : -0.729167
+ ARIMA(1,0,1)(0,1,1)[12]                    : -0.4490938
+ ARIMA(1,0,3)(0,1,1)[12]                    : -0.3068147
+ ARIMA(0,0,1)(0,1,1)[12]                    : 4.749057
+ ARIMA(2,0,3)(0,1,1)[12]                    : Inf
+
+ Best model: ARIMA(1,0,2)(0,1,1)[12]                    </code></pre>
+<pre class="r"><code>forec &lt;- forecast(germaninflarima)
+plot(forec)</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The auto.arima() function has calculated the following model: ARIMA(1,0,2)(0,1,1)[12]. </br> The corrisponding coefficient are the ar2: autoregressiove coefficient for the non-seasonal part, and ma1, ma2: moving average one and two for non-seasonal, then we have the sma1: seasonal moving average for the seasonal part. The parameter [12] says that we have an annual frequency.</p>
+<p>Now, we try to compare Time Series model using the <strong>Cross Validation method</strong>. </br> It is not a good idea to only use the Information Criteria like AIC and BIC, because ARIMA and Exponential Smooting cannot be compared just with Information Criteria, because the underlying statistics used to calculate the information criteria are different for both models systems. We have to focus on <strong>Forecast Accuracy</strong> like <strong>Mean Squared Error MSE</strong> that produce an error rate for each time point in the series. The time series is splitted in Training and Test set. The Test set is only one observation and the Training set is all the data before the Test set. That means, the error rates are computed one oafter another and along the timeline. This is called the <strong>Rolling Forecast Origin</strong>. </br> This approach is more legant that the classical <strong>Training 80% - Test 20%</strong> approach.</p>

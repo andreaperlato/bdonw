@@ -127,6 +127,117 @@ The **ARIMA Model** is the most aggressive model with highest projected rates.
 
 **SECOND** </br>
 **SEASONAL DATA** </br>
+In this example, we use the **Inflation rate**: a measure of change in purchasing power per unit of money. On top of that, it is important to know how the inflation moves since it directly affects investment opportunities. Prices of stocks, precious metals or oil are at least indirectly affected by the rate of inflation. In this example, we use the German Inflaction rate from 2008 to 2017.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+mydata <- c(-0.31,	0.41,	0.51,	-0.20,	0.61,	0.20,	0.61,	-0.30,	-0.10,	-0.20,	-0.51,	0.41,
+-0.51,	0.61,	-0.20,	0.10,	-0.10,	0.30,	0.00,	0.20,	-0.30,	0.00,	-0.10,	0.81,
+-0.60,	0.40,	0.50,	0.10,	-0.10,	0.00,	0.20,	0.10,	-0.10,	0.10,	0.10,	0.60,
+-0.20,	0.60,	0.59,	0.00,	0.00,	0.10,	0.20,	0.10,	0.20,	0.00,	0.20,	0.19,
+-0.10,	0.68,	0.58,	-0.19,	0.00,	-0.19,	0.39,	0.38,	0.10,	0.00,	0.10,	0.29,
+-0.48,	0.57,	0.48,	-0.47,	0.38,	0.09,	0.47,	0.00,	0.00,	-0.19,	0.19,	0.38,
+-0.56,	0.47,	0.28,	-0.19,	-0.09,	0.28,	0.28,	0.00,	0.00,	-0.28,	0.00,	0.00,
+-1.03,	0.85,	0.47,	0.00,	0.09,	-0.09,	0.19,	0.00,	-0.19,	0.00,	0.09,	-0.09,
+-0.84,	0.38,	0.75,	-0.37,	0.28,	0.09,	0.28,	0.00,	0.09,	0.19,	0.09,	0.74,
+-0.64,	0.65,	0.18,	0.00,	-0.18,	0.18,	0.37,	0.09,	0.09,	0.00)
+
+germaninfl <- ts(mydata, start = 2008, frequency = 12)
+plot(germaninfl)
+
+```
+From the graph above, we can see several important facts about the dataset. </br>
+First and foremost,this dataset has not trend, the mean stays constant over the whole series. Second, this dataset is seasonal, and so, seasonal decomposition comes into play here if at least there are more than two seasonal cycles. The **Seasonal ARIMA** and **Exponatial Smooting** can work with this sort of data. But we have to start with the **Seasonal Decomposition**. We also need to use **Cross Validation**. </br>
+
+In this example we focused on **Seasonality** and **Cross Validation**. Cross validation is used to estimate the accuracy of a model and find which is the best model that better fit for the seasonal data we are dealing with. </br>
+There is a significant difference between a time series with and without seasonality. </br>
+
+We first start with **Seasonal Decomposition**. </br>
+With this method we dividing the data into its compnents: trend, seasonality and white noise. </br>
+There are some drawbacks of seasonal decompsition: </br>
+First few values are NA </br>
+Slow to catch fast rises </br>
+Assumes a constant seasonal component </br>
+
+We start to use the **EXPONANTIAL SMOOTING METHOD**. </br>
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+plot(stl(germaninfl, s.window = 7))
+
+library(ggplot2)
+autoplot(stlf(germaninfl, method = "ets"), h = 24) # method for the forecasting is the ets: exponential smoothing method
+
+```
+
+The graph above shows that there is not trend in the series. The whole trend component makes a half circular move from 2009 to 2015, and starts to rise again in late 2016. Overall there is not a clear trend direction. </br>
+The interest part is the seasonal component. The series starts with a low January inflaction which is instantly compensated for the February. We have another inflaction spike in the middle of the year which might be the holiday season and then we get to Christmas time with high inflaction. This make perfect sense because during the holiday and Christmas are time of great consumption, and retailers tend to adjust the prices. </br>
+
+As an alternative, we can use **SEASONAL ARIMA MODEL**. </br>
+the main difference between an Seasonal ARIMA and Non Seasonal ARIMa model is that in Seasonal ARIMA we have a set of seasonal parameters.
+
+<center>
+![](/img/tsseasonalarima.png){width=60%}
+</center>
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+germaninflarima <- auto.arima(germaninfl, stepwise = TRUE,
+           approximation = FALSE, trace = TRUE)
+forec <- forecast(germaninflarima)
+plot(forec)
+
+```
+
+The auto.arima() function has calculated the following model: ARIMA(1,0,2)(0,1,1)[12]. </br>
+The corrisponding coefficient are the ar2: autoregressiove coefficient for the non-seasonal part, and ma1, ma2: moving average one and two for non-seasonal, then we have the sma1: seasonal moving average for the seasonal part. The parameter [12] says that we have an annual frequency.
+
+
+Now, we try to compare Time Series model using the **Cross Validation method**. </br>
+It is not a good idea to only use the Information Criteria like AIC and BIC, because ARIMA and Exponential Smooting cannot be compared just with Information Criteria, because the underlying statistics used to calculate the information criteria are different for both models systems. We have to focus on **Forecast Accuracy** like **Mean Squared Error MSE** that produce an error rate for each time point in the series. The time series is splitted in Training and Test set.
+The Test set is only one observation and the Training set is all the data before the Test set. That means, the error rates are computed one oafter another and along the timeline. This is called the **Rolling Forecast Origin**. </br>
+This approach is more legant that the classical **Training 80% - Test 20%** approach.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
