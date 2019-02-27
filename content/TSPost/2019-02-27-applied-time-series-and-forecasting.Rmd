@@ -82,6 +82,53 @@ The graph above, shows the forecast with the dampter parameter, and clearly show
 
 **ARIMA MODEL** </br>
 The ARIMA model is also known as [**Box-Jenkins model**](https://en.wikipedia.org/wiki/Box%E2%80%93Jenkins_method) are a standard modeling system for time series.
+This method is composed by: </br>
+AR: AutoRegressive, and this meands seasonality and trend. In R is called P. </br>
+I: Integration, used to suppress the dataset differences between the oservations and the original values, eliminating portion of chaos in the dataset. In R is called D. </br>
+MA: Moving Average: moviment around a constant mean. In R is called Q. </br>
+
+The **Autocorrelation AR** says that we have to deal with trending data. This means that an observation at an earlier time point influences the later observations.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+singapurarima <- auto.arima(singapur)
+summary(singapur)
+plot(forecast(singapurarima, h = 55))
+
+```
+
+As we can see from the graph above, this set up of the ARIMA model work fine on a short time span, but on a longer time span we would be skeptical due to the fact that overcome the 100% value. </br>
+There is a little trick to avoid this error, and consists to inactivate the stepwise parameter and approximation in order to get more accurate model. </br>
+
+**COMPARISON OF THE MODELS** </br>
+A huge part of statistics it is the visualization of the results. Humans are primarily visual, therefore this is the fastest and best way to explain a model to a broad audience.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+holttrend <- holt(singapur, h = 10)
+holtdamped <- holt(singapur, h = 10, damped = TRUE)
+arimafore <- forecast(auto.arima(singapur), h = 10)
+
+library(ggplot2)
+autoplot(singapur) +
+  forecast::autolayer(holttrend$mean, series = "Holt Linear Trend") +
+  forecast::autolayer(holtdamped$mean, series = "Holt Damped Trend") +
+  forecast::autolayer(arimafore$mean, series = "ARIMA") +
+  xlab("year") + ylab("Labour Force Participation Rate Age 25-54") + 
+  guides(colour=guide_legend(title="Forecast Method")) + theme(legend.position = c(0.8, 0.2)) +
+  ggtitle("Singapur") + theme(plot.title=element_text(family="Times", hjust = 0.5, color = "blue", face="bold", size=15))
+
+```
+
+The graph above shows the original dataset on the left side in black and the right side of the plot shows the fprecasted lines for the three models we discussed in our example. </br>
+The **Hold Linear Model** is the most conservative, which tends towards the lowest rate in the future. </br>
+The **ARIMA Model** is the most aggressive model with highest projected rates.
+
+
+
+
+
+
+
+
 
 
 

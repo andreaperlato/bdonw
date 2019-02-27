@@ -78,4 +78,27 @@ Forecasts:
 <pre class="r"><code>plot(holt(singapur, h = 15, damped = TRUE, phi = 0.85)) # damped</code></pre>
 <p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The graph above, shows the forecast with the dampter parameter, and clearly shows a curve that is more round and get flat at the end of the trajectory.</p>
-<p><strong>ARIMA MODEL</strong> </br> The ARIMA model is also known as <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Jenkins_method"><strong>Box-Jenkins model</strong></a> are a standard modeling system for time series.</p>
+<p><strong>ARIMA MODEL</strong> </br> The ARIMA model is also known as <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Jenkins_method"><strong>Box-Jenkins model</strong></a> are a standard modeling system for time series. This method is composed by: </br> AR: AutoRegressive, and this meands seasonality and trend. In R is called P. </br> I: Integration, used to suppress the dataset differences between the oservations and the original values, eliminating portion of chaos in the dataset. In R is called D. </br> MA: Moving Average: moviment around a constant mean. In R is called Q. </br></p>
+<p>The <strong>Autocorrelation AR</strong> says that we have to deal with trending data. This means that an observation at an earlier time point influences the later observations.</p>
+<pre class="r"><code>singapurarima &lt;- auto.arima(singapur)
+summary(singapur)</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  70.20   75.15   78.80   77.92   80.80   83.50 </code></pre>
+<pre class="r"><code>plot(forecast(singapurarima, h = 55))</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>As we can see from the graph above, this set up of the ARIMA model work fine on a short time span, but on a longer time span we would be skeptical due to the fact that overcome the 100% value. </br> There is a little trick to avoid this error, and consists to inactivate the stepwise parameter and approximation in order to get more accurate model. </br></p>
+<p><strong>COMPARISON OF THE MODELS</strong> </br> A huge part of statistics it is the visualization of the results. Humans are primarily visual, therefore this is the fastest and best way to explain a model to a broad audience.</p>
+<pre class="r"><code>holttrend &lt;- holt(singapur, h = 10)
+holtdamped &lt;- holt(singapur, h = 10, damped = TRUE)
+arimafore &lt;- forecast(auto.arima(singapur), h = 10)
+
+library(ggplot2)
+autoplot(singapur) +
+  forecast::autolayer(holttrend$mean, series = &quot;Holt Linear Trend&quot;) +
+  forecast::autolayer(holtdamped$mean, series = &quot;Holt Damped Trend&quot;) +
+  forecast::autolayer(arimafore$mean, series = &quot;ARIMA&quot;) +
+  xlab(&quot;year&quot;) + ylab(&quot;Labour Force Participation Rate Age 25-54&quot;) + 
+  guides(colour=guide_legend(title=&quot;Forecast Method&quot;)) + theme(legend.position = c(0.8, 0.2)) +
+  ggtitle(&quot;Singapur&quot;) + theme(plot.title=element_text(family=&quot;Times&quot;, hjust = 0.5, color = &quot;blue&quot;, face=&quot;bold&quot;, size=15))</code></pre>
+<p><img src="/TSPost/2019-02-27-applied-time-series-and-forecasting_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The graph above shows the original dataset on the left side in black and the right side of the plot shows the fprecasted lines for the three models we discussed in our example. </br> The <strong>Hold Linear Model</strong> is the most conservative, which tends towards the lowest rate in the future. </br> The <strong>ARIMA Model</strong> is the most aggressive model with highest projected rates.</p>
