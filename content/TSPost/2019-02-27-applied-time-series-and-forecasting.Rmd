@@ -194,6 +194,7 @@ The corrisponding coefficient are the ar2: autoregressiove coefficient for the n
 Now, we try to compare Time Series model using the **Cross Validation method**. </br>
 It is not a good idea to only use the Information Criteria like AIC and BIC, because ARIMA and Exponential Smooting cannot be compared just with Information Criteria, because the underlying statistics used to calculate the information criteria are different for both models systems. We have to focus on **Forecast Accuracy** like **Mean Squared Error MSE** that produce an error rate for each time point in the series. The time series is splitted in Training and Test set.
 The Test set is only one observation and the Training set is all the data before the Test set. That means, the error rates are computed one oafter another and along the timeline. This is called the **Rolling Forecast Origin**. </br>
+Then, we comapre the error rate of the two models (the difference bewteen the forecasted and actual values). We can use the Root Mean Squared Error RMSE or the Mean Squared Error MSE.
 This approach is more legant that the classical **Training 80% - Test 20%** approach.
 
 
