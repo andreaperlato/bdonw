@@ -22,6 +22,15 @@ FIRST  TRENDING DATA  In this example we explore how many people are working in 
     </item>
     
     <item>
+      <title>Neural Nets and Interactive Graphs</title>
+      <link>/tspost/neural-nets-and-interactive-graphs/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/neural-nets-and-interactive-graphs/</guid>
+      <description>body {text-align: justify}In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art.</description>
+    </item>
+    
+    <item>
       <title>Supply Chain Foundations</title>
       <link>/tspost/supply-chain-foundations/</link>
       <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>

@@ -1,0 +1,18 @@
+---
+title: Neural Nets and Interactive Graphs
+author: andrea perlato
+date: '2019-02-27'
+slug: neural-nets-and-interactive-graphs
+categories:
+  - artificial intelligence
+  - time series
+tags:
+  - forecasting
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art.
