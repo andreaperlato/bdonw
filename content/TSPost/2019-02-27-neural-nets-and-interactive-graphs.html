@@ -17,7 +17,7 @@ body {
 text-align: justify}
 </style>
 <p>In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools. These techniques are the state of the art. The dataset we use for this example has: <strong>missing data</strong>, <strong>outliers</strong>, <strong>poor formatting</strong>. </br> The dataset i about restaurant at a campsite that is open whole year. There is a peak season in summer, and so we aspect to have seasonal data and trend might be present. The data are the revenue by month in USD, that range from January 1997 to December 2016. </br></p>
-<p>We start <strong>CLEANING THE DATA</strong>. Fairly often this is the pat that takes the most time. </br> We start <strong>removing the quotes</strong>, convert the data in time series format, detecting and replacing <strong>missing data</strong> and <strong>outliers</strong>.</p>
+<p>We start <strong>CLEANING THE DATA</strong>. </br> Fairly often this is the pat that takes the most time. </br> We start <strong>removing the quotes</strong>, convert the data in time series format, detecting and replacing <strong>missing data</strong> and <strong>outliers</strong>.</p>
 <pre class="r"><code>library(knitr)
 library(kableExtra)
 library(formattable)
@@ -50,6 +50,6 @@ summary(myts) #check it</code></pre>
 <p><img src="/TSPost/2019-02-27-neural-nets-and-interactive-graphs_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /> Looking from the summary here above, we see that now the range of revenue is from 14209 to 34366, and we have not missing values. The graph also confirm that the all the values now are plausible and the data are clearly <strong>seasonal</strong>, and there is also an <strong>upper-trend</strong>. The model has to be able to catch all of these patterns.</p>
 <p><strong>NEURAL NETWORKS</strong> </br> Neural Networks are the new in tme seires analysis. </br> In most of the cases NN has <strong>hidden layer</strong> which is an intermediary layer between the input and the output, and is called <strong>Feedforward Network</strong>. </br> For NN in time series analysis is called <strong>Neural Network Autoregressive Model, NNAR</strong>. Like for the ARIMA model there is a specific notation :</p>
 <center>
-<img src="/img/nnar.png" style="width:60.0%" />
+<img src="/img/nnar.png" style="width:80.0%" />
 </center>
-<p>The <strong>p</strong> values are used as inputs, <strong>k</strong> nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer.</p>
+<p>The <strong>p</strong> values are used as inputs, <strong>k</strong> nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer. When the data are seasonal the NNAR model is more complicated and we have to introduce the <strong>P</strong> parameter that denotes the seasonal lag. Usually <strong>P</strong> is equal to one, which means that the preavious observation from the last season is also included in the model.</p>

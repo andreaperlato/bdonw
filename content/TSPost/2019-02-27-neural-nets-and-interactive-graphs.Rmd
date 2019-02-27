@@ -19,7 +19,7 @@ In this post, we use some fairly new technology of time series analysis namely n
 The dataset we use for this example has: **missing data**, **outliers**, **poor formatting**. </br>
 The dataset i about restaurant at a campsite that is open whole year. There is a peak season in summer, and so we aspect to have seasonal data and trend might be present. The data are the revenue by month in USD, that range from January 1997 to December 2016. </br>
 
-We start **CLEANING THE DATA**.
+We start **CLEANING THE DATA**. </br>
 Fairly often this is the pat that takes the most time. </br>
 We start **removing the quotes**, convert the data in time series format, detecting and replacing **missing data** and **outliers**.
 
@@ -68,10 +68,11 @@ In most of the cases NN has **hidden layer** which is an intermediary layer betw
 For NN in time series analysis is called **Neural Network Autoregressive Model, NNAR**. Like for the ARIMA model there is a specific notation :
 
 <center>
-![](/img/nnar.png){width=60%}
+![](/img/nnar.png){width=80%}
 </center>
 
-The **p** values are used as inputs, **k** nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer.
+The **p** values are used as inputs, **k** nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer. When the data are seasonal the NNAR model is more complicated and we have to introduce the **P** parameter that denotes the seasonal lag.
+Usually **P** is equal to one, which means that the preavious observation from the last season is also included in the model.
 
 
 
