@@ -115,6 +115,16 @@ summary(myts) #check it</code></pre>
 <img src="/img/nnar.png" style="width:80.0%" />
 </center>
 <p>The <strong>p</strong> values are used as inputs, <strong>k</strong> nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer. When the data are seasonal the NNAR model is more complicated and we have to introduce the <strong>P</strong> parameter that denotes the seasonal lag. Usually <strong>P</strong> is equal to one, which means that the preavious observation from the last season is also included in the model.</p>
+<pre class="r"><code># Set up a NN
+mynnetar &lt;- nnetar(myts)
+
+# Forecast 3 years
+nnetforecast &lt;- forecast(mynnetar, h = 36, PI = TRUE) # PI create the prediction intervals for the forecast
+
+library(ggplot2)
+autoplot(nnetforecast)</code></pre>
+<p><img src="/TSPost/2019-02-27-neural-nets-and-interactive-graphs_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /> The model recognizes that there is a seasonal pattern (the summer get much revenue than the winter does). </br> Interestingly, the yearly peacks (summer) of the forecast stay at an even level in the three years forecast, but below (winter) are ascending. </br> The parameter order of the Neural Network Autoregressive Model is: NNAR(3,1,2)[12]. This means the NNAR uses the first three observations as the input, plus one observation of the last seasonal cycle. The seasonal cycle is an yearly one [12]. Essentially, there are four input values and these are compressed into two nodes in the hidden layer.</p>
+<p><strong>INTERACTIVE GRAPH</strong> </br> Thetime series results should be presented interactively in order to highlight certain features.</p>
 
     </div>
   </article>

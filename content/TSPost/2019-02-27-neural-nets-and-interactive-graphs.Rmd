@@ -74,6 +74,26 @@ For NN in time series analysis is called **Neural Network Autoregressive Model, 
 The **p** values are used as inputs, **k** nodes are present in the hidden layer. Looking at the figure above, tha means we have 24 lags as input combines to 8 nodes in the hidden layer. When the data are seasonal the NNAR model is more complicated and we have to introduce the **P** parameter that denotes the seasonal lag.
 Usually **P** is equal to one, which means that the preavious observation from the last season is also included in the model.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Set up a NN
+mynnetar <- nnetar(myts)
+
+# Forecast 3 years
+nnetforecast <- forecast(mynnetar, h = 36, PI = TRUE) # PI create the prediction intervals for the forecast
+
+library(ggplot2)
+autoplot(nnetforecast)
+
+```
+The model recognizes that there is a seasonal pattern (the summer get much revenue than the winter does). </br>
+Interestingly, the yearly peacks (summer) of the forecast stay at an even level in the three years forecast, but below (winter) are ascending. </br>
+The parameter order of the Neural Network Autoregressive Model is: NNAR(3,1,2)[12]. This means the NNAR uses the first three observations as the input, plus one observation of the last seasonal cycle. The seasonal cycle is an yearly one [12]. Essentially, there are four input values and these are compressed into two nodes in the hidden layer.
+
+**INTERACTIVE GRAPH** </br>
+Thetime series results should be presented interactively in order to highlight certain features. 
+
+
+
 
 
 
