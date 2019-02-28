@@ -17,7 +17,7 @@
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tspost/forecasting-product-demand/</guid>
-      <description>body {text-align: justify}Accurately predicting demand for products allows a company to stay ahead of the market.  We will predict demand for multiple products across a region of a state in the US. Then we will roll up these predictions across many different regions of the same state to form a complete hierarchical forecasting system.</description>
+      <description>body {text-align: justify}Accurately predicting demand for products allows a company to stay ahead of the market.  We will predict demand for multiple products across a region of a state in the US. Then we will roll up these predictions across many different regions of the same state to form a complete hierarchical forecasting system.  We need to forecast the future values of our data.</description>
     </item>
     
     <item>
