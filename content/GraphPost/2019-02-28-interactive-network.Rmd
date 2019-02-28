@@ -1,0 +1,47 @@
+---
+title: Interactive Network
+author: andrea perlato
+date: '2019-02-28'
+slug: interactive-network
+categories:
+  - graph
+tags:
+  - network
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Interactive Network is incredibly useful for visualizing the connections and relatioship between individuals, locations, and other data sets.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library("tidyverse")
+library("leaflet")
+library("oidnChaRts")
+
+transport_data <- read_csv("C:/07 - R Website/dataset/Graph/transport_data.csv")
+
+colnames(transport_data) <- colnames(transport_data) %>%
+  gsub("sender", "start", .) %>%
+  gsub("receiver", "end", .)
+
+transport_data <- transport_data %>%
+  unite(start.location, c(start.country, start.city, start.state)) %>%
+  unite(end.location, c(end.country, end.city, end.state))
+
+
+transport_data %>%
+  geo_lines_plot()
+
+```
+
+The map above shows the number of locations on the globe with lines between them and there are both, start and end points.
+
+
+
+
+
+
+
