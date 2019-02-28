@@ -31,4 +31,27 @@ There are  lots of ways of measuring accuracy in time series models. The common 
 ![](/img/demandfcaccuracy.png){width=40%}
 </center>
 
-There are  lots o
+The **Mean Absolute Error MAE** is the avverage measure of how far away our prediction is from the actual value, in absolute term. So, it predicts at the same scale of our data. The downside is there is not a reference, and the prediction error might be out of place. </br>
+To solve this problem we use the **Mean Absolute Percentage Error MAPE** that is the average measure of how far away in absolute percentage term, our prediction is from the actual value. Thsi makes our prediction not depending on the scale of our data.
+
+**COMPONENT OF DEMAND** </br>
+Economic theory has a lot to say about predicting values of demand. Obviously, external factors like price, seasonality, and timing of promotions will drive some aspects of product demand. </br>
+Here, we will learn about the basics around [**Price Elasticity Models PED**](https://en.wikipedia.org/wiki/Price_elasticity_of_demand) and how to incorporate seasonality and promotion timing factors into our product demand forecasts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
