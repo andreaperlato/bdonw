@@ -92,6 +92,37 @@ The parameter order of the Neural Network Autoregressive Model is: NNAR(3,1,2)[1
 **INTERACTIVE GRAPH** </br>
 Thetime series results should be presented interactively in order to highlight certain features. 
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# data we need for the graph
+data <- nnetforecast$x # raw data
+lower <- nnetforecast$lower[,2] # confidence intervals lower bound
+upper <- nnetforecast$upper[,2] # confidence intervals upper bound
+pforecast <- nnetforecast$mean # th element mean
+
+mydata <- cbind(data, lower, upper, pforecast) # put everything in one dataframe
+
+library(dygraphs)
+dygraph(mydata, main = "Campsite Restaurant") %>%                                       # get data and the caption
+  dyRangeSelector() %>%                                                                 # the zoom tool
+  dySeries(name = "data", label = "Revenue Data") %>%                                   # add time series which are store in: data <- nnetforecast$x
+  dySeries(c("lower","pforecast","upper"), label = "Revenue Forecast") %>%              # add the forecast and CI
+  dyLegend(show = "always", hideOnMouseOut = FALSE) %>%                                 # add the legend (time series + forecast)
+  dyAxis("y", label = "Monthly Revenue USD") %>%                                        # label the y axis
+  dyHighlight(highlightCircleSize = 5,                                                  # specify what happen when the mouse in hovering the graph
+              highlightSeriesOpts = list(strokeWidth = 2)) %>%
+  dyOptions(axisLineColor = "navy", gridLineColor = "grey") %>%                         # set axis and fridline colors
+  dyAnnotation("2010-8-1", text = "CF", tooltip = "Camp Festival", attachAtBottom = T)  # add annotation
+
+```
+
+The Interactive graph above consists in two distinct fractions. The longer line at the beginning is the original data. The second part which is 36 months long gets activated as soon as we hover it, and this is the forecasting with prediction intervals. </br>
+At the bottom we have an interactive range selector where we can specify the level of zoom in and out in the timeline. </br>
+
+For more informatioin about Time Series: </br>
+Forecasting with Exponential Smooting by Rob Hyndman. </br>
+Time Series Analysis, Forecasting and Control by Box, Jenkis, Reinsel, Ljung. </br>
+Forecasting with Dynamic Regression Models by Alan Pankatz. </br>
+Forecasting: Principles and Practice by Rob Hyndman. 
 
 
 
