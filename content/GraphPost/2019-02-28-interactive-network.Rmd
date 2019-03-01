@@ -111,7 +111,7 @@ visNetwork(got_nodes,
 
 ```
 
-
+As we can see, there is a strog relationship between the Unknown and Northmen culture. This allow us to assume some sort of similarity between these two cultures. 
 
 
 
