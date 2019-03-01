@@ -76,13 +76,40 @@ visNetwork(nodes = map_nodes, edges = map_edges) %>%
 
 The Network represented above is an initial representation of node and edges of the journeys between Europe and USA. We realize that we have not a fully connected network. It is not possible to move from any one location to any other location on the map. </br>
 Zooming inside the newtok is possible to see the name of the cities. Moreover, when we hover the node, the can see the nation related to that city. </br>
-The arrow show the direction of trabel between the nodes (cities). We have also colored the nodes based on the nation (USA vs, DEU), and we alsosclaed the width of the edges by the number of journeys taken between pairs of locations.
+The arrow show the direction of trabel between the nodes (cities). We have also colored the nodes based on the nation (USA vs, DEU), and we alsosclaed the width of the edges by the number of journeys taken between pairs of locations. </br>
 
 
 
+Now, we visualize people involved in the network. We color nodes based on the culture of people.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library("tidyverse")
+library("visNetwork")
 
+got_nodes <- read_csv("C:/07 - R Website/dataset/Graph/GoT_nodes.csv")
+got_edges <- read_csv("C:/07 - R Website/dataset/Graph/GoT_edges.csv")
 
+got_nodes <- got_nodes %>%
+  mutate(group = superculture)
+
+visNetwork(got_nodes,
+           got_edges) %>%
+  visIgraphLayout() %>%
+  visGroups(groupname = "Unknown Culture",
+            color= "green") %>%
+  visGroups(groupname = "Northmen",
+            color= "purple") %>%
+  visLegend(useGroups = FALSE,
+            addNodes = list(
+              list(
+                label = "Unknown Culture",
+                color= "green"),
+              list(
+                label = "Northmen",
+                color= "purple")
+            ))
+
+```
 
 
 
