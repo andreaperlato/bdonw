@@ -37,7 +37,53 @@ transport_data %>%
 
 ```
 
-The map above shows the number of locations on the globe with lines between them and there are both, start and end points.
+The map above shows the number of locations on the globe with lines between them and there are both, start and end points. This represent the number of journeys between Europe and United States of America. Displaying the data in this way doesn't really provide us with a tangible understanding of which locations are linked with which. Be better understand this kind of data, we should re-represent the data as a graph and then a network visualization. This help us to understand the connectiveness of the data. </br>
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library("tidyverse")
+library("visNetwork")
+
+map_nodes <- read_csv("C:/07 - R Website/dataset/Graph/nodes.csv")
+map_edges <- read_csv("C:/07 - R Website/dataset/Graph/edges.csv")
+
+
+map_nodes <- map_nodes %>%
+  mutate(id = row_number()) %>%
+  mutate(title = location,
+         label = city) %>%
+  select(id, everything())
+
+map_edges <- map_edges %>%
+  mutate(from = plyr::mapvalues(send.location, from = map_nodes$location, to = map_nodes$id),
+         to = plyr::mapvalues(receive.location, from = map_nodes$location, to = map_nodes$id)) %>%
+  select(from, to, everything())
+
+visNetwork(nodes = map_nodes, edges = map_edges)
+
+```
+
+The Network represented above is an initial representation of node and edges of the journeys between Europe and USA. We realize that we have not a fully connected network. It is not possible to move from any one location to any other location on the map. </br>
+
+Now we can beautify this network quite a bit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
