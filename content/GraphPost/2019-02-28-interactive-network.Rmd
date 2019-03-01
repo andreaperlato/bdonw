@@ -58,13 +58,28 @@ map_edges <- map_edges %>%
          to = plyr::mapvalues(receive.location, from = map_nodes$location, to = map_nodes$id)) %>%
   select(from, to, everything())
 
-visNetwork(nodes = map_nodes, edges = map_edges)
+
+map_edges <- map_edges %>%
+  mutate(width = weight / 3) 
+
+
+map_nodes <- map_nodes %>%
+  mutate(color = plyr::mapvalues(country,
+                                 from = c("USA", "DEU"),
+                                 to = c("green", "blue")))
+
+
+visNetwork(nodes = map_nodes, edges = map_edges) %>%
+  visEdges(arrows = "middle")
 
 ```
 
 The Network represented above is an initial representation of node and edges of the journeys between Europe and USA. We realize that we have not a fully connected network. It is not possible to move from any one location to any other location on the map. </br>
+Zooming inside the newtok is possible to see the name of the cities. Moreover, when we hover the node, the can see the nation related to that city. </br>
+The arrow show the direction of trabel between the nodes (cities). We have also colored the nodes based on the nation (USA vs, DEU), and we alsosclaed the width of the edges by the number of journeys taken between pairs of locations.
 
-Now we can beautify this network quite a bit.
+
+
 
 
 
