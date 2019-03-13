@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/extreme-gradient-boosting-algorithm/</loc>
+    <lastmod>2019-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tspost/forecasting-product-demand/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url>
@@ -201,13 +206,13 @@
   
   <url>
     <loc>/mlpost/</loc>
-    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -286,6 +291,12 @@
   <url>
     <loc>/tags/visualization/</loc>
     <lastmod>2019-01-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/xgboost/</loc>
+    <lastmod>2019-03-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

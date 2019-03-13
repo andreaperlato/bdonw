@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Extreme Gradient Boosting Algorithm</title>
+      <link>/mlpost/extreme-gradient-boosting-algorithm/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/extreme-gradient-boosting-algorithm/</guid>
+      <description>body {text-align: justify}Extreme Gradient Boosting is extensively used because is fast and accurate, and can handle missing values.  Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable loss function.</description>
+    </item>
+    
+    <item>
       <title>Forecasting Product Demand</title>
       <link>/tspost/forecasting-product-demand/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
