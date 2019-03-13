@@ -15,8 +15,8 @@ tags:
 body {
 text-align: justify}
 </style>
-<p>Extreme Gradient Boosting is extensively used because is fast and accurate, and can handle missing values. </br> Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable loss function. </br> XGBoost is one of the implementations of Gradient Boosting concept, but what makes XGBoost unique is that it uses a more regularized model formalization to control over-fitting, which gives it better performance. </br></p>
-<p>We use it in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admited or rejected.</p>
+<p>Extreme Gradient Boosting is extensively used because is fast and accurate, and can handle missing values. </br> Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable <a href="https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0"><strong>loss function</strong></a>. </br> XGBoost is one of the implementations of Gradient Boosting concept, but what makes XGBoost unique is that it uses a more regularized model formalization to control over-fitting, which gives it better performance. </br></p>
+<p>We use it in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admitted or rejected.</p>
 <pre class="r"><code># Partition Data
 set.seed(1234)
 ind &lt;- sample(2, nrow(data), replace = T, prob = c(0.8, 0.2))
@@ -105,7 +105,7 @@ evaluation_log:
 e &lt;- data.frame(bst_model$evaluation_log)
 plot(e$iter, e$train_mlogloss, col = &#39;blue&#39;)
 lines(e$iter, e$test_mlogloss, col = &#39;red&#39;)</code></pre>
-<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>min(e$test_mlogloss)</code></pre>
 <pre><code>[1] 0.595096</code></pre>
 <pre class="r"><code>e[e$test_mlogloss == 0.595096,]</code></pre>
@@ -117,7 +117,7 @@ bst_model &lt;- xgb.train(params = xgb_params,    # multiclass classification
                        data = train_matrix,
                        nrounds = 20,           # maximum number of interations
                        watchlist = watchlist,
-                       eta = 0.05)              # is eta is low, the model is more robust to overfitting</code></pre>
+                       eta = 0.05)             # is eta is low, the model is more robust to overfitting</code></pre>
 <pre><code>[1] train-mlogloss:0.674595 test-mlogloss:0.684052 
 [2] train-mlogloss:0.658466 test-mlogloss:0.676982 
 [3] train-mlogloss:0.642685 test-mlogloss:0.667532 
@@ -141,5 +141,79 @@ bst_model &lt;- xgb.train(params = xgb_params,    # multiclass classification
 <pre class="r"><code>e &lt;- data.frame(bst_model$evaluation_log)
 plot(e$iter, e$train_mlogloss, col = &#39;blue&#39;)
 lines(e$iter, e$test_mlogloss, col = &#39;red&#39;)</code></pre>
-<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Now, that we have introduce the learning rate <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>Eta</strong></a> the performance is better. </br> The range of Eta is between 0 and 1, we use <strong>eta = 0.05</strong> because with low eta the model is more robust to overfitting. </br> The <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>learning rate Eta</strong></a> is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25. If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for. If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum. If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum.</p>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-6-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Now, that we have introduce the learning rate <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>Eta</strong></a> the performance is better. </br> The range of Eta is between 0 and 1, we use <strong>eta = 0.05</strong> because with low eta the model is more robust to overfitting. </br> The <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>Eta Learning Rate</strong></a> is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25. </br> If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for. </br> If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum. </br> If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum. </br> At this stage, we can introduce the Feature Importanc information.</p>
+<pre class="r"><code># Feature Importance
+imp &lt;- xgb.importance(colnames(train_matrix), model = bst_model)
+print(imp)</code></pre>
+<pre><code>   Feature       Gain       Cover  Frequency
+1:     gpa 0.54922337 0.496645022 0.45471349
+2:     gre 0.28520228 0.315538132 0.39556377
+3:   rank1 0.11819828 0.099514082 0.05360444
+4:   rank2 0.02775006 0.081352562 0.06284658
+5:   rank4 0.01962602 0.006950201 0.03327172</code></pre>
+<pre class="r"><code>xgb.plot.importance(imp)</code></pre>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the table above, <strong>Gain</strong> is the most important column. It says to us that the variable gpa has the most importance. We have the same result graphically (the graph is made using Gain as parameter). </br></p>
+<p>We can do prediction and create confusion matrix using thet Test-set.</p>
+<pre class="r"><code># Prediction and Confusion Matrix on Test-set
+p &lt;- predict(bst_model, newdata = test_matrix) # calculate prediction
+pred &lt;- matrix(p, nrow = nc, ncol = length(p)/nc) %&gt;%
+         t() %&gt;%           # transpose the matrix
+         data.frame() %&gt;%  # transform in a data frame
+         mutate(label = test_label, max_prob = max.col(., &quot;last&quot;)-1) #
+
+head(pred)</code></pre>
+<pre><code>         X1        X2 label max_prob
+1 0.7922649 0.2077352     0        0
+2 0.6508374 0.3491626     0        0
+3 0.6971229 0.3028770     0        0
+4 0.3676542 0.6323458     1        1
+5 0.4761441 0.5238559     1        1
+6 0.4498452 0.5501549     1        1</code></pre>
+<pre class="r"><code># Confusion Matrix
+table(Prediction = pred$max_prob, Actual = pred$label)</code></pre>
+<pre><code>          Actual
+Prediction  0  1
+         0 43 19
+         1  7  6</code></pre>
+<p>What we can see from the table above, is <strong>X1</strong> (the probability to be not admitted), <strong>X2</strong> (the probability to be admitted). </br> The <strong>label</strong> is the actual label in the Test-set (i.e. the real values), the <strong>max_prob</strong> is the label predicted. </br> If we look at the row number 5 we see a proability to be not admitted (X1=0.51, max_prob=0), but the reality is that student was admitted (label=1). If we look at the Confusion Matrix, we have an Accuracy of (43+7)75=66%, and so we can try again to improve the model.</p>
+<pre class="r"><code># More XGBoost Parameters
+bst_model &lt;- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist,
+                       eta = 0.01,             # is eta is low, the model is more robust to overfitting
+                       max.depth = 3,          # maximum tree depth
+                       gamma = 0,              # larger values of gamma lead to more conservative algorithm
+                       subsample = 1,          # 1 means 100%, lower values help to prevent overfitting
+                       colsample_bytre = 1,
+                       missing = NA,
+                       seed = 333)</code></pre>
+<pre><code>[1] train-mlogloss:0.690576 test-mlogloss:0.691426 
+[2] train-mlogloss:0.688062 test-mlogloss:0.689451 
+[3] train-mlogloss:0.685597 test-mlogloss:0.687521 
+[4] train-mlogloss:0.683178 test-mlogloss:0.685633 
+[5] train-mlogloss:0.680805 test-mlogloss:0.683788 
+[6] train-mlogloss:0.678476 test-mlogloss:0.681985 
+[7] train-mlogloss:0.676192 test-mlogloss:0.680221 
+[8] train-mlogloss:0.673950 test-mlogloss:0.678497 
+[9] train-mlogloss:0.671750 test-mlogloss:0.676812 
+[10]    train-mlogloss:0.669590 test-mlogloss:0.675196 
+[11]    train-mlogloss:0.667471 test-mlogloss:0.673466 
+[12]    train-mlogloss:0.665389 test-mlogloss:0.671922 
+[13]    train-mlogloss:0.663345 test-mlogloss:0.670264 
+[14]    train-mlogloss:0.661337 test-mlogloss:0.668787 
+[15]    train-mlogloss:0.659366 test-mlogloss:0.667199 
+[16]    train-mlogloss:0.657430 test-mlogloss:0.665788 
+[17]    train-mlogloss:0.655528 test-mlogloss:0.664264 
+[18]    train-mlogloss:0.653661 test-mlogloss:0.662893 
+[19]    train-mlogloss:0.651826 test-mlogloss:0.661433 
+[20]    train-mlogloss:0.650024 test-mlogloss:0.660144 </code></pre>
+<pre class="r"><code>e &lt;- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = &#39;blue&#39;)
+lines(e$iter, e$test_mlogloss, col = &#39;red&#39;)</code></pre>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>It the model descrbed above, we introduced five new parameters. </br></p>
+<p>The <strong>max_depth</strong> indicates how deep the tree can be. The deeper the tree, the more splits it has and it captures more information about the data. </br> The <strong>gamma</strong> mathematically is the <a href="https://en.wikipedia.org/wiki/Lagrange_multiplier"><strong>Lagrangian Multiplier</strong></a>, which is a method to find the local maxima and minima of a function. We can start to increase <strong>gamma</strong> value gradually in order to avoid overfitting at look at the graph the result. </br> The parameter <strong>missing</strong> help to handle with missing values. </br> The <strong>seed</strong> assure that we can repeat the result. </br></p>
+<p>What we can see now from the graph, we were able to reduce the overfitting.</p>

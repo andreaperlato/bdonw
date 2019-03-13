@@ -15,10 +15,10 @@ text-align: justify}
 </style>
 
 Extreme Gradient Boosting is extensively used because is fast and accurate, and can handle missing values. </br>
-Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable loss function. </br>
+Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable [**loss function**](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0). </br>
 XGBoost is one of the implementations of Gradient Boosting concept, but what makes XGBoost unique is that it uses  a more regularized model formalization to control over-fitting, which gives it better performance. </br>
 
-We use it in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admited or rejected. 
+We use it in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admitted or rejected. 
 
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 library(xgboost)
@@ -84,7 +84,7 @@ In the code above we specified to use the **Softprob Function**. In [**Softmax**
 We can also see that we have as output the total number of interations (in our example 20 interactions), and we can see what was the error in both train and test set (aka elaluation_log). </br>
 We have also some information about the model. The **elaluation_log** session of the output can be converted into a plot. 
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
 # Training and Test Error Plot
 e <- data.frame(bst_model$evaluation_log)
 plot(e$iter, e$train_mlogloss, col = 'blue')
@@ -96,13 +96,13 @@ e[e$test_mlogloss == 0.595096,]
 We can see from the graph above that the error, in the Training-set, is quite high in the beginning and as the interactions increase the error comes down. The little curve in red that we have on the top right of the graph is the error rate of the Test-set: initially the error quickly comes down but immediately increases. We can see that we have a Minimum Error of the Test-set of 0.59 at we reach it after 3 interations. </br>
 This red curve says that we have a significat overfitting. We need to find a better model.
 
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
 # More feature to find the best model
 bst_model <- xgb.train(params = xgb_params,    # multiclass classification
                        data = train_matrix,
                        nrounds = 20,           # maximum number of interations
                        watchlist = watchlist,
-                       eta = 0.05)              # is eta is low, the model is more robust to overfitting
+                       eta = 0.05)             # is eta is low, the model is more robust to overfitting
 
 e <- data.frame(bst_model$evaluation_log)
 plot(e$iter, e$train_mlogloss, col = 'blue')
@@ -112,24 +112,75 @@ lines(e$iter, e$test_mlogloss, col = 'red')
 
 Now, that we have introduce the learning rate [**Eta**](https://xgboost.readthedocs.io/en/latest/parameter.html) the performance is better. </br>
 The range of Eta is between 0 and 1, we use **eta = 0.05** because with low eta the model is more robust to overfitting. </br>
-The [**learning rate Eta**](https://xgboost.readthedocs.io/en/latest/parameter.html) is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25.
-If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for.
-If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum.
-If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum.
+The [**Eta Learning Rate**](https://xgboost.readthedocs.io/en/latest/parameter.html) is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25. </br>
+If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for. </br>
+If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum. </br>
+If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum. </br>
+At this stage, we can introduce the Feature Importanc information.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Feature Importance
+imp <- xgb.importance(colnames(train_matrix), model = bst_model)
+print(imp)
+xgb.plot.importance(imp)
+
+```
+
+From the table above, **Gain** is the most important column. It says to us that the variable gpa has the most importance. We have the same result graphically (the graph is made using Gain as parameter). </br>
+
+We can do prediction and create confusion matrix using thet Test-set.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Prediction and Confusion Matrix on Test-set
+p <- predict(bst_model, newdata = test_matrix) # calculate prediction
+pred <- matrix(p, nrow = nc, ncol = length(p)/nc) %>%
+         t() %>%           # transpose the matrix
+         data.frame() %>%  # transform in a data frame
+         mutate(label = test_label, max_prob = max.col(., "last")-1) #
+
+head(pred)
+
+# Confusion Matrix
+table(Prediction = pred$max_prob, Actual = pred$label)
+
+```
+
+What we can see from the table above, is **X1** (the probability to be not admitted), **X2** (the probability to be admitted). </br>
+The **label** is the actual label in the Test-set (i.e. the real values), the **max_prob** is the label predicted. </br>
+If we look at the row number 5 we see a proability to be not admitted (X1=0.51, max_prob=0), but the reality is that student was admitted (label=1).
+If we look at the Confusion Matrix, we have an Accuracy of (43+7)75=66%, and so we can try again to improve the model.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# More XGBoost Parameters
+bst_model <- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist,
+                       eta = 0.01,             # is eta is low, the model is more robust to overfitting
+                       max.depth = 3,          # maximum tree depth
+                       gamma = 0,              # larger values of gamma lead to more conservative algorithm
+                       subsample = 1,          # 1 means 100%, lower values help to prevent overfitting
+                       colsample_bytre = 1,
+                       missing = NA,
+                       seed = 333)
+                       
+                      
+e <- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = 'blue')
+lines(e$iter, e$test_mlogloss, col = 'red')
+
+```
+
+It the model descrbed above, we introduced five new parameters. </br>
 
 
 
+The **max_depth** indicates how deep the tree can be. The deeper the tree, the more splits it has and it captures more information about the data. </br>
+The **gamma** mathematically is the [**Lagrangian Multiplier**](https://en.wikipedia.org/wiki/Lagrange_multiplier), which is a method to find the local maxima and minima of a function. We can start to increase **gamma** value gradually in order to avoid overfitting at look at the graph the result. </br>
+The parameter **missing** help to handle with missing values. </br>
+The **seed** assure that we can repeat the result. </br>
 
-
-
-
-
-
-
-
-
-
-
+What we can see now from the graph, we were able to reduce the overfitting. 
 
 
 
