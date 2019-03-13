@@ -60,6 +60,87 @@ test_matrix <- xgb.DMatrix(data = as.matrix(testm), label = test_label)
 ```
 
 For now, we have the matrix formatted in the proper format needed for the analysis.
+At this stage, we have to define the parameters of the model, and create it.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+nc <- length(unique(train_label))
+xgb_params <- list("objective" = "multi:softprob",
+                   "eval_metric" = "mlogloss",
+                   "num_class" = nc)
+
+watchlist <- list(train = train_matrix, test = test_matrix)
+
+# Create the Extreme Gradient Boosting Model
+bst_model <- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist)  # check what is going on
+
+bst_model
+
+```
+
+In the code above we specified to use the **Softprob Function**. In [**Softmax**](https://en.wikipedia.org/wiki/Softmax_function) we get the class with the maximum probability as output, and with Softprob we get a matrix with probability value of each class we are trying to predict. </br>
+We can also see that we have as output the total number of interations (in our example 20 interactions), and we can see what was the error in both train and test set (aka elaluation_log). </br>
+We have also some information about the model. The **elaluation_log** session of the output can be converted into a plot. 
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+# Training and Test Error Plot
+e <- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = 'blue')
+lines(e$iter, e$test_mlogloss, col = 'red')
+min(e$test_mlogloss)
+e[e$test_mlogloss == 0.595096,]
+
+```
+We can see from the graph above that the error, in the Training-set, is quite high in the beginning and as the interactions increase the error comes down. The little curve in red that we have on the top right of the graph is the error rate of the Test-set: initially the error quickly comes down but immediately increases. We can see that we have a Minimum Error of the Test-set of 0.59 at we reach it after 3 interations. </br>
+This red curve says that we have a significat overfitting. We need to find a better model.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
+# More feature to find the best model
+bst_model <- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist,
+                       eta = 0.05)              # is eta is low, the model is more robust to overfitting
+
+e <- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = 'blue')
+lines(e$iter, e$test_mlogloss, col = 'red')
+
+```
+
+Now, that we have introduce the learning rate [**Eta**](https://xgboost.readthedocs.io/en/latest/parameter.html) the performance is better. </br>
+The range of Eta is between 0 and 1, we use **eta = 0.05** because with low eta the model is more robust to overfitting. </br>
+The [**learning rate Eta**](https://xgboost.readthedocs.io/en/latest/parameter.html) is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25.
+If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for.
+If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum.
+If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

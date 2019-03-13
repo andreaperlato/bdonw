@@ -44,4 +44,102 @@ train_matrix &lt;- xgb.DMatrix(data = as.matrix(trainm), label = train_label)</c
 testm &lt;- sparse.model.matrix(admit ~ .-1, data = test) 
 test_label &lt;- test[,&quot;admit&quot;] # define the responce variable
 test_matrix &lt;- xgb.DMatrix(data = as.matrix(testm), label = test_label)</code></pre>
-<p>For now, we have the matrix formatted in the proper format needed for the analysis.</p>
+<p>For now, we have the matrix formatted in the proper format needed for the analysis. At this stage, we have to define the parameters of the model, and create it.</p>
+<pre class="r"><code>nc &lt;- length(unique(train_label))
+xgb_params &lt;- list(&quot;objective&quot; = &quot;multi:softprob&quot;,
+                   &quot;eval_metric&quot; = &quot;mlogloss&quot;,
+                   &quot;num_class&quot; = nc)
+
+watchlist &lt;- list(train = train_matrix, test = test_matrix)
+
+# Create the Extreme Gradient Boosting Model
+bst_model &lt;- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist)  # check what is going on</code></pre>
+<pre><code>[1] train-mlogloss:0.594324 test-mlogloss:0.651085 
+[2] train-mlogloss:0.534790 test-mlogloss:0.612848 
+[3] train-mlogloss:0.483394 test-mlogloss:0.595096 
+[4] train-mlogloss:0.454567 test-mlogloss:0.597930 
+[5] train-mlogloss:0.423043 test-mlogloss:0.599238 
+[6] train-mlogloss:0.385208 test-mlogloss:0.595708 
+[7] train-mlogloss:0.372651 test-mlogloss:0.614298 
+[8] train-mlogloss:0.355396 test-mlogloss:0.612562 
+[9] train-mlogloss:0.345466 test-mlogloss:0.632218 
+[10]    train-mlogloss:0.337584 test-mlogloss:0.649025 
+[11]    train-mlogloss:0.321141 test-mlogloss:0.649074 
+[12]    train-mlogloss:0.312773 test-mlogloss:0.664441 
+[13]    train-mlogloss:0.309723 test-mlogloss:0.677517 
+[14]    train-mlogloss:0.296634 test-mlogloss:0.677277 
+[15]    train-mlogloss:0.284527 test-mlogloss:0.689391 
+[16]    train-mlogloss:0.277117 test-mlogloss:0.684779 
+[17]    train-mlogloss:0.270126 test-mlogloss:0.688089 
+[18]    train-mlogloss:0.265546 test-mlogloss:0.701466 
+[19]    train-mlogloss:0.260600 test-mlogloss:0.700825 
+[20]    train-mlogloss:0.256453 test-mlogloss:0.717978 </code></pre>
+<pre class="r"><code>bst_model</code></pre>
+<pre><code>##### xgb.Booster
+raw: 69.1 Kb 
+call:
+  xgb.train(params = xgb_params, data = train_matrix, nrounds = 20, 
+    watchlist = watchlist)
+params (as set within xgb.train):
+  objective = &quot;multi:softprob&quot;, eval_metric = &quot;mlogloss&quot;, num_class = &quot;2&quot;, silent = &quot;1&quot;
+xgb.attributes:
+  niter
+callbacks:
+  cb.print.evaluation(period = print_every_n)
+  cb.evaluation.log()
+# of features: 6 
+niter: 20
+nfeatures : 6 
+evaluation_log:
+    iter train_mlogloss test_mlogloss
+       1       0.594324      0.651085
+       2       0.534790      0.612848
+---                                  
+      19       0.260600      0.700825
+      20       0.256453      0.717978</code></pre>
+<p>In the code above we specified to use the <strong>Softprob Function</strong>. In <a href="https://en.wikipedia.org/wiki/Softmax_function"><strong>Softmax</strong></a> we get the class with the maximum probability as output, and with Softprob we get a matrix with probability value of each class we are trying to predict. </br> We can also see that we have as output the total number of interations (in our example 20 interactions), and we can see what was the error in both train and test set (aka elaluation_log). </br> We have also some information about the model. The <strong>elaluation_log</strong> session of the output can be converted into a plot.</p>
+<pre class="r"><code># Training and Test Error Plot
+e &lt;- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = &#39;blue&#39;)
+lines(e$iter, e$test_mlogloss, col = &#39;red&#39;)</code></pre>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>min(e$test_mlogloss)</code></pre>
+<pre><code>[1] 0.595096</code></pre>
+<pre class="r"><code>e[e$test_mlogloss == 0.595096,]</code></pre>
+<pre><code>  iter train_mlogloss test_mlogloss
+3    3       0.483394      0.595096</code></pre>
+<p>We can see from the graph above that the error, in the Training-set, is quite high in the beginning and as the interactions increase the error comes down. The little curve in red that we have on the top right of the graph is the error rate of the Test-set: initially the error quickly comes down but immediately increases. We can see that we have a Minimum Error of the Test-set of 0.59 at we reach it after 3 interations. </br> This red curve says that we have a significat overfitting. We need to find a better model.</p>
+<pre class="r"><code># More feature to find the best model
+bst_model &lt;- xgb.train(params = xgb_params,    # multiclass classification
+                       data = train_matrix,
+                       nrounds = 20,           # maximum number of interations
+                       watchlist = watchlist,
+                       eta = 0.05)              # is eta is low, the model is more robust to overfitting</code></pre>
+<pre><code>[1] train-mlogloss:0.674595 test-mlogloss:0.684052 
+[2] train-mlogloss:0.658466 test-mlogloss:0.676982 
+[3] train-mlogloss:0.642685 test-mlogloss:0.667532 
+[4] train-mlogloss:0.628284 test-mlogloss:0.660133 
+[5] train-mlogloss:0.615050 test-mlogloss:0.653341 
+[6] train-mlogloss:0.604056 test-mlogloss:0.645568 
+[7] train-mlogloss:0.592582 test-mlogloss:0.640064 
+[8] train-mlogloss:0.582170 test-mlogloss:0.637070 
+[9] train-mlogloss:0.571289 test-mlogloss:0.634656 
+[10]    train-mlogloss:0.561741 test-mlogloss:0.630252 
+[11]    train-mlogloss:0.551731 test-mlogloss:0.628331 
+[12]    train-mlogloss:0.542504 test-mlogloss:0.622866 
+[13]    train-mlogloss:0.533755 test-mlogloss:0.618194 
+[14]    train-mlogloss:0.525246 test-mlogloss:0.617723 
+[15]    train-mlogloss:0.517447 test-mlogloss:0.613506 
+[16]    train-mlogloss:0.509825 test-mlogloss:0.613574 
+[17]    train-mlogloss:0.502859 test-mlogloss:0.609476 
+[18]    train-mlogloss:0.496269 test-mlogloss:0.606218 
+[19]    train-mlogloss:0.489355 test-mlogloss:0.606840 
+[20]    train-mlogloss:0.483546 test-mlogloss:0.604335 </code></pre>
+<pre class="r"><code>e &lt;- data.frame(bst_model$evaluation_log)
+plot(e$iter, e$train_mlogloss, col = &#39;blue&#39;)
+lines(e$iter, e$test_mlogloss, col = &#39;red&#39;)</code></pre>
+<p><img src="/MLPost/2019-03-13-extreme-gradient-boosting-algorithm_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Now, that we have introduce the learning rate <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>Eta</strong></a> the performance is better. </br> The range of Eta is between 0 and 1, we use <strong>eta = 0.05</strong> because with low eta the model is more robust to overfitting. </br> The <a href="https://xgboost.readthedocs.io/en/latest/parameter.html"><strong>learning rate Eta</strong></a> is the shrinkage you do at every step you are making. If you make 1 step at eta = 1.00, the step weight is 1.00. If you make 1 step at eta = 0.25, the step weight is 0.25. If our learning rate is 1.00, we will either land on 5 or 6 (in either 5 or 6 computation steps) which is not the optimum we are looking for. If our learning rate is 0.10, we will either land on 5.2 or 5.3 (in either 52 or 53 computation steps), which is better than the previous optimum. If our learning rate is 0.01, we will either land on 5.23 or 5.24 (in either 523 or 534 computation steps), which is again better than the previous optimum.</p>
