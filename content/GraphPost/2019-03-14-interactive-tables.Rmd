@@ -1,0 +1,31 @@
+---
+title: Interactive Tables
+author: andrea perlato
+date: '2019-03-14'
+slug: interactive-tables
+categories:
+  - graph
+tags:
+  - interactive tables
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Oftern, it is useful to provide interactive tables alonside charts.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(tidyverse)
+library(DT)
+transport_data <- read_csv("C:/07 - R Website/dataset/Graph/transport_data.csv")
+
+# Column filtering
+datatable(transport_data,
+          rownames = FALSE,
+          extensions = c("Responsive"))
+
+```
+
+As we can see from the example above, we can horizonatally and vertically scoll through the data. We can also filter globally the data.
