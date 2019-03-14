@@ -74,4 +74,32 @@ rank          0          1
    4 0.19730942 0.08823529</code></pre>
 <pre class="r"><code>plot(model)</code></pre>
 <p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-2.png" width="80%" style="display: block; margin: auto;" /><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-3.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>From the result above, we have <strong>A Priori</strong> probabilities to be admitted of 0.31: only 31% of the students were admitted to the program. Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the rsult table above. </br> We have also three plots of the model that represent the density of the numerical variables and the bars for the categorical variable. </br></p>
+<p>From the result above, we have <strong>A Priori</strong> probabilities to be admitted of 0.31: only 31% of the students were admitted to the program. Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the result table above. </br> We have also three plots of the model that represent the density for the numerical variables and the bars for the categorical variable. </br></p>
+<pre class="r"><code># Prediction
+p &lt;- predict(model, data=train, type=&quot;prob&quot;)
+head(cbind(p, train))</code></pre>
+<pre><code>          0         1 admit gre  gpa rank
+1 0.8449088 0.1550912     0 380 3.61    3
+2 0.6214983 0.3785017     1 660 3.67    3
+3 0.2082304 0.7917696     1 800 4.00    1
+4 0.8501030 0.1498970     1 640 3.19    4
+6 0.6917580 0.3082420     1 760 3.00    2
+7 0.6720365 0.3279635     1 560 2.98    1</code></pre>
+<pre class="r"><code># Confusion Matrix
+p1 &lt;- predict(model, data=train)
+(tab1 &lt;- table(p1, train$admit))</code></pre>
+<pre><code>   
+p1    0   1
+  0 196  69
+  1  27  33</code></pre>
+<pre class="r"><code># Missclassification
+1 - sum(diag(tab1)) / sum(tab1)</code></pre>
+<pre><code>[1] 0.2953846</code></pre>
+<p>From the table above, we can see that the first student has a probability of 0.84 to not be ammitted. If fact, admit=0, and he has low value of gre=380 and he came from a low rank=3. From the confusin matrix, we calculated a <strong>misclassification</strong> of 29%. </br> In order to reduce the misclassification rate we can use the *<strong>Kernel</strong>. In fact, kernel based densities may perform better when numerical variables are not normally distributed.</p>
+<pre class="r"><code># Naive Bayes Model
+model &lt;- naive_bayes(admit ~ ., data = train, usekernel = TRUE)
+p2 &lt;- predict(model, data=train)
+tab2 &lt;- table(p2, train$admit) # confusion matrix
+1 - sum(diag(tab2)) / sum(tab2) # missclasification</code></pre>
+<pre><code>[1] 0.2738462</code></pre>
+<p>In fact, as we can see above, introducing the kernel based dentities the misclassification is reduced (from 29% to 27%).</p>

@@ -70,15 +70,36 @@ plot(model)
 ```
 
 From the result above, we have **A Priori** probabilities to be admitted of 0.31: only 31% of the students were admitted to the program.
-Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the rsult table above. </br>
-We have also three plots of the model that represent the density of the numerical variables and the bars for the categorical variable. </br>
+Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the result table above. </br>
+We have also three plots of the model that represent the density for the numerical variables and the bars for the categorical variable. </br>
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Prediction
+p <- predict(model, data=train, type="prob")
+head(cbind(p, train))
 
+# Confusion Matrix
+p1 <- predict(model, data=train)
+(tab1 <- table(p1, train$admit))
 
+# Missclassification
+1 - sum(diag(tab1)) / sum(tab1)
 
+```
+From the table above, we can see that the first student has a probability of 0.84 to not be ammitted. If fact, admit=0, and he has low value of gre=380 and he came from a low rank=3.
+From the confusin matrix, we calculated a **misclassification** of 29%. </br>
+In order to reduce the misclassification rate we can use the ***Kernel**. In fact, kernel based densities may perform better when numerical variables are not normally distributed.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Naive Bayes Model
+model <- naive_bayes(admit ~ ., data = train, usekernel = TRUE)
+p2 <- predict(model, data=train)
+tab2 <- table(p2, train$admit) # confusion matrix
+1 - sum(diag(tab2)) / sum(tab2) # missclasification
 
+```
 
+In fact, as we can see above, introducing the kernel based dentities the misclassification is reduced (from 29% to 27%).
 
 
 
