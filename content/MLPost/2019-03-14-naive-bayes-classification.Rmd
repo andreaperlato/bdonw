@@ -49,11 +49,29 @@ From the dnsity plot of **gre** as a function on **admit**, we can see that stud
 The same is for **gpa**, here not shown. </br>
 
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Data Preparation
+set.seed(1234)
+ind <- sample(2, nrow(data), replace=TRUE, prob = c(0.8, 0.2))
+train <-data[ind == 1,]
+test <-data[ind == 2,]
 
+```
 
+Now, the probability of a student admitted given he belongs to rank one: p(admit=1|rank=1) is equal to: 
+**p(admit=1)*p(rank=1|admit=1)/p(rank=1)**
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Naive Bayes Model
+model <- naive_bayes(admit ~ ., data = train)
+model
+plot(model)
 
+```
 
+From the result above, we have **A Priori** probabilities to be admitted of 0.31: only 31% of the students were admitted to the program.
+Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the rsult table above. </br>
+We have also three plots of the model that represent the density of the numerical variables and the bars for the categorical variable. </br>
 
 
 

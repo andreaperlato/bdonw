@@ -37,3 +37,41 @@ pairs.panels(data[-1])</code></pre>
   ggplot(aes(x=gre, fill=admit)) + 
   geom_density(alpha=0.8, color=&#39;black&#39;)</code></pre>
 <p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-1-3.png" width="80%" style="display: block; margin: auto;" /> In order to develop a model, we have to make sure that the independent variables are not highly correlated. </br> We can see from the scatterplot above that the only numerical variables are <strong>gre</strong> and <strong>gpa</strong>, and they are not strogly correlated (R-squared=0.38). Moreover, looking at the boxplot that compare <strong>admit</strong> as a function of <strong>gre</strong>, there is a significant overlap between the two levels of admit. From the dnsity plot of <strong>gre</strong> as a function on <strong>admit</strong>, we can see that students not admitted (admit=1) have higher <strong>gre</strong> comapared to student admitrìted (admit=0). Anyway, there is a significat amount of overlap between the two distributioins. </br> The same is for <strong>gpa</strong>, here not shown. </br></p>
+<pre class="r"><code># Data Preparation
+set.seed(1234)
+ind &lt;- sample(2, nrow(data), replace=TRUE, prob = c(0.8, 0.2))
+train &lt;-data[ind == 1,]
+test &lt;-data[ind == 2,]</code></pre>
+<p>Now, the probability of a student admitted given he belongs to rank one: p(admit=1|rank=1) is equal to: **p(admit=1)*p(rank=1|admit=1)/p(rank=1)**</p>
+<pre class="r"><code># Naive Bayes Model
+model &lt;- naive_bayes(admit ~ ., data = train)
+model</code></pre>
+<pre><code>================================ Naive Bayes ================================= 
+Call: 
+naive_bayes.formula(formula = admit ~ ., data = train)
+
+A priori probabilities: 
+
+        0         1 
+0.6861538 0.3138462 
+
+Tables: 
+      
+gre           0        1
+  mean 578.6547 622.9412
+  sd   116.3250 110.9240
+
+      
+gpa            0         1
+  mean 3.3552466 3.5336275
+  sd   0.3714542 0.3457057
+
+    
+rank          0          1
+   1 0.10313901 0.24509804
+   2 0.36771300 0.42156863
+   3 0.33183857 0.24509804
+   4 0.19730942 0.08823529</code></pre>
+<pre class="r"><code>plot(model)</code></pre>
+<p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-2.png" width="80%" style="display: block; margin: auto;" /><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-3-3.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>From the result above, we have <strong>A Priori</strong> probabilities to be admitted of 0.31: only 31% of the students were admitted to the program. Moreover, for numerical variables (gre, gpa) we have mean and standard deviation, and for categorical variables (rank) we have probabilities. For example, p(rank=1|admit=0)=0.103 and p(rank=1|admit=1)=0.245, as we can see from the rsult table above. </br> We have also three plots of the model that represent the density of the numerical variables and the bars for the categorical variable. </br></p>
