@@ -39,7 +39,8 @@ transport_data %>%
   datatable(rownames = FALSE,
             colnames = pretty_headers,
             filter = list(position = "top"),
-            options = list(pageLength = 5))
+            options = list(pageLength = 5),
+            extensions = c("Responsive"))
 
 ```
 
