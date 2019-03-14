@@ -1,0 +1,39 @@
+---
+title: Naive Bayes Classification
+author: andrea perlato
+date: '2019-03-14'
+slug: naive-bayes-classification
+categories:
+  - machine learning
+tags:
+  - naive bayes
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Naive Bayes is an effective and commonly-used, machine learning classifier. It is a probabilistic classifier that makes classifications using the <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation"><strong>Maximum A Posteriori decision rule</strong></a> in a Bayesian setting. It can also be represented using a very simple Bayesian network. Naive Bayes classifiers have been especially popular for text classification, and are a traditional solution for problems such as spam detection.</p>
+<p>An intuitive explanation for the <strong>Maximum A Posteriori Probability MAP</strong> is to think probabilities as degrees of <strong>belief</strong>. For example, how likely are we vote for a candidate depends on our <strong>prior belief</strong>. We can modify our stand based on the <strong>evidence</strong>. Our final decision, based on evidence, is the <strong>posterior belief</strong>, which is what happens after we sifted through the evidence. </br> <strong>MPA</strong> is simply the maximum posterior belief: after going through all the debates, what is your most likely decision. </br></p>
+<p>We use Naive Bayes in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admitted or rejected.</p>
+<pre class="r"><code>library(naivebayes)
+library(dplyr)
+library(ggplot2)
+library(psych)
+data &lt;- read.csv(&quot;C:/07 - R Website/dataset/ML/binary.csv&quot;)
+data$rank &lt;- as.factor(data$rank)
+data$admit &lt;- as.factor(data$admit)
+
+# Visualization
+pairs.panels(data[-1])</code></pre>
+<p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>data %&gt;%
+  ggplot(aes(x=admit, y=gre, fill=admit)) + 
+  geom_boxplot()</code></pre>
+<p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-1-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>data %&gt;%
+  ggplot(aes(x=gre, fill=admit)) + 
+  geom_density(alpha=0.8, color=&#39;black&#39;)</code></pre>
+<p><img src="/MLPost/2019-03-14-naive-bayes-classification_files/figure-html/unnamed-chunk-1-3.png" width="80%" style="display: block; margin: auto;" /> In order to develop a model, we have to make sure that the independent variables are not highly correlated. </br> We can see from the scatterplot above that the only numerical variables are <strong>gre</strong> and <strong>gpa</strong>, and they are not strogly correlated (R-squared=0.38). Moreover, looking at the boxplot that compare <strong>admit</strong> as a function of <strong>gre</strong>, there is a significant overlap between the two levels of admit. From the dnsity plot of <strong>gre</strong> as a function on <strong>admit</strong>, we can see that students not admitted (admit=1) have higher <strong>gre</strong> comapared to student admitrìted (admit=0). Anyway, there is a significat amount of overlap between the two distributioins. </br> The same is for <strong>gpa</strong>, here not shown. </br></p>

@@ -1,0 +1,82 @@
+---
+title: Naive Bayes Classification
+author: andrea perlato
+date: '2019-03-14'
+slug: naive-bayes-classification
+categories:
+  - machine learning
+tags:
+  - naive bayes
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Naive Bayes is an effective and commonly-used, machine learning classifier. It is a probabilistic classifier that makes classifications using the [**Maximum A Posteriori decision rule**](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) in a Bayesian setting. It can also be represented using a very simple Bayesian network. Naive Bayes classifiers have been especially popular for text classification, and are a traditional solution for problems such as spam detection.
+
+An intuitive explanation for the **Maximum A Posteriori Probability MAP** is to think probabilities as degrees of **belief**. For example, how likely are we vote for a candidate depends on our **prior belief**. We can modify our stand based on the **evidence**. Our final decision, based on evidence, is the **posterior belief**, which is what happens after we sifted through the evidence. </br>
+**MPA** is simply the maximum posterior belief: after going through all the debates, what is your most likely decision. </br>
+
+We use Naive Bayes in an example to predict, based on some features (e.g. the rank of the school student come from), if a student is admitted or rejected. 
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(naivebayes)
+library(dplyr)
+library(ggplot2)
+library(psych)
+data <- read.csv("C:/07 - R Website/dataset/ML/binary.csv")
+data$rank <- as.factor(data$rank)
+data$admit <- as.factor(data$admit)
+
+# Visualization
+pairs.panels(data[-1])
+
+data %>%
+  ggplot(aes(x=admit, y=gre, fill=admit)) + 
+  geom_boxplot()
+
+data %>%
+  ggplot(aes(x=gre, fill=admit)) + 
+  geom_density(alpha=0.8, color='black')
+
+```
+In order to develop a model, we have to make sure that the independent variables are not highly correlated. </br>
+We can see from the scatterplot above that the only numerical variables are **gre** and **gpa**, and they are not strogly correlated (R-squared=0.38).
+Moreover, looking at the boxplot that compare **admit** as a function of **gre**, there is a significant overlap between the two levels of admit.
+From the dnsity plot of **gre** as a function on **admit**, we can see that students not admitted (admit=1) have higher **gre** comapared to student admitrìted (admit=0). Anyway, there is a significat amount of overlap between the two distributioins. </br>
+The same is for **gpa**, here not shown. </br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

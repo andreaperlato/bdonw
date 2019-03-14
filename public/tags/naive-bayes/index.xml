@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Naive Bayes on Andrea Perlato</title>
+    <link>/tags/naive-bayes/</link>
+    <description>Recent content in Naive Bayes on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/naive-bayes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Naive Bayes Classification</title>
+      <link>/mlpost/naive-bayes-classification/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/naive-bayes-classification/</guid>
+      <description>body {text-align: justify}Naive Bayes is an effective and commonly-used, machine learning classifier. It is a probabilistic classifier that makes classifications using the Maximum A Posteriori decision rule in a Bayesian setting. It can also be represented using a very simple Bayesian network. Naive Bayes classifiers have been especially popular for text classification, and are a traditional solution for problems such as spam detection.
+An intuitive explanation for the Maximum A Posteriori Probability MAP is to think probabilities as degrees of belief.</description>
+    </item>
+    
+  </channel>
+</rss>

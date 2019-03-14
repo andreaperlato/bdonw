@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Naive Bayes Classification</title>
+      <link>/mlpost/naive-bayes-classification/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/naive-bayes-classification/</guid>
+      <description>body {text-align: justify}Naive Bayes is an effective and commonly-used, machine learning classifier. It is a probabilistic classifier that makes classifications using the Maximum A Posteriori decision rule in a Bayesian setting. It can also be represented using a very simple Bayesian network. Naive Bayes classifiers have been especially popular for text classification, and are a traditional solution for problems such as spam detection.
+An intuitive explanation for the Maximum A Posteriori Probability MAP is to think probabilities as degrees of belief.</description>
+    </item>
+    
+    <item>
       <title>Extreme Gradient Boosting Algorithm</title>
       <link>/mlpost/extreme-gradient-boosting-algorithm/</link>
       <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
