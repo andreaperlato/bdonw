@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interactive Graph on Andrea Perlato</title>
+    <link>/tags/interactive-graph/</link>
+    <description>Recent content in Interactive Graph on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/interactive-graph/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Interactive Graphs</title>
+      <link>/graphpost/interactive-graphs/</link>
+      <pubDate>Fri, 15 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/interactive-graphs/</guid>
+      <description>body {text-align: justify}In this post we are going to create interactive graphs using Plotly.  Plotly allows us to create interactive charts, plot and maps with R. Plotly is designed to build a vast range of visualizations.  Crucially, it has the ability to automatically create interactive charts from the output ggplot2 which is the most abvanced R library to create scientific graphs.  Plotly has a wide range of onscreen tools: zoom is on by default, as are tools for panning and moving around in a chart.</description>
+    </item>
+    
+  </channel>
+</rss>

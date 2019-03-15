@@ -1,0 +1,54 @@
+---
+title: Interactive Graphs
+author: andrea perlato
+date: '2019-03-15'
+slug: interactive-graphs
+categories:
+  - graph
+tags:
+  - interactive graph
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+In this post we are going to create interactive graphs using [**Plotly**](https://en.wikipedia.org/wiki/Plotly). </br>
+Plotly allows us to create interactive charts, plot and maps with R. Plotly is designed to build a vast range of visualizations. </br> 
+Crucially, it has the ability to automatically create interactive charts from the output [**ggplot2**](https://ggplot2.tidyverse.org/) which is the most abvanced R library to create scientific graphs. </br>
+Plotly has a wide range of onscreen tools: zoom is on by default, as are tools for panning and moving around in a chart. There are even context-aware tools for lassoring selecting points. All of these interactions can be detected and utilized within a [**Shiny**](https://shiny.rstudio.com/) web app.
+Plolty does focus on a scientific and technical audience, providing a wide range of statistical charts. </br>
+
+Plotly has the ability to automatically convert a wide range of ggplot2 chatrs into interactive Plotly chart with almost no effort at all.
+Let's start with a static chart here below.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(tidyverse)
+load("C:/07 - R Website/dataset/Graph/british_weather.rdata")
+
+british_weather %>%
+  mutate(tdiff = tmax - tmin) %>%
+  group_by(region, mm) %>%
+  dplyr::summarise(average.tdiff = mean(tdiff, na.rm = TRUE)) %>%
+  ggplot(aes(
+    x = mm,
+    y = average.tdiff,
+    group = region,
+    col = region
+  )) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Month", y = "Mean daily temperature difference") +
+  ggtitle("Mean daily temperature difference in the UK", subtitle = "Split by region")
+
+```
+
+Here ablve, we have a nice attractive looking static ggplot2 output. We have a scatterplot with X axis that labels months and Y axis that labels mean daily temperature differences. Now, we can hand this ggplot2 object over to plotly to make it interactive.
+
+
+
+
+
+
+

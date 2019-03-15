@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Interactive Graphs - Andrea Perlato</title>
+<meta property="og:title" content="Interactive Graphs - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Interactive Graphs</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>In this post we are going to create interactive graphs using <a href="https://en.wikipedia.org/wiki/Plotly"><strong>Plotly</strong></a>. </br> Plotly allows us to create interactive charts, plot and maps with R. Plotly is designed to build a vast range of visualizations. </br> Crucially, it has the ability to automatically create interactive charts from the output <a href="https://ggplot2.tidyverse.org/"><strong>ggplot2</strong></a> which is the most abvanced R library to create scientific graphs. </br> Plotly has a wide range of onscreen tools: zoom is on by default, as are tools for panning and moving around in a chart. There are even context-aware tools for lassoring selecting points. All of these interactions can be detected and utilized within a <a href="https://shiny.rstudio.com/"><strong>Shiny</strong></a> web app. Plolty does focus on a scientific and technical audience, providing a wide range of statistical charts. </br></p>
+<p>Plotly has the ability to automatically convert a wide range of ggplot2 chatrs into interactive Plotly chart with almost no effort at all. Let’s start with a static chart here below.</p>
+<pre class="r"><code>library(tidyverse)
+load(&quot;C:/07 - R Website/dataset/Graph/british_weather.rdata&quot;)
+
+british_weather %&gt;%
+  mutate(tdiff = tmax - tmin) %&gt;%
+  group_by(region, mm) %&gt;%
+  dplyr::summarise(average.tdiff = mean(tdiff, na.rm = TRUE)) %&gt;%
+  ggplot(aes(
+    x = mm,
+    y = average.tdiff,
+    group = region,
+    col = region
+  )) +
+  geom_line() +
+  geom_point() +
+  labs(x = &quot;Month&quot;, y = &quot;Mean daily temperature difference&quot;) +
+  ggtitle(&quot;Mean daily temperature difference in the UK&quot;, subtitle = &quot;Split by region&quot;)</code></pre>
+<p><img src="/GraphPost/2019-03-15-interactive-graphs_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Here ablve, we have a nice attractive looking static ggplot2 output. We have a scatterplot with X axis that labels months and Y axis that labels mean daily temperature differences. Now, we can hand this ggplot2 object over to plotly to make it interactive.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
