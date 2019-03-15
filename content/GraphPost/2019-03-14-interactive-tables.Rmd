@@ -14,33 +14,36 @@ body {
 text-align: justify}
 </style>
 
-Oftern, it is useful to provide interactive tables alonside charts.
+Oftern, it is useful to provide interactive tables alonside charts.</br>
+Responsive designed web content reflows itself dependent on the with of the browser window.
+There are many columns in the table which are over to the right-hand side and we need to scroll to access them. </br>
+So, could be really nice that the columns which don't fit on the screen, are instead collapsed somehow, and optionally enable these.
+
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 library(tidyverse)
 library(DT)
+library(stringr)
 transport_data <- read_csv("C:/07 - R Website/dataset/Graph/transport_data.csv")
 
-# Column filtering
-datatable(transport_data,
-          rownames = FALSE,
-          extensions = c("Responsive"))
 
-```
-
-As we can see from the example above, we can horizonatally and vertically scoll through the data. We can also filter globally the data.
-At this point, We can improve the readability of the table, and add a filter at the top of each columns. We can also manipulate the pagination of the table. For example, in the example below we set the option page lenght to 5 instead of 10.
-
-```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
-pretty_headers <- gsub("[.]"," ", colnames(transport_data)) %>%
+pretty_headers <- gsub("[.]", " ", colnames(transport_data)) %>%
   str_to_title()
 
 transport_data %>%
-  datatable(rownames = FALSE,
-            colnames = pretty_headers,
-            filter = list(position = "top"),
-            options = list(pageLength = 5),
-            extensions = c("Responsive"))
+  datatable(
+    rownames = FALSE,
+    colnames = pretty_headers,
+    filter = list(position = "top"),
+    options = list(
+      dom = "Bfrtip",
+      buttons = I("colvis"),
+      language = list(sSearch = "Filter:"),
+      pageLength = 5
+    ),
+    extensions = c("Buttons", "Responsive")
+  )
+
 
 ```
 
