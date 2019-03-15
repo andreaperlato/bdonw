@@ -27,24 +27,76 @@ Let's start with a static chart here below.
 library(tidyverse)
 load("C:/07 - R Website/dataset/Graph/british_weather.rdata")
 
-british_weather %>%
+gg_weather <- british_weather %>%
   mutate(tdiff = tmax - tmin) %>%
   group_by(region, mm) %>%
   dplyr::summarise(average.tdiff = mean(tdiff, na.rm = TRUE)) %>%
+  ungroup() %>%
   ggplot(aes(
     x = mm,
     y = average.tdiff,
     group = region,
-    col = region
+    col = region,
+    text =paste0("UK (", region, ")")
   )) +
   geom_line() +
   geom_point() +
   labs(x = "Month", y = "Mean daily temperature difference") +
   ggtitle("Mean daily temperature difference in the UK", subtitle = "Split by region")
 
+gg_weather
+
 ```
 
-Here ablve, we have a nice attractive looking static ggplot2 output. We have a scatterplot with X axis that labels months and Y axis that labels mean daily temperature differences. Now, we can hand this ggplot2 object over to plotly to make it interactive.
+Here above, we have a nice attractive looking static ggplot2 output. We have a scatterplot with X axis that labels months and Y axis that labels mean daily temperature differences. Now, we can hand this ggplot2 object over to plotly to make it interactive. 
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(plotly)
+gg_weather %>%
+  ggplotly(tooltip = c("x", "y", "text"))
+
+```
+
+The graph above is an intecative version of the chart. The chart looks much the same as the static ggplot, but as we hover the cursor over the markers in the plot, we have a tooltip now, showing the month and the average temperature difference for that month. </br>
+
+Most of the geom() functions available in ggplot2 can be converted to plotly charts. </br>
+For instance, boxplots as we can see fromt he chart below.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+gg_boxplot <- british_weather %>%
+  mutate(tdiff = tmax - tmin) %>%
+  group_by(region, mm) %>%
+  ggplot(aes(
+    x = region,
+    y = tdiff,
+    fill = region
+  )) + geom_boxplot()
+
+ggplotly(gg_boxplot)
+
+```
+
+When we hover the cursor over the boxplot we get information about the quantiles and the median as well. We can also appreciate the exact value of the outliers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

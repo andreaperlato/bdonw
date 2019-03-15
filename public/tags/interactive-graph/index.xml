@@ -17,7 +17,7 @@
       <pubDate>Fri, 15 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/graphpost/interactive-graphs/</guid>
-      <description>body {text-align: justify}In this post we are going to create interactive graphs using Plotly.  Plotly allows us to create interactive charts, plot and maps with R. Plotly is designed to build a vast range of visualizations.  Crucially, it has the ability to automatically create interactive charts from the output ggplot2 which is the most abvanced R library to create scientific graphs.  Plotly has a wide range of onscreen tools: zoom is on by default, as are tools for panning and moving around in a chart.</description>
+      <description>body {text-align: justify}In this post we are going to create interactive graphs using Plotly.  Plotly allows us to create interactive charts, plot and maps with R. Plotly is designed to build a vast range of visualizations.  Crucially, it has the ability to automatically create interactive charts from the output ggplot2 which is the most abvanced R library to create scientific graphs.</description>
     </item>
     
   </channel>
