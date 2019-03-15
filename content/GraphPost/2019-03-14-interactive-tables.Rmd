@@ -36,17 +36,23 @@ transport_data %>%
     colnames = pretty_headers,
     filter = list(position = "top"),
     options = list(
-      dom = "Bfrtip",
+      dom = "lBfrtip",
       buttons = I("colvis"),
       language = list(sSearch = "Filter:"),
-      pageLength = 5
+      pageLength = 5,
+      autoWidth = TRUE,
+      columnDefs=list(list(width="200px",targets="_all")),
+      scrollX=TRUE
     ),
-    extensions = c("Buttons", "Responsive")
+    extensions = c("Buttons")
   )
 
 
 ```
 
+As we can see, We can horizontally and vertically scroll through the data. We get automatic pagination telling us about currently looking ar observations from 1 to 5 of 399 entries. We can also filter the data both globally and by column.
+There is also a very useful button called **Column visibility** that give us the possibility to include/exclude any variables.
+Last but not least, we can add a buttom to download the table in a .csv or Excel file format, here not included.
 
 
 
