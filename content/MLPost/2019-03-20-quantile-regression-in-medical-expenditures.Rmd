@@ -38,16 +38,60 @@ X <- cbind(suppins, totchr, age, female, white)
 
 ```
 
-The variable **totexp** is the total expenditure and is dependent variable. The independent variables are **suppins** supplemental insurance, **totchr** total number of chronic conditions, **age**, **female**, and **white**.
+The variable **totexp** is the total expenditure and is dependent variable. The independent variables are **suppins** supplemental insurance, **totchr** total number of chronic conditions, **age**, **female**, and **white**. </br>
+The first step is to perform an OLS regression.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# OLS regression
+olsreg <- lm(Y ~ X, data=mydata)
+summary(olsreg)
 
+```
 
+The **Xtotchr**, the total of chronic condition, says that each of chronich condition brings 2528.079 more dollars in **totexp** total medical expenditure. </br>
+Now, we perform a quantile regression.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Simultaneous quantile regression
+quantreg2575 <- rq(Y ~ X, data=mydata, tau=c(0.25, 0.75))
+summary(quantreg2575)
 
+```
+The **Xtotchr**, the total of chronic condition, for the **0.25 quantile** is 782.47, and the interpretatation is: adding 25th quantile each of chronich condition brings only 782.42 more dollars in **totexp** total medical expenditure. This is a much ower value that we had before with OLS. 
+This means, for low number of chronic conditions the medical expenditure is lower. </br>
+On the oder hand, looking at the **0.75 quantile** for the total of chronic condition we have 2855.31 more dollar per each more chronic condition. This value is more similar with the OLS coefficient, and in fact this time we have not a significant difference from the OLS coefficient. </br>
 
+We can also perform an ANOVA to compare the coefficient at 25th quantile vs. 75th quantile.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Quantile regression at 25 the quanile
+quantreg25 <- rq(Y ~ X, data=mydata, tau=0.25)
 
+# Quantile regression at 75 the quanile
+quantreg75 <- rq(Y ~ X, data=mydata, tau=0.75)
 
+# ANOVA test for coefficient differences
+anova(quantreg25, quantreg75)
+
+```
+
+As we can see from the result above, there is a significant difference in the coefficients, and this justify to use the quantile regression. </br>
+Now, we can plot the data and the coefficinets we found from the quantile regression.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+# Plotting data
+quantreg.all <- rq(Y ~ X, tau = seq(0.05, 0.95, by = 0.05), data=mydata)
+quantreg.plot <- summary(quantreg.all)
+plot(quantreg.plot)
+
+```
+
+We focus our attention on the **Xtotchr** (total of chronic condition) graph. </br>
+The red orizontal line is the OLS coefficient, and we can see that the value is exactly the same of what we found before (2528.079). Notice that the OLS line is flat along the quantile in the x-axis, because it cannot vary across the quantiles.
+Looking at the quantile trend (black curve with grey confidence intervals), we can see that for low quantiles there is a significant difference below OLS. On the contrary, there is a significant difference above OLS for high quantile. </br>
+Again, we can see from the graph of **Xtotchr** that there is not a significant difference for the 75th quantile. </br>
+
+Looking at the **Xage** graph, there is not a significat difference from OLS across the quantiles, except at the last quantile.
 
 
 

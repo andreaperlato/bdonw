@@ -37,4 +37,86 @@ summary(mydata)</code></pre>
 <pre class="r"><code># Define variables
 Y &lt;- cbind(totexp)
 X &lt;- cbind(suppins, totchr, age, female, white)</code></pre>
-<p>The variable <strong>totexp</strong> is the total expenditure and is dependent variable. The independent variables are <strong>suppins</strong> supplemental insurance, <strong>totchr</strong> total number of chronic conditions, <strong>age</strong>, <strong>female</strong>, and <strong>white</strong>.</p>
+<p>The variable <strong>totexp</strong> is the total expenditure and is dependent variable. The independent variables are <strong>suppins</strong> supplemental insurance, <strong>totchr</strong> total number of chronic conditions, <strong>age</strong>, <strong>female</strong>, and <strong>white</strong>. </br> The first step is to perform an OLS regression.</p>
+<pre class="r"><code># OLS regression
+olsreg &lt;- lm(Y ~ X, data=mydata)
+summary(olsreg)</code></pre>
+<pre><code>
+Call:
+lm(formula = Y ~ X, data = mydata)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-16146  -5372  -2804    457 115461 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   461.492   2777.453   0.166  0.86805    
+Xsuppins      585.984    436.309   1.343  0.17936    
+Xtotchr      2528.079    164.834  15.337  &lt; 2e-16 ***
+Xage            6.711     33.768   0.199  0.84248    
+Xfemale     -1239.866    433.110  -2.863  0.00423 ** 
+Xwhite       2193.155   1327.794   1.652  0.09870 .  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 11520 on 2949 degrees of freedom
+Multiple R-squared:  0.07828,   Adjusted R-squared:  0.07672 
+F-statistic: 50.09 on 5 and 2949 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The <strong>Xtotchr</strong>, the total of chronic condition, says that each of chronich condition brings 2528.079 more dollars in <strong>totexp</strong> total medical expenditure. </br> Now, we perform a quantile regression.</p>
+<pre class="r"><code># Simultaneous quantile regression
+quantreg2575 &lt;- rq(Y ~ X, data=mydata, tau=c(0.25, 0.75))
+summary(quantreg2575)</code></pre>
+<pre><code>
+Call: rq(formula = Y ~ X, tau = c(0.25, 0.75), data = mydata)
+
+tau: [1] 0.25
+
+Coefficients:
+            Value       Std. Error  t value     Pr(&gt;|t|)   
+(Intercept) -1412.88889   433.20179    -3.26150     0.00112
+Xsuppins      453.44444    75.05348     6.04162     0.00000
+Xtotchr       782.47222    37.55769    20.83388     0.00000
+Xage           16.08333     6.19162     2.59760     0.00943
+Xfemale        16.05556    72.20278     0.22237     0.82404
+Xwhite        338.08333    71.51522     4.72743     0.00000
+
+Call: rq(formula = Y ~ X, tau = c(0.25, 0.75), data = mydata)
+
+tau: [1] 0.75
+
+Coefficients:
+            Value       Std. Error  t value     Pr(&gt;|t|)   
+(Intercept) -4512.04545  2350.56284    -1.91956     0.05501
+Xsuppins      708.40909   375.76929     1.88522     0.05950
+Xtotchr      2855.31818   196.12587    14.55860     0.00000
+Xage           87.36364    30.98410     2.81963     0.00484
+Xfemale      -554.59091   378.71501    -1.46440     0.14319
+Xwhite        801.68182   370.96108     2.16109     0.03077</code></pre>
+<p>The <strong>Xtotchr</strong>, the total of chronic condition, for the <strong>0.25 quantile</strong> is 782.47, and the interpretatation is: adding 25th quantile each of chronich condition brings only 782.42 more dollars in <strong>totexp</strong> total medical expenditure. This is a much ower value that we had before with OLS. This means, for low number of chronic conditions the medical expenditure is lower. </br> On the oder hand, looking at the <strong>0.75 quantile</strong> for the total of chronic condition we have 2855.31 more dollar per each more chronic condition. This value is more similar with the OLS coefficient, and in fact this time we have not a significant difference from the OLS coefficient. </br></p>
+<p>We can also perform an ANOVA to compare the coefficient at 25th quantile vs. 75th quantile.</p>
+<pre class="r"><code># Quantile regression at 25 the quanile
+quantreg25 &lt;- rq(Y ~ X, data=mydata, tau=0.25)
+
+# Quantile regression at 75 the quanile
+quantreg75 &lt;- rq(Y ~ X, data=mydata, tau=0.75)
+
+# ANOVA test for coefficient differences
+anova(quantreg25, quantreg75)</code></pre>
+<pre><code>Quantile Regression Analysis of Deviance Table
+
+Model: Y ~ X
+Joint Test of Equality of Slopes: tau in {  0.25 0.75  }
+
+  Df Resid Df F value    Pr(&gt;F)    
+1  5     5905  37.831 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As we can see from the result above, there is a significant difference in the coefficients, and this justify to use the quantile regression. </br> Now, we can plot the data and the coefficinets we found from the quantile regression.</p>
+<pre class="r"><code># Plotting data
+quantreg.all &lt;- rq(Y ~ X, tau = seq(0.05, 0.95, by = 0.05), data=mydata)
+quantreg.plot &lt;- summary(quantreg.all)
+plot(quantreg.plot)</code></pre>
+<p><img src="/MLPost/2019-03-20-quantile-regression-in-medical-expenditures_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>We focus our attention on the <strong>Xtotchr</strong> (total of chronic condition) graph. </br> The red orizontal line is the OLS coefficient, and we can see that the value is exactly the same of what we found before (2528.079). Notice that the OLS line is flat along the quantile in the x-axis, because it cannot vary across the quantiles. Looking at the quantile trend (black curve with grey confidence intervals), we can see that for low quantiles there is a significant difference below OLS. On the contrary, there is a significant difference above OLS for high quantile. </br> Again, we can see from the graph of <strong>Xtotchr</strong> that there is not a significant difference for the 75th quantile. </br></p>
+<p>Looking at the <strong>Xage</strong> graph, there is not a significat difference from OLS across the quantiles, except at the last quantile.</p>
