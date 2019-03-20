@@ -1,0 +1,60 @@
+---
+title: Quantile Regression in Medical Expenditures
+author: andrea perlato
+date: '2019-03-20'
+slug: quantile-regression-in-medical-expenditures
+categories:
+  - machine learning
+tags:
+  - quantile regression
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+The Quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable.  Instead of estimating the model with average effects using the OLS linear model, the quantile regression produces different effects along the distribution (quantiles) of the dependent variable.  The dependent variable is continuous with no zeros or too many repeated values. </br>
+Examples include estimating the effects of household income on food expenditures for low- and high-expenditure households, what are the factors influencing total medical expenditures for people with low, medium and high expenditures. </br>
+The following oexample is based on **Medical Expenditure Panel Survey MEPS**. The dependent variable is the **total medical expenditures**, and the independent variables are: **supplemental insurance**, **total number of chronic conditions**, **age**, **female**, and **white**. </br>
+We estimate an OLS regression, and quantile regression at 25th, 50th, and 75th quantile. </br>
+The standard **Ordinary Least Squares OLS**  models the relationship between one or more independent variables and the conditional mean of a dependent variable. The **Quantile Regression** models the relationship betwwn the conditional quantiles rather than just the conditional mean of the dependent variable. A quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable because we can show different effects (quantiles). </br>
+One pratical consideration is that the distribution of the dependent variable has to be continuous and it shouldn't has zero or too many repeated values. </br>
+One important aspect to take in considertion in Quantile Regression is that coefficients can be significanlty different than the OLS coefficients, showing different effects along the distribution of the dependent variable. </br>
+The advantages of the Quantile regression are: </br>
+Flexibility for modeling data with heterogeneous conditional distributions. </br>
+Median regression is more robust to outliers than the OLS regression. </br>
+Quantile regression can show different effects of the independent variables on the dependent variable depending across the spectrum of the dependent variable. </br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

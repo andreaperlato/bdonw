@@ -6,10 +6,19 @@
     <description>Recent content in Machine Learning on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quantile Regression in Medical Expenditures</title>
+      <link>/mlpost/quantile-regression-in-medical-expenditures/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/quantile-regression-in-medical-expenditures/</guid>
+      <description>body {text-align: justify}The Quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable. Instead of estimating the model with average effects using the OLS linear model, the quantile regression produces different effects along the distribution (quantiles) of the dependent variable. The dependent variable is continuous with no zeros or too many repeated values.  Examples include estimating the effects of household income on food expenditures for low- and high-expenditure households, what are the factors influencing total medical expenditures for people with low, medium and high expenditures.</description>
+    </item>
     
     <item>
       <title>Naive Bayes Classification</title>

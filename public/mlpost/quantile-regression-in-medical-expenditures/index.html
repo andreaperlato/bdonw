@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Quantile Regression in Medical Expenditures - Andrea Perlato</title>
+<meta property="og:title" content="Quantile Regression in Medical Expenditures - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Quantile Regression in Medical Expenditures</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>The Quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable. Instead of estimating the model with average effects using the OLS linear model, the quantile regression produces different effects along the distribution (quantiles) of the dependent variable. The dependent variable is continuous with no zeros or too many repeated values. </br> Examples include estimating the effects of household income on food expenditures for low- and high-expenditure households, what are the factors influencing total medical expenditures for people with low, medium and high expenditures. </br> The following oexample is based on <strong>Medical Expenditure Panel Survey MEPS</strong>. The dependent variable is the <strong>total medical expenditures</strong>, and the independent variables are: <strong>supplemental insurance</strong>, <strong>total number of chronic conditions</strong>, <strong>age</strong>, <strong>female</strong>, and <strong>white</strong>. </br> We estimate an OLS regression, and quantile regression at 25th, 50th, and 75th quantile. </br> The standard <strong>Ordinary Least Squares OLS</strong> models the relationship between one or more independent variables and the conditional mean of a dependent variable. The <strong>Quantile Regression</strong> models the relationship betwwn the conditional quantiles rather than just the conditional mean of the dependent variable. A quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable because we can show different effects (quantiles). </br> One pratical consideration is that the distribution of the dependent variable has to be continuous and it shouldn’t has zero or too many repeated values. </br> One important aspect to take in considertion in Quantile Regression is that coefficients can be significanlty different than the OLS coefficients, showing different effects along the distribution of the dependent variable. </br> The advantages of the Quantile regression are: </br> Flexibility for modeling data with heterogeneous conditional distributions. </br> Median regression is more robust to outliers than the OLS regression. </br> Quantile regression can show different effects of the independent variables on the dependent variable depending across the spectrum of the dependent variable. </br></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+
