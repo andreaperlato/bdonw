@@ -16,3 +16,25 @@ body {
 text-align: justify}
 </style>
 <p>The Quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable. Instead of estimating the model with average effects using the OLS linear model, the quantile regression produces different effects along the distribution (quantiles) of the dependent variable. The dependent variable is continuous with no zeros or too many repeated values. </br> Examples include estimating the effects of household income on food expenditures for low- and high-expenditure households, what are the factors influencing total medical expenditures for people with low, medium and high expenditures. </br> The following oexample is based on <strong>Medical Expenditure Panel Survey MEPS</strong>. The dependent variable is the <strong>total medical expenditures</strong>, and the independent variables are: <strong>supplemental insurance</strong>, <strong>total number of chronic conditions</strong>, <strong>age</strong>, <strong>female</strong>, and <strong>white</strong>. </br> We estimate an OLS regression, and quantile regression at 25th, 50th, and 75th quantile. </br> The standard <strong>Ordinary Least Squares OLS</strong> models the relationship between one or more independent variables and the conditional mean of a dependent variable. The <strong>Quantile Regression</strong> models the relationship betwwn the conditional quantiles rather than just the conditional mean of the dependent variable. A quantile regression gives a more comprehensive picture of the effect of the independent variables on the dependent variable because we can show different effects (quantiles). </br> One pratical consideration is that the distribution of the dependent variable has to be continuous and it shouldn’t has zero or too many repeated values. </br> One important aspect to take in considertion in Quantile Regression is that coefficients can be significanlty different than the OLS coefficients, showing different effects along the distribution of the dependent variable. </br> The advantages of the Quantile regression are: </br> Flexibility for modeling data with heterogeneous conditional distributions. </br> Median regression is more robust to outliers than the OLS regression. </br> Quantile regression can show different effects of the independent variables on the dependent variable depending across the spectrum of the dependent variable. </br></p>
+<pre class="r"><code>library(quantreg)
+mydata &lt;- read.csv(&quot;C:/07 - R Website/dataset/ML/quantile_health.csv&quot;)
+attach(mydata)
+summary(mydata)</code></pre>
+<pre><code>    dupersid            totexp          ltotexp          suppins      
+ Min.   :20004018   Min.   :     3   Min.   : 1.099   Min.   :0.0000  
+ 1st Qu.:24476022   1st Qu.:  1433   1st Qu.: 7.268   1st Qu.:0.0000  
+ Median :90123058   Median :  3334   Median : 8.112   Median :1.0000  
+ Mean   :62616065   Mean   :  7290   Mean   : 8.060   Mean   :0.5915  
+ 3rd Qu.:94161512   3rd Qu.:  7492   3rd Qu.: 8.922   3rd Qu.:1.0000  
+ Max.   :98347025   Max.   :125610   Max.   :11.741   Max.   :1.0000  
+     totchr           age            female           white       
+ Min.   :0.000   Min.   :65.00   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:1.000   1st Qu.:69.00   1st Qu.:0.0000   1st Qu.:1.0000  
+ Median :2.000   Median :74.00   Median :1.0000   Median :1.0000  
+ Mean   :1.809   Mean   :74.25   Mean   :0.5841   Mean   :0.9736  
+ 3rd Qu.:3.000   3rd Qu.:79.00   3rd Qu.:1.0000   3rd Qu.:1.0000  
+ Max.   :7.000   Max.   :90.00   Max.   :1.0000   Max.   :1.0000  </code></pre>
+<pre class="r"><code># Define variables
+Y &lt;- cbind(totexp)
+X &lt;- cbind(suppins, totchr, age, female, white)</code></pre>
+<p>The variable <strong>totexp</strong> is the total expenditure and is dependent variable. The independent variables are <strong>suppins</strong> supplemental insurance, <strong>totchr</strong> total number of chronic conditions, <strong>age</strong>, <strong>female</strong>, and <strong>white</strong>.</p>

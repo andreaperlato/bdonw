@@ -26,9 +26,19 @@ Flexibility for modeling data with heterogeneous conditional distributions. </br
 Median regression is more robust to outliers than the OLS regression. </br>
 Quantile regression can show different effects of the independent variables on the dependent variable depending across the spectrum of the dependent variable. </br>
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(quantreg)
+mydata <- read.csv("C:/07 - R Website/dataset/ML/quantile_health.csv")
+attach(mydata)
+summary(mydata)
 
+# Define variables
+Y <- cbind(totexp)
+X <- cbind(suppins, totchr, age, female, white)
 
+```
 
+The variable **totexp** is the total expenditure and is dependent variable. The independent variables are **suppins** supplemental insurance, **totchr** total number of chronic conditions, **age**, **female**, and **white**.
 
 
 
