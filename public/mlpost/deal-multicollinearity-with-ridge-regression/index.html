@@ -78,9 +78,8 @@
 body {
 text-align: justify}
 </style>
-<p>Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used). </br> To reduce multicollinearity we can use <strong>regularization</strong> that means to keep all the features but reducing the magnitude of the coefficients of the model. <strong>This is a good solution when each predictor contributes to predict the dependent variable</strong>. </br></p>
-<p><strong>Ridge Regression</strong> performs a <strong>L2 regularization</strong>, i.e. adds penalty equivalent to square the magnitude of coefficients. Minimize the sum of square of coefficients to reduce the impact of correlated predictors. <strong>Keeps all predictors in a model</strong>. In Ridge Regression, we try to use a trend line that overfit the training data, and so, it has much higher variance then the OLS. The main idea of Ridge regression is to fit a new line that doesn’t fit the training data. In other words, <strong>we introduce a certain amount on bias into the new trend line</strong>. </br> What we do in practice, is to introduce a Bias that we call LAMBDA, and the <strong>Penalty Function</strong> is: lambda*slope^2 The <strong>Lambda is a penalty terms</strong> and this value is called Ridge Regression or L2 and determines how severe the penalty. When <strong>LAMBDA = 0</strong>, the penalty is also 0, and so we are just minimizing the sum of the squared residuals. When <strong>LAMBDA asymptotically increase</strong>, we arrive to a slope close to 0. So, the larger LAMBDA is, our prediction became LESS sensitive to the independent variable.</p>
-<p>We use the BostonHousing dataset.</p>
+<p>Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used). </br> To reduce multicollinearity we can use regularization that means to keep all the features but reducing the magnitude of the coefficients of the model. <strong>This is a good solution when each predictor contributes to predict the dependent variable</strong>. </br></p>
+<p><strong>Ridge Regression</strong> performs a <strong>L2 regularization</strong>, i.e. adds penalty equivalent to square the magnitude of coefficients. Minimize the sum of square of coefficients to reduce the impact of correlated predictors. <strong>Keeps all predictors in a model</strong>. In Ridge Regression, we try to use a trend line that overfit the training data, and so, it has much higher variance then the OLS. The main idea of Ridge regression is to fit a new line that doesn’t fit the training data. In other words, <strong>we introduce a certain amount on bias into the new trend line</strong>. </br> What we do in practice, is to introduce a <strong>Bias</strong> that we call <strong>LAMBDA</strong>, and the <strong>Penalty Function is</strong>: lambda*slope^2 </br> The <strong>Lambda</strong> is a <strong>penalty terms</strong> and this value is called Ridge Regression or L2 and determines how severe the penalty. When <strong>LAMBDA = 0</strong>, the penalty is also 0, and so we are just minimizing the sum of the squared residuals. When <strong>LAMBDA asymptotically increase</strong>, we arrive to a slope close to 0. So, the larger LAMBDA is, our prediction became LESS sensitive to the independent variable. </br> We use the BostonHousing dataset.</p>
 <pre class="r"><code>library(mlbench)
 data(BostonHousing)
 str(BostonHousing)</code></pre>
@@ -120,11 +119,12 @@ cv_fit &lt;- cv.glmnet(x, y, alpha = 0, lambda = lambdas)
 
 # Lowest point in the curve indicates the optimal lambda
 plot(cv_fit)</code></pre>
-<p><img src="/MLPost/2019-03-21-deal-multicollinearity-with-ridge-regression_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /> As we can see from the graph above, for low values of Lambda, the Mean Squared Error is quite low. On the contrary, as the value of Lambda increases, the Mean Squared Error also increases. So, we decide to continue using low value of Lambda.</p>
+<p><img src="/MLPost/2019-03-21-deal-multicollinearity-with-ridge-regression_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>As we can see from the graph above, for low values of Lambda, the Mean Squared Error is quite low. On the contrary, as the value of Lambda increases, the Mean Squared Error also increases. So, we decide to continue using low value of Lambda.</p>
 <pre class="r"><code>optlambda &lt;- cv_fit$lambda.min
 optlambda # log value of lambda that best minimised the error</code></pre>
-<pre><code>[1] 0.1</code></pre>
-<p>The optimal value of Lambda to minimize the Error is 0.1258925 and we stored it in <strong>optlambda</strong>. So, we can now re-run the model using the optlambda value that we found.</p>
+<pre><code>[1] 0.06309573</code></pre>
+<p>The optimal value of Lambda to minimize the Error is 0.1 and we stored it in optlambda. So, we can now re-run the model using the <strong>optlambda</strong> value that we found.</p>
 <pre class="r"><code># Predicting values and computing an R2 value for the data we trained on
  y_predicted &lt;- predict(fit, s = optlambda, newx = x) # newx contanins the matrix of the predicted values
 
@@ -135,7 +135,7 @@ sse &lt;- sum((y_predicted - y)^2)
 # R squared
 rsq &lt;- 1 - sse / sst
 rsq</code></pre>
-<pre><code>[1] 0.9629792</code></pre>
+<pre><code>[1] 0.9630046</code></pre>
 <p>As we can see from the R-squared value <strong>rsq</strong>, now we have an optimal model that has accounted for 96% of the variance in the training set. We were able to obtain this result using all the predictiors, and we obtained a very good job in predicting house price, having a model that explain 96% of the variation n the house price.</p>
 
     </div>
