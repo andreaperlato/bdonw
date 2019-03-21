@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ridge Regression on Andrea Perlato</title>
+    <link>/tags/ridge-regression/</link>
+    <description>Recent content in Ridge Regression on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/ridge-regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deal Multicollinearity with Ridge Regression</title>
+      <link>/mlpost/deal-multicollinearity-with-ridge-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/deal-multicollinearity-with-ridge-regression/</guid>
+      <description>body {text-align: justify}Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &amp;gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used).</description>
+    </item>
+    
+  </channel>
+</rss>

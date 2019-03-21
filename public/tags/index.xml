@@ -147,6 +147,15 @@
     </item>
     
     <item>
+      <title>Multicollinearity</title>
+      <link>/tags/multicollinearity/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/multicollinearity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Naive Bayes</title>
       <link>/tags/naive-bayes/</link>
       <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
@@ -188,6 +197,24 @@
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/random-forest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regularization</title>
+      <link>/tags/regularization/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ridge Regression</title>
+      <link>/tags/ridge-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ridge-regression/</guid>
       <description></description>
     </item>
     

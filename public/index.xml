@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Deal Multicollinearity with Ridge Regression</title>
+      <link>/mlpost/deal-multicollinearity-with-ridge-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/deal-multicollinearity-with-ridge-regression/</guid>
+      <description>body {text-align: justify}Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &amp;gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used).</description>
+    </item>
+    
+    <item>
       <title>Quantile Regression in Medical Expenditures</title>
       <link>/mlpost/quantile-regression-in-medical-expenditures/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
