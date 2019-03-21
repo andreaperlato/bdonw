@@ -17,7 +17,7 @@
       <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/mlpost/deal-outliers-with-robust-regression/</guid>
-      <description>body {text-align: justify}This is a regression technique that can helps us alleviate the problem of outliers.</description>
+      <description>body {text-align: justify}This is a regression technique that can helps us alleviate the problem of outliers. Robust Regression is a family of regression techniques that is really quite immune to the presence of outliers. Least Trimmed Squares Regression is a technique that fit a regression function and is not effected by the presence of outliers. Least Trimmed Squares Regression attempts to minimise the sum of squared residuals over a subset of k points.</description>
     </item>
     
   </channel>

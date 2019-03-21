@@ -16,3 +16,51 @@ text-align: justify}
 </style>
 
 This is a regression technique that can helps us alleviate the problem of outliers.
+Robust Regression is a family of regression techniques that is really quite immune to the presence of outliers.
+[**Least Trimmed Squares Regression**](https://en.wikipedia.org/wiki/Least_trimmed_squares) is a technique that fit a regression function and is not effected by the presence of outliers. Least Trimmed Squares Regression attempts to minimise the sum of squared residuals over a subset of k points.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(mlbench)
+library(robustbase)
+data(BostonHousing)
+str(BostonHousing)
+
+reg1 <- lm(medv ~., data =BostonHousing)
+summary(reg1)
+
+plot(reg1)
+
+```
+
+As we can see from the results above, most of the predictor are statistically significant. The Adjsted R-squared values is 0.73, and the p-value is less than 0.05 which make the model statistically significant. The model explain the 73% of variation of the response variable.
+Looking at the last graph **resuduals vs. leverage**, it sayas to us that observations 369 and 373 are outliers. We can also test is and run a Robust Regression.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '80%'}
+library(car)
+outlierTest(reg1) #identify the outlier data pts
+
+library(robustbase)
+ltsFit = ltsReg(medv ~., data =BostonHousing)
+summary(ltsFit)
+
+```
+
+The key thing that we can see from the result above is that the Adjusted R-Squared value is grown up to 0.82, now 83% of the variation of the response variable is expained ny predictors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
