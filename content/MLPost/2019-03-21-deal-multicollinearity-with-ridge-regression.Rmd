@@ -84,7 +84,7 @@ rsq <- 1 - sse / sst
 rsq
 
 ```
-As we can see from the R-quared value **rsq**, now we have an optimal model that has accounted for 96% of the variance in the training set.
+As we can see from the R-squared value **rsq**, now we have an optimal model that has accounted for 96% of the variance in the training set.
 We were able to obtain this result using all the predictiors, and we obtained a very good job in predicting house price, having a model that explain 96% of the variation n the house price.
 
 
