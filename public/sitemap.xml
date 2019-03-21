@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/mlpost/deal-outliers-with-robust-regression/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/quantile-regression-in-medical-expenditures/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
   </url>
@@ -289,6 +294,12 @@
   </url>
   
   <url>
+    <loc>/tags/outliers/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/probability/</loc>
     <lastmod>2019-01-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -308,6 +319,12 @@
   
   <url>
     <loc>/tags/ridge-regression/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/rubust-regression/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

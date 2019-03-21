@@ -1,0 +1,18 @@
+---
+title: Deal Outliers with Robust Regression
+author: andrea perlato
+date: '2019-03-21'
+slug: deal-outliers-with-robust-regression
+categories:
+  - machine learning
+tags:
+  - rubust regression
+  - outliers
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+This is a regression technique that can helps us alleviate the problem of outliers.

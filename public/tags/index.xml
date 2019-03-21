@@ -183,6 +183,15 @@
     </item>
     
     <item>
+      <title>Outliers</title>
+      <link>/tags/outliers/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/outliers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Probability</title>
       <link>/tags/probability/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
@@ -215,6 +224,15 @@
       <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/ridge-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rubust Regression</title>
+      <link>/tags/rubust-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rubust-regression/</guid>
       <description></description>
     </item>
     

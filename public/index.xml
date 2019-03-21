@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Deal Outliers with Robust Regression</title>
+      <link>/mlpost/deal-outliers-with-robust-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/deal-outliers-with-robust-regression/</guid>
+      <description>body {text-align: justify}This is a regression technique that can helps us alleviate the problem of outliers.</description>
+    </item>
+    
+    <item>
       <title>Quantile Regression in Medical Expenditures</title>
       <link>/mlpost/quantile-regression-in-medical-expenditures/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Outliers on Andrea Perlato</title>
+    <link>/tags/outliers/</link>
+    <description>Recent content in Outliers on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/outliers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deal Outliers with Robust Regression</title>
+      <link>/mlpost/deal-outliers-with-robust-regression/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/deal-outliers-with-robust-regression/</guid>
+      <description>body {text-align: justify}This is a regression technique that can helps us alleviate the problem of outliers.</description>
+    </item>
+    
+  </channel>
+</rss>
