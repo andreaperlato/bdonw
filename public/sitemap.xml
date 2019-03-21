@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/deal-multicollinearity-with-lasso-regression/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/deal-multicollinearity-with-ridge-regression/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
   </url>
@@ -232,6 +237,12 @@
   <url>
     <loc>/tags/kmean/</loc>
     <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/lasso-regression/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

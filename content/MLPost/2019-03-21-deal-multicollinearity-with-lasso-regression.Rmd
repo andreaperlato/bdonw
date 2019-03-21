@@ -1,0 +1,43 @@
+---
+title: Deal Multicollinearity with LASSO Regression
+author: andrea perlato
+date: '2019-03-21'
+slug: deal-multicollinearity-with-lasso-regression
+categories:
+  - machine learning
+tags:
+  - lasso regression
+  - multicollinearity
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF > 10 then multicollinearity is high (a cutoff of 5 is also commonly used). </br>
+To reduce multicollinearity we can use regularization that means to keep all the features but reducing the magnitude of the coefficients of the model. **This is a good solution when each predictor contributes to predict the dependent variable**. </br>
+
+LASSO Regression is similar to RIDGE REGRESSION except to a very important difference.
+The **Penalty Function** now is: lambda*|slope| </br>
+The result is very similar to the result given by the **Ridge Regression**. Both can be used in logistic regression, regression with discrete values and regression with interaction. </br>
+The big difference between **Ridge** and **LASSO** start to be clear when we **increase** the value on **Lambda**.
+
+The advantage of this is clear when we have LOTS of PARAMETERS in the model: </br>
+In **Ridge**, when we increase the value of LAMBDA, the most important parameters might shrink a little bit and the **less important parameter stay at high value**. In contrast, with **LASSO** when we increase the value of LAMBDA the most important parameters shrink a little bit and the **less important parameters goes closed to ZERO**. </br>
+**So, LASSO is able to exclude silly parameters from the model**. </br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

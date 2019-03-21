@@ -1,0 +1,21 @@
+---
+title: Deal Multicollinearity with LASSO Regression
+author: andrea perlato
+date: '2019-03-21'
+slug: deal-multicollinearity-with-lasso-regression
+categories:
+  - machine learning
+tags:
+  - lasso regression
+  - multicollinearity
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used). </br> To reduce multicollinearity we can use regularization that means to keep all the features but reducing the magnitude of the coefficients of the model. <strong>This is a good solution when each predictor contributes to predict the dependent variable</strong>. </br></p>
+<p>LASSO Regression is similar to RIDGE REGRESSION except to a very important difference. The <strong>Penalty Function</strong> now is: lambda*|slope| </br> The result is very similar to the result given by the <strong>Ridge Regression</strong>. Both can be used in logistic regression, regression with discrete values and regression with interaction. </br> The big difference between <strong>Ridge</strong> and <strong>LASSO</strong> start to be clear when we <strong>increase</strong> the value on <strong>Lambda</strong>.</p>
+<p>The advantage of this is clear when we have LOTS of PARAMETERS in the model: </br> In <strong>Ridge</strong>, when we increase the value of LAMBDA, the most important parameters might shrink a little bit and the <strong>less important parameter stay at high value</strong>. In contrast, with <strong>LASSO</strong> when we increase the value of LAMBDA the most important parameters shrink a little bit and the <strong>less important parameters goes closed to ZERO</strong>. </br> <strong>So, LASSO is able to exclude silly parameters from the model</strong>. </br></p>
