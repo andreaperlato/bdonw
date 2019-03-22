@@ -132,7 +132,50 @@ observed 2.123046e-16                               3.681739e-33
 estimate 2.123046e-16                               8.832898e-34</code></pre>
 <pre class="r"><code>vis.gam(mod_gam3, type=&#39;response&#39;, plot.type=&#39;persp&#39;,
              phi=30, theta=30,n.grid=500, border=NA)</code></pre>
-<p><img src="/MLPost/2019-03-22-generalized-addictive-models-gams_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> The model <strong>mod_gam3</strong> uses the <a href="https://en.wikipedia.org/wiki/Tensor"><strong>tensor</strong></a> smooth for predictors. If we look at the concurvity, in the worst case scenario <strong>Grazing.Footprint</strong> and <strong>Forest.Land</strong> have a strog relationship, but looking at the observed estimation the correlation is not very strong. The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details.</p>
+<p><img src="/MLPost/2019-03-22-generalized-addictive-models-gams_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> The model <strong>mod_gam3</strong> uses the <a href="https://en.wikipedia.org/wiki/Tensor"><strong>tensor</strong></a> smooth for predictors. If we look at the concurvity, in the worst case scenario <strong>Grazing.Footprint</strong> and <strong>Forest.Land</strong> have a strog relationship, but looking at the observed estimation the correlation is not very strong. The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details. </br></p>
+<p>Now, we try to use the R <a href="https://cran.r-project.org/web/packages/caret/vignettes/caret.html"><strong>library caret()</strong></a> to tune parameters. By default it uses the <a href="https://en.wikipedia.org/wiki/Smoothing_spline"><strong>smooth spline</strong></a> to mdel the relationship between response variable and independent variables. We use Leave One Out cross validation for the trainin set. </br> We also use GCV as smoothing parameter.</p>
+<pre class="r"><code># Instead of splines specify tensor product smooth
+library(caret)
+
+b = train(BiocapacityT ~ ., 
+           data = eco,
+           method = &quot;gam&quot;,
+           trControl = trainControl(method = &quot;LOOCV&quot;, number = 1, repeats = 1), # use leave one out cross validation
+           tuneGrid = data.frame(method = &quot;GCV.Cp&quot;, select = FALSE))
+
+
+summary(b$finalModel)</code></pre>
+<pre><code>
+Family: gaussian 
+Link function: identity 
+
+Formula:
+.outcome ~ s(Urban.Land) + s(HDI) + s(Grazing.Footprint) + s(Cropland) + 
+    s(Forest.Land) + s(Carbon.Footprint) + s(Population) + s(GDP)
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.61185    0.06785   53.23   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Approximate significance of smooth terms:
+                       edf Ref.df        F p-value    
+s(Urban.Land)        1.000  1.000    0.000   1.000    
+s(HDI)               1.598  1.993    1.164   0.320    
+s(Grazing.Footprint) 8.306  8.827   16.729  &lt;2e-16 ***
+s(Cropland)          3.270  3.934   59.088  &lt;2e-16 ***
+s(Forest.Land)       4.457  4.997 3271.685  &lt;2e-16 ***
+s(Carbon.Footprint)  1.000  1.000    0.036   0.850    
+s(Population)        1.479  1.768    0.421   0.524    
+s(GDP)               2.104  2.583    1.044   0.336    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+R-sq.(adj) =  0.991   Deviance explained = 99.2%
+GCV = 0.87676  Scale est. = 0.74572   n = 162</code></pre>
+<p>From the resut above wefound the most significant predictors, and we reached an Adjusted R-squared of 99% as before. We can now, use again the library caret() to deal with <strong>Concurvity</strong> and <strong>Collinearity</strong>.</p>
+<p>About the <strong>smoothing parameter GCV</strong> we can say that both <strong>REML</strong> and <strong>GCV</strong> try to do the same thing. It has been shown that GCV will select optimal smoothing parameters (in the sense of low prediction error) when the sample size is infinite. </br> At smaller (finite) sample sizes GCV can develop multiple minima making optimisation difficult and therefore tends to give more variable estimates of the smoothing parameter. If <strong>GCV</strong> is prone to undersmoothing at finite sample sizes, then we will end up fitting models that are more wiggly than we want, thought it best to switch to <strong>REML</strong> by default to avoid potential overfitting and highly variable smoothing parameter estimates.</p>
 
     </div>
   </article>
@@ -169,6 +212,9 @@ estimate 2.123046e-16                               8.832898e-34</code></pre>
 
 
     
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
     
   </body>

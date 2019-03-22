@@ -49,7 +49,6 @@ one aspect with GAMs is the [**Concurvity**](https://stat.ethz.ch/R-manual/R-dev
 In this case it refers to the situation where a smooth term can be approximated by some combination of the others. </br>
 Can lead to unstable estimates. If fact, **Concurvity** can be viewed as a generalization of co-linearity, and causes similar problems of interpretation. We have to drop one of the variable with concurvity.
 
-
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 # Instead of splines specify tensor product smooth
 mod_gam3 <- gam(BiocapacityT ~ te(Grazing.Footprint, Cropland, Forest.Land), data=eco)
@@ -60,15 +59,32 @@ vis.gam(mod_gam3, type='response', plot.type='persp',
 
 ```
 The model **mod_gam3** uses the [**tensor**](https://en.wikipedia.org/wiki/Tensor) smooth for predictors. If we look at the concurvity, in the worst case scenario **Grazing.Footprint** and **Forest.Land** have a strog relationship, but looking at the observed estimation the correlation is not very strong.
-The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details.
+The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details. </br>
+
+Now, we try to use the R [**library caret()**](https://cran.r-project.org/web/packages/caret/vignettes/caret.html) to tune parameters. By default it uses the [**smooth spline**](https://en.wikipedia.org/wiki/Smoothing_spline) to mdel the relationship between response variable and independent variables. We use Leave One Out cross validation for the trainin set. </br>
+We also use GCV as smoothing parameter.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Instead of splines specify tensor product smooth
+library(caret)
+
+b = train(BiocapacityT ~ ., 
+           data = eco,
+           method = "gam",
+           trControl = trainControl(method = "LOOCV", number = 1, repeats = 1), # use leave one out cross validation
+           tuneGrid = data.frame(method = "GCV.Cp", select = FALSE))
 
 
+summary(b$finalModel)
 
+```
 
+From the resut above wefound the most significant predictors, and we reached an Adjusted R-squared of 99% as before.
+We can now, use again the library caret() to deal with **Concurvity** and **Collinearity**.
 
-
-
-
+About the **smoothing parameter GCV** we can say that both **REML** and **GCV** try to do the same thing.
+It has been shown that GCV will select optimal smoothing parameters (in the sense of low prediction error) when the sample size is infinite. </br> 
+At smaller (finite) sample sizes GCV can develop multiple minima making optimisation difficult and therefore tends to give more variable estimates of the smoothing parameter. If **GCV** is prone to undersmoothing at finite sample sizes, then we will end up fitting models that are more wiggly than we want, thought it best to switch to **REML** by default to avoid potential overfitting and highly variable smoothing parameter estimates.
 
 
 
