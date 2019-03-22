@@ -59,7 +59,7 @@ vis.gam(mod_gam3, type='response', plot.type='persp',
              phi=30, theta=30,n.grid=500, border=NA)
 
 ```
-The model **mod_gam3** uses the [**tensor**](https://www.youtube.com/watch?v=CliW7kSxxWU) smooth for predictors. If we look at the concurvity, in the worst case scenario **Grazing.Footprint** and **Forest.Land** have a strog relationship, but looking at the observed estimation the correlation is not very strong.
+The model **mod_gam3** uses the [**tensor**](https://en.wikipedia.org/wiki/Tensor) smooth for predictors. If we look at the concurvity, in the worst case scenario **Grazing.Footprint** and **Forest.Land** have a strog relationship, but looking at the observed estimation the correlation is not very strong.
 The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details.
 
 
