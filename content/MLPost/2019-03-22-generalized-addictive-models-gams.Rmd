@@ -52,14 +52,24 @@ Can lead to unstable estimates. If fact, **Concurvity** can be viewed as a gener
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 # Instead of splines specify tensor product smooth
-mod_gam3 <- gam(BiocapacityT ~ te(Grazing.Footprint, Cropland,Forest.Land), data=eco)
+mod_gam3 <- gam(BiocapacityT ~ te(Grazing.Footprint, Cropland, Forest.Land), data=eco)
 concurvity(mod_gam3)
 
 vis.gam(mod_gam3, type='response', plot.type='persp',
              phi=30, theta=30,n.grid=500, border=NA)
 
 ```
-The model **mod_gam3** uses the [**tensor**](https://www.youtube.com/watch?v=CliW7kSxxWU) smooth for predictors.
+The model **mod_gam3** uses the [**tensor**](https://www.youtube.com/watch?v=CliW7kSxxWU) smooth for predictors. If we look at the concurvity, in the worst case scenario **Grazing.Footprint** and **Forest.Land** have a strog relationship, but looking at the observed estimation the correlation is not very strong.
+The 3D visualization there is aportion that has come down (in red), and we can conclude for some extend that the predictors not contribute to the biocapacoty, and so we have to look to our data into more details.
+
+
+
+
+
+
+
+
+
 
 
 
