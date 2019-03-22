@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Generalized Addictive Models GAMs - Andrea Perlato</title>
+<meta property="og:title" content="Generalized Addictive Models GAMs - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Generalized Addictive Models GAMs</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Generalized Addictive Models GAMs incorporates non linear form of predictions, and are useful when we have not linearity between response variable and predictors. <a href="https://en.wikipedia.org/wiki/Generalized_additive_model"><strong>GAMs</strong></a> doesn’t force the predictors to a square as in polynomial regression, but GAMes tries to do a smooth line. The data we use here is biocapacity of different countries.</p>
+<pre class="r"><code>library(psych)
+eco &lt;- read.csv(&quot;C:/07 - R Website/dataset/ML/biocap.csv&quot;)
+
+pairs.panels(eco, 
+             method = &quot;pearson&quot;, # correlation method
+             hist.col = &quot;#00AFBB&quot;,
+             density = TRUE,  # show density plots
+             ellipses = FALSE # show correlation ellipses
+             )</code></pre>
+<p><img src="/MLPost/2019-03-22-generalized-addictive-models-gams_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the scatterplot above, we can see we have quite curve relationship between <a href="https://en.wikipedia.org/wiki/Human_Development_Index"><strong>Human Development Index HDI</strong></a> and <a href="https://en.wikipedia.org/wiki/Gross_domestic_product"><strong>Gross domestic product GDP</strong></a>. Now we can try to build a Generalized Addictive Model with <strong>BiocapacityT</strong> as response variable.</p>
+<pre class="r"><code>library(mgcv)
+# GAM model
+mod_lm = gam(BiocapacityT ~ Population+HDI+Grazing.Footprint+Carbon.Footprint+
+                Cropland+Forest.Land+Urban.Land+GDP, data=eco)
+
+                summary(mod_lm)</code></pre>
+<pre><code>
+Family: gaussian 
+Link function: identity 
+
+Formula:
+BiocapacityT ~ Population + HDI + Grazing.Footprint + Carbon.Footprint + 
+    Cropland + Forest.Land + Urban.Land + GDP
+
+Parametric coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        5.356e-01  5.065e-01   1.058    0.292    
+Population        -3.230e-04  5.959e-04  -0.542    0.589    
+HDI               -8.647e-01  8.646e-01  -1.000    0.319    
+Grazing.Footprint  2.206e+00  2.535e-01   8.703 4.82e-15 ***
+Carbon.Footprint   1.611e-02  9.163e-02   0.176    0.861    
+Cropland           1.764e+00  1.496e-01  11.797  &lt; 2e-16 ***
+Forest.Land        1.098e+00  1.105e-02  99.364  &lt; 2e-16 ***
+Urban.Land        -2.958e+00  1.977e+00  -1.496    0.137    
+GDP                6.233e-06  8.969e-06   0.695    0.488    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+
+R-sq.(adj) =  0.985   Deviance explained = 98.6%
+GCV = 1.3504  Scale est. = 1.2754    n = 162</code></pre>
+<pre class="r"><code>                # concurvity(mod_lm)</code></pre>
+<p>From the summary results above, we can see tht GDP is not statistically significant. </br> one aspect with GAMs is the <a href="https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/concurvity.html"><strong>Concurvity</strong></a>. It refers to the generalization of collinearity to the GAM setting. </br> In this case it refers to the situation where a smooth term can be approximated by some combination of the others. </br> Can lead to unstable estimates. If fact, <strong>Concurvity</strong> can be viewed as a generalization of co-linearity, and causes similar problems of interpretation. We have to drop one of the variable with concurvity.</p>
+<pre class="r"><code># Instead of splines specify tensor product smooth
+mod_gam3 &lt;- gam(BiocapacityT ~ te(Grazing.Footprint, Cropland,Forest.Land), data=eco)
+concurvity(mod_gam3)</code></pre>
+<pre><code>                 para te(Grazing.Footprint,Cropland,Forest.Land)
+worst    2.123046e-16                               8.161468e-15
+observed 2.123046e-16                               3.681739e-33
+estimate 2.123046e-16                               8.832898e-34</code></pre>
+<pre class="r"><code>vis.gam(mod_gam3, type=&#39;response&#39;, plot.type=&#39;persp&#39;,
+             phi=30, theta=30,n.grid=500, border=NA)</code></pre>
+<p><img src="/MLPost/2019-03-22-generalized-addictive-models-gams_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> The model <strong>mod_gam3</strong> uses the <a href="https://www.youtube.com/watch?v=CliW7kSxxWU"><strong>tensor</strong></a> smooth for predictors.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

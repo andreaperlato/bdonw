@@ -1,0 +1,73 @@
+---
+title: Generalized Addictive Models GAMs
+author: andrea perlato
+date: '2019-03-22'
+slug: generalized-addictive-models-gams
+categories:
+  - machine learning
+tags:
+  - gams
+  - generalized addictive models
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Generalized Addictive Models GAMs incorporates non linear form of predictions, and are useful when we have not linearity between response variable and predictors. [**GAMs**](https://en.wikipedia.org/wiki/Generalized_additive_model) doesn't force the predictors to a square as in polynomial regression, but GAMes tries to do a smooth line.
+The data we use here is biocapacity of different countries.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(psych)
+eco <- read.csv("C:/07 - R Website/dataset/ML/biocap.csv")
+
+pairs.panels(eco, 
+             method = "pearson", # correlation method
+             hist.col = "#00AFBB",
+             density = TRUE,  # show density plots
+             ellipses = FALSE # show correlation ellipses
+             )
+
+```
+
+From the scatterplot above, we can see we have quite curve relationship between [**Human Development Index HDI**](https://en.wikipedia.org/wiki/Human_Development_Index) and [**Gross domestic product GDP**](https://en.wikipedia.org/wiki/Gross_domestic_product). Now we can try to build a Generalized Addictive Model with **BiocapacityT** as response variable.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(mgcv)
+# GAM model
+mod_lm = gam(BiocapacityT ~ Population+HDI+Grazing.Footprint+Carbon.Footprint+
+                Cropland+Forest.Land+Urban.Land+GDP, data=eco)
+
+                summary(mod_lm)
+                # concurvity(mod_lm)
+
+```
+
+From the summary results above, we can see tht GDP is not statistically significant. </br>
+one aspect with GAMs is the [**Concurvity**](https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/concurvity.html). It refers to the generalization of collinearity to the GAM setting. </br>
+In this case it refers to the situation where a smooth term can be approximated by some combination of the others. </br>
+Can lead to unstable estimates. If fact, **Concurvity** can be viewed as a generalization of co-linearity, and causes similar problems of interpretation. We have to drop one of the variable with concurvity.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Instead of splines specify tensor product smooth
+mod_gam3 <- gam(BiocapacityT ~ te(Grazing.Footprint, Cropland,Forest.Land), data=eco)
+concurvity(mod_gam3)
+
+vis.gam(mod_gam3, type='response', plot.type='persp',
+             phi=30, theta=30,n.grid=500, border=NA)
+
+```
+The model **mod_gam3** uses the [**tensor**](https://www.youtube.com/watch?v=CliW7kSxxWU) smooth for predictors.
+
+
+
+
+
+
+
+
+
+
+

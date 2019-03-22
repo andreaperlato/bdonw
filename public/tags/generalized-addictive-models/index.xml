@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Generalized Addictive Models on Andrea Perlato</title>
+    <link>/tags/generalized-addictive-models/</link>
+    <description>Recent content in Generalized Addictive Models on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/generalized-addictive-models/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generalized Addictive Models GAMs</title>
+      <link>/mlpost/generalized-addictive-models-gams/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/generalized-addictive-models-gams/</guid>
+      <description>body {text-align: justify}Generalized Addictive Models GAMs incorporates non linear form of predictions, and are useful when we have not linearity between response variable and predictors. GAMs doesn’t force the predictors to a square as in polynomial regression, but GAMes tries to do a smooth line. The data we use here is biocapacity of different countries.
+library(psych)eco &amp;lt;- read.csv(&amp;quot;C:/07 - R Website/dataset/ML/biocap.csv&amp;quot;)pairs.panels(eco, method = &amp;quot;pearson&amp;quot;, # correlation methodhist.</description>
+    </item>
+    
+  </channel>
+</rss>
