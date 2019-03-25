@@ -6,10 +6,19 @@
     <description>Recent content in Machine Learning on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fuzzy Matching Addresses to Prevent Fraudulent Application</title>
+      <link>/mlpost/fuzzy-matching-addresses-to-prevent-fraudulent-application/</link>
+      <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/fuzzy-matching-addresses-to-prevent-fraudulent-application/</guid>
+      <description>body {text-align: justify}Application fraud refers to fraud committed by submitting a new credit application with fraudulent details to a credit provider. Normally, fraudsters collect the personal and financial data of innocent users from the identity documents, pay slips, bank statements, and other source documents to commit the application fraud. The information collected from all these documents will be either forged or sometimes the document itself will be stolen illegally or the details in the documents will be changed for the purpose of submitting a new credit application.</description>
+    </item>
     
     <item>
       <title>Generalized Addictive Models GAMs</title>

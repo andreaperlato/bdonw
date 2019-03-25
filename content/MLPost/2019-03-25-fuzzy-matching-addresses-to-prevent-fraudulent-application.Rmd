@@ -1,0 +1,122 @@
+---
+title: Fuzzy Matching Addresses to Prevent Fraudulent Application
+author: andrea perlato
+date: '2019-03-25'
+slug: fuzzy-matching-addresses-to-prevent-fraudulent-application
+categories:
+  - machine learning
+tags:
+  - fuzzy matching
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Application fraud refers to fraud committed by submitting a new credit application with fraudulent details to a credit provider. Normally, fraudsters collect the personal and financial data of innocent users from the identity documents, pay slips, bank statements, and other source documents to commit the application fraud. The information collected from all these documents will be either forged or sometimes the document itself will be stolen illegally or the details in the documents will be changed for the purpose of submitting a new credit application. In recent years, the internet is serving as an appealing place to collect such information. If we have the addresses of the fraudulent application already encountered, we can prevent it matching these addresses with the adress of a new applicant.  </br>
+The most appropiate method to do this is via [**Fuzzy Matching**](https://en.wikipedia.org/wiki/Approximate_string_matching). It works with matches that may be less than 100% perfect when finding correspondences between segments of a text, in or case the text is the address of a house.
+
+Here below, is an example of the problem.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Creaate an Example of Addresses
+name_a <- c("Aldo", "Andrea", "Alberto", "Antonio", "Angelo")
+name_b <- c("Sara", "Serena", "Silvia", "Sonia", "Sissi")
+zip_street_a <- c("1204 Roma Street 8", "1204 Roma Street 8", "1204 Roma Street 8", "1204 Venezia street 10", "1204 Venezia Street 110")
+zip_street_b <- c("1204 Roma Street 81", "1204 Roma Street 8A", "1204 Roma Street 8B", "1204 Roma Street 8C", "1204 Venezia Street 10C")
+db_a <- data.frame(name_a, zip_street_a)
+db_b <- data.frame(name_b, zip_street_b)
+names(db_a)[names(db_a)=='zip_street_a'] <- 'zipstreet'
+names(db_b)[names(db_b)=='zip_street_b'] <- 'zipstreet'
+
+
+# Use Fuzzy Matching
+library(fuzzyjoin)
+library(dplyr)
+
+match_data <- stringdist_left_join(db_a, db_b,
+              by = "zipstreet", ignore_case = TRUE,
+              method = "jaccard",
+              max_dist = 1,
+              distance_col = "dist"
+) %>%
+group_by(zipstreet.x)
+
+match_data
+
+```
+
+The script works fine. But we would like to have different distance between the following address combinations: </br>
+
+a) 1204 Roma Street 8 vs. 1204 Roma Street 81 </br> 
+b) 1204 Roma Street 8 vs. 1204 Roma Street 8A </br>
+
+In fact, **Roma Street number 81** is very far from **Roma Street 8**. On the other hand, **Roma Street number 8A** is very close to **Roma Street number 8**. </br>
+So, we need to have a distance very close to 0 for 8A, and far from 0 for 81. </br>
+Summarizing: we would like afuzzy matching able to take into account also distance from numbers and combination of number with letters (e.g 88 is far from 8A but is close to 85). </br>
+
+To solve this, we can use a function to convert the house number.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+L2n <- function(x) {
+num <- gsub("[^[:digit:]]", "", x)
+letter <- gsub("[[:digit:]]", "", x)
+conv <- ifelse(letter == "",0,(utf8ToInt(letter) - utf8ToInt("A")+1L)*0.038)
+a <- as.double(num) + as.double(conv)
+return(a)
+}
+
+
+name_a <- c("Aldo", "Andrea", "Alberto", "Antonio", "Angelo")
+name_b <- c("Sara", "Serena", "Silvia", "Sonia", "Sissi")
+
+zip_street_a <- c("1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Venezia street", "1204 Venezia Street")
+zip_street_b <- c("1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Venezia Street")
+
+ 
+numbers_a <- c("8", "8", "8", "10", "110")
+numbers_b <- c("81", "8A", "8B", "8C", "10C")
+
+ 
+db_a <- data.frame(name_a, zip_street_a, numbers_a, stringsAsFactors = F)
+db_b <- data.frame(name_b, zip_street_b, numbers_b, stringsAsFactors = F)
+
+ 
+colnames(db_a) <- c("name","zipstreet","number")
+colnames(db_b) <- c("name","zipstreet","number")
+
+
+# Use Fuzzy Matching
+match_data <- stringdist_left_join(db_a, db_b,
+                                   by = "zipstreet", ignore_case = TRUE,
+                                   method = "jaccard",
+                                   max_dist = 1,
+                                   distance_col = "dist") %>%
+                                   mutate(numdist = abs(sapply(number.x, L2n) - sapply(number.y, L2n)))
+
+match_data
+
+```
+
+As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
