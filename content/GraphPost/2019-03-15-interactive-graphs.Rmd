@@ -76,7 +76,41 @@ ggplotly(gg_boxplot)
 
 ```
 
-When we hover the cursor over the boxplot we get information about the quantiles and the median as well. We can also appreciate the exact value of the outliers.
+When we hover the cursor over the boxplot we get information about the quantiles and the median as well. We can also appreciate the exact value of the outliers. </br>
+
+A very useful method to better understand the distribution of our datta is the jittering to avoid overplotting.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+df <- data.frame(x = sample(LETTERS[1:10], size = 1000, replace = T),
+                 y = sample(1:100, size = 1000, replace = T),
+                 group = sample(letters[1:5], size = 1000, replace = T))
+
+
+p <- ggplot(mtcars, aes(x = factor(gear), y = mpg, color = cyl)) +
+  geom_boxplot() + 
+  geom_jitter(size = 2) +
+  ggtitle("geom_jitter: boxplot")
+
+p <- ggplotly(p)
+p
+
+```
+
+Moreover, we can add some animation to the graph.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(gapminder)
+
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10()
+
+p <- ggplotly(p)
+p
+
+```
+
+The graph above shows in a very fancy way, the relationship between Life Expenditure and Grosso Domestic Product as a function of Continents. We can see how the relationship varies over the period. We can also decide to exclude the observations of one or more continent.
 
 
 
