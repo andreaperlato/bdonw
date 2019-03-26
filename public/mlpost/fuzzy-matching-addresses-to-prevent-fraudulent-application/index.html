@@ -138,28 +138,18 @@ return(a)
 # Create dataset
 name_a &lt;- c(&quot;Aldo&quot;, &quot;Andrea&quot;, &quot;Alberto&quot;, &quot;Antonio&quot;, &quot;Angelo&quot;)
 name_b &lt;- c(&quot;Sara&quot;, &quot;Serena&quot;, &quot;Silvia&quot;, &quot;Sonia&quot;, &quot;Sissi&quot;)
-
 zip_street_a &lt;- c(&quot;1204 Roma Street&quot;, &quot;1204 Roma Street&quot;, &quot;1204 Roma Street&quot;, &quot;1204 Venezia street&quot;, &quot;1204 Venezia Street&quot;)
 zip_street_b &lt;- c(&quot;1204 Roma Street&quot;, &quot;1204 Roma Street&quot;, &quot;1204 Roma Street&quot;, &quot;1204 Roma Street&quot;, &quot;1204 Venezia Street&quot;)
-
- 
 numbers_a &lt;- c(&quot;8&quot;, &quot;8&quot;, &quot;8&quot;, &quot;10&quot;, &quot;110&quot;)
 numbers_b &lt;- c(&quot;81&quot;, &quot;8A&quot;, &quot;8B&quot;, &quot;8C&quot;, &quot;10C&quot;)
-
- 
 # db_a &lt;- data.frame(name_a, zip_street_a, numbers_a, stringsAsFactors = F)
 # db_b &lt;- data.frame(name_b, zip_street_b, numbers_b, stringsAsFactors = F)
-
 db_a &lt;- data.frame(zip_street_a, numbers_a, stringsAsFactors = F)
 db_b &lt;- data.frame(zip_street_b, numbers_b, stringsAsFactors = F)
-
- 
 # colnames(db_a) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
 # colnames(db_b) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
-
 colnames(db_a) &lt;- c(&quot;zipstreet&quot;,&quot;number&quot;)
 colnames(db_b) &lt;- c(&quot;zipstreet&quot;,&quot;number&quot;)
-
 
 # Use Fuzzy Matching
 match_data &lt;- stringdist_left_join(db_a, db_b,
@@ -196,7 +186,7 @@ match_data</code></pre>
 23 1204 Venezia Street      110    1204 Roma Street       8B 0.375 101.924
 24 1204 Venezia Street      110    1204 Roma Street       8C 0.375 101.886
 25 1204 Venezia Street      110 1204 Venezia Street      10C 0.000  99.886</code></pre>
-<p>As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C. </br> The function <strong>L2n</strong> (letter to number) calculates the utf8 code of the letter that it is passed to, subtracts from this value the utf8 code of the letter “A” and adds to this value the number one to ensure that R’s indexing convention is observed, according to which the numbering of the letters starts at 1, and not at 0. </br> To calculate the distance we use the <strong>Jaccard distance</strong> which i one minus the quotient of shared N-grams and all observed N-grams. </br> We could also use the <strong>Levenshtein distance</strong> which is the minimal number of insertions, deletions and replacements needed for transforming string <strong>A</strong> into string <strong>B</strong>.</p>
+<p>As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C. </br> The function <strong>L2n</strong> (letter to number) calculates the utf8 code of the letter that it is passed to, subtracts from this value the utf8 code of the letter “A” and adds to this value the number one to ensure that R’s indexing convention is observed, according to which the numbering of the letters starts at 1, and not at 0. </br> To calculate the distance we use the <strong>Jaccard distance</strong> which is one minus the quotient of shared N-grams and all observed N-grams. </br> We could also use the <strong>Levenshtein distance</strong> which is the minimal number of insertions, deletions and replacements needed for transforming string <strong>A</strong> into string <strong>B</strong>.</p>
 
     </div>
   </article>

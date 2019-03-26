@@ -71,28 +71,18 @@ return(a)
 # Create dataset
 name_a <- c("Aldo", "Andrea", "Alberto", "Antonio", "Angelo")
 name_b <- c("Sara", "Serena", "Silvia", "Sonia", "Sissi")
-
 zip_street_a <- c("1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Venezia street", "1204 Venezia Street")
 zip_street_b <- c("1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Roma Street", "1204 Venezia Street")
-
- 
 numbers_a <- c("8", "8", "8", "10", "110")
 numbers_b <- c("81", "8A", "8B", "8C", "10C")
-
- 
 # db_a <- data.frame(name_a, zip_street_a, numbers_a, stringsAsFactors = F)
 # db_b <- data.frame(name_b, zip_street_b, numbers_b, stringsAsFactors = F)
-
 db_a <- data.frame(zip_street_a, numbers_a, stringsAsFactors = F)
 db_b <- data.frame(zip_street_b, numbers_b, stringsAsFactors = F)
-
- 
 # colnames(db_a) <- c("name","zipstreet","number")
 # colnames(db_b) <- c("name","zipstreet","number")
-
 colnames(db_a) <- c("zipstreet","number")
 colnames(db_b) <- c("zipstreet","number")
-
 
 # Use Fuzzy Matching
 match_data <- stringdist_left_join(db_a, db_b,
@@ -108,7 +98,7 @@ match_data
 
 As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C. </br>
 The function **L2n** (letter to number) calculates the utf8 code of the letter that it is passed to, subtracts from this value the utf8 code of the letter "A" and adds to this value the number one to ensure that R's indexing convention is observed, according to which the numbering of the letters starts at 1, and not at 0. </br>
-To calculate the distance we use the **Jaccard distance** which i one minus the quotient of shared N-grams and all observed N-grams. </br>
+To calculate the distance we use the **Jaccard distance** which is one minus the quotient of shared N-grams and all observed N-grams. </br>
 We could also use the **Levenshtein distance** which is the minimal number of insertions, deletions and replacements needed for transforming string **A** into string **B**.
 
 
