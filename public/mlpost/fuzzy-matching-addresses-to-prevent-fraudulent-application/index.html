@@ -126,7 +126,8 @@ match_data</code></pre>
 </ol>
 <p>In fact, <strong>Roma Street number 81</strong> is very far from <strong>Roma Street 8</strong>. On the other hand, <strong>Roma Street number 8A</strong> is very close to <strong>Roma Street number 8</strong>. </br> So, we need to have a distance very close to 0 for 8A, and far from 0 for 81. </br> Summarizing: we would like afuzzy matching able to take into account also distance from numbers and combination of number with letters (e.g 88 is far from 8A but is close to 85). </br></p>
 <p>To solve this, we can use a function to convert the house number.</p>
-<pre class="r"><code>L2n &lt;- function(x) {
+<pre class="r"><code># Convert letter to number
+L2n &lt;- function(x) {
 num &lt;- gsub(&quot;[^[:digit:]]&quot;, &quot;&quot;, x)
 letter &lt;- gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x)
 conv &lt;- ifelse(letter == &quot;&quot;,0,(utf8ToInt(letter) - utf8ToInt(&quot;A&quot;)+1L)*0.038)
@@ -134,7 +135,7 @@ a &lt;- as.double(num) + as.double(conv)
 return(a)
 }
 
-
+# Create dataset
 name_a &lt;- c(&quot;Aldo&quot;, &quot;Andrea&quot;, &quot;Alberto&quot;, &quot;Antonio&quot;, &quot;Angelo&quot;)
 name_b &lt;- c(&quot;Sara&quot;, &quot;Serena&quot;, &quot;Silvia&quot;, &quot;Sonia&quot;, &quot;Sissi&quot;)
 
@@ -146,12 +147,18 @@ numbers_a &lt;- c(&quot;8&quot;, &quot;8&quot;, &quot;8&quot;, &quot;10&quot;, &
 numbers_b &lt;- c(&quot;81&quot;, &quot;8A&quot;, &quot;8B&quot;, &quot;8C&quot;, &quot;10C&quot;)
 
  
-db_a &lt;- data.frame(name_a, zip_street_a, numbers_a, stringsAsFactors = F)
-db_b &lt;- data.frame(name_b, zip_street_b, numbers_b, stringsAsFactors = F)
+# db_a &lt;- data.frame(name_a, zip_street_a, numbers_a, stringsAsFactors = F)
+# db_b &lt;- data.frame(name_b, zip_street_b, numbers_b, stringsAsFactors = F)
+
+db_a &lt;- data.frame(zip_street_a, numbers_a, stringsAsFactors = F)
+db_b &lt;- data.frame(zip_street_b, numbers_b, stringsAsFactors = F)
 
  
-colnames(db_a) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
-colnames(db_b) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
+# colnames(db_a) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
+# colnames(db_b) &lt;- c(&quot;name&quot;,&quot;zipstreet&quot;,&quot;number&quot;)
+
+colnames(db_a) &lt;- c(&quot;zipstreet&quot;,&quot;number&quot;)
+colnames(db_b) &lt;- c(&quot;zipstreet&quot;,&quot;number&quot;)
 
 
 # Use Fuzzy Matching
@@ -163,59 +170,33 @@ match_data &lt;- stringdist_left_join(db_a, db_b,
                                    mutate(numdist = abs(sapply(number.x, L2n) - sapply(number.y, L2n)))
 
 match_data</code></pre>
-<pre><code>    name.x         zipstreet.x number.x name.y         zipstreet.y
-1     Aldo    1204 Roma Street        8   Sara    1204 Roma Street
-2     Aldo    1204 Roma Street        8 Serena    1204 Roma Street
-3     Aldo    1204 Roma Street        8 Silvia    1204 Roma Street
-4     Aldo    1204 Roma Street        8  Sonia    1204 Roma Street
-5     Aldo    1204 Roma Street        8  Sissi 1204 Venezia Street
-6   Andrea    1204 Roma Street        8   Sara    1204 Roma Street
-7   Andrea    1204 Roma Street        8 Serena    1204 Roma Street
-8   Andrea    1204 Roma Street        8 Silvia    1204 Roma Street
-9   Andrea    1204 Roma Street        8  Sonia    1204 Roma Street
-10  Andrea    1204 Roma Street        8  Sissi 1204 Venezia Street
-11 Alberto    1204 Roma Street        8   Sara    1204 Roma Street
-12 Alberto    1204 Roma Street        8 Serena    1204 Roma Street
-13 Alberto    1204 Roma Street        8 Silvia    1204 Roma Street
-14 Alberto    1204 Roma Street        8  Sonia    1204 Roma Street
-15 Alberto    1204 Roma Street        8  Sissi 1204 Venezia Street
-16 Antonio 1204 Venezia street       10   Sara    1204 Roma Street
-17 Antonio 1204 Venezia street       10 Serena    1204 Roma Street
-18 Antonio 1204 Venezia street       10 Silvia    1204 Roma Street
-19 Antonio 1204 Venezia street       10  Sonia    1204 Roma Street
-20 Antonio 1204 Venezia street       10  Sissi 1204 Venezia Street
-21  Angelo 1204 Venezia Street      110   Sara    1204 Roma Street
-22  Angelo 1204 Venezia Street      110 Serena    1204 Roma Street
-23  Angelo 1204 Venezia Street      110 Silvia    1204 Roma Street
-24  Angelo 1204 Venezia Street      110  Sonia    1204 Roma Street
-25  Angelo 1204 Venezia Street      110  Sissi 1204 Venezia Street
-   number.y  dist numdist
-1        81 0.000  73.000
-2        8A 0.000   0.038
-3        8B 0.000   0.076
-4        8C 0.000   0.114
-5       10C 0.375   2.114
-6        81 0.000  73.000
-7        8A 0.000   0.038
-8        8B 0.000   0.076
-9        8C 0.000   0.114
-10      10C 0.375   2.114
-11       81 0.000  73.000
-12       8A 0.000   0.038
-13       8B 0.000   0.076
-14       8C 0.000   0.114
-15      10C 0.375   2.114
-16       81 0.375  71.000
-17       8A 0.375   1.962
-18       8B 0.375   1.924
-19       8C 0.375   1.886
-20      10C 0.000   0.114
-21       81 0.375  29.000
-22       8A 0.375 101.962
-23       8B 0.375 101.924
-24       8C 0.375 101.886
-25      10C 0.000  99.886</code></pre>
-<p>As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C.</p>
+<pre><code>           zipstreet.x number.x         zipstreet.y number.y  dist numdist
+1     1204 Roma Street        8    1204 Roma Street       81 0.000  73.000
+2     1204 Roma Street        8    1204 Roma Street       8A 0.000   0.038
+3     1204 Roma Street        8    1204 Roma Street       8B 0.000   0.076
+4     1204 Roma Street        8    1204 Roma Street       8C 0.000   0.114
+5     1204 Roma Street        8 1204 Venezia Street      10C 0.375   2.114
+6     1204 Roma Street        8    1204 Roma Street       81 0.000  73.000
+7     1204 Roma Street        8    1204 Roma Street       8A 0.000   0.038
+8     1204 Roma Street        8    1204 Roma Street       8B 0.000   0.076
+9     1204 Roma Street        8    1204 Roma Street       8C 0.000   0.114
+10    1204 Roma Street        8 1204 Venezia Street      10C 0.375   2.114
+11    1204 Roma Street        8    1204 Roma Street       81 0.000  73.000
+12    1204 Roma Street        8    1204 Roma Street       8A 0.000   0.038
+13    1204 Roma Street        8    1204 Roma Street       8B 0.000   0.076
+14    1204 Roma Street        8    1204 Roma Street       8C 0.000   0.114
+15    1204 Roma Street        8 1204 Venezia Street      10C 0.375   2.114
+16 1204 Venezia street       10    1204 Roma Street       81 0.375  71.000
+17 1204 Venezia street       10    1204 Roma Street       8A 0.375   1.962
+18 1204 Venezia street       10    1204 Roma Street       8B 0.375   1.924
+19 1204 Venezia street       10    1204 Roma Street       8C 0.375   1.886
+20 1204 Venezia street       10 1204 Venezia Street      10C 0.000   0.114
+21 1204 Venezia Street      110    1204 Roma Street       81 0.375  29.000
+22 1204 Venezia Street      110    1204 Roma Street       8A 0.375 101.962
+23 1204 Venezia Street      110    1204 Roma Street       8B 0.375 101.924
+24 1204 Venezia Street      110    1204 Roma Street       8C 0.375 101.886
+25 1204 Venezia Street      110 1204 Venezia Street      10C 0.000  99.886</code></pre>
+<p>As we can see from the table above, noow the distrances between 8A, 8B, 8C are very closed to each other and the distance between 8A and 8B is less than 8A and 8C. </br> The function <strong>L2n</strong> (letter to number) calculates the utf8 code of the letter that it is passed to, subtracts from this value the utf8 code of the letter “A” and adds to this value the number one to ensure that R’s indexing convention is observed, according to which the numbering of the letters starts at 1, and not at 0. </br> To calculate the distance we use the <strong>Jaccard distance</strong> which i one minus the quotient of shared N-grams and all observed N-grams. </br> We could also use the <strong>Levenshtein distance</strong> which is the minimal number of insertions, deletions and replacements needed for transforming string <strong>A</strong> into string <strong>B</strong>.</p>
 
     </div>
   </article>
