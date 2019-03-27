@@ -77,7 +77,7 @@ f &lt;- function(x){
 means$y &lt;- f(means$x) # calculate fitted points
 groups &lt;- rbind(dat, means) 
 
-# Add the fitted point to the graph
+# Add the fitted point to the graph and the residual lines
 ggplot() + 
   geom_point(data=dat, aes(x=x, y=y)) + 
   stat_function(data=data.frame(x=c(-5,15)), aes(x=x), fun=f) + # define left and right extremes of the dataframe and plot the function f
@@ -88,4 +88,54 @@ ggplot() +
 sum((dat$y-means$y)^2)</code></pre>
 <pre><code>[1] 34582.44</code></pre>
 <p>as we can see above, now we have a mich smaller Sum of the Square Residuals equal to <strong>34582.44</strong>, and this is a much better fit. Now we can try to add one more degree and create a polynomial of degree three.</p>
-<p>The main difference between polynomial and spline is that polynomial regression gives a single polynomial that models your entire data set. Spline interpolation, however, yield a piecewise continuous function composed of many polynomials to model the data set.</p>
+<pre class="r"><code># Third degree polynomium
+lm(y ~ x + I(x^2) + I(x^3), data=dat)</code></pre>
+<pre><code>
+Call:
+lm(formula = y ~ x + I(x^2) + I(x^3), data = dat)
+
+Coefficients:
+(Intercept)            x       I(x^2)       I(x^3)  
+   -1.67268      2.49528      2.60142      0.02024  </code></pre>
+<pre class="r"><code># Define a function for the third degree polynomial
+f &lt;- function(x){
+     return(0.02024*x^3 + 2.60142*x^2 + 2.49528*x -1.67268)
+}
+
+means$y &lt;- f(means$x) # calculate fitted points
+groups &lt;- rbind(dat, means) 
+
+# Calculate the Sum of the Square Residual
+sum((dat$y-means$y)^2)</code></pre>
+<pre><code>[1] 34483.81</code></pre>
+<pre class="r"><code># Add the fitted point to the graph and the residual lines
+ggplot() + 
+  geom_point(data=dat, aes(x=x, y=y)) + 
+  stat_function(data=data.frame(x=c(-100,50)), aes(x=x), fun=f) + # define left and right extremes of the dataframe and plot the function f
+  geom_point(data=means, aes(x=x, y=y), color=&#39;red&#39;, size=2) + # add the fitted data points
+  geom_line(data=groups, aes(x=x, y=y, group=group))</code></pre>
+<p><img src="/MLPost/2019-03-27-polynomial-regression-smoothing-splines_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the code above, we can see that now with a thidr degree polynomial the Sum of the Square Residuals <strong>34483.81</strong>, is almost the same then before with the second degree polynomial, just slightly better. From the graph now we can see the cubit shape. What could we do now, is to get even better fit using <strong>cubic spline</strong>.</p>
+<p><strong>Smoothing Spline</strong> Instead of fitting a third degree polynomial to all of the data points we are zooming into a small regini of hte points and fitting a cubic polynomial there. Then, we moving on into a next small region and again we ftt a cubic polynomial. At the end we connect these little cubic polynomials so that we end up with a continuous smooth curve through the points. </br> The main difference between <strong>polynomial</strong> and <strong>spline</strong> is that polynomial regression gives a single polynomial that models your entire data set. Spline interpolation, however, yield a piecewise continuous function composed of many polynomials to model the data set.</p>
+<pre class="r"><code>library(splines)
+
+# Define smooth spline
+fit &lt;- smooth.spline(dat$x, dat$y, df=50) # put a value for degrees of freedom that control the rough of the curve
+
+# Define a function for the snoooth spline
+f &lt;- function(x){
+     return(predict(fit,x)$y)
+}
+
+# Calculate fitted points
+means$y &lt;- predict(fit,means$x)$y 
+
+# Calculate the Sum of the Square Residual
+sum((dat$y-means$y)^2)</code></pre>
+<pre><code>[1] 14244.2</code></pre>
+<pre class="r"><code># Add the fitted point to the graph
+ggplot() + 
+  geom_point(data=dat, aes(x=x, y=y)) + 
+  stat_function(data=data.frame(x=c(-2,14)), aes(x=x), fun=f) + # define left and right extremes of the dataframe and plot the function f
+  geom_point(data=means, aes(x=x, y=y), color=&#39;red&#39;, size=2)</code></pre>
+<p><img src="/MLPost/2019-03-27-polynomial-regression-smoothing-splines_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /> As we can see, now the Sum of the Square Residuals is drammatically decrease to <strong>14244.2</strong>, and the more wiggly is the trend curve. Now the trend curve is really trying to follow the data points. This is not a good thing, we have not to care about how well our model or our curve fits the data, because we have to care about of the data that we get in the future. </br> In the quadratic polynomial the model tend to follow the <strong>general shape</strong> of the dataset. On the oher hand if we look at the smooth spline with 50 degree of freedom, we are going away from falling just the <strong>general shape</strong> of the data. In other words, we are starting to follow the randomness of the data. This lead us to a very bad prediction because is too tied to the specific data points. </br> The quadratic function is the best solition in accordance with the <a href="https://en.wikipedia.org/wiki/Occam%27s_razor"><strong>Principle of Parsimony</strong></a> that says: simpler solutions are more likely to be correct than complex ones. </br> On the contrary the the smooth spline with 50 degree of freedom is an example of <strong>Overfitting</strong>, and this is definitely a danger to avoided.</p>
