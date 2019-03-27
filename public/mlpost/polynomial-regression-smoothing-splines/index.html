@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Polynomial Regression &amp; Smoothing Splines - Andrea Perlato</title>
+<meta property="og:title" content="Polynomial Regression &amp; Smoothing Splines - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Polynomial Regression &amp; Smoothing Splines</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><strong>Polynomial Linear Regression</strong> Polynomial Linear Regression fits a nonlinear relationship between the value of x and the corresponding conditional mean of y, and has been used to describe nonlinear phenomena such as the progression of disease epidemics. Although polynomial regression fits a nonlinear model to the data, as a statistical estimation problem it is linear, in the sense that the regression function is linear in the unknown parameters that are estimated from the data. It is a linear conbination of coefficients that are unknowns. For this reason, polynomial regression is considered to be a special case of multiple linear regression. </br> How to find the best fitting live from the graph above is the linear model method.</p>
+<pre class="r"><code>library(ggplot2)
+dat &lt;- read.csv(&quot;C:/07 - R Website/dataset/ML/Dat.csv&quot;, sep = &quot;;&quot;)
+
+# Linear regression
+lm(y ~ x, data=dat)</code></pre>
+<pre><code>
+Call:
+lm(formula = y ~ x, data = dat)
+
+Coefficients:
+(Intercept)            x  
+     -65.27        34.04  </code></pre>
+<p>Having the coefficinet of the linear model, calculated above, we can plot the trend line.</p>
+<pre class="r"><code>f &lt;- function(x){
+     return(34.04*x-65.27)
+}
+
+ggplot() + 
+  geom_point(data=dat, aes(x=x, y=y)) + 
+  stat_function(data=data.frame(x=c(-5,15)), aes(x=x), fun=f) # define left and right extremes of the dataframe and plot the function f</code></pre>
+<p><img src="/MLPost/2019-03-27-polynomial-regression-smoothing-splines_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now that we have the linear trend, we can go along the least squares line, and for each we get the point that correspond to it on the trend line.</p>
+<pre class="r"><code>x &lt;- dat$x
+y &lt;- f(x) # f is the function defined above based on the fitting line
+means &lt;- data.frame(x,y) # create a data frame with values of x and the fitted values of y
+
+dat$group &lt;- 1:100 # create a vectro from 1 to 100
+means$group &lt;- 1:100 # create a vectro from 1 to 100
+groups &lt;- rbind(dat, means)
+
+
+
+# Add the fitted point to the graph
+ggplot() + 
+  geom_point(data=dat, aes(x=x, y=y)) + 
+  stat_function(data=data.frame(x=c(-5,15)), aes(x=x), fun=f) + # define left and right extremes of the dataframe and plot the function f
+  geom_point(data=means, aes(x=x, y=y), color=&#39;red&#39;, size=2) + # add the fitted data points
+  geom_line(data=groups, aes(x=x, y=y, group=group))</code></pre>
+<p><img src="/MLPost/2019-03-27-polynomial-regression-smoothing-splines_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Calculate the Sum of the Square Residual
+sum((dat$y-means$y)^2)</code></pre>
+<pre><code>[1] 158423.5</code></pre>
+<p>The distances that we plotted above are the residuals, and if we want to understand how well the trend line fits the data, we have to square ech of the black lines (residuals) shown in the graph above, then sum up all of them and this process is called Resuduals Sum of Square. From this calculation we found <strong>158423.5</strong> which is a very high value. We can try to fit another kind of polynomium, but not a line in order to get a better fit. </br> So, now we try to fit a quadratic polynomium and a polynomial of degree three.</p>
+<pre class="r"><code># Second degree polynomium
+lm(y ~ x + I(x^2), data=dat)</code></pre>
+<pre><code>
+Call:
+lm(formula = y ~ x + I(x^2), data = dat)
+
+Coefficients:
+(Intercept)            x       I(x^2)  
+    -0.5685       0.9719       2.9522  </code></pre>
+<pre class="r"><code># Define a function for the polynomial
+f &lt;- function(x){
+     return(2.9522*x^2+0.9719*x-0.5685)
+}
+
+means$y &lt;- f(means$x) # calculate fitted points
+groups &lt;- rbind(dat, means) 
+
+# Add the fitted point to the graph
+ggplot() + 
+  geom_point(data=dat, aes(x=x, y=y)) + 
+  stat_function(data=data.frame(x=c(-5,15)), aes(x=x), fun=f) + # define left and right extremes of the dataframe and plot the function f
+  geom_point(data=means, aes(x=x, y=y), color=&#39;red&#39;, size=2) + # add the fitted data points
+  geom_line(data=groups, aes(x=x, y=y, group=group))</code></pre>
+<p><img src="/MLPost/2019-03-27-polynomial-regression-smoothing-splines_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Calculate the Sum of the Square Residual
+sum((dat$y-means$y)^2)</code></pre>
+<pre><code>[1] 34582.44</code></pre>
+<p>as we can see above, now we have a mich smaller Sum of the Square Residuals equal to <strong>34582.44</strong>, and this is a much better fit. Now we can try to add one more degree and create a polynomial of degree three.</p>
+<p>The main difference between polynomial and spline is that polynomial regression gives a single polynomial that models your entire data set. Spline interpolation, however, yield a piecewise continuous function composed of many polynomials to model the data set.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Polynomial Regression on Andrea Perlato</title>
+    <link>/tags/polynomial-regression/</link>
+    <description>Recent content in Polynomial Regression on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/polynomial-regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Polynomial Regression &amp; Smoothing Splines</title>
+      <link>/mlpost/polynomial-regression-smoothing-splines/</link>
+      <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/polynomial-regression-smoothing-splines/</guid>
+      <description>body {text-align: justify}Polynomial Linear Regression Polynomial Linear Regression fits a nonlinear relationship between the value of x and the corresponding conditional mean of y, and has been used to describe nonlinear phenomena such as the progression of disease epidemics. Although polynomial regression fits a nonlinear model to the data, as a statistical estimation problem it is linear, in the sense that the regression function is linear in the unknown parameters that are estimated from the data.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/polynomial-regression-smoothing-splines/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/fuzzy-matching-addresses-to-prevent-fraudulent-application/</loc>
     <lastmod>2019-03-25T00:00:00+00:00</lastmod>
   </url>
@@ -287,13 +292,13 @@
   
   <url>
     <loc>/mlpost/</loc>
-    <lastmod>2019-03-25T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2019-03-25T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -324,6 +329,12 @@
   <url>
     <loc>/tags/outliers/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/polynomial-regression/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -360,6 +371,12 @@
   <url>
     <loc>/tags/simulation/</loc>
     <lastmod>2019-01-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/smoothing-splines/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

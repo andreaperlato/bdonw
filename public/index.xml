@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Polynomial Regression &amp; Smoothing Splines</title>
+      <link>/mlpost/polynomial-regression-smoothing-splines/</link>
+      <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/polynomial-regression-smoothing-splines/</guid>
+      <description>body {text-align: justify}Polynomial Linear Regression Polynomial Linear Regression fits a nonlinear relationship between the value of x and the corresponding conditional mean of y, and has been used to describe nonlinear phenomena such as the progression of disease epidemics. Although polynomial regression fits a nonlinear model to the data, as a statistical estimation problem it is linear, in the sense that the regression function is linear in the unknown parameters that are estimated from the data.</description>
+    </item>
+    
+    <item>
       <title>Fuzzy Matching Addresses to Prevent Fraudulent Application</title>
       <link>/mlpost/fuzzy-matching-addresses-to-prevent-fraudulent-application/</link>
       <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
