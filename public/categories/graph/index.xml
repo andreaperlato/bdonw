@@ -6,10 +6,19 @@
     <description>Recent content in Graph on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/graph/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive Dashboard</title>
+      <link>/graphpost/interactive-dashboard/</link>
+      <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/interactive-dashboard/</guid>
+      <description>body {text-align: justify}A lot of the times when dashboards are implemented they are with a very specific dataset. The problem with this is that we have to rebuild them from scratch every time. The advantage to use shiny is the possibility to create interactive dashboard or webapp without, and reusing the code already wirtten we can adapt it with new data. Here below, there are some examples of interactive dashboards.</description>
+    </item>
     
     <item>
       <title>Interactive Graphs</title>

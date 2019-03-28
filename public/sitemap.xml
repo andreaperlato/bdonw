@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/graphpost/interactive-dashboard/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/polynomial-regression-smoothing-splines/</loc>
     <lastmod>2019-03-27T00:00:00+00:00</lastmod>
   </url>
@@ -201,6 +206,12 @@
   </url>
   
   <url>
+    <loc>/tags/flexdashboard/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/forecasting/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -231,6 +242,12 @@
   </url>
   
   <url>
+    <loc>/tags/ggplotly/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/gradient-descent/</loc>
     <lastmod>2019-02-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -238,13 +255,13 @@
   
   <url>
     <loc>/categories/graph/</loc>
-    <lastmod>2019-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/graphpost/</loc>
-    <lastmod>2019-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -333,6 +350,12 @@
   </url>
   
   <url>
+    <loc>/tags/plotly/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/polynomial-regression/</loc>
     <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -365,6 +388,12 @@
   <url>
     <loc>/tags/rubust-regression/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shiny/</loc>
+    <lastmod>2019-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
