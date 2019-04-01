@@ -237,6 +237,15 @@
     </item>
     
     <item>
+      <title>Pca</title>
+      <link>/tags/pca/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Plotly</title>
       <link>/tags/plotly/</link>
       <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
@@ -251,6 +260,15 @@
       <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/polynomial-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Principal Component Analysis</title>
+      <link>/tags/principal-component-analysis/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/principal-component-analysis/</guid>
       <description></description>
     </item>
     

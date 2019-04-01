@@ -1,0 +1,102 @@
+---
+title: Principal Component Analysis
+author: andrea perlato
+date: '2019-04-01'
+slug: principal-component-analysis
+categories:
+  - machine learning
+tags:
+  - PCA
+  - Principal Component Analysis
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Principal Component Analysis PCA is a deterministic method (given an input will always produce the same output). </br> It is always good to perform a PCA: Principal Components Analysis (PCA) is a data reduction technique that transforms a larger number of correlated variables into a much smaller set of uncorrelated variables called PRINCIPAL COMPONENTS. For example, we might use PCA to transform many correlated (and possibly redundant) variables into a less number of uncorrelated variables that retain as much information from the original set of variables.</p>
+<pre class="r"><code>data(iris)
+summary(iris)</code></pre>
+<pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+       Species  
+ setosa    :50  
+ versicolor:50  
+ virginica :50  
+                
+                
+                </code></pre>
+<p>We are using the <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><strong>iris</strong></a> dataset with 4 numerical variables and 1 factor which has 3 levels as described above. We can also see that the numerical variables have different ranges, it is a good pratice to normalize the data.</p>
+<pre class="r"><code># Partition Data
+set.seed(111)
+ind &lt;- sample(2, nrow(iris),
+              replace = TRUE,
+              prob = c(0.8, 0.2))
+
+training &lt;- iris[ind==1,]
+testing &lt;- iris[ind==2,]
+
+# Scatter Plot &amp; Correlations
+library(psych)
+pairs.panels(training[,-5], # not use the factor variable
+             gap = 0,       # is the gap between the scatterplot
+             bg = c(&quot;red&quot;, &quot;yellow&quot;, &quot;blue&quot;)[training$Species],
+             pch=21)</code></pre>
+<p><img src="/MLPost/2019-04-01-principal-component-analysis_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As we can see above, we have the correlation among the variables in the training data. We also colored the observations based on <strong>species</strong> (setosa, versicolor, virginica). On the upper corner we can also see the correlation coefficient, and in the main diagonal the distribution of the variables. It is evident here that <strong>Petal.Length</strong> and <strong>Petal.Width</strong> are positive correlated with an R-squared of <strong>0.97</strong>, very closed to 1. On the other hand, we see a correlation almost close to 0 between <strong>Sepal.Length</strong> and <strong>Sepal.Width</strong>. Overall, in three cases we have very high correlations. </br> High correlations among independent variables lead to <a href="https://en.wikipedia.org/wiki/Multicollinearity"><strong>Multicollinearity</strong></a> problem. It is the phenomenon in which one predictor can be linearly predict from others with a substantial degree of accuracy. In this situation, the coefficients estimated may change erratically in response to small changes of the model. To prevent it, one of the approches is the PCA.</p>
+<pre class="r"><code># Principal Component Analysis
+pc &lt;- prcomp(training[,-5],
+             center = TRUE, # convert the data in order to have an average of zero
+             scale. = TRUE) # before pca normalize the variales
+           
+# attributes(pc) # see attributes
+# pc$center
+# pc$scale
+print(pc) # show sd and loadings</code></pre>
+<pre><code>Standard deviations (1, .., p=4):
+[1] 1.7173318 0.9403519 0.3843232 0.1371332
+
+Rotation (n x k) = (4 x 4):
+                    PC1         PC2        PC3        PC4
+Sepal.Length  0.5147163 -0.39817685  0.7242679  0.2279438
+Sepal.Width  -0.2926048 -0.91328503 -0.2557463 -0.1220110
+Petal.Length  0.5772530 -0.02932037 -0.1755427 -0.7969342
+Petal.Width   0.5623421 -0.08065952 -0.6158040  0.5459403</code></pre>
+<pre class="r"><code>summary(pc)</code></pre>
+<pre><code>Importance of components:
+                          PC1    PC2     PC3    PC4
+Standard deviation     1.7173 0.9404 0.38432 0.1371
+Proportion of Variance 0.7373 0.2211 0.03693 0.0047
+Cumulative Proportion  0.7373 0.9584 0.99530 1.0000</code></pre>
+<p>Using the function <strong>print(pc)</strong> we can see the standard deviation and also the <strong>Loading Score</strong> (in the resul above are called Rotation): from the distance on x axis and the distance from y axis is possible to use the Pythagorean Theorem to find the hypotenuse of each observation and we scale it to a unit of one: this is called <strong>Singular Vector</strong> or <strong>Eigenvector</strong> for Principal Component One. This calculation that we make for all the observations is called <strong>Loading Scores</strong>. The square root of the eigenvector for PC1 is called the Singular Value for PC1. </br> Moreover, from the <strong>summary(pc)</strong> we have the standard deviation, and the <strong>Proportional of Variance</strong> that says PC1 explain the <strong>73.73%</strong> of the variability. The second principal component PC2 captures the 22.11% of the variability. </br> From the <strong>Cumulative Proportion</strong>, at the PC2 we reach 96.84%, and so more than 95% of the variability has been explained. This allow us to exclude PC3 and PC4. Now, we can plot the four principal component and look at their correlation.</p>
+<pre class="r"><code># Orthogonality of PCs
+pairs.panels(pc$x, # x is the plae where pc is stored
+             gap=0,
+             bg = c(&quot;red&quot;, &quot;yellow&quot;, &quot;blue&quot;)[training$Species],
+             pch=21)</code></pre>
+<p><img src="/MLPost/2019-04-01-principal-component-analysis_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As we can see from the graph above, the four Principal Component, all the correlation coefficients are zero, and so each principal component are ortogonal to each other. Now, we can use the <a href="https://en.wikipedia.org/wiki/Biplot"><strong>Bi-Plot</strong></a> which is a generalization of the simple two-variable scatterplot, and shows how strongly each characteristic influences a principal component.</p>
+<pre class="r"><code># Bi-Plot
+library(devtools)
+# install_github(&quot;ggbiplot&quot;, &quot;vqv&quot;)
+library(ggbiplot)
+g &lt;- ggbiplot(pc,
+              obs.scale = 1,
+              var.scale = 1,
+              groups = training$Species,
+              ellipse = TRUE,
+              circle = TRUE,
+              ellipse.prob = 0.68)
+g &lt;- g + scale_color_discrete(name = &#39;&#39;)
+g &lt;- g + theme(legend.direction = &#39;horizontal&#39;,
+               legend.position = &#39;top&#39;)
+print(g)</code></pre>
+<p><img src="/MLPost/2019-04-01-principal-component-analysis_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the <strong>Bi-Plot</strong> above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data.</p>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pca on Andrea Perlato</title>
+    <link>/tags/pca/</link>
+    <description>Recent content in Pca on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/pca/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Principal Component Analysis</title>
+      <link>/mlpost/principal-component-analysis/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/principal-component-analysis/</guid>
+      <description>body {text-align: justify}Principal Component Analysis PCA is a deterministic method (given an input will always produce the same output).  It is always good to perform a PCA: Principal Components Analysis (PCA) is a data reduction technique that transforms a larger number of correlated variables into a much smaller set of uncorrelated variables called PRINCIPAL COMPONENTS. For example, we might use PCA to transform many correlated (and possibly redundant) variables into a less number of uncorrelated variables that retain as much information from the original set of variables.</description>
+    </item>
+    
+  </channel>
+</rss>

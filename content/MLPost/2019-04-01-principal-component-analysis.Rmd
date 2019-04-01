@@ -1,0 +1,135 @@
+---
+title: Principal Component Analysis
+author: andrea perlato
+date: '2019-04-01'
+slug: principal-component-analysis
+categories:
+  - machine learning
+tags:
+  - PCA
+  - Principal Component Analysis
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+Principal Component Analysis PCA is a deterministic method (given an input will always produce the same output). </br>
+It is always good to perform a PCA: Principal Components Analysis (PCA) is a data reduction technique that transforms a larger number of correlated variables into a much smaller set of uncorrelated variables called PRINCIPAL COMPONENTS. For example, we might use PCA to transform many correlated (and possibly redundant) variables into a less number of uncorrelated variables that retain as much information from the original set of variables.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+data(iris)
+summary(iris)
+
+```
+We are using the [**iris**](https://en.wikipedia.org/wiki/Iris_flower_data_set) dataset with 4 numerical variables and 1 factor which has 3 levels as described above. We can also see that the numerical variables have different ranges, it is a good pratice to normalize the data.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Partition Data
+set.seed(111)
+ind <- sample(2, nrow(iris),
+              replace = TRUE,
+              prob = c(0.8, 0.2))
+
+training <- iris[ind==1,]
+testing <- iris[ind==2,]
+
+# Scatter Plot & Correlations
+library(psych)
+pairs.panels(training[,-5], # not use the factor variable
+             gap = 0,       # is the gap between the scatterplot
+             bg = c("red", "yellow", "blue")[training$Species],
+             pch=21)
+
+```
+
+As we can see above, we have the correlation among the variables in the training data. We also colored the observations based on **species** (setosa, versicolor, virginica). On the upper corner we can also see the correlation coefficient, and in the main diagonal the distribution of the variables. It is evident here that **Petal.Length** and **Petal.Width** are positive correlated with an R-squared of **0.97**, very closed to 1. On the other hand, we see a correlation almost close to 0 between **Sepal.Length** and **Sepal.Width**. Overall, in three cases we have very high correlations. </br>
+High correlations among independent variables lead to [**Multicollinearity**](https://en.wikipedia.org/wiki/Multicollinearity) problem. It is the phenomenon in which one predictor can be linearly predict from others with a substantial degree of accuracy. In this situation, the coefficients estimated may change erratically in response to small changes of the model. To prevent it, one of the approches is the PCA.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Principal Component Analysis
+pc <- prcomp(training[,-5],
+             center = TRUE, # convert the data in order to have an average of zero
+             scale. = TRUE) # before pca normalize the variales
+           
+# attributes(pc) # see attributes
+# pc$center
+# pc$scale
+print(pc) # show sd and loadings
+summary(pc)
+
+```
+Using the function **print(pc)** we can see the standard deviation and also the **Loading Score** (in the resul above are called Rotation): from the distance on x axis and the distance from y axis is possible to use the Pythagorean Theorem to find the hypotenuse of each observation and we scale it to a unit of one: this is called **Singular Vector** or **Eigenvector** for Principal Component One. This calculation that we make for all the observations is called **Loading Scores**. The square root of the eigenvector for PC1 is called the Singular Value for PC1. </br>
+Moreover, from the **summary(pc)** we have the standard deviation, and the **Proportional of Variance** that says PC1 explain the **73.73%** of the variability.
+The second principal component PC2 captures the 22.11% of the variability. </br>
+From the **Cumulative Proportion**, at the PC2 we reach 96.84%, and so more than 95% of the variability has been explained. This allow us to exclude PC3 and PC4. Now, we can plot the four principal component and look at their correlation.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Orthogonality of PCs
+pairs.panels(pc$x, # x is the plae where pc is stored
+             gap=0,
+             bg = c("red", "yellow", "blue")[training$Species],
+             pch=21)
+
+
+```
+
+As we can see from the graph above, the four Principal Component, all the correlation coefficients are zero, and so each principal component are ortogonal to each other.
+Now, we can use the [**Bi-Plot**](https://en.wikipedia.org/wiki/Biplot) which is  a generalization of the simple two-variable scatterplot, and shows how strongly each characteristic influences a principal component.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Bi-Plot
+library(devtools)
+# install_github("ggbiplot", "vqv")
+library(ggbiplot)
+g <- ggbiplot(pc,
+              obs.scale = 1,
+              var.scale = 1,
+              groups = training$Species,
+              ellipse = TRUE,
+              circle = TRUE,
+              ellipse.prob = 0.68)
+g <- g + scale_color_discrete(name = '')
+g <- g + theme(legend.direction = 'horizontal',
+               legend.position = 'top')
+print(g)
+
+```
+
+From the **Bi-Plot** above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
