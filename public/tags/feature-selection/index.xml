@@ -18,7 +18,7 @@
       
       <guid>/mlpost/feature-selection-using-boruta-algorithm/</guid>
       <description>body {text-align: justify}Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise.  The Boruta Algorithm is a feature selection algorithm. As a matter of interest, Boruta algorithm derive its name from a demon in Slavic mythology who lived in pine forests. 
-How Boruta Algorithm works Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called Shadow Features.</description>
+How Boruta Algorithm works  Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called Shadow Features.</description>
     </item>
     
   </channel>

@@ -19,7 +19,7 @@ text-align: justify}
 Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise. </br>
 The [**Boruta Algorithm**](https://www.datasciencecentral.com/profiles/blogs/select-important-variables-using-boruta-algorithm) is a feature selection algorithm. As a matter of interest, Boruta algorithm  derive its name from a demon in Slavic mythology who lived in pine forests. </br>
 
-**How Boruta Algorithm works**
+**How Boruta Algorithm works** </br>
 Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called **Shadow Features**. </br>
 Then, it trains a **random forest classifier** on this extended data set (orignal attributes plus shadow attributes) and applies a feature importance measure such as **Mean Decrease Accuracy**, and evaluates the importance of each feature. </br>
 At every iteration, Boruta Algorithm checks whether a real feature has a higher importance. The best of its shadow features and constantly removes features which are deemed highly unimportant. </br>
@@ -98,7 +98,7 @@ confusionMatrix(p, test$Class)
 
 ```
 
-If we compare the result of the two models we can see that the original random forest has an **Accuracy** of **0.76**, that is increase to **0.79** using the Boruta feature selection. So, we not anly have a better model, but we also reduced the number of features.
+If we compare the result of the two models we can see that the original random forest has an **Accuracy** of **0.76**, that is increase to **0.79** using the Boruta feature selection. So, we not only have a better model, but we also reduced the number of features.
 
 
 

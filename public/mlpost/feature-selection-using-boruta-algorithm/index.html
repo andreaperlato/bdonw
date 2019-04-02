@@ -79,7 +79,7 @@ body {
 text-align: justify}
 </style>
 <p>Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise. </br> The <a href="https://www.datasciencecentral.com/profiles/blogs/select-important-variables-using-boruta-algorithm"><strong>Boruta Algorithm</strong></a> is a feature selection algorithm. As a matter of interest, Boruta algorithm derive its name from a demon in Slavic mythology who lived in pine forests. </br></p>
-<p><strong>How Boruta Algorithm works</strong> Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called <strong>Shadow Features</strong>. </br> Then, it trains a <strong>random forest classifier</strong> on this extended data set (orignal attributes plus shadow attributes) and applies a feature importance measure such as <strong>Mean Decrease Accuracy</strong>, and evaluates the importance of each feature. </br> At every iteration, Boruta Algorithm checks whether a real feature has a higher importance. The best of its shadow features and constantly removes features which are deemed highly unimportant. </br> Finally, the Boruta Algorithm stops either when all features gets confirmed or rejected or it reaches a specified limit of random forest. </br></p>
+<p><strong>How Boruta Algorithm works</strong> </br> Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called <strong>Shadow Features</strong>. </br> Then, it trains a <strong>random forest classifier</strong> on this extended data set (orignal attributes plus shadow attributes) and applies a feature importance measure such as <strong>Mean Decrease Accuracy</strong>, and evaluates the importance of each feature. </br> At every iteration, Boruta Algorithm checks whether a real feature has a higher importance. The best of its shadow features and constantly removes features which are deemed highly unimportant. </br> Finally, the Boruta Algorithm stops either when all features gets confirmed or rejected or it reaches a specified limit of random forest. </br></p>
 <p>On the other hand, boruta find all features which are either strongly or weakly relevant to the response variable. </br> This makes it well suited for biomedical applications where one might be interested to determine which human genes (predictors) are connected in some way to a particular medical condition (response variable).</p>
 <pre class="r"><code>library(Boruta)
 library(mlbench)
@@ -101,7 +101,7 @@ plot(boruta, las = 2, cex.axis = 0.7) # cex.axis is used to reduce the font size
 <p>The last graph is the <strong>Importance History Graph</strong>, and we can see that the green attibutes have much higher importance than the shadow attributes depiced in blue. Now, we can try to find a soution for the <strong>Tentative</strong> attributes.</p>
 <pre class="r"><code>bor &lt;- TentativeRoughFix(boruta)
 print(bor)</code></pre>
-<pre><code>Boruta performed 99 iterations in 32.84877 secs.
+<pre><code>Boruta performed 99 iterations in 29.47514 secs.
 Tentatives roughfixed over the last 99 iterations.
  32 attributes confirmed important: V1, V10, V11, V12, V13 and 27
 more;
@@ -156,7 +156,7 @@ Prediction  M  R
     V27 + V28 + V29 + V30 + V31 + V32 + V34 + V35 + V36 + V37 + 
     V39 + V43 + V44 + V45 + V46 + V47 + V48 + V49 + V51 + V52 + 
     V59
-&lt;environment: 0x0000000029665828&gt;</code></pre>
+&lt;environment: 0x000000002971e850&gt;</code></pre>
 <pre class="r"><code>set.seed(789)
 rf41 &lt;- randomForest(Class ~ V1 + V2 + V4 + V5 + V8 + V9 + V10 + V11 + V12 + V13 + 
     V15 + V16 + V17 + V18 + V19 + V20 + V21 + V22 + V23 + V26 + 
@@ -191,7 +191,7 @@ Prediction  M  R
                                           
        &#39;Positive&#39; Class : M               
                                           </code></pre>
-<p>If we compare the result of the two models we can see that the original random forest has an <strong>Accuracy</strong> of <strong>0.76</strong>, that is increase to <strong>0.79</strong> using the Boruta feature selection. So, we not anly have a better model, but we also reduced the number of features.</p>
+<p>If we compare the result of the two models we can see that the original random forest has an <strong>Accuracy</strong> of <strong>0.76</strong>, that is increase to <strong>0.79</strong> using the Boruta feature selection. So, we not only have a better model, but we also reduced the number of features.</p>
 
     </div>
   </article>
