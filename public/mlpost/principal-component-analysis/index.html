@@ -161,7 +161,69 @@ g &lt;- g + theme(legend.direction = &#39;horizontal&#39;,
                legend.position = &#39;top&#39;)
 print(g)</code></pre>
 <p><img src="/MLPost/2019-04-01-principal-component-analysis_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>From the <strong>Bi-Plot</strong> above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data.</p>
+<p>From the <strong>Bi-Plot</strong> above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data. Within the main circle there are arrows representing the features of out dataset. We can see that <strong>Petal.Length</strong> and <strong>Petal.With</strong> have high correlation and they are also correlated with <strong>Sepal.Length</strong>. On the contrary, <strong>Sepal.Width</strong> is far away from the other features. If we look at the x-axis, we have <strong>Petal.Length</strong>, <strong>Petal.With</strong>, and <strong>Sepal.Length</strong> on the right side, at a positive value of 2, and this means that these variables are positive correlated.</p>
+<pre class="r"><code># Prediction with Principal Components
+trg &lt;- predict(pc, training)
+trg &lt;- data.frame(trg, training[5])
+tst &lt;- predict(pc, testing)
+tst &lt;- data.frame(tst, testing[5])</code></pre>
+<p>Now we have the data ready for the model, and in this case we use a <a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression"><strong>Multinomial Logistic Regression</strong></a> using the first two Principal Components. We use only PC1 and PC2 because we have more than 95% of the variability capture. </br> Multinomial logistic regression (often just called ‘multinomial regression’) is used to predict a nominal dependent variable given one or more independent variables. It is sometimes considered an extension of binomial logistic regression to allow for a dependent variable with more than two categories. </br></p>
+<pre class="r"><code># Multinomial Logistic regression with First Two PCs
+library(nnet)
+trg$Species &lt;- relevel(trg$Species, ref = &quot;setosa&quot;)
+mymodel &lt;- multinom(Species~PC1+PC2, data = trg)</code></pre>
+<pre><code># weights:  12 (6 variable)
+initial  value 131.833475 
+iter  10 value 20.607042
+iter  20 value 18.331120
+iter  30 value 18.204474
+iter  40 value 18.199783
+iter  50 value 18.199009
+iter  60 value 18.198506
+final  value 18.198269 
+converged</code></pre>
+<pre class="r"><code>summary(mymodel)</code></pre>
+<pre><code>Call:
+multinom(formula = Species ~ PC1 + PC2, data = trg)
+
+Coefficients:
+           (Intercept)      PC1      PC2
+versicolor   7.2345029 14.05161 3.167254
+virginica   -0.5757544 20.12094 3.625377
+
+Std. Errors:
+           (Intercept)      PC1      PC2
+versicolor    187.5986 106.3766 127.8815
+virginica     187.6093 106.3872 127.8829
+
+Residual Deviance: 36.39654 
+AIC: 48.39654 </code></pre>
+<p>If we look at the summary above, we have the intercept and coefficients,and now we can look at the performance via confusion matrix.</p>
+<pre class="r"><code># Confusion Matrix &amp; Misclassification Error - training
+p &lt;- predict(mymodel, trg)
+tab &lt;- table(p, trg$Species)
+tab</code></pre>
+<pre><code>            
+p            setosa versicolor virginica
+  setosa         45          0         0
+  versicolor      0         35         3
+  virginica       0          5        32</code></pre>
+<pre class="r"><code>1 - sum(diag(tab))/sum(tab)</code></pre>
+<pre><code>[1] 0.06666667</code></pre>
+<pre class="r"><code># Confusion Matrix &amp; Misclassification Error - testing
+p1 &lt;- predict(mymodel, tst)
+tab1 &lt;- table(p1, tst$Species)
+tab1</code></pre>
+<pre><code>            
+p1           setosa versicolor virginica
+  setosa          5          0         0
+  versicolor      0          9         3
+  virginica       0          1        12</code></pre>
+<pre class="r"><code>1 - sum(diag(tab1))/sum(tab1)</code></pre>
+<pre><code>[1] 0.1333333</code></pre>
+<p>From the confusion matrix of the training set we have 3 missclassification for <strong>versicolor</strong> and 5 missclassification for <strong>virginica</strong>,and so we have an overall missclassification of <strong>0.066%</strong>. For the test set the missclassification is a bit higher. </br></p>
+<p>Summarizing, the <strong>advantages</strong> of PCA are: </br> 1 - Useful for dimension reduction for high-dimentional data analysis. </br> 2 - Help to reduce the number of predictor items using principal components. </br> 3 - Helps to make predictor items independent and avoid multicollinearity problem. </br> 4 - Allows interpretation of many variables using a 2-dimensional biplot. </br> 5 - Can be used for developing prediction models. </br></p>
+<p>The <strong>disadvantages</strong> of PCA are: </br> 1 - Only numeric variables can be used. </br> 2 - Prediction models are less interpretable. </br></p>
 
     </div>
   </article>

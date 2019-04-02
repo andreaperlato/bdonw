@@ -101,19 +101,60 @@ print(g)
 
 ```
 
-From the **Bi-Plot** above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data.
+From the **Bi-Plot** above we have PCA on the x-axis and PC2 on the y-axis. The ellipses explain us the each species (setosa, versicolor, virginica) capture 68% of the data. Within the main circle there are arrows representing the features of out dataset. We can see that **Petal.Length** and **Petal.With** have high correlation and they are also correlated with **Sepal.Length**. On the contrary, **Sepal.Width** is far away from the other features. If we look at the x-axis, we have **Petal.Length**, **Petal.With**, and **Sepal.Length** on the right side, at a positive value of 2, and this means that these variables are positive correlated.
 
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Prediction with Principal Components
+trg <- predict(pc, training)
+trg <- data.frame(trg, training[5])
+tst <- predict(pc, testing)
+tst <- data.frame(tst, testing[5])
+
+```
+
+Now we have the data ready for the model, and in this case we use a [**Multinomial Logistic Regression**](https://en.wikipedia.org/wiki/Multinomial_logistic_regression) using the first two Principal Components. We use only PC1 and PC2 because we have more than 95% of the variability capture. </br>
+Multinomial logistic regression (often just called 'multinomial regression') is used to predict a nominal dependent variable given one or more independent variables. It is sometimes considered an extension of binomial logistic regression to allow for a dependent variable with more than two categories. </br>
 
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Multinomial Logistic regression with First Two PCs
+library(nnet)
+trg$Species <- relevel(trg$Species, ref = "setosa")
+mymodel <- multinom(Species~PC1+PC2, data = trg)
+summary(mymodel)
 
+```
 
+If we look at the summary above, we have the intercept and coefficients,and now we can look at the performance via confusion matrix.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Confusion Matrix & Misclassification Error - training
+p <- predict(mymodel, trg)
+tab <- table(p, trg$Species)
+tab
+1 - sum(diag(tab))/sum(tab)
 
+# Confusion Matrix & Misclassification Error - testing
+p1 <- predict(mymodel, tst)
+tab1 <- table(p1, tst$Species)
+tab1
+1 - sum(diag(tab1))/sum(tab1)
 
+```
 
+From the confusion matrix of the training set we have 3 missclassification for **versicolor** and 5 missclassification for **virginica**,and so we have an overall missclassification of **0.066%**. For the test set the missclassification is a bit higher. </br>
 
+Summarizing, the **advantages** of PCA are: </br>
+1 - Useful for dimension reduction for high-dimentional data analysis. </br>
+2 - Help to reduce the number of predictor items using principal components. </br>
+3 - Helps to make predictor items independent and avoid multicollinearity problem. </br>
+4 - Allows interpretation of many variables using a 2-dimensional biplot. </br>
+5 - Can be used for developing prediction models. </br>
 
+The **disadvantages** of PCA are: </br>
+1 - Only numeric variables can be used. </br>
+2 - Prediction models are less interpretable. </br>
 
 
 
