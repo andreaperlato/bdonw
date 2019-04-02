@@ -1,0 +1,138 @@
+---
+title: Feature Selection using Boruta Algorithm
+author: andrea perlato
+date: '2019-04-02'
+slug: feature-selection-using-boruta-algorithm
+categories:
+  - machine learning
+tags:
+  - feature selection
+  - boruta algorithm
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise. </br>
+The [**Boruta Algorithm**](https://www.datasciencecentral.com/profiles/blogs/select-important-variables-using-boruta-algorithm) is a feature selection algorithm. As a matter of interest, Boruta algorithm  derive its name from a demon in Slavic mythology who lived in pine forests. </br>
+
+**How Boruta Algorithm works**
+Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called **Shadow Features**. </br>
+Then, it trains a **random forest classifier** on this extended data set (orignal attributes plus shadow attributes) and applies a feature importance measure such as **Mean Decrease Accuracy**, and evaluates the importance of each feature. </br>
+At every iteration, Boruta Algorithm checks whether a real feature has a higher importance. The best of its shadow features and constantly removes features which are deemed highly unimportant. </br>
+Finally, the Boruta Algorithm stops either when all features gets confirmed or rejected or it reaches a specified limit of random forest. </br>
+
+On the other hand, boruta find all features which are either strongly or weakly relevant to the response variable. </br> 
+This makes it well suited for biomedical applications where one might be interested to determine which human genes (predictors) are connected in some way to a particular medical condition (response variable).
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(Boruta)
+library(mlbench)
+library(caret)
+library(randomForest)
+
+data("Sonar")
+
+# Feature Selection
+set.seed(123)
+boruta <- Boruta(Class ~ ., data = Sonar, doTrace = 2, maxRuns = 100) # number of interations
+# print(boruta)
+plot(boruta, las = 2, cex.axis = 0.7) # cex.axis is used to reduce the font size
+plotImpHistory(boruta)
+
+```
+
+We use the [**Sonar**](http://archive.ics.uci.edu/ml/datasets/connectionist+bench+(sonar,+mines+vs.+rocks)) datset that has 208 observations and 61 numeric variables apart from the **Class** variable which is a two level factor, where **M** stands for **Mine (metal cylinder)**, and **R** stands for **Rock**. </br> 
+
+Ideally the importance of shadow attributes have to be close to zero, simply because the random fluctuation might has zero values. So, the shadow attributes could play the role of reference values for deciding which attributes are important. </br> 
+From the **Box-Plot** above the **blue box-plot** corrispond to the shadow attributes. We have three blue box-plot for the **minimum**, **mean** and **maximum** attribute. The **green box-plots** are confirmed important attributes, and **red box-plots** are confirmed to be unimportant. The **yellow box-plots** are tentatives, that means the algorithm was not able to arrive to a conclusion about their importance.
+
+The last graph is the **Importance History Graph**, and we can see that the green attibutes have much higher importance than the shadow attributes depiced in blue.
+Now, we can try to find a soution for the **Tentative** attributes.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+bor <- TentativeRoughFix(boruta)
+print(bor)
+
+# To have more information about the importance of attributes
+# attStats(boruta)
+
+```
+
+As we can see from the result above, 35 attributes are confirmed as important, and 25 attributes are confirmed as unimportant.
+Now, we can test if this feature selection with Boruta Algorithm has improved the performance of the random forest model.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Data Partition
+set.seed(123)
+ind <- sample(2, nrow(Sonar), replace = T, prob = c(0.6, 0.4))
+train <- Sonar[ind==1,]
+test <- Sonar[ind==2,]
+
+# Random Forest Model
+set.seed(456)
+rf60 <- randomForest(Class~., data = train)
+
+# Prediction & Confusion Matrix - Test
+p <- predict(rf60, test)
+confusionMatrix(p, test$Class)
+
+```
+Now the we have, from the code above, the random forest model with all the features included, we can compare it with the model that consider the feature selection made by the Boruta Algorithm. To do that we can use the function **getNonRejectedFormula()**.
+
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+getNonRejectedFormula(boruta)
+
+set.seed(789)
+rf41 <- randomForest(Class ~ V1 + V2 + V4 + V5 + V8 + V9 + V10 + V11 + V12 + V13 + 
+    V15 + V16 + V17 + V18 + V19 + V20 + V21 + V22 + V23 + V26 + 
+    V27 + V28 + V30 + V31 + V32 + V34 + V35 + V36 + V37 + V39 + 
+    V43 + V44 + V45 + V46 + V47 + V48 + V49 + V51 + V52 + V59, data=train)
+
+p <- predict(rf41, test)
+confusionMatrix(p, test$Class)
+
+```
+
+If we compare the result of the two models we can see that the original random forest has an **Accuracy** of **0.76**, that is increase to **0.79** using the Boruta feature selection. So, we not anly have a better model, but we also reduced the number of features.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,132 @@
+---
+title: Feature Selection using Boruta Algorithm
+author: andrea perlato
+date: '2019-04-02'
+slug: feature-selection-using-boruta-algorithm
+categories:
+  - machine learning
+tags:
+  - feature selection
+  - boruta algorithm
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise. </br> The <a href="https://www.datasciencecentral.com/profiles/blogs/select-important-variables-using-boruta-algorithm"><strong>Boruta Algorithm</strong></a> is a feature selection algorithm. As a matter of interest, Boruta algorithm derive its name from a demon in Slavic mythology who lived in pine forests. </br></p>
+<p><strong>How Boruta Algorithm works</strong> Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called <strong>Shadow Features</strong>. </br> Then, it trains a <strong>random forest classifier</strong> on this extended data set (orignal attributes plus shadow attributes) and applies a feature importance measure such as <strong>Mean Decrease Accuracy</strong>, and evaluates the importance of each feature. </br> At every iteration, Boruta Algorithm checks whether a real feature has a higher importance. The best of its shadow features and constantly removes features which are deemed highly unimportant. </br> Finally, the Boruta Algorithm stops either when all features gets confirmed or rejected or it reaches a specified limit of random forest. </br></p>
+<p>On the other hand, boruta find all features which are either strongly or weakly relevant to the response variable. </br> This makes it well suited for biomedical applications where one might be interested to determine which human genes (predictors) are connected in some way to a particular medical condition (response variable).</p>
+<pre class="r"><code>library(Boruta)
+library(mlbench)
+library(caret)
+library(randomForest)
+
+data(&quot;Sonar&quot;)
+
+# Feature Selection
+set.seed(123)
+boruta &lt;- Boruta(Class ~ ., data = Sonar, doTrace = 2, maxRuns = 100) # number of interations
+# print(boruta)
+plot(boruta, las = 2, cex.axis = 0.7) # cex.axis is used to reduce the font size</code></pre>
+<p><img src="/MLPost/2019-04-02-feature-selection-using-boruta-algorithm_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotImpHistory(boruta)</code></pre>
+<p><img src="/MLPost/2019-04-02-feature-selection-using-boruta-algorithm_files/figure-html/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We use the <a href="http://archive.ics.uci.edu/ml/datasets/connectionist+bench+(sonar,+mines+vs.+rocks)"><strong>Sonar</strong></a> datset that has 208 observations and 61 numeric variables apart from the <strong>Class</strong> variable which is a two level factor, where <strong>M</strong> stands for <strong>Mine (metal cylinder)</strong>, and <strong>R</strong> stands for <strong>Rock</strong>. </br></p>
+<p>Ideally the importance of shadow attributes have to be close to zero, simply because the random fluctuation might has zero values. So, the shadow attributes could play the role of reference values for deciding which attributes are important. </br> From the <strong>Box-Plot</strong> above the <strong>blue box-plot</strong> corrispond to the shadow attributes. We have three blue box-plot for the <strong>minimum</strong>, <strong>mean</strong> and <strong>maximum</strong> attribute. The <strong>green box-plots</strong> are confirmed important attributes, and <strong>red box-plots</strong> are confirmed to be unimportant. The <strong>yellow box-plots</strong> are tentatives, that means the algorithm was not able to arrive to a conclusion about their importance.</p>
+<p>The last graph is the <strong>Importance History Graph</strong>, and we can see that the green attibutes have much higher importance than the shadow attributes depiced in blue. Now, we can try to find a soution for the <strong>Tentative</strong> attributes.</p>
+<pre class="r"><code>bor &lt;- TentativeRoughFix(boruta)
+print(bor)</code></pre>
+<pre><code>Boruta performed 99 iterations in 32.84877 secs.
+Tentatives roughfixed over the last 99 iterations.
+ 32 attributes confirmed important: V1, V10, V11, V12, V13 and 27
+more;
+ 28 attributes confirmed unimportant: V14, V2, V24, V25, V29 and
+23 more;</code></pre>
+<pre class="r"><code># To have more information about the importance of attributes
+# attStats(boruta)</code></pre>
+<p>As we can see from the result above, 35 attributes are confirmed as important, and 25 attributes are confirmed as unimportant. Now, we can test if this feature selection with Boruta Algorithm has improved the performance of the random forest model.</p>
+<pre class="r"><code># Data Partition
+set.seed(123)
+ind &lt;- sample(2, nrow(Sonar), replace = T, prob = c(0.6, 0.4))
+train &lt;- Sonar[ind==1,]
+test &lt;- Sonar[ind==2,]
+
+# Random Forest Model
+set.seed(456)
+rf60 &lt;- randomForest(Class~., data = train)
+
+# Prediction &amp; Confusion Matrix - Test
+p &lt;- predict(rf60, test)
+confusionMatrix(p, test$Class)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  M  R
+         M 35 13
+         R  6 27
+                                          
+               Accuracy : 0.7654          
+                 95% CI : (0.6582, 0.8525)
+    No Information Rate : 0.5062          
+    P-Value [Acc &gt; NIR] : 1.513e-06       
+                                          
+                  Kappa : 0.5298          
+ Mcnemar&#39;s Test P-Value : 0.1687          
+                                          
+            Sensitivity : 0.8537          
+            Specificity : 0.6750          
+         Pos Pred Value : 0.7292          
+         Neg Pred Value : 0.8182          
+             Prevalence : 0.5062          
+         Detection Rate : 0.4321          
+   Detection Prevalence : 0.5926          
+      Balanced Accuracy : 0.7643          
+                                          
+       &#39;Positive&#39; Class : M               
+                                          </code></pre>
+<p>Now the we have, from the code above, the random forest model with all the features included, we can compare it with the model that consider the feature selection made by the Boruta Algorithm. To do that we can use the function <strong>getNonRejectedFormula()</strong>.</p>
+<pre class="r"><code>getNonRejectedFormula(boruta)</code></pre>
+<pre><code>Class ~ V1 + V2 + V4 + V5 + V8 + V9 + V10 + V11 + V12 + V13 + 
+    V15 + V16 + V17 + V18 + V19 + V20 + V21 + V22 + V23 + V26 + 
+    V27 + V28 + V29 + V30 + V31 + V32 + V34 + V35 + V36 + V37 + 
+    V39 + V43 + V44 + V45 + V46 + V47 + V48 + V49 + V51 + V52 + 
+    V59
+&lt;environment: 0x0000000029665828&gt;</code></pre>
+<pre class="r"><code>set.seed(789)
+rf41 &lt;- randomForest(Class ~ V1 + V2 + V4 + V5 + V8 + V9 + V10 + V11 + V12 + V13 + 
+    V15 + V16 + V17 + V18 + V19 + V20 + V21 + V22 + V23 + V26 + 
+    V27 + V28 + V30 + V31 + V32 + V34 + V35 + V36 + V37 + V39 + 
+    V43 + V44 + V45 + V46 + V47 + V48 + V49 + V51 + V52 + V59, data=train)
+
+p &lt;- predict(rf41, test)
+confusionMatrix(p, test$Class)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  M  R
+         M 35 11
+         R  6 29
+                                          
+               Accuracy : 0.7901          
+                 95% CI : (0.6854, 0.8727)
+    No Information Rate : 0.5062          
+    P-Value [Acc &gt; NIR] : 1.277e-07       
+                                          
+                  Kappa : 0.5795          
+ Mcnemar&#39;s Test P-Value : 0.332           
+                                          
+            Sensitivity : 0.8537          
+            Specificity : 0.7250          
+         Pos Pred Value : 0.7609          
+         Neg Pred Value : 0.8286          
+             Prevalence : 0.5062          
+         Detection Rate : 0.4321          
+   Detection Prevalence : 0.5679          
+      Balanced Accuracy : 0.7893          
+                                          
+       &#39;Positive&#39; Class : M               
+                                          </code></pre>
+<p>If we compare the result of the two models we can see that the original random forest has an <strong>Accuracy</strong> of <strong>0.76</strong>, that is increase to <strong>0.79</strong> using the Boruta feature selection. So, we not anly have a better model, but we also reduced the number of features.</p>

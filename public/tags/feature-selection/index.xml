@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Selection on Andrea Perlato</title>
+    <link>/tags/feature-selection/</link>
+    <description>Recent content in Feature Selection on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/feature-selection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Feature Selection using Boruta Algorithm</title>
+      <link>/mlpost/feature-selection-using-boruta-algorithm/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/feature-selection-using-boruta-algorithm/</guid>
+      <description>body {text-align: justify}Variable selection is an important aspect because it helps in building predictive models free from correlated variables, biases and unwanted noise.  The Boruta Algorithm is a feature selection algorithm. As a matter of interest, Boruta algorithm derive its name from a demon in Slavic mythology who lived in pine forests. 
+How Boruta Algorithm works Firstly, it adds randomness to the given data set by creating shuffled copies of all features which are called Shadow Features.</description>
+    </item>
+    
+  </channel>
+</rss>
