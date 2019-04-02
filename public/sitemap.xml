@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/mlpost/random-forest-hyperparameters-tuning/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/mlpost/principal-component-analysis/</loc>
     <lastmod>2019-04-01T00:00:00+00:00</lastmod>
   </url>
@@ -277,6 +282,12 @@
   </url>
   
   <url>
+    <loc>/tags/hyperparameters-tuning/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/interactive-graph/</loc>
     <lastmod>2019-03-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -314,13 +325,13 @@
   
   <url>
     <loc>/mlpost/</loc>
-    <lastmod>2019-04-01T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2019-04-01T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -392,7 +403,7 @@
   
   <url>
     <loc>/tags/random-forest/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

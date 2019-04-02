@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Random Forest Hyperparameters Tuning</title>
+      <link>/mlpost/random-forest-hyperparameters-tuning/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/random-forest-hyperparameters-tuning/</guid>
+      <description>body {text-align: justify}Random Forest is a Bagging process of Ensemble Learners.  Random Forests are built from Decision Tree. Decision Trees work great, but they are not flexible when it comes to classify new samples. It creates a bootstrapped dataset with the same size of the original, and to do that Random Forest randomly selects rows with replacement. After creating a bootstrap dataset, it creates a decision tree using the bootstrapped dataset, but using only a subset of variables at each step.</description>
+    </item>
+    
+    <item>
       <title>Principal Component Analysis</title>
       <link>/mlpost/principal-component-analysis/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>

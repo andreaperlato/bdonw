@@ -1,0 +1,127 @@
+---
+title: Random Forest Hyperparameters Tuning
+author: andrea perlato
+date: '2019-04-02'
+slug: random-forest-hyperparameters-tuning
+categories:
+  - machine learning
+tags:
+  - random forest
+  - Hyperparameters Tuning
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Random Forest is a <a href="https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/"><strong>Bagging</strong></a> process of <a href="https://en.wikipedia.org/wiki/Ensemble_learning"><strong>Ensemble Learners</strong></a>. </br> Random Forests are built from Decision Tree. Decision Trees work great, but they are not flexible when it comes to classify new samples. It creates a bootstrapped dataset with the same size of the original, and to do that Random Forest randomly selects rows with replacement. After creating a bootstrap dataset, it creates a decision tree using the bootstrapped dataset, but using only a subset of variables at each step. So, it builds a tree using bootstrapped dataset, and only considering a Random Selection of Variables. Random Forest ideally repeats these two steps 100 times, that result in a wide variety of trees making Random Forest more effective than the Individual Decision Tree.</p>
+<pre class="r"><code>data &lt;- read.csv(&quot;C:/07 - R Website/dataset/ML/CTG.csv&quot;)
+data$NSP &lt;- as.factor(data$NSP)
+table(data$NSP)</code></pre>
+<pre><code>
+   1    2    3 
+1655  295  176 </code></pre>
+<p>We are using a dataset of 2126 observations and 22 variables, and the data we use is called <a href="https://archive.ics.uci.edu/ml/datasets/cardiotocography"><strong>CTG</strong></a> data and it containes measurement of fetal heart rate FHR and uterine contraction UC features on cardiotocograms. </br> CTGs was classified by three expert obstetricians, and classification label are: <strong>Normal</strong>, <strong>Suspect</strong>, or <strong>Pathologic</strong>. The response variable is <strong>NSP</strong> Fetal State Class Code (1=Normal, 2=Suspect, 3=Pathologic) as we can see from the table above.</p>
+<pre class="r"><code># Data Partition
+set.seed(123)
+ind &lt;- sample(2, nrow(data), replace = TRUE, prob = c(0.7, 0.3))
+train &lt;- data[ind==1,]
+test &lt;- data[ind==2,]
+
+# Random Forest
+library(randomForest)
+set.seed(456)
+rf &lt;- randomForest(NSP~., data=train,
+                   ntree = 300,       # number of trees
+                   mtry = 8,          # number of variables tried at each split
+                   importance = TRUE,
+                   proximity = TRUE)
+print(rf)</code></pre>
+<pre><code>
+Call:
+ randomForest(formula = NSP ~ ., data = train, ntree = 300, mtry = 8,      importance = TRUE, proximity = TRUE) 
+               Type of random forest: classification
+                     Number of trees: 300
+No. of variables tried at each split: 8
+
+        OOB estimate of  error rate: 5.48%
+Confusion matrix:
+     1   2   3 class.error
+1 1137  18   5  0.01982759
+2   47 165   1  0.22535211
+3    6   5 111  0.09016393</code></pre>
+<pre class="r"><code># Using attribues we can see and than explore al the attribute of RM, for example
+# writing: rf$confusion we can see the confusion matrix of our model
+# attributes(rf)</code></pre>
+<p>From the resul above, we can see we used 300 number of trees and 8 variables at each split (typically is the squared root of the number of variables). The Out of the Bag OBB estimated error rate is <strong>5.75%</strong> which is quite good, because it means we have around 95% of accuracy. About the <strong>Out of the Bag OBB</strong> we have to remember that we allowed replacement entries: that means some rows were not included, typically about one third of the original data, does not end up in the bootstrapping sample. This sample is call: <strong>Out of Bagging</strong> dataset. </br> We can use the Out of Bagging dataset as a Test Set and look if most of the bootstrapped trees correctly classify the Out of the Bag dataset. We do the same for all the rows of the Out of the Bag dataset. The Error in Classification is called: <strong>Out of the Bag Error</strong>. </br> Looking at the <strong>Confusion Matrix</strong> above we can see that the prediction is quite good when predictiong Class 1 (Normal) with a <strong>class.error</strong> of <strong>1.7%</strong>. On the contrary there is a <strong>class.error</strong> of <strong>12.23%%</strong> when predicting Class 3 (Pathologic). </br> Using the <strong>function attribues()</strong> we can see and than explore al the attribute of RM, for example writing <strong>rf$confusion</strong> we can see the confusion matrix of our model. </br></p>
+<pre class="r"><code># Prediction &amp; Confusion Matrix - train data
+library(caret)
+p1 &lt;- predict(rf, train)
+confusionMatrix(p1, train$NSP)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    1    2    3
+         1 1160    2    0
+         2    0  211    0
+         3    0    0  122
+
+Overall Statistics
+                                          
+               Accuracy : 0.9987          
+                 95% CI : (0.9952, 0.9998)
+    No Information Rate : 0.7759          
+    P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+                                          
+                  Kappa : 0.9964          
+ Mcnemar&#39;s Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: 1 Class: 2 Class: 3
+Sensitivity            1.0000   0.9906  1.00000
+Specificity            0.9940   1.0000  1.00000
+Pos Pred Value         0.9983   1.0000  1.00000
+Neg Pred Value         1.0000   0.9984  1.00000
+Prevalence             0.7759   0.1425  0.08161
+Detection Rate         0.7759   0.1411  0.08161
+Detection Prevalence   0.7773   0.1411  0.08161
+Balanced Accuracy      0.9970   0.9953  1.00000</code></pre>
+<pre class="r"><code># # Prediction &amp; Confusion Matrix - test data
+p2 &lt;- predict(rf, test)
+confusionMatrix(p2, test$NSP)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   1   2   3
+         1 481  18   4
+         2  13  60   2
+         3   1   4  48
+
+Overall Statistics
+                                          
+               Accuracy : 0.9334          
+                 95% CI : (0.9111, 0.9516)
+    No Information Rate : 0.7845          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8109          
+ Mcnemar&#39;s Test P-Value : 0.3514          
+
+Statistics by Class:
+
+                     Class: 1 Class: 2 Class: 3
+Sensitivity            0.9717  0.73171  0.88889
+Specificity            0.8382  0.97268  0.99133
+Pos Pred Value         0.9563  0.80000  0.90566
+Neg Pred Value         0.8906  0.96043  0.98962
+Prevalence             0.7845  0.12995  0.08558
+Detection Rate         0.7623  0.09509  0.07607
+Detection Prevalence   0.7971  0.11886  0.08399
+Balanced Accuracy      0.9050  0.85219  0.94011</code></pre>
+<pre class="r"><code># Error rate of Random Forest
+plot(rf)</code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the result above we can see the confusion matrix of the train and test set, and also <strong>Sensitivity</strong> and <strong>Spesificity</strong> for each of the three classes. We have a mismatch because the <strong>OOB error rate</strong> is <strong>5.75%</strong>, but the <strong>Accuracy</strong> is <strong>99.87%</strong>. We have to remeber that OBB is the Out of the Bag estimator, and so is not in the bootstrap sample. The solution of the mismatch is that the Accuracy s based on the train set and not on the OOB.</p>

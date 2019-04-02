@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Random Forest on Andrea Perlato</title>
-    <link>/tags/random-forest/</link>
-    <description>Recent content in Random Forest on Andrea Perlato</description>
+    <title>Hyperparameters Tuning on Andrea Perlato</title>
+    <link>/tags/hyperparameters-tuning/</link>
+    <description>Recent content in Hyperparameters Tuning on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/random-forest/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/hyperparameters-tuning/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>/mlpost/random-forest-hyperparameters-tuning/</guid>
       <description>body {text-align: justify}Random Forest is a Bagging process of Ensemble Learners.  Random Forests are built from Decision Tree. Decision Trees work great, but they are not flexible when it comes to classify new samples. It creates a bootstrapped dataset with the same size of the original, and to do that Random Forest randomly selects rows with replacement. After creating a bootstrap dataset, it creates a decision tree using the bootstrapped dataset, but using only a subset of variables at each step.</description>
-    </item>
-    
-    <item>
-      <title>Assessing the sucess of a new product via multiple classifiers</title>
-      <link>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/mlpost/estimate-the-sucess-of-a-new-product-with-logistic-regression/</guid>
-      <description>body {text-align: justify}These are a series of analysis to illustate the main classification algorithms and their advantages. The table shows the business clients of a company that has just launched a new product online. Some of the clients responded positively to the ads by buying the product and other responded negatively by not buying the product. The last column of the table tells for each user if the user bought the product or not.</description>
     </item>
     
   </channel>
