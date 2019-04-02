@@ -131,7 +131,7 @@ From the **Partial Dependence Plot** above made for the variable **ASTV** at **c
 We can extract **Information about the Single Tree** using the function **getTree(rf, 1, labelVar = TRUE)** where in this example we specify we want the first tree in our Random Forest. From the output, not shown here, when we get in the variabe **status** the value **-1**, this means that we get a **terminal node**, and so we have also the corresponding value of the class inside the varible **prediction**. </br>
 
 We can also use the **Multi-dimensional Scaling Plot** for dimension 1 **Dim1** and dimension 2 **Dim2**. The colors are related to the threelevel of the response variable **NSP** Fetal State Class Code (1=Normal, 2=Suspect, 3=Pathologic).
-The dimensions **Dim1** and **Dim2** imply the variation in data along the two principal components.
+The dimensions **Dim1** and **Dim2** imply the variation in data along the two principal components. 
 
 
 
