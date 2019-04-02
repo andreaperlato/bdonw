@@ -54,7 +54,7 @@ From the resul above, we can see we used 300 number of trees and 8 variables at 
 About the **Out of the Bag OBB** we have to remember that we allowed replacement entries: that means some rows were not included, typically about one third of the original data, does not end up in the bootstrapping sample. This sample is call: **Out of Bagging** dataset. </br> 
 We can use the Out of Bagging dataset as a Test Set and look if most of the bootstrapped trees correctly classify the Out of the Bag dataset. We do the same for all the rows of the Out of the Bag dataset. The Error in Classification is called: **Out of the Bag Error**. </br> 
 Looking at the **Confusion Matrix** above we can see that the prediction is quite good when predictiong Class 1 (Normal) with a **class.error** of **1.7%**. On the contrary there is a **class.error** of **12.23%%** when predicting Class 3 (Pathologic). </br> 
-Using the **function attribues()** we can see and than explore al the attribute of RM, for example writing **rf$confusion** we can see the confusion matrix of our model. </br> 
+Using the **function attribues()** we can see and than explore al the attribute of RM, for example writing **rf$confusion** we can see the confusion matrix of our model. </br>
 
 ```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
 # Prediction & Confusion Matrix - train data
@@ -72,21 +72,66 @@ plot(rf)
 ```
 
 From the result above we can see the confusion matrix of the train and test set, and also **Sensitivity** and **Spesificity** for each of the three classes.
-We have a mismatch because the **OOB error rate** is **5.75%**, but the **Accuracy** is **99.87%**. We have to remeber that OBB is the Out of the Bag estimator, and so is not in the bootstrap sample. The solution of the mismatch is that the Accuracy s based on the train set and not on the OOB.
+We have a mismatch because the **OOB error rate** is **5.75%**, but the **Accuracy** is **99.87%**. We have to remeber that OBB is the Out of the Bag estimator, and so is not in the bootstrap sample. The solution of the mismatch is that the Accuracy s based on the train set and not on the OOB. </br> 
+Form the **Error Rate Plot** above we can see that as the number of trees grows the OBB (on the y-axis) intially il high and then, it become constant. In fact the graph says that it is not necessary to use more than 300 number of trees. </br> 
 
+Now we can try to tune the paramenters of our model.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Tune mtry
+t <- tuneRF(train[,-22], train[,22], # esclude the response variable
+       stepFactor = 0.5,             # per each interations number of variables tried at each split (mtry) in inflated by 0.5
+       plot = TRUE,                  # plot OOB
+       ntreeTry = 300,               # tuning number of trees
+       trace = TRUE,
+       improve = 0.05)               # it is the relative improvement in OOB error and so the improvement of the RM depends on the 0.05
 
+# Number of nodes for the trees
+hist(treesize(rf),                        # give us the number of trees in term of number of nodes
+     main = "Number of Nodes for the Trees",
+     col = "grey")
 
+# Variable Importance
+varImpPlot(rf,
+           sort = T,
+           n.var = 10,
+           main = "Top 10 Variable Importance")
 
+# Quantitative values of Variable Importance
+# importance(rf)
 
+# Find out how many times the predictor variables are actually used in the random forest
+# varUsed(rf)
 
+```
 
+From the first of the three graphs that we have above **OOB Error Graph** we can see that OOB Error is initially high (0.07), and then it comes down when we use as **number of variables tried at each split mtry** of 4 and even better with **mtry** of 8. On the contrary, when **mtry** is equal to 16, the OOB Error start to increase again. With this graph, now we have a better understanding about which value of number of variables tried at each split **mtry** to use. </br> 
+We used 300 trees in our model, and the second graph that we have here above is an histogram about the distribution of number of nodes in our 300 trees that we used. There are 80 trees that contain 80 nodes, and there are also few trees with 60 nodes or 100 nodes. </br> 
+From the last of the three graph above, we can see which of the variables are the most important in the model. </br>
+The first **graph on the left** tests how worse the model performs without each variable using the **Mean Decrease Accuracy**. We can see for example that the variable **DS** has a contribution closed to zero. </br>
+The second **graph on the right** measures how pure the nodes are at the end of the tree without each variable, using the **Mean Descease Gini**.
+We can aslo use the function **varUsed(rf)** to find out how many times the predictor variables are actually used in the random forest.
 
+Now we use the **Partial Dependence Plot** in order to have a graphical representation of the marginal effect of a variable on the call probability.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Partial Dependence Plot
+partialPlot(rf, train, ASTV, "1") # use ASTV variable and test it for class 2
 
+# Extract Single Tree
+# getTree(rf, 1, labelVar = TRUE)
 
+# Multi-dimensional Scaling Plot of Proximity Matrix
+MDSplot(rf, train$NSP)
 
+```
 
+From the **Partial Dependence Plot** above made for the variable **ASTV** at **class 1 Normal**, we can see that when the variable ASTV is less than 60, the model tend to predict class 1 more strongly compare when ASTV is more than 60. </br>
+
+We can extract **Information about the Single Tree** using the function **getTree(rf, 1, labelVar = TRUE)** where in this example we specify we want the first tree in our Random Forest. From the output, not shown here, when we get in the variabe **status** the value **-1**, this means that we get a **terminal node**, and so we have also the corresponding value of the class inside the varible **prediction**. </br>
+
+We can also use the **Multi-dimensional Scaling Plot** for dimension 1 **Dim1** and dimension 2 **Dim2**. The colors are related to the threelevel of the response variable **NSP** Fetal State Class Code (1=Normal, 2=Suspect, 3=Pathologic).
+The dimensions **Dim1** and **Dim2** imply the variation in data along the two principal components.
 
 
 

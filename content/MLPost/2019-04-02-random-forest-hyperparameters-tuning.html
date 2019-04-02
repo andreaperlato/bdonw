@@ -124,4 +124,52 @@ Balanced Accuracy      0.9050  0.85219  0.94011</code></pre>
 <pre class="r"><code># Error rate of Random Forest
 plot(rf)</code></pre>
 <p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>From the result above we can see the confusion matrix of the train and test set, and also <strong>Sensitivity</strong> and <strong>Spesificity</strong> for each of the three classes. We have a mismatch because the <strong>OOB error rate</strong> is <strong>5.75%</strong>, but the <strong>Accuracy</strong> is <strong>99.87%</strong>. We have to remeber that OBB is the Out of the Bag estimator, and so is not in the bootstrap sample. The solution of the mismatch is that the Accuracy s based on the train set and not on the OOB.</p>
+<p>From the result above we can see the confusion matrix of the train and test set, and also <strong>Sensitivity</strong> and <strong>Spesificity</strong> for each of the three classes. We have a mismatch because the <strong>OOB error rate</strong> is <strong>5.75%</strong>, but the <strong>Accuracy</strong> is <strong>99.87%</strong>. We have to remeber that OBB is the Out of the Bag estimator, and so is not in the bootstrap sample. The solution of the mismatch is that the Accuracy s based on the train set and not on the OOB. </br> Form the <strong>Error Rate Plot</strong> above we can see that as the number of trees grows the OBB (on the y-axis) intially il high and then, it become constant. In fact the graph says that it is not necessary to use more than 300 number of trees. </br></p>
+<p>Now we can try to tune the paramenters of our model.</p>
+<pre class="r"><code># Tune mtry
+t &lt;- tuneRF(train[,-22], train[,22], # esclude the response variable
+       stepFactor = 0.5,             # per each interations number of variables tried at each split (mtry) in inflated by 0.5
+       plot = TRUE,                  # plot OOB
+       ntreeTry = 300,               # tuning number of trees
+       trace = TRUE,
+       improve = 0.05)               # it is the relative improvement in OOB error and so the improvement of the RM depends on the 0.05</code></pre>
+<pre><code>mtry = 4  OOB error = 5.62% 
+Searching left ...
+mtry = 8    OOB error = 5.02% 
+0.1071429 0.05 
+mtry = 16   OOB error = 5.42% 
+-0.08 0.05 
+Searching right ...
+mtry = 2    OOB error = 6.82% 
+-0.36 0.05 </code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Number of nodes for the trees
+hist(treesize(rf),                        # give us the number of trees in term of number of nodes
+     main = &quot;Number of Nodes for the Trees&quot;,
+     col = &quot;grey&quot;)</code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-4-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Variable Importance
+varImpPlot(rf,
+           sort = T,
+           n.var = 10,
+           main = &quot;Top 10 Variable Importance&quot;)</code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-4-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Quantitative values of Variable Importance
+# importance(rf)
+
+# Find out how many times the predictor variables are actually used in the random forest
+# varUsed(rf)</code></pre>
+<p>From the first of the three graphs that we have above <strong>OOB Error Graph</strong> we can see that OOB Error is initially high (0.07), and then it comes down when we use as <strong>number of variables tried at each split mtry</strong> of 4 and even better with <strong>mtry</strong> of 8. On the contrary, when <strong>mtry</strong> is equal to 16, the OOB Error start to increase again. With this graph, now we have a better understanding about which value of number of variables tried at each split <strong>mtry</strong> to use. </br> We used 300 trees in our model, and the second graph that we have here above is an histogram about the distribution of number of nodes in our 300 trees that we used. There are 80 trees that contain 80 nodes, and there are also few trees with 60 nodes or 100 nodes. </br> From the last of the three graph above, we can see which of the variables are the most important in the model. </br> The first <strong>graph on the left</strong> tests how worse the model performs without each variable using the <strong>Mean Decrease Accuracy</strong>. We can see for example that the variable <strong>DS</strong> has a contribution closed to zero. </br> The second <strong>graph on the right</strong> measures how pure the nodes are at the end of the tree without each variable, using the <strong>Mean Descease Gini</strong>. We can aslo use the function <strong>varUsed(rf)</strong> to find out how many times the predictor variables are actually used in the random forest.</p>
+<p>Now we use the <strong>Partial Dependence Plot</strong> in order to have a graphical representation of the marginal effect of a variable on the call probability.</p>
+<pre class="r"><code># Partial Dependence Plot
+partialPlot(rf, train, ASTV, &quot;1&quot;) # use ASTV variable and test it for class 2</code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Extract Single Tree
+# getTree(rf, 1, labelVar = TRUE)
+
+# Multi-dimensional Scaling Plot of Proximity Matrix
+MDSplot(rf, train$NSP)</code></pre>
+<p><img src="/MLPost/2019-04-02-random-forest-hyperparameters-tuning_files/figure-html/unnamed-chunk-5-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the <strong>Partial Dependence Plot</strong> above made for the variable <strong>ASTV</strong> at <strong>class 1 Normal</strong>, we can see that when the variable ASTV is less than 60, the model tend to predict class 1 more strongly compare when ASTV is more than 60. </br></p>
+<p>We can extract <strong>Information about the Single Tree</strong> using the function <strong>getTree(rf, 1, labelVar = TRUE)</strong> where in this example we specify we want the first tree in our Random Forest. From the output, not shown here, when we get in the variabe <strong>status</strong> the value <strong>-1</strong>, this means that we get a <strong>terminal node</strong>, and so we have also the corresponding value of the class inside the varible <strong>prediction</strong>. </br></p>
+<p>We can also use the <strong>Multi-dimensional Scaling Plot</strong> for dimension 1 <strong>Dim1</strong> and dimension 2 <strong>Dim2</strong>. The colors are related to the threelevel of the response variable <strong>NSP</strong> Fetal State Class Code (1=Normal, 2=Suspect, 3=Pathologic). The dimensions <strong>Dim1</strong> and <strong>Dim2</strong> imply the variation in data along the two principal components.</p>
