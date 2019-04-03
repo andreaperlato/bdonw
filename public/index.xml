@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Interactive Forecasting</title>
+      <link>/graphpost/interactive-forecasting/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/interactive-forecasting/</guid>
+      <description>body {text-align: justify}In this post, we use some fairly new technology of time series analysis namely neural nets and interactive charting tools.
+INTERACTIVE GRAPH  The time series results should be presented interactively in order to highlight certain features.
+# Handle outlierslibrary(forecast)myts &amp;lt;- tsclean(myts)# Set up a NNmynnetar &amp;lt;- nnetar(myts)# Forecast 3 yearsnnetforecast &amp;lt;- forecast(mynnetar, h = 36, PI = TRUE) # PI create the prediction intervals for the forecastlibrary(ggplot2)# Data we need for the graphdata &amp;lt;- nnetforecast$x # raw datalower &amp;lt;- nnetforecast$lower[,2] # confidence intervals lower boundupper &amp;lt;- nnetforecast$upper[,2] # confidence intervals upper boundpforecast &amp;lt;- nnetforecast$mean # th element meanmydata &amp;lt;- cbind(data, lower, upper, pforecast) # put everything in one dataframelibrary(dygraphs)dygraph(mydata, main = &amp;quot;Campsite Restaurant&amp;quot;) %&amp;gt;% # get data and the captiondyRangeSelector() %&amp;gt;% # the zoom tooldySeries(name = &amp;quot;data&amp;quot;, label = &amp;quot;Revenue Data&amp;quot;) %&amp;gt;% # add time series which are store in: data &amp;lt;- nnetforecast$xdySeries(c(&amp;quot;lower&amp;quot;,&amp;quot;pforecast&amp;quot;,&amp;quot;upper&amp;quot;), label = &amp;quot;Revenue Forecast&amp;quot;) %&amp;gt;% # add the forecast and CIdyLegend(show = &amp;quot;always&amp;quot;, hideOnMouseOut = FALSE) %&amp;gt;% # add the legend (time series + forecast)dyAxis(&amp;quot;y&amp;quot;, label = &amp;quot;Monthly Revenue USD&amp;quot;) %&amp;gt;% # label the y axisdyHighlight(highlightCircleSize = 5, # specify what happen when the mouse in hovering the graphhighlightSeriesOpts = list(strokeWidth = 2)) %&amp;gt;%dyOptions(axisLineColor = &amp;quot;navy&amp;quot;, gridLineColor = &amp;quot;grey&amp;quot;) %&amp;gt;% # set axis and fridline colorsdyAnnotation(&amp;quot;2010-8-1&amp;quot;, text = &amp;quot;CF&amp;quot;, tooltip = &amp;quot;Camp Festival&amp;quot;, attachAtBottom = T) # add annotation{&#34;</description>
+    </item>
+    
+    <item>
       <title>Feature Selection using Boruta Algorithm</title>
       <link>/mlpost/feature-selection-using-boruta-algorithm/</link>
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
