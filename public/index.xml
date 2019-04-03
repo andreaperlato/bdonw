@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Classification and Prediction with Support Vector Machine</title>
+      <link>/mlpost/classification-and-prediction-with-support-vector-machine/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/classification-and-prediction-with-support-vector-machine/</guid>
+      <description>body {text-align: justify}Support Vector Machine SVM is a linear classifier. We can consider SVM for linearly separable binary sets. The goal is to design a hyperplane (is a subspace whose dimension is one less than that of its ambient space. If a space is 3-dimensional then its hyperplanes are the 2-dimensional planes).  The hyperplane classifies all the training vectors in two classes. We can have many possible hyperplanes that are able to classify correctly all the elements in the feature set, but the best choice will be the hyperplane that leaves the Maximum Margin from both classes.</description>
+    </item>
+    
+    <item>
       <title>Interactive Forecasting</title>
       <link>/graphpost/interactive-forecasting/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>

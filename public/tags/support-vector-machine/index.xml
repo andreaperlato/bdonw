@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support Vector Machine on Andrea Perlato</title>
+    <link>/tags/support-vector-machine/</link>
+    <description>Recent content in Support Vector Machine on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/support-vector-machine/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Classification and Prediction with Support Vector Machine</title>
+      <link>/mlpost/classification-and-prediction-with-support-vector-machine/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/classification-and-prediction-with-support-vector-machine/</guid>
+      <description>body {text-align: justify}Support Vector Machine SVM is a linear classifier. We can consider SVM for linearly separable binary sets. The goal is to design a hyperplane (is a subspace whose dimension is one less than that of its ambient space. If a space is 3-dimensional then its hyperplanes are the 2-dimensional planes).  The hyperplane classifies all the training vectors in two classes. We can have many possible hyperplanes that are able to classify correctly all the elements in the feature set, but the best choice will be the hyperplane that leaves the Maximum Margin from both classes.</description>
+    </item>
+    
+  </channel>
+</rss>

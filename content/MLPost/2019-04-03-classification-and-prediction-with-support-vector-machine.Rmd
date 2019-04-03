@@ -1,0 +1,97 @@
+---
+title: Classification and Prediction with Support Vector Machine
+author: andrea perlato
+date: '2019-04-03'
+slug: classification-and-prediction-with-support-vector-machine
+categories:
+  - machine learning
+tags:
+  - support vector machine
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Support Vector Machine SVM is a linear classifier. We can consider SVM for linearly separable binary sets. The goal is to design a hyperplane (is a subspace whose dimension is one less than that of its ambient space. If a space is 3-dimensional then its hyperplanes are the 2-dimensional planes). </br>
+The hyperplane classifies all the training vectors in two classes. We can have many possible hyperplanes that are able to classify correctly all the elements in the feature set, but the best choice will be the hyperplane that leaves the Maximum Margin from both classes. With Margins we mean the distance between the hyperplane and the closest elements from the hyperplane.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+data(iris)
+summary(iris)
+head(iris)
+
+# library(ggplot2)
+# qplot(Petal.Length, Petal.Width, data=iris, color = Species)
+
+```
+
+We are using the [**iris**](https://en.wikipedia.org/wiki/Iris_flower_data_set) dataset with 4 numerical variables and 1 factor which has 3 levels as described above. We can also see that the numerical variables have different ranges, it is a good pratice to normalize the data. </br>
+We create classification machine learning model that help us to predict the correct species.
+From the graph above, we can see there is a separation based on the **Species**, for example **setosa** species is very far from the other two groups, and between **versicolor** and **virginica** there is a small overlap. </br>
+
+With **Support Vector Machine SVM** we are looking for optimal separating hyperplane between two classes. And to do that SMV maximize the margin around the hyperplane. The point that lie on the boundary ar called **Support Vectors**, and the middle line is the **Seprarating Hyperplane**. </br>
+In situatins where we are not able to obtain a linear separator, the data are projected into a higher dimentional space, so that, data points, can become linearly separable. </br>
+In this case, we use the the **Kernel Trick**, using the **Gaussian Radial Basis Function**.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+library(e1071)
+mymodel <- svm(Species~., data=iris)
+summary(mymodel)
+
+# Plot two-dimensional projection of the data with highlighting classes and support vectors
+# The Species classes are shown in different shadings
+plot(mymodel, data=iris, 
+     Petal.Width~Petal.Length,
+     slice = list(Sepal.Width=3, Sepal.Length=4)) # specify a list of named values for the dimensions held constant
+
+# Confusion Matrix and Missclassification Error
+pred <- predict(mymodel, iris) 
+tab <- table(Predicted = pred, Actual = iris$Species)
+tab
+
+# Missclassification Rate
+1-sum(diag(tab))/sum(tab)
+
+```
+
+As we can see from the result above, we use Gaussian Radial Basis Function, **cost** is the constaint violation. </br>
+The two-dimensional plot above, is a projection of the data with highlighting classes and support vectors. The **Species** classes are shown in different shadings.
+Inside the **blue class setosa** we have 8 points depicted with a cross, and these are the suppor vectors for **setosa**. Similarly, we have points depicted with red cross points for **versicolor**, and green cross points for **virginica**. </br>
+
+From the **Confusion Matrix** above, we have only 2 observation missclassified for **versicolor**, and 2 observation missclassified for **virginica**. </br>
+We have also a missclassification rate, of **2.6%**. </br>
+If we try to use SVM with a **linear kernel** (not shown here), instead of a SVM with a **radial kernel**, the missclassification rate is a bit higher.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+mymodel <- svm(Species~., data=iris,
+               kernel = "polynomial")
+
+plot(mymodel, data=iris, 
+     Petal.Width~Petal.Length,
+     slice = list(Sepal.Width=3, Sepal.Length=4))
+
+pred <- predict(mymodel, iris) 
+tab <- table(Predicted = pred, Actual = iris$Species)
+
+1-sum(diag(tab))/sum(tab)
+
+```
+
+If we also try to use a SVM with a **polynomial kernel**, as we can see from the graph above, the missclassification rate is increased to **4.6%**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
