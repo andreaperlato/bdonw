@@ -79,7 +79,47 @@ tab <- table(Predicted = pred, Actual = iris$Species)
 
 ```
 
-If we also try to use a SVM with a **polynomial kernel**, as we can see from the graph above, the missclassification rate is increased to **4.6%**.
+If we also try to use a SVM with a **polynomial kernel**, as we can see from the graph above, the missclassification rate is increased to **4.6%**. </br>
+
+We can try to tune the model in order to have better classification rate. Tune is also called hyperparameter optimization, and it helps to select the best model.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Tuning
+set.seed(123)
+
+tmodel <- tune(svm, Species~., data=iris,
+               ranges = list(epsilon = seq(0,1,0.1), # sequence from 0 to 1 with an icrement of 0.1 
+              cost = 2^(2:7)))                       # cost captures the cost of constant violatio
+                                                     # if cost is too high, we have penalty for non-separable points, and the model store too many support vectors
+
+plot(tmodel)
+
+```
+
+We use **epsilon** and **cost** as tune paramentrs. </br>
+The **cost** parameter captures the cost of constant violatio. If **cost is too high**, we have penalty for non-separable points, and as a consequence we have a model that store too many support vectors, leading to **overfitting**. On the contrary, if **cost is too small**, we may end up with **underfitting**. </br>
+
+The value of **epsilon** defines a margin of tolerance where no penalty is given to errors. In fact, in SVM we can have **hard** or **soft** margins, where soft allow observations inside the margins. Soft margin is used when two classes are not linearly separable. </br>
+
+the plot here above gives us the performance evaluation of SMV for the **epsilon** and **cost** parameters. Darker regions means better results, and so lower misclassification error. By interpreting this graph we can choose the best model parameters.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+mymodel <- tmodel$best.model
+summary(mymodel)
+
+plot(mymodel, data=iris, 
+     Petal.Width~Petal.Length,
+     slice = list(Sepal.Width=3, Sepal.Length=4))
+
+pred <- predict(mymodel, iris) 
+tab <- table(Predicted = pred, Actual = iris$Species)
+
+1-sum(diag(tab))/sum(tab)
+
+```
+
+Fomr the summary above, now we have **35 support vectors**: **6** for **setosa**, **15** for **versicolor**, and **14** for **virginica**.
+The graph here above expain the result obtained with the best model. Looking at the confusion matrix and missclassification error, we can see that only 2 observations are missclassified and the missclassification error is 1.3% which is significant less from what the got earlier.
 
 
 
