@@ -78,7 +78,7 @@
 body {
 text-align: justify}
 </style>
-<p>Linear Discriminant Analysis was originally developed by <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">**R.A. Fisher*+</a> to classify subjects into one of the two clearly defined groups. It was later expanded to classify subjects inoto more than two groups. It helps to find linear combination of original variables that provide the best possible separation between the groups. </br> Linear Discriminant Analysis is focused on maximizing the separability among known categories. The problem is when 2 features are not sufficient to capture the most of variation. In PCA, we solve this problem reducing the dimensionality by focusing on the feature with the most variation. LDA is like PCA, but is focused to maximize the separability between the two groups. PCA is unsupervised, but LDA is supervised.</p>
+<p>Linear Discriminant Analysis was originally developed by <a href="https://en.wikipedia.org/wiki/Ronald_Fisher"><strong>R.A. Fisher</strong></a> to classify subjects into one of the two clearly defined groups. It was later expanded to classify subjects inoto more than two groups. It helps to find linear combination of original variables that provide the best possible separation between the groups. </br> Linear Discriminant Analysis is focused on maximizing the separability among known categories. The problem is when 2 features are not sufficient to capture the most of variation. In PCA, we solve this problem reducing the dimensionality by focusing on the feature with the most variation. LDA is like PCA, but is focused to maximize the separability between the two groups. PCA is unsupervised, but LDA is supervised.</p>
 <pre class="r"><code>data(iris)
 
 library(psych)
@@ -140,8 +140,43 @@ ldahist(data = p$x[,2], g = training$Species) # p$x[,1] give data from LD1</code
 library(ggord)
 ggord(linear, training$Species, ylim = c(-10, 10))</code></pre>
 <p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>From the <strong>Bi-Plot</strong> above, we have in the x-axis the <strong>LD1</strong> and is able to separate the three <strong>Species</strong> quite well. There is some amount of overlap between <strong>versicolor</strong> in green and <strong>vrginica</strong> in blue. We can also see that <strong>Sepal.Width</strong> and <strong>Sepal.Length</strong> are both in a positive direction. The contrary is for <strong>Petal.Width</strong> and <strong>Petal.Length</strong>.</p>
+<p>From the <strong>Bi-Plot</strong> above, we have in the x-axis the <strong>LD1</strong> and is able to separate the three <strong>Species</strong> quite well. There is some amount of overlap between <strong>versicolor</strong> in green and <strong>virginica</strong> in blue. We can also see that <strong>Sepal.Width</strong> and <strong>Sepal.Length</strong> are both in a positive direction. The contrary is for <strong>Petal.Width</strong> and <strong>Petal.Length</strong>.</p>
 <p>Now we can build the <strong>Partition Plot</strong>.</p>
+<pre class="r"><code># # Bi-Plot with Linear Discriminant Analysis Model
+library(klaR)
+partimat(Species~., data=training, method=&quot;lda&quot;)</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the <strong>Partition Plot</strong> above, we can see classification for eachof observation in the training dataset based on the Linear Discriminant Analysis Model, and for every combination of two variables. From the right bottom graph, we can see that setosa <strong>s</strong> is quite far away from the other two <strong>Species</strong>, and bewtween <strong>versicolor</strong> and <strong>virginica</strong> there is some amount of overlap. The graph above is for a <strong>Linear Discriminant</strong>, we can also use a <strong>Quadratic Discriminant Analysis Model</strong>.</p>
+<pre class="r"><code># Bi-Plot with Quadratic Discriminant Analysis Model
+partimat(Species~., data=training, method=&quot;qda&quot;)</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Confusion Matrix and Accuracy
+p1 &lt;- predict(linear, testing)$class
+tab1 &lt;- table(Predicted = p1, Actual = testing$Species)
+tab1</code></pre>
+<pre><code>            Actual
+Predicted    setosa versicolor virginica
+  setosa         20          0         0
+  versicolor      0         19         1
+  virginica       0          1        20</code></pre>
+<pre class="r"><code>accuracy1 &lt;- sum(diag(tab1))/sum(tab1)
+accuracy1</code></pre>
+<pre><code>[1] 0.9672131</code></pre>
+<pre class="r"><code># Quadratic Discriminant Analysis
+quadratic &lt;- qda(Species~., data=training)
+
+p2 &lt;- predict(quadratic, testing)$class
+tab2 &lt;- table(Predicted = p2, Actual = testing$Species)
+tab2</code></pre>
+<pre><code>            Actual
+Predicted    setosa versicolor virginica
+  setosa         20          0         0
+  versicolor      0         16         2
+  virginica       0          4        19</code></pre>
+<pre class="r"><code>accuracy2 &lt;- sum(diag(tab2))/sum(tab2)
+accuracy2</code></pre>
+<pre><code>[1] 0.9016393</code></pre>
+<p>From the <strong>Partition Plot</strong> above, now we have a curve to discriminate between <strong>Species</strong>. From the <strong>Accuracy</strong> estimation of the testing data, we can see that is higher with Linear Discriminant Analysis Model (96.72% vs. 90.16%), which is also confirmed comparing the confusion matrix for the linear discriminat (tab1) vs. the confusion matrix of the quadratic discriminant (tab2).</p>
 
     </div>
   </article>
