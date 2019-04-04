@@ -1,0 +1,81 @@
+---
+title: Linear Discriminant Analysis
+author: andrea perlato
+date: '2019-04-04'
+slug: linear-discriminant-analysis
+categories:
+  - machine learning
+tags:
+  - linear discriminant analysis
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Linear Discriminant Analysis was originally developed by <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">**R.A. Fisher*+</a> to classify subjects into one of the two clearly defined groups. It was later expanded to classify subjects inoto more than two groups. It helps to find linear combination of original variables that provide the best possible separation between the groups. </br> Linear Discriminant Analysis is focused on maximizing the separability among known categories. The problem is when 2 features are not sufficient to capture the most of variation. In PCA, we solve this problem reducing the dimensionality by focusing on the feature with the most variation. LDA is like PCA, but is focused to maximize the separability between the two groups. PCA is unsupervised, but LDA is supervised.</p>
+<pre class="r"><code>data(iris)
+
+library(psych)
+pairs.panels(iris[1:4],
+             gap = 0,
+             bg = c(&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;)[iris$Species],
+             pch = 21)</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We are using the <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><strong>iris</strong></a> dataset with 4 numerical variables and 1 factor which has 3 levels as described above. We can also see that the numerical variables have different ranges, it is a good pratice to normalize the data. </br> From the graph above we have scatterplots of each combination of variabels. In the upper triangle we have correlation coefficients. We can see that <strong>Sepal.Length</strong> and <strong>Petal.Length</strong> are good to separate between thr three <strong>Species</strong>. In other cases, there is a overlapping and not a clear separation between the three <strong>Species</strong>.</p>
+<pre class="r"><code># Data Partitioning
+set.seed(123)
+ind &lt;- sample(2, nrow(iris),
+              replace = TRUE,
+              prob = c(0.6, 0.4))
+
+training &lt;- iris[ind==1,]
+testing &lt;- iris[ind==2,] 
+
+# Linear Discriminant Analysis
+library(MASS)
+linear &lt;- lda(Species~., data=training)
+linear</code></pre>
+<pre><code>Call:
+lda(Species ~ ., data = training)
+
+Prior probabilities of groups:
+    setosa versicolor  virginica 
+ 0.3370787  0.3370787  0.3258427 
+
+Group means:
+           Sepal.Length Sepal.Width Petal.Length Petal.Width
+setosa         4.946667    3.380000     1.443333    0.250000
+versicolor     5.943333    2.803333     4.240000    1.316667
+virginica      6.527586    2.920690     5.489655    2.048276
+
+Coefficients of linear discriminants:
+                    LD1         LD2
+Sepal.Length  0.3629008  0.05215114
+Sepal.Width   2.2276982  1.47580354
+Petal.Length -1.7854533 -1.60918547
+Petal.Width  -3.9745504  4.10534268
+
+Proportion of trace:
+   LD1    LD2 
+0.9932 0.0068 </code></pre>
+<p>From the resul above we have the <strong>Coefficients of linear discriminants</strong> for each of the four variables. </br> The first discriminant function **LD1*+ is a linear combination of the four variables: <strong>(0.3629008 x Sepal.Length) + (2.2276982 x Sepal.Width) + (-1.7854533 x Petal.Length) + (-3.9745504 x Petal.Width)</strong>. Note that Discriminant functions are scaled. We have aslo the <strong>Proportion of trace</strong>, the percentage separations archived by the first discriminant function <strong>LD1</strong> is <strong>99.32%</strong>.</p>
+<p>Now we can create a <strong>Stacked Histogram</strong> of Discriminant Function values.</p>
+<pre class="r"><code># Histogram
+p &lt;- predict(linear, training)
+ldahist(data = p$x[,1], g = training$Species) # p$x[,1] give data from LD1</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the graph above, we have histogram from LD1, and w can see that the separatin between <strong>setosa</strong> and the oder two <strong>Species</strong> is quite large with no overlap. On the contrary, there is a certan amont of overlapping between <strong>versicolor</strong> and <strong>virginica</strong>. We already said that the percentage of separation archived by <strong>LD1</strong> is <strong>99.32%</strong>, that is we he can see a very clear separation from the histogram above. Now, we can try to do the same for <strong>LD2</strong>.</p>
+<pre class="r"><code># Histogram
+p &lt;- predict(linear, training)
+ldahist(data = p$x[,2], g = training$Species) # p$x[,1] give data from LD1</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As we can see from the histogram here above <strong>LD2</strong> we have a lot of overlap, which is not great. Now we can try to create the <strong>Bi-Plot</strong>.</p>
+<pre class="r"><code># # Bi-Plot
+library(ggord)
+ggord(linear, training$Species, ylim = c(-10, 10))</code></pre>
+<p><img src="/MLPost/2019-04-04-linear-discriminant-analysis_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the <strong>Bi-Plot</strong> above, we have in the x-axis the <strong>LD1</strong> and is able to separate the three <strong>Species</strong> quite well. There is some amount of overlap between <strong>versicolor</strong> in green and <strong>vrginica</strong> in blue. We can also see that <strong>Sepal.Width</strong> and <strong>Sepal.Length</strong> are both in a positive direction. The contrary is for <strong>Petal.Width</strong> and <strong>Petal.Length</strong>.</p>
+<p>Now we can build the <strong>Partition Plot</strong>.</p>

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Linear Discriminant Analysis</title>
+      <link>/mlpost/linear-discriminant-analysis/</link>
+      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/mlpost/linear-discriminant-analysis/</guid>
+      <description>body {text-align: justify}Linear Discriminant Analysis was originally developed by **R.A. Fisher*+ to classify subjects into one of the two clearly defined groups. It was later expanded to classify subjects inoto more than two groups. It helps to find linear combination of original variables that provide the best possible separation between the groups.  Linear Discriminant Analysis is focused on maximizing the separability among known categories. The problem is when 2 features are not sufficient to capture the most of variation.</description>
+    </item>
+    
+    <item>
       <title>Classification and Prediction with Support Vector Machine</title>
       <link>/mlpost/classification-and-prediction-with-support-vector-machine/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
