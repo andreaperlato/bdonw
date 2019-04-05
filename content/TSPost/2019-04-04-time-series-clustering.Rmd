@@ -75,7 +75,7 @@ rect.hclust(hc, k=4)
 As we can see from the graph above, we calculated the distance using the [**Dynamic Time Warping**](https://en.wikipedia.org/wiki/Dynamic_time_warping).
 As we can see from the **Cluster Dendrogram** above, we have a well defined cluster for the **Cyclic Time Series**, and **Normal Time Series**.
 On the contrary, there is some mix between **Downward shift Time Serie** and **Decreasing trend Time Serie**, the same is between **Upward shift Time Serie** and **Increasing trend Time Serie**. This result in four clusters. 
-but we already now that we have six clusters, in fact there is a problem to discriminate between **Downward shift vs.Decreasing trend** and **Upward shift vs. Increasing trend**. 
+but we already now that we have six clusters, in fact there is a problem to discriminate between **Downward shift vs. Decreasing trend** and **Upward shift vs. Increasing trend**. 
 
 
 
