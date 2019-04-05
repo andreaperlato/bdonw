@@ -401,9 +401,18 @@
     <item>
       <title>Time Series Analysis</title>
       <link>/tags/time-series-analysis/</link>
-      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/time-series-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series Classification</title>
+      <link>/tags/time-series-classification/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/time-series-classification/</guid>
       <description></description>
     </item>
     
