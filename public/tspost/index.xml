@@ -6,10 +6,19 @@
     <description>Recent content in TSPosts on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tspost/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Time Series Clustering</title>
+      <link>/tspost/time-series-clustering/</link>
+      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/time-series-clustering/</guid>
+      <description>body {text-align: justify}Clustering is the task of grouping s set of objects in such a way that objects in the same group are more similar to each other than to those in other groups. Connectivity-based clustering connects objects to form clusters based on their distance. A cluster can be descibed by the maximum distance needed to connect parts of the cluster. At different distances, different clusters will form, which can be represented using dendrogram.</description>
+    </item>
     
     <item>
       <title>Forecasting Product Demand</title>
