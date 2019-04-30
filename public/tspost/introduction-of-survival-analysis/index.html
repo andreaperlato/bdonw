@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.53" />
 
 
-<title>Introduction of Survival Analysis - Andrea Perlato</title>
-<meta property="og:title" content="Introduction of Survival Analysis - Andrea Perlato">
+<title>Survival Analysis: Kaplan-Meier &amp; Logrank test - Andrea Perlato</title>
+<meta property="og:title" content="Survival Analysis: Kaplan-Meier &amp; Logrank test - Andrea Perlato">
 
 
 
@@ -16,6 +16,11 @@
 
 
 
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -61,7 +66,7 @@
   <article class="article">
     
 
-    <h1 class="article-title">Introduction of Survival Analysis</h1>
+    <h1 class="article-title">Survival Analysis: Kaplan-Meier &amp; Logrank test</h1>
 
     
 
@@ -75,7 +80,20 @@ text-align: justify}
 </style>
 <p>The ultimate goal of survival analysis is to gain information on the expected duration of time untill one or even more events happen. Survival analysis is applied in different fields and most of these fields have different terms for the same concept. So, sometimes it is called <strong>Reliability Theory</strong> or <strong>Reliability Analysis</strong> in engineering. It is also called <strong>Duration Analysis</strong> in economics or <strong>Event-history Analysis</strong> is sociology. The underlying questions which the analysis tries to answer are as follows: </br> 1 - What is the proportion of a population surviving past a certain time? </br> 2 - Of those that survive, at what rate will they die or fail? </br> 3 - Can multiple causes of death or failure be taken into account? </br> 4 - What is the average survival time? </br> 5 - How do particular circumstanses or characteristics change the probability of survival? </br></p>
 <p>To answer these questions it is essential to define the <strong>Lifetime</strong>, the time before a certain event occured. </br> essentially, the fundamental tools to describe the survival times of members of a group are <strong>Life Tables</strong> and <strong>Kaplan-Meier curves</strong>. </br> To compare the survival times of two or more groups we mainly use the <strong>Log-rank test</strong>. </br> To describe the effect of categorical or quantitative covariance on survival we mainly use the <strong>Cox Proportional Hazards Regression</strong> or <strong>Survival Tree</strong> and <strong>Survival Random Forest</strong>.</p>
-<p>There are three primary terms of Survival Analysis: </br> <strong>Event</strong>: depends on the study, e.g. failure, death, disease, recovery, decay, development. Usually is a binary event. </br> <strong>Time</strong>: the time interval between the beginning of a study and the occurrence of the event. </br> <strong>Censoring</strong>: occurs if a subject doesn’t have an event during the observational time. </br> For example <strong>censoring</strong> happnes when the subject no longer participates in the study without the evnet of interest taking palce.</p>
+<p>There are three primary terms of Survival Analysis: </br> <strong>Event</strong>: depends on the study, e.g. failure, death, disease, recovery, decay, development. Usually is a binary event. </br> <strong>Time</strong>: the time interval between the beginning of a study and the occurrence of the event. </br> <strong>Censoring</strong>: occurs if a subject doesn’t have an event during the observational time. </br> For example <strong>censoring</strong> happens when the subject no longer participates in the study without the event of interest taking place.</p>
+<p><strong>Prostate Cancer Dataset</strong> </br> We will use as a template for survival analysis the prostate cancer dataset. The dataset come from a study on prosthetic cancer patients, and it contains several variables to indicate or are in correlation with prosthetic cancer. The data contain 63 patients and 8 independent variables. The main goal is to compare two different treatments identified with 1 or 2. Both ot these are surgical treatments which are pretty much indicative in higher stages of prostate cancer. The two tretments 1 and 2 differ in the amount of removed tissue and the type of tisue it was primarily removed. </br> The time in the dataset was measured in months. The variable <strong>status</strong> can be 0=censoring (loss of follow up or quitting the study), or 1=no censoring. The variable <strong>sh</strong> is the blod measurement hormone. The variable <strong>size</strong> is the tumor size at the beginning of the study. The variable <strong>index</strong> is the <strong>Gleason Scoring System</strong>, because tumor has different stages and they actually start to metastasize other boby parts at higher index of <strong>Gleason Scoring System</strong>.</p>
+<pre class="r"><code>prost &lt;- read.table(&quot;C:/07 - R Website/dataset/TS/prostate-cancer.txt&quot;, header = FALSE)
+
+colnames(prost) = c(&quot;patient&quot;, &quot;treatment&quot;, &quot;time&quot;, &quot;status&quot;, &quot;age&quot;, &quot;sh&quot;, &quot;size&quot;, &quot;index&quot;)
+head(prost)</code></pre>
+<pre><code>  patient treatment time status age   sh size index
+1       1         1   65      0  67 13.4   34     8
+2       2         2   61      0  60 14.6    4    10
+3       3         2   60      0  77 15.6    3     8
+4       4         1   58      0  64 16.2    6     9
+5       5         2   51      0  65 14.1   21     9
+6       6         1   51      0  61 13.5    8     8</code></pre>
+<p><strong>Non-parametric model</strong> </br> The <strong>Kaplan-Meier</strong> estimation is often the first tool to use. It is mainly used as a step plot where an event indicates a decline in survival probability.</p>
 
     </div>
   </article>
@@ -98,6 +116,18 @@ text-align: justify}
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
