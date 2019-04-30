@@ -1,0 +1,20 @@
+---
+title: Introduction of Survival Analysis
+author: andrea perlato
+date: '2019-04-30'
+slug: introduction-of-survival-analysis
+categories:
+  - time series
+tags:
+  - survival analysis
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>The ultimate goal of survival analysis is to gain information on the expected duration of time untill one or even more events happen. Survival analysis is applied in different fields and most of these fields have different terms for the same concept. So, sometimes it is called <strong>Reliability Theory</strong> or <strong>Reliability Analysis</strong> in engineering. It is also called <strong>Duration Analysis</strong> in economics or <strong>Event-history Analysis</strong> is sociology. The underlying questions which the analysis tries to answer are as follows: </br> 1 - What is the proportion of a population surviving past a certain time? </br> 2 - Of those that survive, at what rate will they die or fail? </br> 3 - Can multiple causes of death or failure be taken into account? </br> 4 - What is the average survival time? </br> 5 - How do particular circumstanses or characteristics change the probability of survival? </br></p>
+<p>To answer these questions it is essential to define the <strong>Lifetime</strong>, the time before a certain event occured. </br> essentially, the fundamental tools to describe the survival times of members of a group are <strong>Life Tables</strong> and <strong>Kaplan-Meier curves</strong>. </br> To compare the survival times of two or more groups we mainly use the <strong>Log-rank test</strong>. </br> To describe the effect of categorical or quantitative covariance on survival we mainly use the <strong>Cox Proportional Hazards Regression</strong> or <strong>Survival Tree</strong> and <strong>Survival Random Forest</strong>.</p>
+<p>There are three primary terms of Survival Analysis: </br> <strong>Event</strong>: depends on the study, e.g. failure, death, disease, recovery, decay, development. Usually is a binary event. </br> <strong>Time</strong>: the time interval between the beginning of a study and the occurrence of the event. </br> <strong>Censoring</strong>: occurs if a subject doesn’t have an event during the observational time. </br> For example <strong>censoring</strong> happnes when the subject no longer participates in the study without the evnet of interest taking palce.</p>

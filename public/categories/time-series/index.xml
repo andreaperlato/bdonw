@@ -6,10 +6,19 @@
     <description>Recent content in Time Series on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/time-series/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction of Survival Analysis</title>
+      <link>/tspost/introduction-of-survival-analysis/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/introduction-of-survival-analysis/</guid>
+      <description>body {text-align: justify}The ultimate goal of survival analysis is to gain information on the expected duration of time untill one or even more events happen. Survival analysis is applied in different fields and most of these fields have different terms for the same concept. So, sometimes it is called Reliability Theory or Reliability Analysis in engineering. It is also called Duration Analysis in economics or Event-history Analysis is sociology.</description>
+    </item>
     
     <item>
       <title>Time Series Classification</title>

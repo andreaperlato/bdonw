@@ -1,0 +1,62 @@
+---
+title: Introduction of Survival Analysis
+author: andrea perlato
+date: '2019-04-30'
+slug: introduction-of-survival-analysis
+categories:
+  - time series
+tags:
+  - survival analysis
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+The ultimate goal of survival analysis is to gain information on the expected duration of time untill one or even more events happen. 
+Survival analysis is applied in different fields and most of these fields have different terms for the same concept. So, sometimes it is called **Reliability Theory** or **Reliability Analysis** in engineering. It is also called **Duration Analysis** in economics or **Event-history Analysis** is sociology. The underlying questions which the analysis tries to answer are as follows: </br>
+1 - What is the proportion of a population surviving past a certain time? </br>
+2 - Of those that survive, at what rate will they die or fail? </br>
+3 - Can multiple causes of death or failure be taken into account? </br>
+4 - What is the average survival time? </br>
+5 - How do particular circumstanses or characteristics change the probability of survival? </br>
+
+To answer these questions it is essential to define the **Lifetime**, the time before a certain event occured. </br>
+essentially, the fundamental tools to describe the survival times of members of a group are **Life Tables** and **Kaplan-Meier curves**. </br>
+To compare the survival times of two or more groups we mainly use the **Log-rank test**. </br>
+To describe the effect of categorical or quantitative covariance on survival we mainly use the **Cox Proportional Hazards Regression** or **Survival Tree** and **Survival Random Forest**.
+
+There are three primary terms of Survival Analysis: </br>
+**Event**: depends on the study, e.g. failure, death, disease, recovery, decay, development. Usually is a binary event. </br>
+**Time**: the time interval between the beginning of a study and the occurrence of the event. </br>
+**Censoring**: occurs if a subject doesn't have an event during the observational time. </br>
+For example **censoring** happnes when the subject no longer participates in the study without the evnet of interest taking palce.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
