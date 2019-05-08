@@ -50,11 +50,23 @@ head(prost)
 ```
 
 **Non-parametric model** </br>
-The **Kaplan-Meier** estimation is often the first tool to use. It is mainly used as a step plot where an event indicates a decline in survival probability.
+The **Kaplan-Meier** estimation is often the first tool to use. It is mainly used as a step plot where an event indicates a decline in survival probability. </br>
+The [**Survival Function**](https://en.wikipedia.org/wiki/Survival_function), also called Reliability Function, gives the probability that a study subject will survive beyond a given specific time. Normally, the survival function has to be estimated, and the standard way to do this is via Kaplan-Meier estimator.
+The Kaplan-Meier plot, has on the x-axis the time passed and on the y-axis the sirviva probability. It is the statisticians way of estimating the survival function. The flat horizontal lines between the steps indicate an assumed constant survival function for that specific time period. A fairly important advantage of the Kaplan-Meier curve is the fact that this method can take into account censored data,and usually there censored data are indicated with a dot in the plot. On the other hand, an impostant limitation is the fact that we can not incorporate covariance into the estimate. This covariance would usually be handled with **Cox Proportional Hazards Regression**. What we often see is a chart comparing two or more Kaplan-Meier curves.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Simply Kaplan-Meier plot
+library(survival)
+mykm1 <- survfit(Surv(time, status) ~ 1, data=prost)
+mykm2 <- survfit(Surv(time, status) ~ treatment, data=prost) # group by treatment
 
+library(ggfortify)
+autoplot(mykm2)
 
+```
 
+We can see the two Kaplan-Meier curved, one for the treatement 1 and the other for the treatment 2. Here, it is pretty obvious that treatment 2 has the better survival chances. For example at time 40 (40 months) the treatment 1 has already lower percentage of survival (around 70%), whereas treatment 2 is still at 95%.
+Now, after about 65 months the two curves are nearing each other and the probabilitis are equal. The censored data are reporesented witha little black cross.
 
 
 
