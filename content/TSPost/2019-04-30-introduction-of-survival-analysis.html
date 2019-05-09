@@ -41,4 +41,17 @@ mykm2 &lt;- survfit(Surv(time, status) ~ treatment, data=prost) # group by treat
 library(ggfortify)
 autoplot(mykm2)</code></pre>
 <p><img src="/TSPost/2019-04-30-introduction-of-survival-analysis_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>We can see the two Kaplan-Meier curved, one for the treatement 1 and the other for the treatment 2. Here, it is pretty obvious that treatment 2 has the better survival chances. For example at time 40 (40 months) the treatment 1 has already lower percentage of survival (around 70%), whereas treatment 2 is still at 95%. Now, after about 65 months the two curves are nearing each other and the probabilitis are equal. The censored data are reporesented witha little black cross.</p>
+<p>We can see the two Kaplan-Meier curves, one for the treatement 1 and the other for the treatment 2. Here, it is pretty obvious that treatment 2 has the better survival chances. For example at time 40 (40 months) the treatment 1 has already lower percentage of survival (around 70%), whereas treatment 2 is still at 95%. Now, after about 65 months the two curves are nearing each other and the probabilitis are equal. The censored data are reporesented witha little black cross.</p>
+<p><strong>The Logrank Test</strong> </br> The <a href="https://en.wikipedia.org/wiki/Logrank_test"><strong>Logrank Test</strong></a> is a fairly popular tool which allowsn two groups. In our case it helps to understand which treatment has a better survival probability. It is constructed by computing the obsrved and expected number of events in a group at each observed event time, and these numbers are then added up to get a total across all time points were there was an event. The Test statistics says that the <strong>Null Hypothesis</strong> is the hazard rate in each group is similar. The Null Hypothesis is rejected if the test statistic of <a href="https://en.wikipedia.org/wiki/Logrank_test"><strong>Z</strong></a> is not normally distributed.</p>
+<pre class="r"><code># Logrank Test
+survival::survdiff(survival::Surv(prost$time, prost$status) ~ prost$treatment)</code></pre>
+<pre><code>Call:
+survival::survdiff(formula = survival::Surv(prost$time, prost$status) ~ 
+    prost$treatment)
+
+                   N Observed Expected (O-E)^2/E (O-E)^2/V
+prost$treatment=1 23        7     5.13     0.686     0.958
+prost$treatment=2 40       16    17.87     0.197     0.958
+
+ Chisq= 1  on 1 degrees of freedom, p= 0.3 </code></pre>
+<p>Looking at the reult of the Logrank Test here above, we can see the p-value which in this case is not significant, and so there is no difference in the survival probability of between the two treatments considered. </br> From the result, we have also th total number of subjects per group N, as well as the expected events derived from the observed number. There is also the calculation of the chi-square statistics for each group, and the last column is the variance per group.</p>

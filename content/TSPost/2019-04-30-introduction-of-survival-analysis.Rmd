@@ -65,8 +65,23 @@ autoplot(mykm2)
 
 ```
 
-We can see the two Kaplan-Meier curved, one for the treatement 1 and the other for the treatment 2. Here, it is pretty obvious that treatment 2 has the better survival chances. For example at time 40 (40 months) the treatment 1 has already lower percentage of survival (around 70%), whereas treatment 2 is still at 95%.
+We can see the two Kaplan-Meier curves, one for the treatement 1 and the other for the treatment 2. Here, it is pretty obvious that treatment 2 has the better survival chances. For example at time 40 (40 months) the treatment 1 has already lower percentage of survival (around 70%), whereas treatment 2 is still at 95%.
 Now, after about 65 months the two curves are nearing each other and the probabilitis are equal. The censored data are reporesented witha little black cross.
+
+**The Logrank Test** </br>
+The [**Logrank Test**](https://en.wikipedia.org/wiki/Logrank_test) is a fairly popular tool which allowsn two groups. In our case it helps to understand which treatment has a better survival probability. It is constructed by computing the obsrved and expected number of events in a group at each observed event time, and these numbers are then added up to get a total across all time points were there was an event.
+The Test statistics says that the **Null Hypothesis** is the hazard rate in each group is similar. The Null Hypothesis is rejected if the test statistic of [**Z**](https://en.wikipedia.org/wiki/Logrank_test) is not normally distributed.
+
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Logrank Test
+survival::survdiff(survival::Surv(prost$time, prost$status) ~ prost$treatment)
+
+```
+
+Looking at the reult of the Logrank Test here above, we can see the p-value which in this case is not significant, and so there is no difference in the survival probability of between the two treatments considered. </br>
+From the result, we have also th total number of subjects per group N, as well as the expected events derived from the observed number. There is also the calculation of the chi-square statistics for each group, and the last column is the variance per group.
+
+
 
 
 
