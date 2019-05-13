@@ -19,6 +19,11 @@
 
 
 
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -73,11 +78,33 @@
 body {
 text-align: justify}
 </style>
-<p>There are differences between <strong>Parametric Models</strong>, <strong>Semi-Parametric Models</strong>, and <strong>Non-Parametric Momdels</strong>. </br> The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates. </br> We have to keep in mind that both of these parts can have a different distributions, or it is totally possible that no distribution at all is assumed.</p>
+<p>There are differences between <strong>Parametric Models</strong> (e.g. Kaplan-Meier), <strong>Semi-Parametric Models</strong> (e.g. Cox Proportional Hazard), and <strong>Non-Parametric Models</strong>. </br> The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates. </br> We have to keep in mind that both of these parts can have a different distributions, or it is totally possible that no distribution at all is assumed.</p>
 <center>
 <img src="/img/survival%20model%20distribution.png" style="width:80.0%" />
 </center>
 <p>There are many distributioin and these distributions have different probability patterns in hisogram depending on th fiel of reseach. For example, in economics a <a href="https://en.wikipedia.org/wiki/Pareto_distribution"><strong>Pareto distribution</strong></a> is often used to described the wealth situation in a given society. It is a fairly good way to show if a large chunk of money is owned by just a small amount of people. In survival analysis, there is not a clear cut, there are a few of commonly used. Mainly the <a href="https://en.wikipedia.org/wiki/Exponential_distribution"><strong>Exponential Distribution</strong></a> as well of the <a href="https://en.wikipedia.org/wiki/Weibull_distribution"><strong>Weibull Distribution</strong></a> are common choices.</p>
+<p><strong>Prostate Cancer Dataset</strong> </br> We will use as a template for survival analysis the prostate cancer dataset. The dataset come from a study on prosthetic cancer patients, and it contains several variables to indicate or are in correlation with prosthetic cancer. The data contain 63 patients and 8 independent variables. The main goal is to compare two different treatments identified with 1 or 2. Both ot these are surgical treatments which are pretty much indicative in higher stages of prostate cancer. The two tretments 1 and 2 differ in the amount of removed tissue and the type of tisue it was primarily removed. </br> The time in the dataset was measured in months. The variable <strong>status</strong> can be 0=censoring (loss of follow up or quitting the study), or 1=no censoring. The variable <strong>sh</strong> is the blod measurement hormone. The variable <strong>size</strong> is the tumor size at the beginning of the study. The variable <strong>index</strong> is the <strong>Gleason Scoring System</strong>, because tumor has different stages and they actually start to metastasize other boby parts at higher index of <strong>Gleason Scoring System</strong>.</p>
+<pre class="r"><code>prost &lt;- read.table(&quot;C:/07 - R Website/dataset/TS/prostate-cancer.txt&quot;, header = FALSE)
+
+colnames(prost) = c(&quot;patient&quot;, &quot;treatment&quot;, &quot;time&quot;, &quot;status&quot;, &quot;age&quot;, &quot;sh&quot;, &quot;size&quot;, &quot;index&quot;)
+head(prost)</code></pre>
+<pre><code>  patient treatment time status age   sh size index
+1       1         1   65      0  67 13.4   34     8
+2       2         2   61      0  60 14.6    4    10
+3       3         2   60      0  77 15.6    3     8
+4       4         1   58      0  64 16.2    6     9
+5       5         2   51      0  65 14.1   21     9
+6       6         1   51      0  61 13.5    8     8</code></pre>
+<pre class="r"><code># Parametric model
+library(flexsurv)
+weib_mod &lt;- flexsurvreg(Surv(time, status) ~ treatment + age + sh + size + index, data=prost, dist = &quot;weibull&quot;) 
+exp_mod &lt;- flexsurvreg(Surv(time, status) ~ treatment + age + sh + size + index, data=prost, dist = &quot;exp&quot;) 
+
+plot(weib_mod) # weibull curve
+lines(exp_mod, col=&quot;blue&quot;)</code></pre>
+<p><img src="/TSPost/2019-05-13-parametric-regression-model-in-survival-analysis_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The idea behind the <strong>Exponential distribution</strong> is that the probability of an event is exactly the same at any time point. On the other hand, in the very popular Gaussian normal distribution it is assumed that most of events take place somewhere around the mean of the survival curve. The <strong>Weibull distribution</strong> allows us to set the time point on the survival curve where most of the events will take place. This is especially interesting when we have a situation where the events take place mostly at the end of the study. For example, the longer a person lives, the higher the probability of death will be. For humans this is expecially true after 70 years of life. </br></p>
+<p>From the graph above, the black line is a classic step plot of the survival object. Essentially, the black line is a Kaplan-Meier plot which we can easly comapre against the red line which is our fit of the Weibull based survival curve. From the red line, we can see that at the beginning the line is more like a flat line, and this is because of the nature of the Weibull distribution, where the event probability is assumed to be higher at the end than at the beginning. </br> In blue we have the line of the exponential distribution which is a constant slope, in fact, the underlying assumption for exponential distribution is a constant probability of events throughout the whole serie. This assumption is often not a good fit in survival analysis. In fact, we can see from the graph above the discrepancy between the Keplan-Meier and the blue line. That is not a good sign and proves that the Weibull curve is a much better fit for this dataset.</p>
 
     </div>
   </article>
@@ -100,6 +127,18 @@ text-align: justify}
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 

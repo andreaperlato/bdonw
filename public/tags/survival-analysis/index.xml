@@ -17,7 +17,7 @@
       <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/tspost/parametric-regression-model-in-survival-analysis/</guid>
-      <description>body {text-align: justify}There are differences between Parametric Models, Semi-Parametric Models, and Non-Parametric Momdels.  The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates.  We have to keep in mind that both of these parts can have a different distributions, or it is totally possible that no distribution at all is assumed.</description>
+      <description>body {text-align: justify}There are differences between Parametric Models (e.g. Kaplan-Meier), Semi-Parametric Models (e.g. Cox Proportional Hazard), and Non-Parametric Models.  The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates.</description>
     </item>
     
     <item>
