@@ -29,5 +29,14 @@
       <description>body {text-align: justify}There are differences between Parametric Models (e.g. Kaplan-Meier), Semi-Parametric Models (e.g. Cox Proportional Hazard), and Non-Parametric Models.  The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates.</description>
     </item>
     
+    <item>
+      <title>Survival Trees</title>
+      <link>/tspost/survival-trees/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/survival-trees/</guid>
+      <description>body {text-align: justify}A survival tree is a decision tree fitted on the survival data. It allows covariates to be incorporated quite like in a Cox Proportional Hazard.  When we use a survival treee, we have to keep a few things in mind. First of all, it is a very good choice for huge dataset. Decision or survival trees require a huge amount of data to get precise enough.</description>
+    </item>
+    
   </channel>
 </rss>

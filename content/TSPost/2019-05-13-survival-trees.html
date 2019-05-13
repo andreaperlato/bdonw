@@ -1,0 +1,53 @@
+---
+title: Survival Trees
+author: andrea perlato
+date: '2019-05-13'
+slug: survival-trees
+categories:
+  - survival analysis
+tags:
+  - survival trees
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>A survival tree is a decision tree fitted on the survival data. It allows covariates to be incorporated quite like in a Cox Proportional Hazard. </br> When we use a survival treee, we have to keep a few things in mind. First of all, it is a very good choice for huge dataset. Decision or survival trees require a huge amount of data to get precise enough. Survival trees are non-linear models.</p>
+<p><strong>Prostate Cancer Dataset</strong> </br> We will use as a template for survival analysis the prostate cancer dataset. The dataset come from a study on prosthetic cancer patients, and it contains several variables to indicate or are in correlation with prosthetic cancer. The data contain 63 patients and 8 independent variables. The main goal is to compare two different treatments identified with 1 or 2. Both ot these are surgical treatments which are pretty much indicative in higher stages of prostate cancer. The two tretments 1 and 2 differ in the amount of removed tissue and the type of tisue it was primarily removed. </br> The time in the dataset was measured in months. The variable <strong>status</strong> can be 0=censoring (loss of follow up or quitting the study), or 1=no censoring. The variable <strong>sh</strong> is the blod measurement hormone. The variable <strong>size</strong> is the tumor size at the beginning of the study. The variable <strong>index</strong> is the <strong>Gleason Scoring System</strong>, because tumor has different stages and they actually start to metastasize other boby parts at higher index of <strong>Gleason Scoring System</strong>.</p>
+<pre class="r"><code>prost &lt;- read.table(&quot;C:/07 - R Website/dataset/TS/prostate-cancer.txt&quot;, header = FALSE)
+
+colnames(prost) = c(&quot;patient&quot;, &quot;treatment&quot;, &quot;time&quot;, &quot;status&quot;, &quot;age&quot;, &quot;sh&quot;, &quot;size&quot;, &quot;index&quot;)
+head(prost)</code></pre>
+<pre><code>  patient treatment time status age   sh size index
+1       1         1   65      0  67 13.4   34     8
+2       2         2   61      0  60 14.6    4    10
+3       3         2   60      0  77 15.6    3     8
+4       4         1   58      0  64 16.2    6     9
+5       5         2   51      0  65 14.1   21     9
+6       6         1   51      0  61 13.5    8     8</code></pre>
+<pre class="r"><code># Survial Trees
+library(survival)
+library(ranger)
+streefit &lt;- ranger(Surv(time, status) ~ treatment + age + sh + size + index, data=prost,
+                   importance = &quot;permutation&quot;, # permutation is a solid choice in survival trees
+                   splitrule = &quot;extratrees&quot;, # used for survival logrank
+                   seed = 43)
+
+# Average the survival models
+death_times &lt;- streefit$unique.death.times 
+surv_prob &lt;- data.frame(streefit$survival) # survival probability oer each tree
+avg_prob &lt;- sapply(surv_prob, mean) # mean proability of all trees
+
+# Plot the survival tree model averaged
+plot(death_times, avg_prob,
+     type = &quot;s&quot;, # step plot
+     ylim = c(0,1),
+     col = &quot;red&quot;, lwd = 2, bty = &quot;n&quot;,
+     ylab = &quot;Survival Probability&quot;,
+     xlab = &quot;Time in Months&quot;,
+     main = &quot;Survival Tree Model\nAverage Survival Curve&quot;)</code></pre>
+<p><img src="/TSPost/2019-05-13-survival-trees_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>To visualize the survival tree there are severl way to do that. We can fro example plot the survival function for each study participant but that us usually not giving out any extra information. Therefore, the best and easiest way is to plot the averaged survival functiona s shown above.</p>

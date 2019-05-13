@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Survival Trees</title>
+      <link>/tspost/survival-trees/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/survival-trees/</guid>
+      <description>body {text-align: justify}A survival tree is a decision tree fitted on the survival data. It allows covariates to be incorporated quite like in a Cox Proportional Hazard.  When we use a survival treee, we have to keep a few things in mind. First of all, it is a very good choice for huge dataset. Decision or survival trees require a huge amount of data to get precise enough.</description>
+    </item>
+    
+    <item>
       <title>Survival Analysis: Kaplan-Meier &amp; Logrank test</title>
       <link>/tspost/introduction-of-survival-analysis/</link>
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
