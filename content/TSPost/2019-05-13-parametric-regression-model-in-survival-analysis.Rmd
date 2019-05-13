@@ -16,3 +16,15 @@ text-align: justify}
 </style>
 
 There are differences between **Parametric Models**, **Semi-Parametric Models**, and **Non-Parametric Momdels**. </br>
+The graph below gives the main pieces of information. A survival analysis can be defined as consisting of two parts: the core survial object with a time indicator plus the corresponding event status (used to calculate the baseline hazard). The second part of the survival model consists of the covariates. </br>
+We have to keep in mind that both of these parts can have a different distributions, or it is totally possible that no distribution at all is assumed.
+
+<center>
+![](/img/survival model distribution.png){width=80%}
+</center>
+
+There are many distributioin and these distributions have different probability patterns in hisogram depending on th fiel of reseach. For example, in economics a [**Pareto distribution**](https://en.wikipedia.org/wiki/Pareto_distribution) is often used to described the wealth situation in a given society. It is a fairly good way to show if a large chunk of money is owned by just a small amount of people. 
+In survival analysis, there is not a clear cut, there are a few of commonly used. Mainly the [**Exponential Distribution**](https://en.wikipedia.org/wiki/Exponential_distribution) as well of the [**Weibull Distribution**](https://en.wikipedia.org/wiki/Weibull_distribution) are common choices.
+
+
+
