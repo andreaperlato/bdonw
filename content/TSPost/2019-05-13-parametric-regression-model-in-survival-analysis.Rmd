@@ -1,0 +1,18 @@
+---
+title: Parametric Regression Model in Survival Analysis
+author: andrea perlato
+date: '2019-05-13'
+slug: parametric-regression-model-in-survival-analysis
+categories:
+  - survival analysis
+tags:
+  - parametric regression
+  - survival analysis
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+There are differences between **Parametric Models**, **Semi-Parametric Models**, and **Non-Parametric Momdels**. </br>

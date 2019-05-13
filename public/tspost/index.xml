@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Parametric Regression Model in Survival Analysis</title>
+      <link>/tspost/parametric-regression-model-in-survival-analysis/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/parametric-regression-model-in-survival-analysis/</guid>
+      <description>body {text-align: justify}There are differences between Parametric Models, Semi-Parametric Models, and Non-Parametric Momdels.</description>
+    </item>
+    
+    <item>
       <title>Survival Analysis: Kaplan-Meier &amp; Logrank test</title>
       <link>/tspost/introduction-of-survival-analysis/</link>
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
