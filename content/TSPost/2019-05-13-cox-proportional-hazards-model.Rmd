@@ -1,0 +1,17 @@
+---
+title: Cox Proportional Hazards Model
+author: andrea perlato
+date: '2019-05-13'
+slug: cox-proportional-hazards-model
+categories:
+  - survival analysis
+tags:
+  - cox proportional hazards
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+An hazard rate is the probability estimate of the time it takes for an event to take place.

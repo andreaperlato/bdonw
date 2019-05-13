@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tspost/cox-proportional-hazards-model/</loc>
+    <lastmod>2019-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tspost/introduction-of-survival-analysis/</loc>
     <lastmod>2019-04-30T00:00:00+00:00</lastmod>
   </url>
@@ -241,6 +246,12 @@
   <url>
     <loc>/tags/clustering/</loc>
     <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/cox-proportional-hazards/</loc>
+    <lastmod>2019-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -521,8 +532,14 @@
   </url>
   
   <url>
+    <loc>/categories/survival-analysis/</loc>
+    <lastmod>2019-05-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tspost/</loc>
-    <lastmod>2019-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

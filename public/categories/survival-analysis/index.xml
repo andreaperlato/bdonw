@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Survival Analysis on Andrea Perlato</title>
+    <link>/categories/survival-analysis/</link>
+    <description>Recent content in Survival Analysis on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/survival-analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cox Proportional Hazards Model</title>
+      <link>/tspost/cox-proportional-hazards-model/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tspost/cox-proportional-hazards-model/</guid>
+      <description>body {text-align: justify}An hazard rate is the probability estimate of the time it takes for an event to take place.</description>
+    </item>
+    
+  </channel>
+</rss>
