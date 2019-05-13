@@ -17,7 +17,7 @@
       <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/tspost/cox-proportional-hazards-model/</guid>
-      <description>body {text-align: justify}An hazard rate is the probability estimate of the time it takes for an event to take place.</description>
+      <description>body {text-align: justify}An hazard rate is the probability estimate of the time it takes for an event to take place. The event can be anything ranging from death of an organism or failure of a machine or any other time to event setting.  There are external factors that influence the probabililty of an event, covariates. For example: how many miles was the car used or did the owner exchange the oil regularly.</description>
     </item>
     
   </channel>
