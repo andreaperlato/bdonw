@@ -51,3 +51,48 @@ plot(death_times, avg_prob,
      main = &quot;Survival Tree Model\nAverage Survival Curve&quot;)</code></pre>
 <p><img src="/TSPost/2019-05-13-survival-trees_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>To visualize the survival tree there are severl way to do that. We can fro example plot the survival function for each study participant but that us usually not giving out any extra information. Therefore, the best and easiest way is to plot the averaged survival functiona s shown above.</p>
+<p><strong>Comparison Plot</strong> </br> Whenever we have severl models we can compare them. A really useful way to do that is via a comparison plot.</p>
+<pre class="r"><code># Set up dataframe for Kaplan_Meier
+mykm1 &lt;- survfit(Surv(time, status) ~ 1, data=prost) # KM model
+
+kmdf &lt;- data.frame(mykm1$time,
+                   mykm1$surv,
+                   KM = rep(&quot;KM&quot;, 36)) # mark as KM in the third column
+
+names(kmdf) &lt;- c(&quot;Time in Months&quot;, &quot;Survival Probability&quot;, &quot;Model&quot;)
+
+# Set up dataframe for Cox Proportional Hazards
+cox &lt;- coxph(Surv(time, status) ~ treatment + age + sh + size + index, data =prost) # Cox PH model
+coxfit &lt;- survfit(cox)
+
+
+coxdf &lt;- data.frame(coxfit$time,
+                    coxfit$surv,
+                    COX = rep(&quot;COX&quot;, 36))
+
+names(coxdf) &lt;- c(&quot;Time in Months&quot;, &quot;Survival Probability&quot;, &quot;Model&quot;)
+
+# Set up dataframe for Random Forest
+rfdf &lt;- data.frame(death_times,
+                   avg_prob,
+                   RF = rep(&quot;RF&quot;, 36))
+
+names(rfdf) &lt;- c(&quot;Time in Months&quot;, &quot;Survival Probability&quot;, &quot;Model&quot;)
+
+# Bind dataframes
+plotdf &lt;- rbind(kmdf, coxdf, rfdf)
+
+# Plot 
+library(ggplot2)
+p &lt;- ggplot(plotdf, aes(x = plotdf[,1],      # event time in months
+                        y = plotdf[,2],      # survival probability
+                        color = plotdf[,3])) # model type
+
+p + geom_step(size = 1.5) +
+  labs(x = &quot;Time in Months&quot;,
+       y = &quot;Survival Probability&quot;,
+       color = &quot;&quot;,
+       title = &quot;Comparison Plot of\n3 Main Survival Models&quot;) +
+       theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="/TSPost/2019-05-13-survival-trees_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>From the graph above, we can see three step lines for each model. The time in months pn the x-axis and the probability of survival on the y-axis. We have a high survival probability up until months 50 and this is simila in each of the three models. After this period, we see a significant drop in survival. Moreover, after about 65 months the survival goes down dramatically. The Random Forest is somewhere in the middle of these models and stops at the survival probability of 50 percent. This means that the Random Forest model has the most positive outlook for this study end point. On the contrary, the Cox Proportional Hazard model shows the most negative outlook for that time point. </br> Last but not least, we should not fotget that the survival tree comes to its full potential with huge data set. We also have to consider that the Kaplan-Meier curve does not take covariance into consideration, whereas the Cox Proportional Hazards includes the covariates. Therefore, it is likely in many scenarios the Cox Proportional Hazards model is more accurate.</p>
