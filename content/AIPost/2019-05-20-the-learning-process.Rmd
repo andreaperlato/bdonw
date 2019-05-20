@@ -30,7 +30,26 @@ A very imprtant note is to always remember to add the **Regularization Term** in
 
 Here above, an eample using the **L2 Regularization**. We just need to add to the Loss Function designed before the regularization term. This help us to prevent overfitting.
 
-**Stochastic Gradient Descent** </br>
+**Stochastic Gradient Descent SGD** </br>
+Mathematical optimization is the selection of a best elements from some set of available alternatives. More formally, given a function f, we want to find an element such as f is minor or equal to f(x) for all the xin A, where A is a set of real numbers. An optimization process could be **eact** or **approximate**, which means it cannot guarantee to find the optimal solution. In the context of Deep Learning, having to deal with large number of parameters, and an unknown Loss **Function Surface**, an approximate algorithm is generaly prefered. /br>
+
+The easiest way to minimize a function is the so called **Random Selection**: we can just try all the possible combination of values in the domain of parameters and choose the set that corresponds to the minimum value of the loss function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
