@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>The Learning Process - Andrea Perlato</title>
+<meta property="og:title" content="The Learning Process - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">The Learning Process</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Learning means to generalize what we learned and improve the performance of the same task based on a given measure. More specifically, it means to adjusting the parameters of the model in order to accurately predict the dependent variables on new input data. More formally we can define two main functions: the Score Function and the Loss Function. The Loss Function measures the quality of a particular set of parameters based on how well induced scores agreed with the ground truth labels in the training set. The ultimate goal is to minimize the Loss Function. An example of loss function for the regression problem could be:</p>
+<center>
+<img src="/img/lossfunction.png" style="width:30.0%" />
+</center>
+<p>For each data points in our tuning set, we take the squared difference between the actual label yi and the output of the score function. Than, we normalize their sum by the total number of observations N. other common Loss Functions are the <a href="https://en.wikipedia.org/wiki/Cross_entropy"><strong>Cross-Entropy Loss Function</strong></a> and the <a href="https://en.wikipedia.org/wiki/Hinge_loss"><strong>Hinge Loss Function</strong></a>. In the first case the output of the network are interpreted as log probability and in Hinge Loss Function we try to maximize directly the margin between the two classes. A very imprtant note is to always remember to add the <strong>Regularization Term</strong> in the Loss Function formalized as follow:</p>
+<center>
+<img src="/img/regularizationai.png" style="width:35.0%" />
+</center>
+<p>Here above, an eample using the <strong>L2 Regularization</strong>. We just need to add to the Loss Function designed before the regularization term. This help us to prevent overfitting.</p>
+<p><strong>Stochastic Gradient Descent</strong> </br></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+

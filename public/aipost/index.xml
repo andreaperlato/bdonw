@@ -6,10 +6,19 @@
     <description>Recent content in AIPosts on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/aipost/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Learning Process</title>
+      <link>/aipost/the-learning-process/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/the-learning-process/</guid>
+      <description>body {text-align: justify}Learning means to generalize what we learned and improve the performance of the same task based on a given measure. More specifically, it means to adjusting the parameters of the model in order to accurately predict the dependent variables on new input data. More formally we can define two main functions: the Score Function and the Loss Function. The Loss Function measures the quality of a particular set of parameters based on how well induced scores agreed with the ground truth labels in the training set.</description>
+    </item>
     
     <item>
       <title>Distinguish Benign and Malign Tumor via ANN</title>

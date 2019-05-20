@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/aipost/the-learning-process/</loc>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tspost/cox-proportional-hazards-model/</loc>
     <lastmod>2019-05-13T00:00:00+00:00</lastmod>
   </url>
@@ -219,7 +224,7 @@
   
   <url>
     <loc>/aipost/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -231,13 +236,13 @@
   
   <url>
     <loc>/tags/ann/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/artificial-intelligence/</loc>
-    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -249,7 +254,7 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

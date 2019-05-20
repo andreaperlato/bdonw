@@ -1,0 +1,39 @@
+---
+title: The Learning Process
+author: andrea perlato
+date: '2019-05-20'
+slug: the-learning-process
+categories:
+  - artificial intelligence
+tags:
+  - ANN
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Learning means to generalize what we learned and improve the performance of the same task based on a given measure. More specifically, it means to adjusting the parameters of the model in order to accurately predict the dependent variables on new input data. More formally we can define two main functions: the Score Function and the Loss Function. The Loss Function measures the quality of a particular set of parameters based on how well induced scores agreed with the ground truth labels in the training set. The ultimate goal is to minimize the Loss Function.
+An example of loss function for the regression problem could be:
+
+<center>
+![](/img/lossfunction.png){width=30%}
+</center>
+
+For each data points in our tuning set, we take the squared difference between the actual label yi and the output of the score function. Than, we normalize their sum by the total number of observations N. other common Loss Functions are the [**Cross-Entropy Loss Function**](https://en.wikipedia.org/wiki/Cross_entropy) and the [**Hinge Loss Function**](https://en.wikipedia.org/wiki/Hinge_loss). In the first case the output of the network are interpreted as log probability and in Hinge Loss Function we try to maximize directly the margin between the two classes.
+A very imprtant note is to always remember to add the **Regularization Term** in the Loss Function formalized as follow:
+
+<center>
+![](/img/regularizationai.png){width=35%}
+</center>
+
+Here above, an eample using the **L2 Regularization**. We just need to add to the Loss Function designed before the regularization term. This help us to prevent overfitting.
+
+**Stochastic Gradient Descent** </br>
+
+
+
+
+
+
