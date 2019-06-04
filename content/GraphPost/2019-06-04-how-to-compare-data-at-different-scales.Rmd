@@ -20,6 +20,49 @@ The result that I obtained from the Italian vs. the Swiss Lab confirm the disput
 </center>
 
 As we can see from the table above, it was necessary to convert the result of the Italin Lab from mg/100g to ug/g, in order to compare the Hair Analysis.
+What appears immediately clear is the diffent range of normality used. For example looking at the Mercury the levels are quite similar, but based on the range (look at Min, Max columns) for the Italian Lab I have a dangerus level of Mercury and a medical examinatin is recomended. On the contrary for the Swiss Lab the level of Mercury is normal and I do not need a medial advice. </br>
+
+A second very suspicius aspect is related to the leve of the [**natural trace elements**](https://en.wikipedia.org/wiki/Trace_element). For example, the level of Calcium is ten times higher when examined in Swiss (Italian Lab: 230.7 ug/g, Swiss Lab: 2133 ug/g). </br>
+
+This strong discrepancy make also difficult to compare the results in a same comprehensive graph. The solution presented here, is to leave the y-axis free and convert the lines representing tics to a square root or cube root.
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+# Load data
+df <- read.csv("C:/07 - R Website/dataset/Graph/Natrix_vs_Oligopharm.csv", sep=";")
+
+# Create a functin for cube root
+cuberoot_trans = function() trans_new('cuberoot', transform = function(x) x^(1/4), inverse = function(x) x^4)
+
+# Define the plot
+library(ggpubr)
+library(scales)
+p <- ggdotchart(df, x = "Symbol", y ="Value",
+                color = "Origin", palette = c("red","grey", "grey", "red","grey", "grey"), size = 3, 
+                add = "segment", 
+                add.params = list(color = "lightgray", size = 1.5),
+                # position = position_dodge(0.5),
+                ggtheme = theme_gray()
+                )
+
+p <- p + theme(axis.text.x = element_text(angle = 0, hjust = 1))
+p <- p + theme(legend.position="bottom")
+p <- p + scale_y_continuous(trans = cuberoot_trans())
+p <- facet(p, facet.by = "Lab", scales="free_y")
+
+```
+
+<center>
+![](/img/hairplot.png){width=100%}
+</center>
+
+Now the results from the two labs are comparable.
+
+
+
+
+
+
+
 
 
 
