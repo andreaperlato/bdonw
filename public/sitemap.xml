@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/graphpost/how-to-compare-data-at-different-scales/</loc>
+    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/aipost/the-learning-process/</loc>
     <lastmod>2019-05-20T00:00:00+00:00</lastmod>
   </url>
@@ -338,13 +343,13 @@
   
   <url>
     <loc>/categories/graph/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/graphpost/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -531,6 +536,12 @@
   <url>
     <loc>/tags/smoothing-splines/</loc>
     <lastmod>2019-03-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/standardization/</loc>
+    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

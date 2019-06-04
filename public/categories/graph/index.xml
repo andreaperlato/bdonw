@@ -6,10 +6,19 @@
     <description>Recent content in Graph on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/graph/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to compare data at different scales</title>
+      <link>/graphpost/how-to-compare-data-at-different-scales/</link>
+      <pubDate>Tue, 04 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/how-to-compare-data-at-different-scales/</guid>
+      <description>I recently underwent to different tests of the so called Hair Analysis, and as a result I was given different diagnoses, or better different results. More precisely I sent two of my hair samples to a two different labs, one in Italy and the second in Switzerland. The results are quite different as described by the table and graph below.  In 2011 a comprehensive review was published of the scientific literature on hair elemental (mineral) analysis.</description>
+    </item>
     
     <item>
       <title>Interactive Forecasting</title>
