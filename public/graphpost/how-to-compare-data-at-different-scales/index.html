@@ -88,7 +88,9 @@
 df &lt;- read.csv(&quot;C:/07 - R Website/dataset/Graph/Natrix_vs_Oligopharm.csv&quot;, sep=&quot;;&quot;)
 
 # Create a functin for cube root
-cuberoot_trans = function() trans_new(&#39;cuberoot&#39;, transform = function(x) x^(1/4), inverse = function(x) x^4)
+cuberoot_trans = function() trans_new(&#39;cuberoot&#39;, 
+                                      transform = function(x) x^(1/4), 
+                                      inverse = function(x) x^4)
 
 # Define the plot
 library(ggpubr)
