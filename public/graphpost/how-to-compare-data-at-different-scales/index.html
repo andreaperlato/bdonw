@@ -96,7 +96,9 @@ cuberoot_trans = function() trans_new(&#39;cuberoot&#39;,
 library(ggpubr)
 library(scales)
 p &lt;- ggdotchart(df, x = &quot;Symbol&quot;, y =&quot;Value&quot;,
-                color = &quot;Origin&quot;, palette = c(&quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;, &quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;), size = 3, 
+                color = &quot;Origin&quot;, 
+                palette = c(&quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;, &quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;), 
+                size = 3, 
                 add = &quot;segment&quot;, 
                 add.params = list(color = &quot;lightgray&quot;, size = 1.5),
                 # position = position_dodge(0.5),
