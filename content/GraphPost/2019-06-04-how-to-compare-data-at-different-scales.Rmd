@@ -26,7 +26,7 @@ A second very suspicius aspect is related to the leve of the [**natural trace el
 
 This strong discrepancy make also difficult to compare the results in a same comprehensive graph. The solution presented here, is to leave the y-axis free and convert the lines representing tics to a square root or cube root.
 
-```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE}
 # Load data
 df <- read.csv("C:/07 - R Website/dataset/Graph/Natrix_vs_Oligopharm.csv", sep=";")
 

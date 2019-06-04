@@ -19,6 +19,11 @@
 
 
 
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -79,6 +84,27 @@
 <p>As we can see from the table above, it was necessary to convert the result of the Italin Lab from mg/100g to ug/g, in order to compare the Hair Analysis. What appears immediately clear is the diffent range of normality used. For example looking at the Mercury the levels are quite similar, but based on the range (look at Min, Max columns) for the Italian Lab I have a dangerus level of Mercury and a medical examinatin is recomended. On the contrary for the Swiss Lab the level of Mercury is normal and I do not need a medial advice. </br></p>
 <p>A second very suspicius aspect is related to the leve of the <a href="https://en.wikipedia.org/wiki/Trace_element"><strong>natural trace elements</strong></a>. For example, the level of Calcium is ten times higher when examined in Swiss (Italian Lab: 230.7 ug/g, Swiss Lab: 2133 ug/g). </br></p>
 <p>This strong discrepancy make also difficult to compare the results in a same comprehensive graph. The solution presented here, is to leave the y-axis free and convert the lines representing tics to a square root or cube root.</p>
+<pre class="r"><code># Load data
+df &lt;- read.csv(&quot;C:/07 - R Website/dataset/Graph/Natrix_vs_Oligopharm.csv&quot;, sep=&quot;;&quot;)
+
+# Create a functin for cube root
+cuberoot_trans = function() trans_new(&#39;cuberoot&#39;, transform = function(x) x^(1/4), inverse = function(x) x^4)
+
+# Define the plot
+library(ggpubr)
+library(scales)
+p &lt;- ggdotchart(df, x = &quot;Symbol&quot;, y =&quot;Value&quot;,
+                color = &quot;Origin&quot;, palette = c(&quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;, &quot;red&quot;,&quot;grey&quot;, &quot;grey&quot;), size = 3, 
+                add = &quot;segment&quot;, 
+                add.params = list(color = &quot;lightgray&quot;, size = 1.5),
+                # position = position_dodge(0.5),
+                ggtheme = theme_gray()
+                )
+
+p &lt;- p + theme(axis.text.x = element_text(angle = 0, hjust = 1))
+p &lt;- p + theme(legend.position=&quot;bottom&quot;)
+p &lt;- p + scale_y_continuous(trans = cuberoot_trans())
+p &lt;- facet(p, facet.by = &quot;Lab&quot;, scales=&quot;free_y&quot;)</code></pre>
 <center>
 <img src="/img/hairplot.png" style="width:100.0%" />
 </center>
@@ -106,6 +132,18 @@
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
