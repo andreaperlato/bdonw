@@ -9,7 +9,7 @@ tags:
   - standardization
 ---
 
-I recently underwent to different tests of the so called [**Hair Analysis**](https://en.wikipedia.org/wiki/Hair_analysis_(alternative_medicine)), and as a result I was given different conclusions. More precisely I sent two of my hair samples to a two different labs, one in Italy and the second in Switzerland. The results are quite different as described by the table and graph below. </br>
+I recently underwent to different tests of the so called [**Hair Analysis**](https://en.wikipedia.org/wiki/Hair_analysis_(alternative_medicine)), and as a result I was given different conclusions. More precisely, I sent two of my hair samples to a two different labs, one in Italy and the second in Switzerland. The results are quite different as described by the table and graph below. </br>
 In 2011 a [**comprehensive review**](https://pubs.rsc.org/en/content/articlelanding/2011/CS/c1cs15021a#!divAbstract) was published of the scientific literature on hair elemental (mineral) analysis. It conclued that offering a diagnosis as to the cause of an abnormal concentration is currently not feasible and is difficult to see as realistic, for the entire article [**click here**](https://pubs.rsc.org/en/content/articlelanding/2011/CS/c1cs15021a#!divAbstract). </br>
 Moreover, the [**AMA**](https://en.wikipedia.org/wiki/American_Medical_Association) opposes chemical analysis of the hair as a determinant of the need for medical therapy and supports informing the American public and appropriate governmental agencies of this unproven practice and its potential for health care fraud. </br>
 The result that I obtained from the Italian vs. the Swiss Lab confirm the dispute. 
@@ -59,7 +59,7 @@ p <- facet(p, facet.by = "Lab", scales="free_y")
 ![](/img/hairplot.png){width=100%}
 </center>
 
-Now the results from the two labs are comparable. It is evident here that for the vast majority of natural elements the Italian lab gives a more severe result as opposed to the Swiss Lab. The massive deficiency of natual elements highlighted in Italy is contradicted by the analyses made in Switzerland.
+Now, the results from the two labs are comparable. It is evident here that for the vast majority of natural elements the Italian lab gives a more severe result as opposed to the Swiss Lab. The massive deficiency of natual elements highlighted in Italy is contradicted by the analyses made in Switzerland.
 In addition to this, the use of different ranges  of tolerances for heavy metals such as Mercury in different countries is disappointing. </br>
 
 At present, both labs are not able to give me one possible explanation, but stay tuned for updates. </br>
