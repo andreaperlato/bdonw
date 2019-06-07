@@ -1,0 +1,60 @@
+---
+title: How to create 3D and 4D plot
+author: andrea perlato
+date: '2019-06-07'
+slug: how-to-create-3d-and-4d-plot
+categories:
+  - graph
+tags:
+  - 3D
+  - 4D
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>A 3D plot is quite popular, in particular in business presentation, but it is almost always inappropriately used. In fact, it is rare to see a 3D plot that could not be improved by turning into a regular 2D figure. </br> Visualizations using 3D position scales can sometimes be appropriate, however. If the visualization is show it slowly rotation, rather than a static image from one prospective, will allow the viewer to discern where in 3D space different graphicla elements resides. The human brain is very good at reconstructing a 3D scene from a series of images taken from different angles, and the slow rotation of the graphic provides exactly these images. </br> We’ll use the <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><strong>iris data set</strong></a> in the following examples.</p>
+<pre class="r"><code># Load data
+data(iris)
+head(iris)</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code># Load libraries
+library(plot3D)
+
+# Define coordinates
+x &lt;- sep.l &lt;- iris$Sepal.Length
+y &lt;- pet.l &lt;- iris$Petal.Length
+z &lt;- sep.w &lt;- iris$Sepal.Width
+
+# Add small dots on basal plane and on the depth plane
+scatter3D_fancy &lt;- function(x, y, z,..., colvar = z)
+  {
+   panelfirst &lt;- function(pmat) {
+      XY &lt;- trans3D(x, y, z = rep(min(z), length(z)), pmat = pmat)
+      scatter2D(XY$x, XY$y, colvar = colvar, pch = &quot;.&quot;, 
+              cex = 2, add = TRUE, colkey = FALSE)
+   
+      XY &lt;- trans3D(x = rep(min(x), length(x)), y, z, pmat = pmat)
+      scatter2D(XY$x, XY$y, colvar = colvar, pch = &quot;.&quot;, 
+              cex = 2, add = TRUE, colkey = FALSE)
+  }
+  scatter3D(x, y, z, ..., colvar = colvar, panel.first=panelfirst,
+    colkey = list(length = 0.5, width = 0.5, cex.clab = 0.75)) 
+}
+
+# Define like color
+scatter3D_fancy(x, y, z, pch = 16,
+    ticktype = &quot;detailed&quot;, theta = 15, d = 2,
+    main = &quot;Iris data&quot;,  clab = c(&quot;Petal&quot;, &quot;Width (cm)&quot;) )</code></pre>
+<p><img src="/GraphPost/2019-06-07-how-to-create-3d-and-4d-plot_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>In order to generate a fancy scatter plot with small dots on balsal palne the scater3D_fancu was created.<br />
+Now, in order to create 3D histogram we will use the <a href="https://app.quadstat.net/dataset/r-dataset-package-datasets-vadeaths"><strong>VADeaths data set</strong></a>. The death rates are measured per 1000 population per year. They are cross-classified by age group (rows) and population group (columns).</p>

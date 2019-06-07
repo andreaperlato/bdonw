@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3d on Andrea Perlato</title>
+    <link>/tags/3d/</link>
+    <description>Recent content in 3d on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/3d/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to create 3D and 4D plot</title>
+      <link>/graphpost/how-to-create-3d-and-4d-plot/</link>
+      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/graphpost/how-to-create-3d-and-4d-plot/</guid>
+      <description>body {text-align: justify}A 3D plot is quite popular, in particular in business presentation, but it is almost always inappropriately used. In fact, it is rare to see a 3D plot that could not be improved by turning into a regular 2D figure.  Visualizations using 3D position scales can sometimes be appropriate, however. If the visualization is show it slowly rotation, rather than a static image from one prospective, will allow the viewer to discern where in 3D space different graphicla elements resides.</description>
+    </item>
+    
+  </channel>
+</rss>

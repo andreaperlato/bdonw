@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/graphpost/how-to-create-3d-and-4d-plot/</loc>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/graphpost/how-to-compare-data-at-different-scales/</loc>
     <lastmod>2019-06-04T00:00:00+00:00</lastmod>
   </url>
@@ -228,6 +233,18 @@
   </url>
   
   <url>
+    <loc>/tags/3d/</loc>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4d/</loc>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/aipost/</loc>
     <lastmod>2019-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -343,13 +360,13 @@
   
   <url>
     <loc>/categories/graph/</loc>
-    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/graphpost/</loc>
-    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -583,7 +600,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
