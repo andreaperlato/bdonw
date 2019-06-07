@@ -116,7 +116,7 @@ hist3D_fancy<- function(x, y, break.func = c("Sturges", "scott", "FD"), breaks =
 
 
 <center>
-![](/img/histogram3d){width=100%}
+![](/img/histogram3d.gif){width=80%}
 </center>
 
 
