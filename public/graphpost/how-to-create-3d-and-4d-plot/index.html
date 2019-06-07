@@ -91,6 +91,8 @@ head(iris)</code></pre>
 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 <pre class="r"><code># Load libraries
 library(plot3D)
+library(rgl)
+library(plot3Drgl)
 
 # Define coordinates
 x &lt;- sep.l &lt;- iris$Sepal.Length
@@ -116,10 +118,61 @@ scatter3D_fancy &lt;- function(x, y, z,..., colvar = z)
 # Define like color
 scatter3D_fancy(x, y, z, pch = 16,
     ticktype = &quot;detailed&quot;, theta = 15, d = 2,
-    main = &quot;Iris data&quot;,  clab = c(&quot;Petal&quot;, &quot;Width (cm)&quot;) )</code></pre>
+    main = &quot;Iris data&quot;,  clab = c(&quot;Petal&quot;, &quot;Width (cm)&quot;))</code></pre>
 <p><img src="/GraphPost/2019-06-07-how-to-create-3d-and-4d-plot_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>In order to generate a fancy scatter plot with small dots on balsal palne the scater3D_fancu was created.<br />
-Now, in order to create 3D histogram we will use the <a href="https://app.quadstat.net/dataset/r-dataset-package-datasets-vadeaths"><strong>VADeaths data set</strong></a>. The death rates are measured per 1000 population per year. They are cross-classified by age group (rows) and population group (columns).</p>
+<p>In order to generate a fancy scatter plot with small dots on balsal palne the scater3D_fancu was created. We will create a simila function for histograms.</p>
+<pre class="r"><code>hist3D_fancy&lt;- function(x, y, break.func = c(&quot;Sturges&quot;, &quot;scott&quot;, &quot;FD&quot;), breaks = NULL,
+                        colvar = NULL, col=&quot;white&quot;, clab=NULL, phi = 5, theta = 25, ...){
+  
+# Compute the number of classes for a histogram
+  break.func &lt;- break.func [1]
+  if(is.null(breaks)){
+    x.breaks &lt;- switch(break.func,
+                       Sturges = nclass.Sturges(x),
+                       scott = nclass.scott(x),
+                       FD = nclass.FD(x))
+    y.breaks &lt;- switch(break.func,
+                       Sturges = nclass.Sturges(y),
+                       scott = nclass.scott(y),
+                       FD = nclass.FD(y))
+  } else x.breaks &lt;- y.breaks &lt;- breaks
+  
+# Cut x and y variables in bins for counting
+  x.bin &lt;- seq(min(x), max(x), length.out = x.breaks)
+  y.bin &lt;- seq(min(y), max(y), length.out = y.breaks)
+  xy &lt;- table(cut(x, x.bin), cut(y, y.bin))
+  z &lt;- xy
+  
+  xmid &lt;- 0.5*(x.bin[-1] + x.bin[-length(x.bin)])
+  ymid &lt;- 0.5*(y.bin[-1] + y.bin[-length(y.bin)])
+  
+  oldmar &lt;- par(&quot;mar&quot;)
+  par (mar = par(&quot;mar&quot;) + c(0, 0, 0, 2))
+  hist3D(x = xmid, y = ymid, z = xy, ...,
+    zlim = c(-max(z)/2, max(z)), zlab = &quot;counts&quot;, bty= &quot;g&quot;, 
+    phi = phi, theta = theta,
+    shade = 0.2, col = col, border = &quot;black&quot;,
+    d = 1, ticktype = &quot;detailed&quot;)
+   
+  scatter3D(x, y,
+    z = rep(-max(z)/2, length.out = length(x)),
+    colvar = colvar, col = gg.col(100),
+    add = TRUE, pch = 18, clab = clab,
+    colkey = list(length = 0.5, width = 0.5,
+       dist = 0.05, cex.axis = 0.8, cex.clab = 0.8)
+       )
+  par(mar = oldmar)
+}
+
+
+# Create his3D using plot3D
+# hist3D_fancy(iris$Sepal.Length, iris$Petal.Width, colvar=as.numeric(iris$Species))
+
+# Make the rgl version
+# plotrgl()</code></pre>
+<center>
+<img src="/img/histogram3d" style="width:100.0%" />
+</center>
 
     </div>
   </article>
