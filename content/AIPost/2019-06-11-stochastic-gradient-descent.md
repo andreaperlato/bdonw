@@ -20,8 +20,7 @@ Now, imag to have a Logistic Regression that used 10000 genes to predict if some
 We start by picking a point randomly and we calculate the Height and Weight as presented in the example below.
 
 <center>
-![](/img/randompoint.png){width=60%}
-
+![](/img/randompoint.png)
 
 </center>
 
