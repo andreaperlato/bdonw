@@ -19,4 +19,15 @@ In [**Gradient Descent**](https://andrea-perlato.netlify.com/theorypost/gradient
 Now, imag to have a Logistic Regression that used 10000 genes to predict if someone will have a disease. This means, we would have 10000 derivatives to plug the data into. so, for Big Data, Gradient Descent is too slow. This is where Stochastic Gradient Descent comes in handy. If we have 10000 samples, than Stochastic Gradient Descent would reduce the amount terms computed by a factor of 10000. It is specially iseful when there are redundancies in the data. For example, if we have 12 data points that form 3 clusters.
 We start by picking a point randomly and we calculate the Height and Weight as presented in the example below.
 
+<center>
+![](/img/randompoint.png){width=60%}
+
+
+</center>
+
+Just like with regular Gradient Descent, Stochastic Gradient Descent is sensitive to the value we choose for the Learning Rate.
+
+
+
+
 
