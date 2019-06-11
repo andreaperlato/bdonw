@@ -6,10 +6,19 @@
     <description>Recent content in Artificial Intelligence on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Stochastic Gradient Descent</title>
+      <link>/aipost/stochastic-gradient-descent/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/stochastic-gradient-descent/</guid>
+      <description>body { text-align: justify}  Is Gradient Descent, we used the sum of the squared residuals as the Loss Function to determine how well the initial line fit the data. Than, we took the derivative of the sum of the squared residuals with respect to the intercept and slope. We repeated that process a lot of times untill we took the maximum number of steps, or the spteps became very, very small.</description>
+    </item>
     
     <item>
       <title>The Learning Process</title>
