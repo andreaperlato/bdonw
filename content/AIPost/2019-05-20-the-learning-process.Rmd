@@ -33,11 +33,24 @@ In the first case the output of the network are interpreted as log probability a
 Here above, an eample using the **L2 Regularization**. We just need to add to the Loss Function designed before the regularization term. This help us to prevent overfitting.
 
 **Optimization Algorithms and Stochastic Gradient Descent** </br>
-Mathematical optimization is the selection of a best elements from some set of available alternatives. More formally, given a function f, we want to find an element such as f is minor or equal to f(x) for all the x in A, where A is a set of real numbers. An optimization process could be **exact** or **approximate**, which means it cannot guarantee to find the optimal solution. In the context of Deep Learning, having to deal with large number of parameters, and an unknown Loss **Function Surface**, an approximate algorithm is generaly prefered. </br>
+Mathematical optimization is the selection of a best elements from some set of available alternatives. More formally, given a function f, we want to find an element such as f is minor or equal to f(x) for all the x in A, where A is a set of real numbers. </br> 
+An optimization process could be **exact** or **approximate**, which means it cannot guarantee to find the optimal solution. In the context of Deep Learning, having to deal with large number of parameters, and an unknown Loss **Function Surface**, an approximate algorithm is generaly prefered. </br>
 
 The easiest way to minimize a function is the so called **Random Selection**: we can just try all the possible combination of values in the domain of parameters and choose the set that corresponds to the minimum value of the loss function. In the real world we don't have unlimited resources to perform the Random Search approach. The solution is to chose the parameters randomly. We can repeat this operation as many times we want and just keep track of the set of parameters that minimize the loss function. Random Search is never used in practice, especially if the parameter space is very large like in Deep Learning models. </br>
 
-A second approach, instead of trying many random sets of parameters, we can start with a **random solution of parameters** and than **update** such parameters with a random perturbation **only** if it leads to better solution. With this solution we do not start from scratch at each iteration but we try to improve the current solution.
+A second approach is the [**Random Local Search**](https://en.wikipedia.org/wiki/Local_search_(optimization)), instead of trying many random sets of parameters, we can start with a **Random Solution of Parameters** and than **Update** such parameters with a random perturbation **only** if it leads to better solution. With this method we do not start from scratch at each iteration but we try to improve the current solution. Even though Random Local Search is better than Random Search, it is still wastefull and computationally expensive.
+
+For this reason the [**Gradient of a function**](https://andrea-perlato.netlify.com/theorypost/gradient-descent-step-by-step/) is used. </br>
+In one-dimentional function, the derivative (slope) is the instantaneous rate of change of the function at any point we might be interested. When the functions of interest is multi-dimentional, we call the derivatives **Partial Derivatives**, and the gradient is simply the vector of partial derivatives in each dimenision.
+
+<center>
+![](/img/partialderivatives.png){width=20%}
+</center>
+
+This approach is called Stochastic Gradient Descent, or Mini-Batch Gradient Descent. The Classical Gradient Descent is one big batch containing the entire training set. 
+
+
+
 
 
 
