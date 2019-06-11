@@ -17,7 +17,7 @@
       <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/aipost/stochastic-gradient-descent/</guid>
-      <description>body { text-align: justify}  Is Gradient Descent, we used the sum of the squared residuals as the Loss Function to determine how well the initial line fit the data. Than, we took the derivative of the sum of the squared residuals with respect to the intercept and slope. We repeated that process a lot of times untill we took the maximum number of steps, or the spteps became very, very small.</description>
+      <description>body { text-align: justify}  In Gradient Descent, we used the sum of the squared residuals as the Loss Function to determine how well the initial line fit the data. Than, we took the derivative of the sum of the squared residuals with respect to the intercept and slope. We repeated that process a lot of times untill we took the maximum number of steps, or the spteps became very, very small.</description>
     </item>
     
   </channel>
