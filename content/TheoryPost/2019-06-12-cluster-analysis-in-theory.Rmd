@@ -58,11 +58,11 @@ The defined method for determining Similarity is the **Euclidean Distance** betw
 ![](/img/hierarchicaleuclidian.png){width=45%}
 </center>
 
-Now, to assign new observations to a cluster based on the **Center Point**, we have to explore all the possible methods that are:
-1 - Centroid: the average of each cluster.
-2 - Single-Linkage: the closest point in each cluster.
-3 - Complete-Linkage: the furthest point in each cluster.
-The ultimate goal is to find the best method able to gives more insight into our data.
+Now, to assign new observations to a cluster based on the **Center Point**, we have to explore all the possible methods that are: </br>
+1 - Centroid: the average of each cluster. </br>
+2 - Single-Linkage: the closest point in each cluster. </br>
+3 - Complete-Linkage: the furthest point in each cluster. </br>
+The ultimate goal is to find the best method able to gives more insight into our data. </br>
 
 Summarizing, in Hierarchical Clustering clusters are formed based on some notion of similarity, and we have to decide what that is. However, most programs have reasonable degaults. Once we have a sub-cluster, we have to decide how it should be compared to other sub-cluster.
 
