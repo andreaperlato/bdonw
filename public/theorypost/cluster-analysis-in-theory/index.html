@@ -86,14 +86,14 @@ text-align: justify}
 <center>
 <img src="/img/elbowplot.png" style="width:35.0%" />
 </center>
-<p>Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before. The GOAL is to stop the number of K when the variation stops to decrease, that is why is called ELBOW.</p>
+<p>Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before. The goal is to stop the number of K when the variation stops to decrease, that is why is called elbow.</p>
 <p><strong>Hierarchical Clustering</strong> </br> It always refers to heatmap plot. The columns represent different samples, rows represent measurements from different variables. The Hierarchical Clustering orders the rows and the columns based on similarity. This makes it easy to see correlations in the data. </br> Heatmaps often come with dendrograms that indicates the similarity and the cluster of membership. Cluster with more similarity have shorter dendrogram branch as we can see from the fgure below.</p>
 <center>
 <img src="/img/hierarchicaldendrogram.png" style="width:45.0%" />
 </center>
 <p>The defined method for determining Similarity is the <strong>Euclidean Distance</strong> between Observations, we can also use the <strong>Manhattan Distance</strong> that is the absolute value of the differences.</p>
 <center>
-<img src="/img/hierarchicaleuclidian.png" style="width:45.0%" />
+<img src="/img/hierarchicaleuclidian.png" style="width:55.0%" />
 </center>
 <p>Now, to assign new observations to a cluster based on the <strong>Center Point</strong>, we have to explore all the possible methods that are: </br> <strong>Centroid</strong>: the average of each cluster. </br> <strong>Single-Linkage</strong>: the closest point in each cluster. </br> <strong>Complete-Linkage</strong>: the furthest point in each cluster. </br> The ultimate goal is to find the best method able to gives more insight into our data. </br></p>
 <p>Summarizing, in Hierarchical Clustering clusters are formed based on some notion of similarity, and we have to decide what that is. However, most programs have reasonable degaults. Once we have a sub-cluster, we have to decide how it should be compared to other sub-cluster.</p>

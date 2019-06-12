@@ -41,7 +41,7 @@ The **Elbow Plot ** helps us to find when the variation is stabilized based on t
 </center>
 
 Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before.
-The GOAL is to stop the number of K when the variation stops to decrease, that is why is called ELBOW.
+The goal is to stop the number of K when the variation stops to decrease, that is why is called elbow.
 
 
 **Hierarchical Clustering** </br>
@@ -55,7 +55,7 @@ Heatmaps often come with dendrograms that indicates the similarity and the clust
 The defined method for determining Similarity is the **Euclidean Distance** between Observations, we can also use the **Manhattan Distance** that is the absolute value of the differences.
 
 <center>
-![](/img/hierarchicaleuclidian.png){width=45%}
+![](/img/hierarchicaleuclidian.png){width=55%}
 </center>
 
 Now, to assign new observations to a cluster based on the **Center Point**, we have to explore all the possible methods that are: </br>
