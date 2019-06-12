@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hierarchical on Andrea Perlato</title>
-    <link>/tags/hierarchical/</link>
-    <description>Recent content in Hierarchical on Andrea Perlato</description>
+    <title>Clustering on Andrea Perlato</title>
+    <link>/categories/clustering/</link>
+    <description>Recent content in Clustering on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/hierarchical/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/clustering/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>/theorypost/cluster-analysis-in-theory/</guid>
       <description>body {text-align: justify}Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters).  Cluster analysis itself is not one specific algorithm, but the general task to be solved. It can be achieved by various algorithms that differ significantly in their understanding of what constitutes a cluster and how to efficiently find them.</description>
-    </item>
-    
-    <item>
-      <title>Customer segmentation via K-Means &amp; Hierarchical clustering</title>
-      <link>/mlpost/customer-segmentation/</link>
-      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/mlpost/customer-segmentation/</guid>
-      <description>body {text-align: justify}Consider to have a big mall in a specific city that contains information of its clients that subcribed to a membership card. The last feature is Spending Score that is a score that the mall computed for each of their clients based on several criteria including for example their income and the number of times per week they show up in the mall and of course, the amount of dollars they spent in a year.</description>
     </item>
     
   </channel>

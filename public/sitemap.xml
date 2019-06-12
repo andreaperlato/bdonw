@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/theorypost/cluster-analysis-in-theory/</loc>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/aipost/stochastic-gradient-descent/</loc>
     <lastmod>2019-06-11T00:00:00+00:00</lastmod>
   </url>
@@ -292,6 +297,12 @@
   </url>
   
   <url>
+    <loc>/categories/clustering/</loc>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/cox-proportional-hazards/</loc>
     <lastmod>2019-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -377,7 +388,7 @@
   
   <url>
     <loc>/tags/hierarchical/</loc>
-    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -413,7 +424,7 @@
   
   <url>
     <loc>/tags/kmean/</loc>
-    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -623,7 +634,7 @@
   
   <url>
     <loc>/theorypost/</loc>
-    <lastmod>2019-02-13T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

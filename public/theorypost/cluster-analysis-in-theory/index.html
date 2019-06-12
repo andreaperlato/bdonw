@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Cluster Analysis in Theory - Andrea Perlato</title>
+<meta property="og:title" content="Cluster Analysis in Theory - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Cluster Analysis in Theory</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). </br> Cluster analysis itself is not one specific algorithm, but the general task to be solved. It can be achieved by various algorithms that differ significantly in their understanding of what constitutes a cluster and how to efficiently find them.</p>
+<p><strong>K-Means Clustering</strong> </br> The main question in K-Means Clustering is: can we identify certain groups among all variables? The <strong>STEP 1</strong> is to identify the number of clusters K. Suppose we have K=3, the <strong>STEP 2</strong> is to select randomly 3 data points, and these are our <strong>Initial Cluster Points</strong>. The <strong>STEP 3</strong> consists to calculate the <strong>Euclidian Distance</strong> between the observations and the <strong>Initial Cluster Points</strong>.</p>
+<center>
+<div class="figure">
+<img src="/img/kmeanspointstheory.png" style="width:50.0%" />
+
+</div>
+</center>
+<p>The <strong>STEP 4</strong> consist to assign the observations to the nearest cluster. Then, the <strong>STEP 5</strong> calculate the average of each cluster. Now, we have to asses the right cluster by adding-up the variation within each cluster. We don’t know the best clustering, and so we can only try again to select randomly the initial cluster points and compare the variation with the previous attempt. And we do this over again with different starting point.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+
