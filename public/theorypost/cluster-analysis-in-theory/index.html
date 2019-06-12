@@ -84,9 +84,18 @@ text-align: justify}
 </center>
 <p>With this approach, we can find the best Initial Cluster Point that have the lowest variation, but we still we don’t know if that variation is the lowest overall. To solve this question, could be very useful to find a method to identify the <strong>Best Number of K</strong>. </br> The <strong>Elbow Plot </strong> helps us to find when the variation is stabilized based on the number of K.</p>
 <center>
-<img src="/img/elbowplot.png" style="width:50.0%" />
+<img src="/img/elbowplot.png" style="width:35.0%" />
 </center>
 <p>Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before. The GOAL is to stop the number of K when the variation stops to decrease, that is why is called ELBOW.</p>
+<p><strong>Hierarchical Clustering</strong> </br> It always refers to heatmap plot. The columns represent different samples, rows represent measurements from different variables. The Hierarchical Clustering orders the rows and the columns based on similarity. This makes it easy to see correlations in the data. </br> Heatmaps often come with dendrograms that indicates the similarity and the cluster of membership. Cluster with more similarity have shorter dendrogram branch as we can see from the fgure below.</p>
+<center>
+<img src="/img/hierarchicaldendrogram.png" style="width:45.0%" />
+</center>
+<p>The defined method for determining Similarity is the <strong>Euclidean Distance</strong> between Observations, we can also use the <strong>Manhattan Distance</strong> that is the absolute value of the differences.</p>
+<center>
+<img src="/img/hierarchicaleuclidian.png" style="width:45.0%" />
+</center>
+<p>Now, to assign new observations to a cluster based on the <strong>Center Point</strong>, we have to explore all the possible methods that are: 1 - Centroid: the average of each cluster. 2 - Single-Linkage: the closest point in each cluster. 3 - Complete-Linkage: the furthest point in each cluster. The ultimate goal is to find the best method able to gives more insight into our data.</p>
 
     </div>
   </article>

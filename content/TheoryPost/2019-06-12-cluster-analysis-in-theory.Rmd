@@ -37,11 +37,40 @@ With this approach, we can find the best Initial Cluster Point that have the low
 The **Elbow Plot ** helps us to find when the variation is stabilized based on the number of K.
 
 <center>
-![](/img/elbowplot.png){width=50%}
+![](/img/elbowplot.png){width=35%}
 </center>
 
 Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before.
 The GOAL is to stop the number of K when the variation stops to decrease, that is why is called ELBOW.
+
+
+**Hierarchical Clustering** </br>
+It always refers to heatmap plot. The columns represent different samples, rows represent measurements from different variables. The Hierarchical Clustering orders the rows and the columns based on similarity. This makes it easy to see correlations in the data. </br> 
+Heatmaps often come with dendrograms that indicates the similarity and the cluster of membership. Cluster with more similarity have shorter dendrogram branch as we can see from the fgure below.
+
+<center>
+![](/img/hierarchicaldendrogram.png){width=45%}
+</center>
+
+The defined method for determining Similarity is the **Euclidean Distance** between Observations, we can also use the **Manhattan Distance** that is the absolute value of the differences.
+
+<center>
+![](/img/hierarchicaleuclidian.png){width=45%}
+</center>
+
+Now, to assign new observations to a cluster based on the **Center Point**, we have to explore all the possible methods that are:
+1 - Centroid: the average of each cluster.
+2 - Single-Linkage: the closest point in each cluster.
+3 - Complete-Linkage: the furthest point in each cluster.
+The ultimate goal is to find the best method able to gives more insight into our data.
+
+
+
+
+
+
+
+
 
 
 
