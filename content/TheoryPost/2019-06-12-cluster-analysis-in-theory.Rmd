@@ -24,11 +24,41 @@ The **STEP 1** is to identify the number of clusters K. Suppose we have K=3, the
 
 <center>
 ![](/img/kmeanspointstheory.png){width=50%}
-
 </center>
 
 The **STEP 4** consist to assign the observations to the nearest cluster.
 Then, the **STEP 5** calculate the average of each cluster. Now, we have to asses the right cluster by adding-up the variation within each cluster. We don’t know the best clustering, and so we can only try again to select randomly the initial cluster points and compare the variation with the previous attempt. And we do this over again with different starting point.
+
+<center>
+![](/img/clustervariationtheory.png){width=50%}
+</center>
+
+With this approach, we can find the best Initial Cluster Point that have the lowest variation, but we still we don’t know if that variation is the lowest overall. To solve this question, could be very useful to find a method to identify the **Best Number of K**. </br>
+The **Elbow Plot ** helps us to find when the variation is stabilized based on the number of K.
+
+<center>
+![](/img/elbowplot.png){width=50%}
+</center>
+
+Essentially, each time we add a new cluster, the total variation within each cluster is smaller than before.
+The GOAL is to stop the number of K when the variation stops to decrease, that is why is called ELBOW.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
