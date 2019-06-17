@@ -18,7 +18,7 @@ text-align: justify}
 **Under-representation** of a class in one or more important predictor variables. </br>
 **Under-representation ** of one class in the outcome (dependent) variable. </br>
 
-The end-result of over-/under-sampling is the creation of a balanced dataset. Many machine-learning techniques and neural networks, make more reliable predictions from being trained with balanced data. Certain analytical methods, however, notably linear regression and logistic regression, do not benefit from a balancing approach.
+The end result of over/under sampling is the creation of a balanced dataset. Many machine-learning techniques and neural networks, make more reliable predictions from being trained with balanced data. Certain analytical methods, however, notably linear regression and logistic regression, do not benefit from a balancing approach.
 
 There are a number of methods available to oversample a dataset used in a typical classification problem. The most common technique is known as [**SMOTE: Synthetic Minority Over-sampling Technique**](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume16/chawla02a-html/chawla2002.html). </br>
 It creates new **synthetic observations**. To do that, it identify the feature vector and its nearest neighbour. Then, it take the difference between the two. Crucially, it multiplies the difference with a random number between 0 and 1. We then plot a new data point on the difference line. The feature vector for this new point is our synthetic datapoint.
