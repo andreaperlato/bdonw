@@ -15,15 +15,115 @@ text-align: justify}
 </style>
 
 The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like.
-The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way pf computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br>
+The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br>
 The first step is to understand what the [**Chain Rule**](https://en.wikipedia.org/wiki/Backpropagation) is all about. </br>
 
 **Chain Rule** </br>
-In calculus, the Chain rule is a formula for computing the derivative of the cmposition of two or more functions.
-The Chain Rule allow us to break down a complex function in many smaller functions for which it is relatively straighforward to compute the derivative. Then, we simply chain them together by multiplication.
+The fundamental unit of every deep learning model is the Perceptron.
+The Perceptron algorithm was designed to classify visual inputs, categorizing subjects into one of two types and separating groups with a line: it is used for linearly-solvable problems. </br>
+
+In calculus, the Chain rule is a formula for computing the derivative of the composition of two or more functions called [**Perceptron**](https://en.wikipedia.org/wiki/Perceptron).
+The Chain Rule allow us to break down a complex function in many smaller functions for which it is relatively straighforward to compute the derivative. Then, we simply chain them together by multiplication. </br>
+
+Let's assume we have a set of neurons with weght as described by the figure below. </br>
 
 <center>
 ![](/img/backpropagationweights.png){width=40%}
 </center>
 
-We want to compute the derivative with respect of the weight w0 till to  wn.
+We can apply an **Activation Function** in order to have a smoother ranging from 0 to 1, for example the **Sigmoid Function** described by the formula below. </br>
+
+<center>
+![](/img/activationfunctionsigmoid.png){width=30%}
+</center>
+
+We want to compute the derivative with respect of the weight **w0** till to **wn**. First of all, we semplify the function introducing the **g** tems.
+
+<center>
+![](/img/derivativeactivationfunction.jpg){width=35%}
+</center>
+
+Once we have the **Gradient of the Loss Function** with respect to **All the Weights** we can update our model simply by the function below, that make a subtraction of the gradient by alfa times which is the the learinign rate. Here, for semplicity, is not consider the **Regularization term**, but we have to remember to always take it into consideration, especially for large models. Of course, we don't have to go through all this math each time we want to develop a new deep learning model, but we can use the fully-fledged packages.
+
+
+**Hyper-parameters Optimization** </br>
+Tillnow, we have seen how to Learn the Weights of the Perceptron on any Deep Learning Models. There are possibility to automatic tuning the hyper-parameters especially using [**Random Search**](https://en.wikipedia.org/wiki/Random_search) and [**Grid Search**](https://en.wikipedia.org/wiki/Hyperparameter_optimization).
+
+In the following example, we consider to tuning the hyper-parameter using the [**Stochastic Gradient Descent**](https://andrea-perlato.netlify.com/aipost/stochastic-gradient-descent/). In general, evaluating the Loss Function with respect to the hyper-parameters means training the model from scratch each time which makes the problem computationally impossible to solve. That is why, it is pretty common to tune the hyper-parameters manually with some tricks such as **Grid Search**, **Random Search**, and **Bayesian Methods**.
+
+<center>
+![](/img/gridrandomtuning.png){width=50%}
+</center>
+
+Let's say we want to tune just two hyper-parameters, and each of the boxes represented by the figure above, represent the hyper-parameter space in which we can choose the hyper-parameter. </br>
+Since we can not test each possible combinations of th two hyper-parameters we can decide to cover the space with **Discrete** values in **Grid Search**, and **Random Pairs** in **Random Search**.
+It turns out that  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
