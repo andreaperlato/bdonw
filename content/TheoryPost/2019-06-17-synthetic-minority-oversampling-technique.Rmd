@@ -1,0 +1,62 @@
+---
+title: Synthetic Minority Oversampling Technique
+author: andrea perlato
+date: '2019-06-17'
+slug: synthetic-minority-oversampling-technique
+categories:
+  - machine learning
+tags:
+  - smote
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+**Oversampling** and **undersampling** in data analysis are techniques used to adjust the class distribution of a data set. Both oversampling and undersampling involve introducing a [**bias**](https://en.wikipedia.org/wiki/Bias) to select more samples from one class than from another, to compensate for an imbalance that is either already present in the data. Data Imbalance can be of the following types: </br>
+**Under-representation** of a class in one or more important predictor variables. </br>
+**Under-representation ** of one class in the outcome (dependent) variable. </br>
+
+The end-result of over-/under-sampling is the creation of a balanced dataset. Many machine-learning techniques and neural networks, make more reliable predictions from being trained with balanced data. Certain analytical methods, however, notably linear regression and logistic regression, do not benefit from a balancing approach.
+
+There are a number of methods available to oversample a dataset used in a typical classification problem. The most common technique is known as [**SMOTE: Synthetic Minority Over-sampling Technique**](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume16/chawla02a-html/chawla2002.html). /br>
+It creates new **synthetic observations**. To do that, it identify the feature vector and its nearest neighbour. Then, it take the difference between the two. Crucially, it multiplies the difference with a random number between 0 and 1. We then plot a new data point on the difference line. The feature vector for this new point is our synthetic datapoint.
+
+
+<center>
+![](/img/smote.png){width=60%}
+</center>
+
+If we try to identify, for example, fraudolent credit card transactions, we want them in a sufficient number of samples, but a good system do not have more than 5% or 10% of fraud as explained on the right part of the figure above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
