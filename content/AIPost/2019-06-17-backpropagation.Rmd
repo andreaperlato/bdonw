@@ -1,0 +1,29 @@
+---
+title: Backpropagation Intuition
+author: andrea perlato
+date: '2019-06-17'
+categories:
+  - artificial intelligence
+tags:
+  - backpropagation
+slug: backpropagation
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like.
+The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way pf computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br>
+The first step is to understand what the [**Chain Rule**](https://en.wikipedia.org/wiki/Backpropagation) is all about. </br>
+
+**Chain Rule** </br>
+In calculus, the Chain rule is a formula for computing the derivative of the cmposition of two or more functions.
+The Chain Rule allow us to break down a complex function in many smaller functions for which it is relatively straighforward to compute the derivative. Then, we simply chain them together by multiplication.
+
+<center>
+![](/img/backpropagationweights.png){width=40%}
+</center>
+
+We want to compute the derivative with respect of the weight w0 till to  wn.

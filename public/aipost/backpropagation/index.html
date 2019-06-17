@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Backpropagation Intuition - Andrea Perlato</title>
+<meta property="og:title" content="Backpropagation Intuition - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Backpropagation Intuition</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like. The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way pf computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br> The first step is to understand what the <a href="https://en.wikipedia.org/wiki/Backpropagation"><strong>Chain Rule</strong></a> is all about. </br></p>
+<p><strong>Chain Rule</strong> </br> In calculus, the Chain rule is a formula for computing the derivative of the cmposition of two or more functions. The Chain Rule allow us to break down a complex function in many smaller functions for which it is relatively straighforward to compute the derivative. Then, we simply chain them together by multiplication.</p>
+<center>
+<img src="/img/backpropagationweights.png" style="width:40.0%" />
+</center>
+<p>We want to compute the derivative with respect of the weight w0 till to wn.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+

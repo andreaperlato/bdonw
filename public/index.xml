@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Backpropagation Intuition</title>
+      <link>/aipost/backpropagation/</link>
+      <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/backpropagation/</guid>
+      <description>body {text-align: justify}The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like. The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way pf computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps.</description>
+    </item>
+    
+    <item>
       <title>Synthetic Minority Oversampling Technique</title>
       <link>/theorypost/synthetic-minority-oversampling-technique/</link>
       <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
