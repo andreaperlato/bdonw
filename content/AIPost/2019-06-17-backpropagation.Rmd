@@ -85,14 +85,21 @@ val_h2o <- as.h2o(data[splitSample==2,])
 test_h2o <- as.h2o(data[splitSample==3,])
 
 ```
-Now we can choose the best hyper-parameters using the **Random Search**.
+Now, we can choose the best hyper-parameters using the **Random Search**. As we can see from the code below, we try to use many **Activation Functions**, many **Hiden Layers with different units**, different **Drop-out Ratio**, and **L1 and L2 Regularization**.
 
+```{r, echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align='center', out.width = '100%'}
+# Set hyper-parameters
+hyper_params <- list(
+  activation =c("Rectifier", "Tanh", "Maxout",
+                "RectifierWithDropout", "TanhWithDropout", "MaxoutWithDropout"),
+                hidden = list(c(20,20), c(50,50), c(30,30,30), c(25,25,25,25)),
+                input_dropout_ratio = c(0, 0.05),
+                l1 = seq(0, 1e-4, 1e-6),
+                l2 = seq(0, 1e-4, 1e-6))
 
+```
 
-
-
-
-
+The Activation Functions used are: Rectifier, Tanh, Maxout, and we use different Drop-out Ration. The **Drop-out** process is about [**Pruning**](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) some connections between neurons during training. It is very attractive to know that the [**human brain do the same pruning process in the early stage of the birth**](https://en.wikipedia.org/wiki/Synaptic_pruning).
 
 
 

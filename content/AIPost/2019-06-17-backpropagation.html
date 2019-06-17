@@ -47,7 +47,7 @@ h2o.init()</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         4 minutes 24 seconds 
+    H2O cluster uptime:         26 minutes 9 seconds 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
@@ -94,4 +94,13 @@ train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
   |                                                                 |   0%
   |                                                                       
   |=================================================================| 100%</code></pre>
-<p>Now we can choose the best hyper-parameters using the <strong>Random Search</strong>.</p>
+<p>Now, we can choose the best hyper-parameters using the <strong>Random Search</strong>. As we can see from the code below, we try to use many <strong>Activation Functions</strong>, many <strong>Hiden Layers with different units</strong>, different <strong>Drop-out Ratio</strong>, and <strong>L1 and L2 Regularization</strong>.</p>
+<pre class="r"><code># Set hyper-parameters
+hyper_params &lt;- list(
+  activation =c(&quot;Rectifier&quot;, &quot;Tanh&quot;, &quot;Maxout&quot;,
+                &quot;RectifierWithDropout&quot;, &quot;TanhWithDropout&quot;, &quot;MaxoutWithDropout&quot;),
+                hidden = list(c(20,20), c(50,50), c(30,30,30), c(25,25,25,25)),
+                input_dropout_ratio = c(0, 0.05),
+                l1 = seq(0, 1e-4, 1e-6),
+                l2 = seq(0, 1e-4, 1e-6))</code></pre>
+<p>The Activation Functions used are: Rectifier, Tanh, Maxout, and we use different Drop-out Ration. The <strong>Drop-out</strong> process is about <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning"><strong>Pruning</strong></a> some connections between neurons during training. It is very attractive to know that the <a href="https://en.wikipedia.org/wiki/Synaptic_pruning"><strong>human brain do the same pruning process in the early stage of the birth</strong></a>.</p>
