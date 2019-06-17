@@ -19,6 +19,11 @@
 
 
 
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css' rel='stylesheet' type='text/css' />
+
+
+
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -94,7 +99,65 @@ text-align: justify}
 <center>
 <img src="/img/gridrandomtuning.png" style="width:50.0%" />
 </center>
-<p>Let’s say we want to tune just two hyper-parameters, and each of the boxes represented by the figure above, represent the hyper-parameter space in which we can choose the hyper-parameter. </br> Since we can not test each possible combinations of th two hyper-parameters we can decide to cover the space with <strong>Discrete</strong> values in <strong>Grid Search</strong>, and <strong>Random Pairs</strong> in <strong>Random Search</strong>. It turns out that</p>
+<p>Let’s say we want to tune just two hyper-parameters, and each of the boxes represented by the figure above, represent the hyper-parameter space in which we can choose the hyper-parameter. </br> Since we can not test each possible combinations of th two hyper-parameters we can decide to cover the space with <strong>Discrete</strong> values in <strong>Grid Search</strong>, and <strong>Random Pairs</strong> in <strong>Random Search</strong>. It turns out that in general the Random Layout is better than the Grid Layout because for the hyper-parameters we can test more different values for the Important Parameters. </br> More pratically, we can implement a Random Search in R using <a href="https://en.wikipedia.org/wiki/H2O_(software)"><strong>H2O</strong></a> which come with a complete set of utility functions specifically designed for this purpose. The <a href="http://docs.h2o.ai/h2o/latest-stable/h2o-docs/grid-search.html"><strong>h2o.grid()</strong></a> function is very general and adapttive an helps to implement the Grid or Random Search with few lines of R code even for a comple hyper-parameters selection. </br></p>
+<p>In the following example we use the Wisconsin Breast-Cancer Dataset which is a collectioin of Dr.Wolberg real clinical cases. There are no images, but we can recognize malignal tumor based on 10 biomedical attributes. We have a total number of 699 patients divided in two classes: malignal and benign cancer.</p>
+<pre class="r"><code># Load libraries
+library(mlbench)
+library(h2o)
+
+# General parameters
+h2o.init()</code></pre>
+<pre><code> Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         4 minutes 24 seconds 
+    H2O cluster timezone:       Europe/Berlin 
+    H2O data parsing timezone:  UTC 
+    H2O cluster version:        3.20.0.8 
+    H2O cluster version age:    8 months and 27 days !!! 
+    H2O cluster name:           H2O_started_from_R_perlatoa_bbf562 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   2.63 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    H2O API Extensions:         AutoML, Algos, Core V3, Core V4 
+    R Version:                  R version 3.5.1 (2018-07-02) </code></pre>
+<pre class="r"><code>set.seed(123)
+
+# Load the data
+data(BreastCancer)
+
+# Convert data for h2o
+data &lt;- BreastCancer[, -1] # remove ID
+data[, c(1:ncol(data))] &lt;- sapply(data[, c(1:ncol(data))], as.numeric) # interpret each features as numeric
+data[, &#39;Class&#39;] &lt;- as.factor(data[, &#39;Class&#39;]) # interpret dependent variable as factor
+
+# convert the dataset in three part in the h2o format
+splitSample &lt;- sample(1:3, size=nrow(data), prob=c(0.7,0.15,0.15), replace=TRUE)
+train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>val_h2o &lt;- as.h2o(data[splitSample==2,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>test_h2o &lt;- as.h2o(data[splitSample==3,])</code></pre>
+<pre><code>
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<p>Now we can choose the best hyper-parameters using the <strong>Random Search</strong>.</p>
 
     </div>
   </article>
@@ -117,6 +180,18 @@ text-align: justify}
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
