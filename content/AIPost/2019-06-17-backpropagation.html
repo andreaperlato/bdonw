@@ -47,7 +47,7 @@ h2o.init()</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         12 minutes 22 seconds 
+    H2O cluster uptime:         33 minutes 17 seconds 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
@@ -142,3 +142,9 @@ search_criteria &lt;- list(
 # best_model &lt;- h2o.getModel(grid@model_ids[[1]])
 # best_model</code></pre>
 <p>Using Grid and Random Search we can find out our model automatically maximazing the accuracy on the validation set.</p>
+<p><strong>Evaluate the Artificial Neural Network</strong> </br> In order to understand how the model behaves after the REAL DEPLOYMENT we should: </br> Split the data-set in 3 parts: Train (40%), Validation (30%) and Test (30%) set. In our exapme we used 70 for Train, 15 for Validation, and 15 for Test. </br> We also need a <strong>Validation set</strong> because if we tune the hyper-parameters based on the results on the TEST set, we end-up overfitting it as well. <strong>Validation Sets</strong> are also known as <strong>Dev Sets</strong>, it is an intermediate phase used for choosing the best model and optimizing it. It is the parameter tuning that occurs for optimizing the selected model. </br> <strong>Overfitting is checked and avoided in the validation set</strong> to eliminate errors that can be caused for future predictions if an analysis corresponds too precisely to a specific dataset. It is generally considered unwise to attempt further adjustment in the testing phase. Attempting to add further optimization outside the validation phase will likely increase overfitting. </br></p>
+<p><strong>Optimization Loss</strong> </br> It helps to understand when Accuracy is saturating, for example, stop to add hidden layer in a Multi Hidden Layer ANN. Accuracy or Error, is what the model optimizes. There is a method called EARLY STOPPING: we stop the training when the model starts to work with the desired metric.</p>
+<center>
+<img src="/img/earlystopping.png" style="width:30.0%" />
+</center>
+<p><strong>M1 error rate</strong> refer to the Training-set. </br> <strong>M2 error rat</strong>e refer to the Test-set. </br> The point where <strong>M2</strong> start to increase the error, means that the Neural Network stop to generalize. It stop understanding the pattern in the data. </br> Crucially, after the <strong>Stopping point</strong> there is Overfitting. If we don’t receive our desired accuracy at the Stopping Point, we need to use a different NN, for example, changing the number of hidden layers.</p>

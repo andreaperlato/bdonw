@@ -160,17 +160,26 @@ Using all your batches once is 1 epoch. If you have 10 epochs it mean that youâ€
 
 Using Grid and Random Search we can find out our model automatically maximazing the accuracy on the validation set. 
 
+**Evaluate the Artificial Neural Network** </br>
+In order to understand how the model behaves after the REAL DEPLOYMENT we should: </br>
+Split the data-set in 3 parts: Train (40%), Validation (30%) and Test (30%) set. In our exapme we used 70 for Train, 15 for Validation, and 15 for Test. </br>
+We also need a **Validation set** because if we tune the hyper-parameters based on the results on the TEST set, we end-up overfitting it as well.
+**Validation Sets** are also known as **Dev Sets**, it is an intermediate phase used for choosing the best model and optimizing it. It is the parameter tuning that occurs for optimizing the selected model. </br>
+**Overfitting is checked and avoided in the validation set** to eliminate errors that can be caused for future predictions if an analysis corresponds too precisely to a specific dataset. It is generally considered unwise to attempt further adjustment in the testing phase. Attempting to add further optimization outside the validation phase will likely increase overfitting. </br>
 
 
+**Optimization Loss** </br>
+It helps to understand when Accuracy is saturating, for example, stop to add hidden layer in a Multi Hidden Layer ANN. Accuracy or Error, is what the model optimizes. There is a method called EARLY STOPPING: we stop the training when the model starts to work with the desired metric.
 
+<center>
+![](/img/earlystopping.png){width=30%}
+</center>
 
-
-
-
-
-
-
-
+**M1 error rate** refer to the Training-set. </br>
+**M2 error rat**e refer to the Test-set. </br>
+The point where **M2** start to increase the error, means that the Neural Network stop to generalize. It stop understanding the pattern in the data. </br>
+Crucially, after the **Stopping point** there is Overfitting.
+If we donâ€™t receive our desired accuracy at the Stopping Point, we need to use a different NN, for example, changing the number of hidden layers.
 
 
 
