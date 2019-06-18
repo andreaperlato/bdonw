@@ -237,9 +237,27 @@
     </item>
     
     <item>
+      <title>L1 Regularization</title>
+      <link>/tags/l1-regularization/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/l1-regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>L2 Regularization</title>
+      <link>/tags/l2-regularization/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/l2-regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lasso Regression</title>
       <link>/tags/lasso-regression/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/lasso-regression/</guid>
       <description></description>
@@ -401,7 +419,7 @@
     <item>
       <title>Ridge Regression</title>
       <link>/tags/ridge-regression/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/ridge-regression/</guid>
       <description></description>

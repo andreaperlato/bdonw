@@ -1,0 +1,27 @@
+---
+title: Ridge and Lasso Regression
+author: andrea perlato
+date: '2019-06-18'
+slug: ridge-and-lasso-regression
+categories:
+  - theory
+tags:
+  - ridge regression
+  - lasso regression
+  - l1 regularization
+  - l2 regularization
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><strong>Overfitting</strong> </br> In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably. An overfitted model is a statistical model that contains more parameters than can be justified by the data. </br> Overfitting is the use of models or procedures that violate <a href="https://en.wikipedia.org/wiki/Occam%27s_razor"><strong>Occam’s razor</strong></a>, for example by including more adjustable parameters than are ultimately optimal, or by using a more complicated approach than is ultimately optimal. </br> The most obvious consequence of overfitting is poor performance on the validation dataset.</p>
+<p><strong>Bias-Variance Tradeoff</strong> </br> In statistics and machine learning, the <a href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff"><strong>bias–variance tradeoff</strong></a> is the property of a set of predictive models whereby models with a lower bias in parameter estimation have a higher variance of the parameter estimates across samples, and vice versa. </br> Ideally, we would know the exact mathematical formula that describes the relationship between two variables (e.g. height and weight of the mice). </br></p>
+<center>
+<img src="/img/biasvariancetradeoff.png" style="width:40.0%" />
+</center>
+<p>To do that, we use the machine learning to approximate the formula. Then, we split the data in train and test. </br> Image now the first machine learning model is a <strong>Linear Regression</strong>, but is not accurate to replicate the curve of the true relationship between height and weight. The inability for a machine learning to capture the true relationship is called <a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator"><strong>Bias</strong></a>. Another machine learning model might fit a <strong>Squiggly Line</strong> to the training set, which is super-flexible to fit the training-set. </br> But, when we calculate the Sum of the Squared Error in the Test-set, we probably find that the Linear Line is better than the Squiggly Line, and we call this <strong>Overfitting</strong>. In Machine Learning Lingo, the difference in fitting between Training and Testing is called <a href="https://en.wikipedia.org/wiki/Variance"><strong>Variance</strong></a>. In Machine Learning the <strong>ideal algorithm</strong> need to have <strong>Low Bias</strong> and has to be able to accurately approximate the true relationship. Two commonly used methods to find the best between Simple and Complicated are: <strong>Regularization L1 and L2</strong> </br></p>
+<p><strong>L2 Ridge Regression</strong> </br> It is a <a href="https://en.wikipedia.org/wiki/Regularization_(mathematics)"><strong>Regularization Method</strong></a> to reduce <a href="https://en.wikipedia.org/wiki/Overfitting"><strong>Overfitting</strong></a>.</p>

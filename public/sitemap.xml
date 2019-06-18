@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/theorypost/ridge-and-lasso-regression/</loc>
+    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/aipost/backpropagation/</loc>
     <lastmod>2019-06-17T00:00:00+00:00</lastmod>
   </url>
@@ -450,8 +455,20 @@
   </url>
   
   <url>
+    <loc>/tags/l1-regularization/</loc>
+    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/l2-regularization/</loc>
+    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/lasso-regression/</loc>
-    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -577,7 +594,7 @@
   
   <url>
     <loc>/tags/ridge-regression/</loc>
-    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lasso Regression on Andrea Perlato</title>
-    <link>/tags/lasso-regression/</link>
-    <description>Recent content in Lasso Regression on Andrea Perlato</description>
+    <title>L1 Regularization on Andrea Perlato</title>
+    <link>/tags/l1-regularization/</link>
+    <description>Recent content in L1 Regularization on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 18 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/lasso-regression/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/l1-regularization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>/theorypost/ridge-and-lasso-regression/</guid>
       <description>body {text-align: justify}Overfitting  In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably. An overfitted model is a statistical model that contains more parameters than can be justified by the data.  Overfitting is the use of models or procedures that violate Occam’s razor, for example by including more adjustable parameters than are ultimately optimal, or by using a more complicated approach than is ultimately optimal.</description>
-    </item>
-    
-    <item>
-      <title>Deal Multicollinearity with LASSO Regression</title>
-      <link>/mlpost/deal-multicollinearity-with-lasso-regression/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/mlpost/deal-multicollinearity-with-lasso-regression/</guid>
-      <description>body {text-align: justify}Multicollinearity is a phenomenon in which two or more predictors in a multiple regression are highly correlated (R-squared more than 0.7), this can inflate our regression coefficients. We can test multicollinearity with the Variance Inflation Factor VIF is the ratio of variance in a model with multiple terms, divided by the variance of a model with one term alone. VIF = 1/1-R-squared. A rule of thumb is that if VIF &amp;gt; 10 then multicollinearity is high (a cutoff of 5 is also commonly used).</description>
     </item>
     
   </channel>
