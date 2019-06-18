@@ -19,8 +19,20 @@ text-align: justify}
 <p>To fit a line to data we use the <a href="https://en.wikipedia.org/wiki/Least_squares"><strong>Least Squares</strong></a> to find the line with the minimal squared distance from the data points. </br></p>
 <p><strong>Locally weighted regression scatterplot smoothing - LOWESS</strong> </br> The main idea to fit a curve to data point is to use a type of sliding window to divide the data into smaller blobs. The second main idea is that each data point use the least squares to fit a line.</p>
 <center>
-<img src="/img/fitingcurve.png" style="width:50.0%" />
+<img src="/img/fitingcurve.png" style="width:40.0%" />
 </center>
-<p>Let’s say we start with a sliding window of 5 observations. The first observation of the sliding window is called <strong>Focal Point</strong>. We perform a <a href="https://influentialpoints.com/Training/lowess_regression.htm"><strong>Weighted Least</strong></a> Squares on all the 5 points. The closer the point is to the Focal Point, the more weight (or influence) it has on determining the fit of the line. </br></p>
+<p>Let’s say we start with a sliding window of 5 observations. The first observation of the sliding window is called <strong>Focal Point</strong>. We perform a <a href="https://influentialpoints.com/Training/lowess_regression.htm"><strong>Weighted Least Squares</strong></a> on all the 5 points. The closer the point is to the Focal Point, the more weight (or influence) it has on determining the fit of the line. </br></p>
 <p>One option for non-linear regression is to fit a <strong>Polynomial Model</strong> (e.g. Y = β0 + β1X + β2X2). These are superficially attractive, because higher order polynomials can be made to ‘fit’ almost any pattern. However, interpretation of such models is very difficult and their shape is sensitive to outliers. LOWESS regression is often a preferable approach. </br></p>
-<p>aa</p>
+<center>
+<img src="/img/lowessweights.png" style="width:40.0%" />
+</center>
+<p>Using <strong>weights</strong>, the last point has less influence and doesn’t pull the slope up as much. </br> Now, we use the same sliding window, but <strong>we use the second observation as a Focal Point</strong>, and again we perform the weighted least squares using the second point as Focal Point. We continue this process for all the 5 point considered in the sliding window. </br></p>
+<p>To reduce the influence of <strong>outliers</strong> we also introduce a <strong>second weight</strong> that is based on the how much the points are close together along the y-axis: the more they are, the more the weight.</p>
+<center>
+<img src="/img/lowessoutliers.png" style="width:40.0%" />
+</center>
+<p>After the adjustment based on the similarity of variance on the y-axis, we typically have a smooth curve.</p>
+<center>
+<img src="/img/lowesloess.png" style="width:40.0%" />
+</center>
+<p>We can decide to use a line or a parabola to fit the data. </br> The <strong>loess function</strong> will fit only a line. </br> The <strong>lowess (locally weighted scatterplot smoothing) function</strong> will fit a parabola. </br> The <strong>lowess function</strong> allows to draw confidence intervals aroud the curve. We can also change the <strong>window size</strong> to contain more or fewer points. But instead of specifying the exact number of points, we usually specify the proportion of the total.</p>

@@ -312,14 +312,14 @@
   </url>
   
   <url>
-    <loc>/categories/clustering/</loc>
-    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
+    <loc>/tags/clustering/</loc>
+    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/clustering/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <loc>/categories/clustering/</loc>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -636,13 +636,13 @@
   </url>
   
   <url>
-    <loc>/categories/survival-analysis/</loc>
+    <loc>/tags/survival-analysis/</loc>
     <lastmod>2019-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/survival-analysis/</loc>
+    <loc>/categories/survival-analysis/</loc>
     <lastmod>2019-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
