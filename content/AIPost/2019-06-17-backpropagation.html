@@ -47,14 +47,14 @@ h2o.init()</code></pre>
 <pre><code> Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         26 minutes 9 seconds 
+    H2O cluster uptime:         12 minutes 22 seconds 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
     H2O cluster version age:    8 months and 27 days !!! 
-    H2O cluster name:           H2O_started_from_R_perlatoa_bbf562 
+    H2O cluster name:           H2O_started_from_R_perlatoa_dpi487 
     H2O cluster total nodes:    1 
-    H2O cluster total memory:   2.63 GB 
+    H2O cluster total memory:   2.31 GB 
     H2O cluster total cores:    4 
     H2O cluster allowed cores:  4 
     H2O cluster healthy:        TRUE 
@@ -64,7 +64,7 @@ R is connected to the H2O cluster:
     H2O Internal Security:      FALSE 
     H2O API Extensions:         AutoML, Algos, Core V3, Core V4 
     R Version:                  R version 3.5.1 (2018-07-02) </code></pre>
-<pre class="r"><code>set.seed(123)
+<pre class="r"><code>set.seed(1)
 
 # Load the data
 data(BreastCancer)
@@ -82,7 +82,7 @@ train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
   |                                                                 |   0%
   |                                                                       
   |=================================================================| 100%</code></pre>
-<pre class="r"><code>val_h2o &lt;- as.h2o(data[splitSample==2,])</code></pre>
+<pre class="r"><code>valid_h2o &lt;- as.h2o(data[splitSample==2,])</code></pre>
 <pre><code>
   |                                                                       
   |                                                                 |   0%
@@ -98,9 +98,47 @@ train_h2o &lt;- as.h2o(data[splitSample==1,])</code></pre>
 <pre class="r"><code># Set hyper-parameters
 hyper_params &lt;- list(
   activation =c(&quot;Rectifier&quot;, &quot;Tanh&quot;, &quot;Maxout&quot;,
-                &quot;RectifierWithDropout&quot;, &quot;TanhWithDropout&quot;, &quot;MaxoutWithDropout&quot;),
-                hidden = list(c(20,20), c(50,50), c(30,30,30), c(25,25,25,25)),
-                input_dropout_ratio = c(0, 0.05),
-                l1 = seq(0, 1e-4, 1e-6),
-                l2 = seq(0, 1e-4, 1e-6))</code></pre>
+                &quot;RectifierWithDropout&quot;, &quot;TanhWithDropout&quot;, &quot;MaxoutWithDropout&quot;), # different activation function
+                hidden = list(c(20,20), c(50,50), c(30,30,30), c(25,25,25,25)), # different layers with different units
+                input_dropout_ratio = c(0, 0.05), # different drop-out ratio
+                l1 = seq(0, 1e-4, 1e-6), # L1 regularization
+                l2 = seq(0, 1e-4, 1e-6)) # L2 regularization</code></pre>
 <p>The Activation Functions used are: Rectifier, Tanh, Maxout, and we use different Drop-out Ration. The <strong>Drop-out</strong> process is about <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning"><strong>Pruning</strong></a> some connections between neurons during training. It is very attractive to know that the <a href="https://en.wikipedia.org/wiki/Synaptic_pruning"><strong>human brain do the same pruning process in the early stage of the birth</strong></a>.</p>
+<p>Now, we need to define the search criteria, and in the following example we use the <strong>Random Search</strong> criteria.</p>
+<pre class="r"><code># Set the search criteria
+search_criteria &lt;- list(
+  strategy = &quot;RandomDiscrete&quot;, max_runtime_secs = 360, # maximum time in seconds for the entire Random or Grid
+  max_models = 100, seed=1234567, stopping_rounds = 5, # maximum time in seconds for he model
+  stopping_tolerance = 1e-2 # the model will stop if the ratio between the best model and reference is more or equal to 1e-2
+)</code></pre>
+<p>Now, we can use the <strong>h2o.grid()</strong> function to compute all the models defined. We specify <strong>deeplearning</strong> as the algorithm. We also defined to stop the training every single model when the <strong>logloss</strong> is not improved more than 1% after 2 different evaluations. </br> In the end, we can guess the best model using the function <strong>h2o.getModel()</strong> and taking the first model, since the models are ordered.</p>
+<p>About the <a href="http://wiki.fast.ai/index.php/Log_Loss"><strong>Log-Loss</strong></a> function a simple explanation is the following: </br> consider to have the Predicted Probability Distribution of a Supervised Classifier, and also the True Distributon. We can use the Cross Entropy to estimate the difference between the Predicted Distribution and the True Distribution: this is called the Cross Entropy Loss or the Log-Loss. </br> If the predicted probability calculated from the Log-Loss is closed to 1, then the cost will be closed to the True Distribution.</p>
+<p>About <a href="https://www.quora.com/What-is-epochs-in-machine-learning"><strong>Epochs</strong></a> is deep learning an epoch is a hyperparameter which is defined before training a model. One epoch is when an entire dataset is passed both forward and backward through the neural network only once. </br> Using all your batches once is 1 epoch. If you have 10 epochs it mean that you’re gonna use all your data 10 times (split in batches).</p>
+<pre class="r"><code># Define Grid
+# dl_random_grid &lt;- h2o.grid(
+#   algorithm = &quot;deeplearning&quot;, # use artificial neural network with unlimited number of hidden layers
+#   grid_id = &quot;dl_grid_random&quot;, # use Random Search
+#   training_frame = train_h2o,
+#   validation_frame = valid_h2o,
+#   x = 1:9, # predictors
+#   y =  10, # dependent variable
+#   epochs = 1, # all bathces once
+#   # stop when logloss does not improve by more than 1% after 2 evaluation
+#   stopping_metric = &quot;logloss&quot;, # cross entropy
+#   stopping_tolerance = 1e-2,
+#   stopping_rounds = 2,
+#   hyper_params = hyper_params,
+#   search_criteria = search_criteria # random search
+# )
+# 
+# 
+# # Recover the Grid
+# grid &lt;- h2o.getGrid(&quot;dl_grid_random&quot;, sort_by=&quot;logloss&quot;,
+#                     decreasing = FALSE)
+# 
+# grid@summary_table[1,]
+# 
+# # Take the best model with lowest logloss
+# best_model &lt;- h2o.getModel(grid@model_ids[[1]])
+# best_model</code></pre>
+<p>Using Grid and Random Search we can find out our model automatically maximazing the accuracy on the validation set.</p>
