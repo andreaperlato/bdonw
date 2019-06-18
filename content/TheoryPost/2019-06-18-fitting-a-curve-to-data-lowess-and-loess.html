@@ -1,0 +1,25 @@
+---
+title: Fitting a curve to data LOWESS and LOESS
+author: andrea perlato
+date: '2019-06-18'
+slug: fitting-a-curve-to-data-lowess-and-loess
+categories:
+  - theory
+tags:
+  - loess
+  - lowess
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>To fit a line to data we use the <a href="https://en.wikipedia.org/wiki/Least_squares"><strong>Least Squares</strong></a> to find the line with the minimal squared distance from the data points. </br></p>
+<p><strong>Locally weighted regression scatterplot smoothing - LOWESS</strong> </br> The main idea to fit a curve to data point is to use a type of sliding window to divide the data into smaller blobs. The second main idea is that each data point use the least squares to fit a line.</p>
+<center>
+<img src="/img/fitingcurve.png" style="width:50.0%" />
+</center>
+<p>Let’s say we start with a sliding window of 5 observations. The first observation of the sliding window is called <strong>Focal Point</strong>. We perform a <a href="https://influentialpoints.com/Training/lowess_regression.htm"><strong>Weighted Least</strong></a> Squares on all the 5 points. The closer the point is to the Focal Point, the more weight (or influence) it has on determining the fit of the line. </br></p>
+<p>One option for non-linear regression is to fit a <strong>Polynomial Model</strong> (e.g. Y = β0 + β1X + β2X2). These are superficially attractive, because higher order polynomials can be made to ‘fit’ almost any pattern. However, interpretation of such models is very difficult and their shape is sensitive to outliers. LOWESS regression is often a preferable approach. </br></p>

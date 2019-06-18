@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Fitting a curve to data LOWESS and LOESS</title>
+      <link>/theorypost/fitting-a-curve-to-data-lowess-and-loess/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/theorypost/fitting-a-curve-to-data-lowess-and-loess/</guid>
+      <description>body {text-align: justify}To fit a line to data we use the Least Squares to find the line with the minimal squared distance from the data points. 
+Locally weighted regression scatterplot smoothing - LOWESS  The main idea to fit a curve to data point is to use a type of sliding window to divide the data into smaller blobs. The second main idea is that each data point use the least squares to fit a line.</description>
+    </item>
+    
+    <item>
       <title>Backpropagation Intuition</title>
       <link>/aipost/backpropagation/</link>
       <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
