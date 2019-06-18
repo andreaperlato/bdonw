@@ -6,10 +6,19 @@
     <description>Recent content in Artificial Intelligence on Andrea Perlato</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Convolutional Neural Networks</title>
+      <link>/aipost/introduction-to-convolutional-neural-networks/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/introduction-to-convolutional-neural-networks/</guid>
+      <description>body {text-align: justify}Convolutional Neural Networks is one of the most sucesfully and used Neural Network Algorithm. Artificial Neural Network receive an input (single vector), and transform it through a series of hidden layers.</description>
+    </item>
     
     <item>
       <title>Backpropagation Intuition</title>

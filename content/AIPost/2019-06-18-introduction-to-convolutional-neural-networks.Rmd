@@ -1,0 +1,17 @@
+---
+title: Introduction to Convolutional Neural Networks
+author: andrea perlato
+date: '2019-06-18'
+slug: introduction-to-convolutional-neural-networks
+categories:
+  - artificial intelligence
+tags:
+  - convolutional neural network
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+Convolutional Neural Networks is one of the most sucesfully and used Neural Network Algorithm. Artificial Neural Network receive an input (single vector), and transform it through a series of hidden layers.
