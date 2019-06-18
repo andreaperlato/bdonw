@@ -39,7 +39,7 @@ In Machine Learning the **ideal algorithm** need to have **Low Bias** and has to
 
 
 **L2 Ridge Regression** </br>
-It is a [**Regularization Method**](https://en.wikipedia.org/wiki/Regularization_(mathematics)) to reduce [**Overfitting**](https://en.wikipedia.org/wiki/Overfitting).
+It is a [**Regularization Method**](https://en.wikipedia.org/wiki/Regularization_(mathematics)) to reduce [**Overfitting**](https://en.wikipedia.org/wiki/Overfitting).  
 
 
 
