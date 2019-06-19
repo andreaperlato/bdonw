@@ -50,12 +50,12 @@ The main idea of Ridge Regression is to fit a new line that doesn’t fit the tr
 What we do in practice, is to introduce a Bias that we call **Lambda**, and the **Penalty Function** is: lambda*slope^2. </br>
 The Lambda is a penalty terms and this value is called **Ridge Regression** or **L2**. </br>
 
-**L2 penalty** is quadratic: lambda*slope^2: none of the coefficients (slope) are extremely large. </br>
-**L1 penalty** is the absolute value: lambda*|slope|: choose the most important features. </br>
+The **L2 penalty** is quadratic: lambda*slope^2: none of the coefficients (slope) are extremely large. </br>
+The **L1 penalty** is the absolute value: lambda*|slope|: choose the most important features. </br>
 
-When **Lambda = 0**, the penalty is also 0, and so we are just minimizing the sum of the squared residuals. /br>
+When **Lambda = 0**, the penalty is also 0, and so we are just minimizing the sum of the squared residuals. </br>
 When **Lambda asymptotically increase**, we arrive to a slope close to 0: so, the larger LAMBDA is, our prediction became less sensitive to the independent variable.
-We can use Cross-Validation, typically 10-Fold Cross Validation is used in order to determine which LAMBDA give back the lowest VARIANCE. /br> 
+We can use Cross-Validation, typically 10-Fold Cross Validation is used in order to determine which LAMBDA give back the lowest VARIANCE. </br> 
 **Lambda is the Tuning Parameter that controls the bias-variance tradeoff** and we estimate its best value via cross-validation. </br>
 
 
