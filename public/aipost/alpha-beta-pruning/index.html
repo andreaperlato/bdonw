@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Alpha Beta Pruning - Andrea Perlato</title>
+<meta property="og:title" content="Alpha Beta Pruning - Andrea Perlato">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/graphpost/">Graph</a></li>
+    
+    <li><a href="/mlpost/">Machine Learning</a></li>
+    
+    <li><a href="/aipost/">Artificial Intelligence</a></li>
+    
+    <li><a href="/tspost/">Time Series</a></li>
+    
+    <li><a href="/theorypost/">Theory</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Alpha Beta Pruning</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><strong>Introduction</strong> </br> A fascinating aspect of our brain is the <a href="https://en.wikipedia.org/wiki/Synaptic_pruning"><strong>Synaptic pruning</strong></a>. One of the grand strategies nature uses to construct nervous systems is to overproduce neural elements, such as neurons, axons and synapses, and then prune the excess. In fact, this overproduction is so substantial that only about half of the neurons mammalian embryos generate will survive until birth. At the same way the pruning in ANN is used to eliminate redundant connections between neurons during the training. This process is also known as <strong>Drop-out</strong> and play an essential role in <strong>Back Propagation</strong>. </br></p>
+<p><strong>Alpha Beta Pruning</strong> </br> The idea is to find the <a href="https://en.wikipedia.org/wiki/Minimax"><strong>minimax</strong></a> of a <a href="https://en.wikipedia.org/wiki/Game_tree"><strong>game tree</strong></a>. </br> It is a technique by which without checking each node of the game tree we can compute the correct minimax decision, and this technique is called <strong>pruning</strong>. This involves two threshold parameter Alpha and Beta for future expansion, so it is called <strong>alpha-beta pruning</strong>. </br> <strong>Alpha</strong>: is the best (highest-value) choice we have found so far at any point along the path of Maximizer. The initial value of alpha is -∞. </br> <strong>Beta</strong>: The best (lowest-value) choice we have found so far at any point along the path of Minimizer. The initial value of beta is +∞. </br></p>
+<p>The <strong>Alpha-beta pruning</strong> removes all the nodes which are not really affecting the final decision but making algorithm slow. Hence by pruning these nodes, it makes the algorithm fast.</p>
+<center>
+<img src="/img/minimax.png" style="width:40.0%" />
+</center>
+<p>We have an example on the figure above. If we do minimax at the root level <strong>A</strong>, this would be the maximum of the nodes <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, and each of these nodes have to be the minimum of their values below the tree. The result is <strong>3</strong>, and we do not need <strong>z</strong>. We do not need z which is the min(2,x,y) because z &lt;= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of <strong>c</strong> (x,y).</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://www.rstudio.com/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+
+    
+  </body>
+</html>
+

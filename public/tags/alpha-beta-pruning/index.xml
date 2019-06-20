@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alpha Beta Pruning on Andrea Perlato</title>
+    <link>/tags/alpha-beta-pruning/</link>
+    <description>Recent content in Alpha Beta Pruning on Andrea Perlato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/alpha-beta-pruning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Alpha Beta Pruning</title>
+      <link>/aipost/alpha-beta-pruning/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/alpha-beta-pruning/</guid>
+      <description>body {text-align: justify}Introduction  A fascinating aspect of our brain is the Synaptic pruning. One of the grand strategies nature uses to construct nervous systems is to overproduce neural elements, such as neurons, axons and synapses, and then prune the excess. In fact, this overproduction is so substantial that only about half of the neurons mammalian embryos generate will survive until birth. At the same way the pruning in ANN is used to eliminate redundant connections between neurons during the training.</description>
+    </item>
+    
+  </channel>
+</rss>

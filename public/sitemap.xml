@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/aipost/alpha-beta-pruning/</loc>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/theorypost/fitting-a-curve-to-data-lowess-and-loess/</loc>
     <lastmod>2019-06-18T00:00:00+00:00</lastmod>
   </url>
@@ -281,13 +286,19 @@
   
   <url>
     <loc>/aipost/</loc>
-    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/agile/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/alpha-beta-pruning/</loc>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -299,7 +310,7 @@
   
   <url>
     <loc>/categories/artificial-intelligence/</loc>
-    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,7 +328,7 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

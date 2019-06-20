@@ -1,0 +1,60 @@
+---
+title: Alpha Beta Pruning
+author: andrea perlato
+date: '2019-06-20'
+slug: alpha-beta-pruning
+categories:
+  - artificial intelligence
+tags:
+  - alpha beta pruning
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+ 
+**Introduction** </br> 
+A fascinating aspect of our brain is the [**Synaptic pruning**](https://en.wikipedia.org/wiki/Synaptic_pruning). One of the grand strategies nature uses to construct nervous systems is to overproduce neural elements, such as neurons, axons and synapses, and then prune the excess. In fact, this overproduction is so substantial that only about half of the neurons mammalian embryos generate will survive until birth.
+At the same way the pruning in ANN is used to eliminate redundant connections between neurons during the training. This process is also known as **Drop-out** and play an essential role in **Back Propagation**. </br>
+
+**Alpha Beta Pruning** </br> 
+The idea is to find the [**minimax**](https://en.wikipedia.org/wiki/Minimax) of a [**game tree**](https://en.wikipedia.org/wiki/Game_tree). </br>
+It is a technique by which without checking each node of the game tree we can compute the correct minimax decision, and this technique is called **pruning**. This involves two threshold parameter Alpha and Beta for future expansion, so it is called **alpha-beta pruning**. </br>
+**Alpha**: is the best (highest-value) choice we have found so far at any point along the path of Maximizer. The initial value of alpha is -∞. </br>
+**Beta**: The best (lowest-value) choice we have found so far at any point along the path of Minimizer. The initial value of beta is +∞. </br>
+
+The **Alpha-beta pruning** removes all the nodes which are not really affecting the final decision but making algorithm slow. Hence by pruning these nodes, it makes the algorithm fast.
+
+<center>
+![](/img/minimax.png){width=40%}
+</center>
+
+We have an example on the figure above. If we do minimax at the root level **A**, this would be the maximum of the nodes **B**, **C**, **D**, and each of these nodes have to be the minimum of their values below the tree. The result is **3**, and we do not need **z**. We do not need z which is the min(2,x,y) because z <= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of **c** (x,y).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
