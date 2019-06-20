@@ -21,4 +21,13 @@ text-align: justify}
 <center>
 <img src="/img/minimax.png" style="width:40.0%" />
 </center>
-<p>We have an example on the figure above. If we do minimax at the root level <strong>A</strong>, this would be the maximum of the nodes <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, and each of these nodes have to be the minimum of their values below the tree. The result is <strong>3</strong>, and we do not need <strong>z</strong>. We do not need z which is the min(2,x,y) because z &lt;= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of <strong>c</strong> (x,y).</p>
+<p>We have an example on the figure above. If we do minimax at the root level <strong>A</strong>, this would be the maximum of the nodes <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, and each of these nodes have to be the minimum of their values below the tree. The result is <strong>3</strong>, and we do not need <strong>z</strong>. We do not need z which is the min(2,x,y) because z &lt;= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of <strong>C</strong> (x,y).</p>
+<p>In the <strong>Alpha-beta pruning</strong> the <strong>Alpha</strong> is the value of best choice so far fot MAX (highest value), and <strong>Beta</strong> is the value of bets choice so far for MIN (lowest value). Each node keep track of its Alpha and Beta values.</p>
+<center>
+<img src="/img/minimaxalphabeta.png" style="width:40.0%" />
+</center>
+<p>We start with Alpha = -∞, Beta = +∞, and we want to increase the Alpha value but also Alpha has to be less or euqal to Beta. </br> In the previous example, we had as first value <strong>3</strong>, and now we have to ask if <strong>3</strong> is less than <strong>Alpha</strong> (-∞). Becasue <strong>3</strong> is greater than <strong>Alpha</strong>, and less than <strong>Beta</strong> (+∞), we can update Beta = 3. We continue this process for all the values in the tree.</p>
+<center>
+<img src="/img/minimaxsolution.png" style="width:40.0%" />
+</center>
+<p>At the end of the algorithm the minimax for the root node <strong>A</strong> is <strong>3</strong>, and we did not explore the two not defined final nodes of <strong>C</strong>. </br> Moreover, if we reorder the final nodes of <strong>D</strong> by 2,5,14 we immediately discover the solution for this node which is <strong>2</strong>. </br> Crucially, when we have to deal with a large number od nodes, this procedure save us a lot of time, and we arrive faster to the solution without affecting the final outcome. This procedure is called <a href="https://www.ncbi.nlm.nih.gov/pubmed/28625355"><strong>metareasoning</strong></a>.</p>

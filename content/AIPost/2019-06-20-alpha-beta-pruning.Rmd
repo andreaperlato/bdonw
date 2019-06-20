@@ -30,7 +30,42 @@ The **Alpha-beta pruning** removes all the nodes which are not really affecting 
 ![](/img/minimax.png){width=40%}
 </center>
 
-We have an example on the figure above. If we do minimax at the root level **A**, this would be the maximum of the nodes **B**, **C**, **D**, and each of these nodes have to be the minimum of their values below the tree. The result is **3**, and we do not need **z**. We do not need z which is the min(2,x,y) because z <= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of **c** (x,y).
+We have an example on the figure above. If we do minimax at the root level **A**, this would be the maximum of the nodes **B**, **C**, **D**, and each of these nodes have to be the minimum of their values below the tree. The result is **3**, and we do not need **z**. We do not need z which is the min(2,x,y) because z <= 2, and so the max(3,z,2) is 3, and we do not need to explore the others two nodes of **C** (x,y).
+
+In the **Alpha-beta pruning** the **Alpha** is the value of best choice so far fot MAX (highest value), and **Beta** is the value of bets choice so far for MIN (lowest value). Each node keep track of its Alpha and Beta values.
+
+<center>
+![](/img/minimaxalphabeta.png){width=40%}
+</center>
+
+We start with Alpha = -∞, Beta = +∞, and we want to increase the Alpha value but also Alpha has to be less or euqal to Beta. </br>
+In the previous example, we had as first value **3**, and now we have to ask if **3** is less than **Alpha** (-∞). Becasue **3** is greater than **Alpha**, and less than **Beta** (+∞), we can update Beta = 3. We continue this process for all the values in the tree.
+
+<center>
+![](/img/minimaxsolution.png){width=40%}
+</center>
+
+At the end of the algorithm the minimax for the root node **A** is **3**, and we did not explore the two not defined final nodes of **C**. </br>
+Moreover, if we reorder the final nodes of **D** by 2,5,14 we immediately discover the solution for this node which is **2**. </br>
+Crucially, when we have to deal with a large number od nodes, this procedure save us a lot of time, and we arrive faster to the solution without affecting the final outcome. This procedure is called [**metareasoning**](https://www.ncbi.nlm.nih.gov/pubmed/28625355).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
