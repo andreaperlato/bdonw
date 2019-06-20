@@ -19,7 +19,7 @@ We already know that there is in ANN a **Forwward Propagation** where the inform
 
 
 The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like.
-The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br>
+The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps.
 The first step is to understand what the [**Chain Rule**](https://en.wikipedia.org/wiki/Backpropagation) is all about. </br>
 
 **Chain Rule** </br>
