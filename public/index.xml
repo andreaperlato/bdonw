@@ -21,6 +21,16 @@
     </item>
     
     <item>
+      <title>The Activation Function</title>
+      <link>/aipost/the-activation-function/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/aipost/the-activation-function/</guid>
+      <description>body {text-align: justify}What an artifical neuron do is to calculate a weighted sum of its input, adds a bias and then decides whether it should be “fired” or not.
+considering the neuron of the figure above, the value of Y can be anything ranging from -inf to +inf. The neuron really doesn’t know the bounds of the value. How do we decide whether the neuron should fire or not?</description>
+    </item>
+    
+    <item>
       <title>Fitting a curve to data LOWESS and LOESS</title>
       <link>/theorypost/fitting-a-curve-to-data-lowess-and-loess/</link>
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>

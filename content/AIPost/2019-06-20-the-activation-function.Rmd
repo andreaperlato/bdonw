@@ -1,0 +1,24 @@
+---
+title: The Activation Function
+author: andrea perlato
+date: '2019-06-20'
+slug: the-activation-function
+categories:
+  - artificial intelligence
+tags:
+  - activation function
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+What an artifical neuron do is to calculate a **weighted sum** of its input, adds a bias and then decides whether it should be “fired” or not.
+
+<center>
+![](/img/artificialneuron.png){width=60%}
+</center>
+
+considering the neuron of the figure above, the value of Y can be anything ranging from -inf to +inf. The neuron really doesn’t know the bounds of the value. How do we decide whether the neuron should fire or not? We use **Activatioin Functions** for this purpose. To check the Y value produced by a neuron and decide whether outside connections should consider this neuron as fired or not.
+
