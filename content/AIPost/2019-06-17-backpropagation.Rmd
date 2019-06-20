@@ -14,6 +14,10 @@ body {
 text-align: justify}
 </style>
 
+**Introduction** </br>
+We already know that there is in ANN a **Forwward Propagation** where the information is entered into the **input layer**, and then it is propagated forward to get our output values to compare with the actual values that we have in our training set, and then we calculate the errors. Then the errors are back propagated through the network in the opposite direction in order to adjust the weights. An importan thing to remember is that **Back Propagation** is an advanced algorithm which allows us to adjust the weights all of them at the same time. We are able to know which weight is responsable for the error. </br>
+
+
 The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like.
 The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br>
 The first step is to understand what the [**Chain Rule**](https://en.wikipedia.org/wiki/Backpropagation) is all about. </br>

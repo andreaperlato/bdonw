@@ -45,7 +45,7 @@ Locally weighted regression scatterplot smoothing - LOWESS  The main idea to fit
       <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/aipost/backpropagation/</guid>
-      <description>body {text-align: justify}The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like. The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps.</description>
+      <description>body {text-align: justify}Introduction  We already know that there is in ANN a Forwward Propagation where the information is entered into the input layer, and then it is propagated forward to get our output values to compare with the actual values that we have in our training set, and then we calculate the errors. Then the errors are back propagated through the network in the opposite direction in order to adjust the weights.</description>
     </item>
     
     <item>

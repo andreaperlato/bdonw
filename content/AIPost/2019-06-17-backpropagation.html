@@ -15,6 +15,7 @@ slug: backpropagation
 body {
 text-align: justify}
 </style>
+<p><strong>Introduction</strong> </br> We already know that there is in ANN a <strong>Forwward Propagation</strong> where the information is entered into the <strong>input layer</strong>, and then it is propagated forward to get our output values to compare with the actual values that we have in our training set, and then we calculate the errors. Then the errors are back propagated through the network in the opposite direction in order to adjust the weights. An importan thing to remember is that <strong>Back Propagation</strong> is an advanced algorithm which allows us to adjust the weights all of them at the same time. We are able to know which weight is responsable for the error. </br></p>
 <p>The basic idea of backpropagation is to guess what the hidden units should look like based on what the input looks like and what the output should look like. The definition of backpropagation is a way of computing gradients through recursive application of chain rules. It is the standard way of computing gradients for ANNs. It is a very flexible solution for comupting the gradient through simple, incremental steps. </br> The first step is to understand what the <a href="https://en.wikipedia.org/wiki/Backpropagation"><strong>Chain Rule</strong></a> is all about. </br></p>
 <p><strong>Chain Rule</strong> </br> The fundamental unit of every deep learning model is the Perceptron. The Perceptron algorithm was designed to classify visual inputs, categorizing subjects into one of two types and separating groups with a line: it is used for linearly-solvable problems. </br></p>
 <p>In calculus, the Chain rule is a formula for computing the derivative of the composition of two or more functions called <a href="https://en.wikipedia.org/wiki/Perceptron"><strong>Perceptron</strong></a>. The Chain Rule allow us to break down a complex function in many smaller functions for which it is relatively straighforward to compute the derivative. Then, we simply chain them together by multiplication. </br></p>
@@ -44,17 +45,25 @@ library(h2o)
 
 # General parameters
 h2o.init()</code></pre>
-<pre><code> Connection successful!
+<pre><code>
+H2O is not running yet, starting it now...
+
+Note:  In case of errors look at the following log files:
+    C:\Users\perlatoa\AppData\Local\Temp\RtmpM5l2uH/h2o_perlatoa_started_from_r.out
+    C:\Users\perlatoa\AppData\Local\Temp\RtmpM5l2uH/h2o_perlatoa_started_from_r.err
+
+
+Starting H2O JVM and connecting: . Connection successful!
 
 R is connected to the H2O cluster: 
-    H2O cluster uptime:         33 minutes 17 seconds 
+    H2O cluster uptime:         4 seconds 686 milliseconds 
     H2O cluster timezone:       Europe/Berlin 
     H2O data parsing timezone:  UTC 
     H2O cluster version:        3.20.0.8 
-    H2O cluster version age:    8 months and 27 days !!! 
-    H2O cluster name:           H2O_started_from_R_perlatoa_dpi487 
+    H2O cluster version age:    8 months and 30 days !!! 
+    H2O cluster name:           H2O_started_from_R_perlatoa_rsx864 
     H2O cluster total nodes:    1 
-    H2O cluster total memory:   2.31 GB 
+    H2O cluster total memory:   2.65 GB 
     H2O cluster total cores:    4 
     H2O cluster allowed cores:  4 
     H2O cluster healthy:        TRUE 
