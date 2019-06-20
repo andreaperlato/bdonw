@@ -42,7 +42,7 @@ We start with Alpha = -∞, Beta = +∞, and we want to increase the Alpha value
 In the previous example, we had as first value **3**, and now we have to ask if **3** is less than **Alpha** (-∞). Becasue **3** is greater than **Alpha**, and less than **Beta** (+∞), we can update Beta = 3. We continue this process for all the values in the tree.
 
 <center>
-![](/img/minimaxsolution.png){width=40%}
+![](/img/minimaxfinalsolution.png){width=40%}
 </center>
 
 At the end of the algorithm the minimax for the root node **A** is **3**, and we did not explore the two not defined final nodes of **C**. </br>
