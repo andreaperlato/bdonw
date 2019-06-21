@@ -15,4 +15,12 @@ tags:
 body {
 text-align: justify}
 </style>
-<p>Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. Artificial Neural Network receive an input (single vector), and transform it through a series of hidden layers.</p>
+<p>Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. The three main components of the CNN are the <strong>Convolutional Layer</strong>, the <strong>Pooling Layer</strong> (used to reduce the computational space), and the <strong>Fully Connected Layer</strong>. </br> Image to have to classify 32x32 images. A single <strong>Fully-Connected Neuron</strong> in a first hidden layer would have 3131x3=3072 weights and this structure can not scale to larger images. Clearly this full connectivity is wastefull, and it quikly leads us to overfitting.</p>
+<p>The key aspect of the CNN is that it has <strong>learnable weights and biases</strong>. </br> The layers has neuros arranged in three-dimentions: width, height, depth. So, an image is considered as an input of activations where the depth is 3 as the different color channels. To process an image, a typical approach is to <strong>convolve</strong> it with a <strong>filter</strong>, also called <strong>kernel</strong> in order to have only the salient features (e.g. the borders) of the original image.</p>
+<center>
+<img src="/img/processimage.png" style="width:40.0%" />
+</center>
+<p>From the figure above, in order to obtain the convoluted feature <strong>4</strong>, we have to compute the linear combination of the original pixel i he input data and the corrisponding weight of the kernel. In CNn it is necessary to inctrocude a bit of terminolgy: </br> The <strong>Feature Maps</strong> is each slide of the convolutional layer alongh the width. </br> The <strong>Receptive Field</strong> is the local 3D-patch in the input volume to which a specific neuron is connected. </br> The <strong>Depth Column</strong> is the set of neurons that are all looking at the same region of the input. </br></p>
+<center>
+<img src="/img/cnnfeature.png" style="width:30.0%" />
+</center>

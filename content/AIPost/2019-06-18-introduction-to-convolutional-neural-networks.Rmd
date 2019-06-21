@@ -14,4 +14,42 @@ body {
 text-align: justify}
 </style>
 
-Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. Artificial Neural Network receive an input (single vector), and transform it through a series of hidden layers.
+Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. The three main components of the CNN are the **Convolutional Layer**, the **Pooling Layer** (used to reduce the computational space), and the **Fully Connected Layer**. </br>
+Image to have to classify 32x32 images. A single **Fully-Connected Neuron** in a first hidden layer would have 3131x3=3072 weights and this structure can not scale to larger images. Clearly this full connectivity is wastefull, and it quikly leads us to overfitting.
+
+The key aspect of the CNN is that it has **learnable weights and biases**. </br>
+The layers has neuros arranged in three-dimentions: width, height, depth. So, an image is considered as an input of activations where the depth is 3 as the different color channels. To process an image, a typical approach is to **convolve** it with a **filter**, also called **kernel** in order to have only the salient features (e.g. the borders) of the original image.
+
+<center>
+![](/img/processimage.png){width=40%}
+</center>
+
+From the figure above, in order to obtain the convoluted feature **4**, we have to compute the linear combination of the original pixel i he input data and the corrisponding weight of the kernel.
+In CNn it is necessary to inctrocude a bit of terminolgy: </br>
+The **Feature Maps** is each slide of the convolutional layer alongh the width. </br>
+The **Receptive Field** is the local 3D-patch in the input volume to which a specific neuron is connected. </br>
+The **Depth Column** is the set of neurons that are all looking at the same region of the input. </br>
+
+<center>
+![](/img/cnnfeature.png){width=30%}
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -46,7 +46,7 @@ Locally weighted regression scatterplot smoothing - LOWESS  The main idea to fit
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/aipost/introduction-to-convolutional-neural-networks/</guid>
-      <description>body {text-align: justify}Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. Artificial Neural Network receive an input (single vector), and transform it through a series of hidden layers.</description>
+      <description>body {text-align: justify}Convolutional Neural Networks is one of the most succesfully and used Neural Network Algorithm. The three main components of the CNN are the Convolutional Layer, the Pooling Layer (used to reduce the computational space), and the Fully Connected Layer.  Image to have to classify 32x32 images. A single Fully-Connected Neuron in a first hidden layer would have 3131x3=3072 weights and this structure can not scale to larger images.</description>
     </item>
     
     <item>
