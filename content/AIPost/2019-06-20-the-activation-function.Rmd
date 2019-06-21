@@ -27,6 +27,50 @@ considering the neuron of the figure above, the value of Y can be anything rangi
 </center>
 
 Generally, we have four different types of activation function that we can choose from. Of course, there are more different types, but these four are the predominate ones.
+The **Threshold Function** the the simplest function where if the value is less than zero then the function is zero, but if the value is more thae zero the function is one. It is basically a yes/no type ofo function.
+
+<center>
+![](/img/thresholdfunction.png){width=40%}
+</center>
+
+The **Sigmoid Function** the value **x** in its  formula is the value of the sum of the weighed. It is a function which is used in the **logistic regression**. It has a gradual progression and anything below zero is just zero, and above zero it approximates to one. It is expecially useful in the output layer, especially when we are tring to predict probabilities
+
+<center>
+![](/img/sigmoidfunction.png){width=40%}
+
+</center>
+
+The **Rectifier Function** is one of the most popular functions for artificial neural networks so when its goes all the way to zero it is zero, and from there it is fradually progresses as the input value increase as well. 
+
+<center>
+![](/img/rectifierfunction.png){width=40%}
+</center>
+
+The **Hyperbolic Tangent tanh Function** is very similar to the sigmoid function, but here the hyperbolic tangent function goes below zero, and that could be useful in some application such as 
+
+<center>
+![](/img/hypebolicfunctio.png){width=40%}
+</center>
+
+Now, considering for example to have an  0/1 outpu, we can use as activation function the threshold function or the sigmoid function. The advantage of the sigmoid function is that we have the probability of the output to be yes or no.
+
+<center>
+![](/img/exampleactivationfunction.png){width=60%}
+</center>
+
+The sigmoid activation function tells us the probability of the output to be equal to one.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
