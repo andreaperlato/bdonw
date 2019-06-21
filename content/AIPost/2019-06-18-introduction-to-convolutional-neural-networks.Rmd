@@ -34,6 +34,11 @@ The **Depth Column** is the set of neurons that are all looking at the same regi
 ![](/img/cnnfeature.png){width=30%}
 </center>
 
+each neuron is connected only to its **local receptive field**, and each neuron in each output feature map shares the same weights (i.e. it has the same filter). The reason why we need more than one ouptup feature map is because each filter can extract different features from the input image (e.g. orizontal edges or vertical edges). </br>
+In CNN is coomon to insert a **Pooling Layer** in-between secessive **Convolution Layers**. it reduce the amount of parameters in order to obtain only the useful information. For example, a pooling layer can devide the image in four area and report only the maximum value of each area (max pool).
+
+
+
 
 
 
