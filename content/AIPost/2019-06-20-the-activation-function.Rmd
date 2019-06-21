@@ -59,7 +59,7 @@ Now, considering for example to have an  0/1 outpu, we can use as activation fun
 </center>
 
 The sigmoid activation function tells us the probability of the output to be equal to one.
-
+What is commonly used is to apply the **rectifier activation function** for the **hidden layer** and then the signals are passed on to the **output layer** where the **sigmoid activation function** is used, and that will be the final output that predict the probability.
 
 
 
