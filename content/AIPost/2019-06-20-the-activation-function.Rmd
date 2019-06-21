@@ -33,7 +33,7 @@ The [**Threshold Function**](https://en.wikipedia.org/wiki/Activation_function) 
 ![](/img/thresholdfunction.png){width=40%}
 </center>
 
-The [**Sigmoid Function**](https://en.wikipedia.org/wiki/Activation_function) the value **x** in its  formula is the value of the sum of the weighed. It is a function which is used in the **logistic regression**. It has a gradual progression and anything below zero is just zero, and above zero it approximates to one. It is expecially useful in the output layer, especially when we are tring to predict probabilities. The logistic sigmoid function can cause a neural network to get stuck at the training time. The [**Softmax Function**](https://en.wikipedia.org/wiki/Softmax_function) is a more generalized logistic activation function which is used for multiclass classification.
+The [**Sigmoid Function**](https://en.wikipedia.org/wiki/Activation_function) the value **x** in its  formula is the value of the sum of the weighed. It is a function which is used in the **logistic regression**. It has a gradual progression and anything below zero is just zero, and above zero it approximates to one. It is expecially useful in the output layer, especially when we are tring to predict probabilities. The logistic sigmoid function can cause a neural network to get stuck at the training time. The [**Softmax Function**](https://en.wikipedia.org/wiki/Softmax_function) is a more generalized logistic activation function which is used for **multiclass classification**.
 The sigmoid function is used mostly used in classification type problem since we need to scale the data in some given specific range with a threshold.
 
 <center>
