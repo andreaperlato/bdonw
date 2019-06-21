@@ -37,6 +37,28 @@ The **Depth Column** is the set of neurons that are all looking at the same regi
 each neuron is connected only to its **local receptive field**, and each neuron in each output feature map shares the same weights (i.e. it has the same filter). The reason why we need more than one ouptup feature map is because each filter can extract different features from the input image (e.g. orizontal edges or vertical edges). </br>
 In CNN is coomon to insert a **Pooling Layer** in-between secessive **Convolution Layers**. it reduce the amount of parameters in order to obtain only the useful information. For example, a pooling layer can devide the image in four area and report only the maximum value of each area (max pool).
 
+The last fundamental layer in CNN is the **Fully Connected Layer**.
+Neurons in a fully connected layer have **full connections** to all activations in the preavious layer, as it s in regula ANN, and their activation can be computed via a matrix multiplication followed by a bias offset.
+The most effective activation function in this case is the **Rectifier Function**, or better the **RELU Function** that stands for [**Rectified Linear Unit Function**](https://www.kaggle.com/dansbecker/rectified-linear-units-relu-in-deep-learning). </br>
+
+In other words, the most common CNN architecture follows the following patter: </br>
+INPUT -> [[CONV->RELU]xN->POOL]xM->[FC->RELU]xK->FC </br>
+where: </br>
+N>=0 usually N=<3 </br>
+M=>0 </br>
+K=> usually K=<2 </br>
+ 
+Form the schema above, we have after the input, a series of convolutional layers (N times) and inside this patter we use the RELU activation function. Then, we reduce the dimentions and we convert it in a signle vector via pooling layers (M times). Then we can add K number of fully connected layer. </br>
+
+The most common initial approach to start an architecture of a CNn is the following: </br>
+The most common Convolution Layers filter size is 3x3 and 5x5. </br>
+The most common Pool Layer fiter size is 2x2. </br>
+
+Despite the success of CNN, they are often referred as a black-box algorithm in which we can't really tell what is going on under the hood. To face this problem, several approaches for understanding and visualizinf CNN have been developed in the literature. </br>
+
+
+
+
 
 
 
