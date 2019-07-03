@@ -14,6 +14,8 @@ body {
 text-align: justify}
 </style>
 
+**ESEGUITA MODIFICA**
+
 What an **artifical neuron** do is to calculate a **weighted sum** of its input, adds a bias and then decides whether it should be “fired” or not.
 
 <center>

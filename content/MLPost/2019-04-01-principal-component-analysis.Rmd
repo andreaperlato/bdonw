@@ -154,7 +154,7 @@ Summarizing, the **advantages** of PCA are: </br>
 
 The **disadvantages** of PCA are: </br>
 1 - Only numeric variables can be used. </br>
-2 - Prediction models are less interpretableeeeeee. </br>  
+2 - Prediction models are less interpretable. </br>  
 
 
 
